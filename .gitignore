@@ -1,0 +1,34 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+bin/
+obj/
+publish/
+artifacts/
+
+# NuGet
+*.nupkg
+packages/
+
+# Rider / IDE
+.idea/
+.vscode/
+
+# Logs and DB
+*.log
+*.mdf
+*.ldf
+*.db
+
+# Debug / symbols
+*.pdb
+*.cache
+
+# OS files
+Thumbs.db
+Desktop.ini
