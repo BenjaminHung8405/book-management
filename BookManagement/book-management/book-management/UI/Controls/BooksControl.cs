@@ -2,7 +2,7 @@
 
 namespace book_management.UI.Controls
 {
-    public class BooksControl : UserControl
+    public class BooksControl : System.Windows.Forms.UserControl
     {
         public BooksControl()
         {

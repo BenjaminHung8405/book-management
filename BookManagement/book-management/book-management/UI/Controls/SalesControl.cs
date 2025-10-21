@@ -8,7 +8,7 @@ using FontAwesome.Sharp;
 
 namespace book_management.UI.Controls
 {
-    public class SalesControl : UserControl
+    public class SalesControl : System.Windows.Forms.UserControl
     {
         private TextBox txtCustomerSearch;
         private TextBox txtCustomerName;

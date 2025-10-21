@@ -1,17 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace book_management.UI.Controls
 {
-    public class UsersControl : UserControl
+    public partial class UsersControl : System.Windows.Forms.UserControl
     {
         public UsersControl()
         {
-            var lbl = new Label();
-            lbl.Text = "Quản lý người dùng";
-            lbl.Dock = DockStyle.Fill;
-            lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            lbl.Font = new System.Drawing.Font("Segoe UI", 16);
-            this.Controls.Add(lbl);
+            InitializeComponent();
         }
     }
 }
