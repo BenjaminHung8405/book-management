@@ -53,6 +53,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\BooksControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -85,12 +91,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="UI\Controls\OverviewControl.resx">
       <DependentUpon>OverviewControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,8 +126,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\logo\logo.png" />
-    <Content Include="assets\logo\password_logo.png" />
-    <Content Include="assets\logo\user_logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

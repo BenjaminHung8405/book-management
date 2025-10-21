@@ -1,14 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Project\\Code\\book-management-dotnet\\BookManagement\\book-management\\",
+  "WorkspaceRootPath": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|D:\\Project\\Code\\book-management-dotnet\\BookManagement\\book-management\\book-management\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,26 +31,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "D:\\Project\\Code\\book-management-dotnet\\BookManagement\\book-management\\book-management\\Form1.cs",
-              "RelativeDocumentMoniker": "book-management\\Form1.cs",
-              "ToolTip": "D:\\Project\\Code\\book-management-dotnet\\BookManagement\\book-management\\book-management\\Form1.cs",
-              "RelativeToolTip": "book-management\\Form1.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAiwB8AAAAAAAAAAAAAAA==",
+              "Title": "LoginForm.cs",
+              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\LoginForm.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\LoginForm.cs",
+              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\LoginForm.cs",
+              "RelativeToolTip": "book-management\\UI\\LoginForm.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAjwGoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-19T15:20:12.652Z",
+              "WhenOpened": "2025-10-21T12:11:02.325Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "D:\\Project\\Code\\book-management-dotnet\\BookManagement\\book-management\\book-management\\Form1.cs",
-              "RelativeDocumentMoniker": "book-management\\Form1.cs",
-              "ToolTip": "D:\\Project\\Code\\book-management-dotnet\\BookManagement\\book-management\\book-management\\Form1.cs [Design]",
-              "RelativeToolTip": "book-management\\Form1.cs [Design]",
+              "Title": "LoginForm.cs [Design]",
+              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\LoginForm.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\LoginForm.cs",
+              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\LoginForm.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\LoginForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-19T14:25:37.629Z",
+              "WhenOpened": "2025-10-21T11:59:54.813Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\MainForm.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\MainForm.cs",
+              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\MainForm.cs",
+              "RelativeToolTip": "book-management\\UI\\MainForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T11:59:26.051Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\MainForm.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\MainForm.cs",
+              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\MainForm.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T11:50:36.647Z",
               "EditorCaption": " [Design]"
             }
           ]

@@ -12,6 +12,8 @@ namespace book_management
 {
     public partial class LoginForm : Form
     {
+        private bool _isVisible = false;
+
         public LoginForm()
         {
             InitializeComponent();
@@ -85,6 +87,22 @@ namespace book_management
             if (result == DialogResult.Yes)
             {
                 Application.Exit();
+            }
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            if (_isVisible)
+            {
+                textBox2.UseSystemPasswordChar = true;
+                iconButton1.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+                _isVisible = false;
+            }
+            else
+            {
+                textBox2.UseSystemPasswordChar = false;
+                iconButton1.IconChar = FontAwesome.Sharp.IconChar.Eye;
+                _isVisible = true;
             }
         }
     }
