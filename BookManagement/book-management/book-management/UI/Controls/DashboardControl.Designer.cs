@@ -35,6 +35,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.panelKpiContainer = new System.Windows.Forms.Panel();
+            this.panelKpiKhachHang = new System.Windows.Forms.Panel();
+            this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.panelKpiDoanhThu = new System.Windows.Forms.Panel();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -50,11 +55,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.panelKpiKhachHang = new System.Windows.Forms.Panel();
-            this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.panelMidContainer = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chartDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -66,22 +66,22 @@
             this.label14 = new System.Windows.Forms.Label();
             this.panelRecentSales = new System.Windows.Forms.Panel();
             this.dataGridViewSales = new System.Windows.Forms.DataGridView();
-            this.label16 = new System.Windows.Forms.Label();
             this.colMaHoaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colKhachHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNgayTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTongTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colChiTiet = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.label16 = new System.Windows.Forms.Label();
             this.panelKpiContainer.SuspendLayout();
+            this.panelKpiKhachHang.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
             this.panelKpiDoanhThu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.panelKpiDonHang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             this.panelKpiSachHet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
-            this.panelKpiKhachHang.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
             this.panelMidContainer.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThu)).BeginInit();
@@ -106,12 +106,76 @@
             // panelKpiContainer
             // 
             this.panelKpiContainer.Controls.Add(this.panelKpiKhachHang);
+            this.panelKpiContainer.Controls.Add(this.panelKpiDonHang);
+            this.panelKpiContainer.Controls.Add(this.panelKpiSachHet);
             this.panelKpiContainer.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelKpiContainer.Location = new System.Drawing.Point(24, 92);
             this.panelKpiContainer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 24);
             this.panelKpiContainer.Name = "panelKpiContainer";
-            this.panelKpiContainer.Size = new System.Drawing.Size(1268, 154);
+            this.panelKpiContainer.Size = new System.Drawing.Size(1251, 154);
             this.panelKpiContainer.TabIndex = 1;
+            // 
+            // panelKpiKhachHang
+            // 
+            this.panelKpiKhachHang.BackColor = System.Drawing.Color.White;
+            this.panelKpiKhachHang.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelKpiKhachHang.Controls.Add(this.iconPictureBox4);
+            this.panelKpiKhachHang.Controls.Add(this.label13);
+            this.panelKpiKhachHang.Controls.Add(this.label11);
+            this.panelKpiKhachHang.Controls.Add(this.label12);
+            this.panelKpiKhachHang.Location = new System.Drawing.Point(995, 0);
+            this.panelKpiKhachHang.Name = "panelKpiKhachHang";
+            this.panelKpiKhachHang.Padding = new System.Windows.Forms.Padding(16);
+            this.panelKpiKhachHang.Size = new System.Drawing.Size(307, 130);
+            this.panelKpiKhachHang.TabIndex = 0;
+            // 
+            // iconPictureBox4
+            // 
+            this.iconPictureBox4.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
+            this.iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
+            this.iconPictureBox4.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
+            this.iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox4.IconSize = 72;
+            this.iconPictureBox4.Location = new System.Drawing.Point(212, 29);
+            this.iconPictureBox4.Name = "iconPictureBox4";
+            this.iconPictureBox4.Size = new System.Drawing.Size(72, 72);
+            this.iconPictureBox4.TabIndex = 1;
+            this.iconPictureBox4.TabStop = false;
+            // 
+            // label13
+            // 
+            this.label13.AutoEllipsis = true;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(19, 51);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(27, 29);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "5";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(19, 16);
+            this.label11.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(113, 19);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Khách hàng mới";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.label12.Location = new System.Drawing.Point(19, 93);
+            this.label12.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(105, 19);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "Trong hôm nay";
             // 
             // panelKpiDoanhThu
             // 
@@ -184,7 +248,7 @@
             this.panelKpiDonHang.Controls.Add(this.label7);
             this.panelKpiDonHang.Controls.Add(this.label5);
             this.panelKpiDonHang.Controls.Add(this.label6);
-            this.panelKpiDonHang.Location = new System.Drawing.Point(344, 92);
+            this.panelKpiDonHang.Location = new System.Drawing.Point(332, 0);
             this.panelKpiDonHang.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.panelKpiDonHang.Name = "panelKpiDonHang";
             this.panelKpiDonHang.Padding = new System.Windows.Forms.Padding(16);
@@ -247,7 +311,7 @@
             this.panelKpiSachHet.Controls.Add(this.label10);
             this.panelKpiSachHet.Controls.Add(this.label8);
             this.panelKpiSachHet.Controls.Add(this.label9);
-            this.panelKpiSachHet.Location = new System.Drawing.Point(664, 92);
+            this.panelKpiSachHet.Location = new System.Drawing.Point(664, 0);
             this.panelKpiSachHet.Name = "panelKpiSachHet";
             this.panelKpiSachHet.Padding = new System.Windows.Forms.Padding(16);
             this.panelKpiSachHet.Size = new System.Drawing.Size(307, 130);
@@ -301,68 +365,6 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Sách sắp hết";
             // 
-            // panelKpiKhachHang
-            // 
-            this.panelKpiKhachHang.BackColor = System.Drawing.Color.White;
-            this.panelKpiKhachHang.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelKpiKhachHang.Controls.Add(this.iconPictureBox4);
-            this.panelKpiKhachHang.Controls.Add(this.label13);
-            this.panelKpiKhachHang.Controls.Add(this.label11);
-            this.panelKpiKhachHang.Controls.Add(this.label12);
-            this.panelKpiKhachHang.Location = new System.Drawing.Point(960, 0);
-            this.panelKpiKhachHang.Name = "panelKpiKhachHang";
-            this.panelKpiKhachHang.Padding = new System.Windows.Forms.Padding(16);
-            this.panelKpiKhachHang.Size = new System.Drawing.Size(307, 130);
-            this.panelKpiKhachHang.TabIndex = 0;
-            // 
-            // iconPictureBox4
-            // 
-            this.iconPictureBox4.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
-            this.iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
-            this.iconPictureBox4.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
-            this.iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox4.IconSize = 72;
-            this.iconPictureBox4.Location = new System.Drawing.Point(212, 29);
-            this.iconPictureBox4.Name = "iconPictureBox4";
-            this.iconPictureBox4.Size = new System.Drawing.Size(72, 72);
-            this.iconPictureBox4.TabIndex = 1;
-            this.iconPictureBox4.TabStop = false;
-            // 
-            // label13
-            // 
-            this.label13.AutoEllipsis = true;
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(19, 51);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(27, 29);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "5";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(19, 16);
-            this.label11.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(113, 19);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Khách hàng mới";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.label12.Location = new System.Drawing.Point(19, 93);
-            this.label12.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(105, 19);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "Trong hôm nay";
-            // 
             // panelMidContainer
             // 
             this.panelMidContainer.Controls.Add(this.panel2);
@@ -371,7 +373,7 @@
             this.panelMidContainer.Location = new System.Drawing.Point(24, 246);
             this.panelMidContainer.Margin = new System.Windows.Forms.Padding(0, 24, 0, 0);
             this.panelMidContainer.Name = "panelMidContainer";
-            this.panelMidContainer.Size = new System.Drawing.Size(1268, 344);
+            this.panelMidContainer.Size = new System.Drawing.Size(1251, 344);
             this.panelMidContainer.TabIndex = 2;
             // 
             // panel2
@@ -504,7 +506,7 @@
             this.panelRecentSales.Location = new System.Drawing.Point(24, 590);
             this.panelRecentSales.Name = "panelRecentSales";
             this.panelRecentSales.Padding = new System.Windows.Forms.Padding(16);
-            this.panelRecentSales.Size = new System.Drawing.Size(1268, 480);
+            this.panelRecentSales.Size = new System.Drawing.Size(1251, 480);
             this.panelRecentSales.TabIndex = 3;
             // 
             // dataGridViewSales
@@ -532,23 +534,10 @@
             this.dataGridViewSales.ReadOnly = true;
             this.dataGridViewSales.RowHeadersVisible = false;
             this.dataGridViewSales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSales.Size = new System.Drawing.Size(1236, 395);
+            this.dataGridViewSales.Size = new System.Drawing.Size(1219, 395);
             this.dataGridViewSales.TabIndex = 1;
             this.dataGridViewSales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSales_CellContentClick);
             this.dataGridViewSales.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewSales_CellFormatting);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label16.Font = new System.Drawing.Font("Roboto Cn", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(16, 16);
-            this.label16.Margin = new System.Windows.Forms.Padding(3, 0, 3, 24);
-            this.label16.Name = "label16";
-            this.label16.Padding = new System.Windows.Forms.Padding(0, 0, 0, 24);
-            this.label16.Size = new System.Drawing.Size(171, 53);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "Hóa đơn gần đây";
             // 
             // colMaHoaDon
             // 
@@ -607,6 +596,19 @@
             this.colChiTiet.TrackVisitedState = false;
             this.colChiTiet.UseColumnTextForLinkValue = true;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label16.Font = new System.Drawing.Font("Roboto Cn", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(16, 16);
+            this.label16.Margin = new System.Windows.Forms.Padding(3, 0, 3, 24);
+            this.label16.Name = "label16";
+            this.label16.Padding = new System.Windows.Forms.Padding(0, 0, 0, 24);
+            this.label16.Size = new System.Drawing.Size(171, 53);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Hóa đơn gần đây";
+            // 
             // DashboardControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 13F);
@@ -614,8 +616,6 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.Controls.Add(this.panelRecentSales);
-            this.Controls.Add(this.panelKpiSachHet);
-            this.Controls.Add(this.panelKpiDonHang);
             this.Controls.Add(this.panelMidContainer);
             this.Controls.Add(this.panelKpiDoanhThu);
             this.Controls.Add(this.panelKpiContainer);
@@ -625,9 +625,12 @@
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "DashboardControl";
             this.Padding = new System.Windows.Forms.Padding(24);
-            this.Size = new System.Drawing.Size(1316, 830);
+            this.Size = new System.Drawing.Size(1299, 830);
             this.Load += new System.EventHandler(this.DashboardControl_Load);
             this.panelKpiContainer.ResumeLayout(false);
+            this.panelKpiKhachHang.ResumeLayout(false);
+            this.panelKpiKhachHang.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).EndInit();
             this.panelKpiDoanhThu.ResumeLayout(false);
             this.panelKpiDoanhThu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
@@ -637,9 +640,6 @@
             this.panelKpiSachHet.ResumeLayout(false);
             this.panelKpiSachHet.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
-            this.panelKpiKhachHang.ResumeLayout(false);
-            this.panelKpiKhachHang.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).EndInit();
             this.panelMidContainer.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

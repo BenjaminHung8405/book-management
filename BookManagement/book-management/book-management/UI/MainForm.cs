@@ -81,7 +81,7 @@ namespace book_management.UI
 
         private void btnSales_Click(object sender, EventArgs e)
         {
-            LoadControl(new SalesControl());
+            LoadControl(new StoreControl());
             ActivateButton(btnSales);
         }
 

@@ -54,6 +54,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\MockDatabase.cs" />
     <Compile Include="UI\Controls\ReportControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -65,6 +66,24 @@
     </Compile>
     <Compile Include="UI\Controls\DashboardControl.Designer.cs">
       <DependentUpon>DashboardControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\StoreControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\StoreControl.Designer.cs">
+      <DependentUpon>StoreControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\ucBookCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ucBookCard.Designer.cs">
+      <DependentUpon>ucBookCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\ucOrderItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\ucOrderItem.Designer.cs">
+      <DependentUpon>ucOrderItem.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\UsersControl.cs">
       <SubType>UserControl</SubType>
@@ -87,9 +106,6 @@
     <Compile Include="UI\Controls\BooksControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Controls\SalesControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="UI\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +117,15 @@
     <Compile Include="UI\Theme\AppColors.cs" />
     <EmbeddedResource Include="UI\Controls\DashboardControl.resx">
       <DependentUpon>DashboardControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\StoreControl.resx">
+      <DependentUpon>StoreControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\ucBookCard.resx">
+      <DependentUpon>ucBookCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\ucOrderItem.resx">
+      <DependentUpon>ucOrderItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
