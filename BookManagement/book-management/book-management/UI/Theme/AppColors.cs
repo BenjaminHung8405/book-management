@@ -21,5 +21,9 @@ namespace book_management.UI.Theme
         public static Color SuccessGreen => Color.FromArgb(34, 197, 94);
 
         public static Color WarningYellow => Color.FromArgb(234, 179, 8);
+
+        public static Color ErrorRed => Color.FromArgb(254, 242, 242);
+
+        public static Color ErrorTextRed => Color.FromArgb(185, 28, 28);
     }
 }

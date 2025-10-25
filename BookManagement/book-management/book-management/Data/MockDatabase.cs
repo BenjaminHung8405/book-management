@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Linq;
 
 namespace book_management.Data
 {
@@ -81,6 +82,88 @@ namespace book_management.Data
                 case 3: return "Toriyama Akira";
                 default: return "Unknown";
             }
+        }
+
+        // --- Additional mock data helpers for StoreControl UI testing ---
+
+        // Return a list of mock customers
+        public static List<dynamic> GetAllCustomers()
+        {
+            var list = new List<dynamic>();
+
+            dynamic c1 = new ExpandoObject();
+            c1.KhId = 1;
+            c1.TenKhach = "Nguy?n V?n A";
+            c1.SoDienThoai = "0912345678";
+            c1.Email = "a@example.com";
+            c1.DiaChi = "Hà N?i";
+            list.Add(c1);
+
+            dynamic c2 = new ExpandoObject();
+            c2.KhId = 2;
+            c2.TenKhach = "Tr?n Th? B";
+            c2.SoDienThoai = "0987654321";
+            c2.Email = "b@example.com";
+            c2.DiaChi = "H? Chí Minh";
+            list.Add(c2);
+
+            dynamic c3 = new ExpandoObject();
+            c3.KhId = 3;
+            c3.TenKhach = "Lê V?n C";
+            c3.SoDienThoai = "0909123456";
+            c3.Email = "c@example.com";
+            c3.DiaChi = "?à N?ng";
+            list.Add(c3);
+
+            return list;
+        }
+
+        // Simple search helper for customers (by name or phone)
+        public static List<dynamic> SearchCustomers(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return GetAllCustomers();
+
+            query = query.Trim().ToLowerInvariant();
+            return GetAllCustomers()
+                .Where(c => ((string)c.TenKhach).ToLowerInvariant().Contains(query) || ((string)c.SoDienThoai).Contains(query))
+                .ToList();
+        }
+
+        // Return sample order items (used to populate the order area for testing)
+        public static List<dynamic> GetSampleOrderItems()
+        {
+            var books = GetAllBooks();
+            var items = new List<dynamic>();
+
+            if (books.Count >= 3)
+            {
+                dynamic it1 = new ExpandoObject();
+                it1.SachId = books[0].SachId;
+                it1.TenSach = books[0].TenSach;
+                it1.DonGia = books[0].Gia;
+                it1.SoLuong = 1;
+                it1.ThanhTien = it1.DonGia * it1.SoLuong;
+                items.Add(it1);
+
+                dynamic it2 = new ExpandoObject();
+                it2.SachId = books[1].SachId;
+                it2.TenSach = books[1].TenSach;
+                it2.DonGia = books[1].Gia;
+                it2.SoLuong = 2;
+                it2.ThanhTien = it2.DonGia * it2.SoLuong;
+                items.Add(it2);
+
+                dynamic it3 = new ExpandoObject();
+                it3.SachId = books[2].SachId;
+                it3.TenSach = books[2].TenSach;
+                it3.DonGia = books[2].Gia;
+                it3.SoLuong = 1;
+                it3.ThanhTien = it3.DonGia * it3.SoLuong;
+                items.Add(it3);
+            }
+
+            return items;
         }
     }
 }
