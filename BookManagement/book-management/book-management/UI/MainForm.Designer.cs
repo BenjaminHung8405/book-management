@@ -32,9 +32,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelSidebar = new System.Windows.Forms.Panel();
+            this.btnBooks = new FontAwesome.Sharp.IconButton();
             this.btnUser = new FontAwesome.Sharp.IconButton();
             this.btnReport = new FontAwesome.Sharp.IconButton();
-            this.btnBook = new FontAwesome.Sharp.IconButton();
+            this.btnInvoice = new FontAwesome.Sharp.IconButton();
             this.btnSales = new FontAwesome.Sharp.IconButton();
             this.btnDashboard = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -88,9 +89,10 @@
             // 
             this.panelSidebar.BackColor = System.Drawing.Color.White;
             this.panelSidebar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSidebar.Controls.Add(this.btnBooks);
             this.panelSidebar.Controls.Add(this.btnUser);
             this.panelSidebar.Controls.Add(this.btnReport);
-            this.panelSidebar.Controls.Add(this.btnBook);
+            this.panelSidebar.Controls.Add(this.btnInvoice);
             this.panelSidebar.Controls.Add(this.btnSales);
             this.panelSidebar.Controls.Add(this.btnDashboard);
             this.panelSidebar.Controls.Add(this.panel1);
@@ -102,6 +104,28 @@
             this.panelSidebar.Size = new System.Drawing.Size(250, 830);
             this.panelSidebar.TabIndex = 2;
             // 
+            // btnBooks
+            // 
+            this.btnBooks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnBooks.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBooks.ForeColor = System.Drawing.Color.White;
+            this.btnBooks.IconChar = FontAwesome.Sharp.IconChar.Book;
+            this.btnBooks.IconColor = System.Drawing.Color.White;
+            this.btnBooks.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBooks.IconSize = 36;
+            this.btnBooks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBooks.Location = new System.Drawing.Point(12, 330);
+            this.btnBooks.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
+            this.btnBooks.Name = "btnBooks";
+            this.btnBooks.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.btnBooks.Size = new System.Drawing.Size(224, 63);
+            this.btnBooks.TabIndex = 1;
+            this.btnBooks.Text = "Quản lý Sách";
+            this.btnBooks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBooks.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBooks.UseVisualStyleBackColor = false;
+            this.btnBooks.Click += new System.EventHandler(this.btnBooks_Click);
+            // 
             // btnUser
             // 
             this.btnUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
@@ -112,7 +136,7 @@
             this.btnUser.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnUser.IconSize = 36;
             this.btnUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUser.Location = new System.Drawing.Point(12, 430);
+            this.btnUser.Location = new System.Drawing.Point(12, 530);
             this.btnUser.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
             this.btnUser.Name = "btnUser";
             this.btnUser.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
@@ -134,7 +158,7 @@
             this.btnReport.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnReport.IconSize = 36;
             this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReport.Location = new System.Drawing.Point(12, 530);
+            this.btnReport.Location = new System.Drawing.Point(12, 630);
             this.btnReport.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
             this.btnReport.Name = "btnReport";
             this.btnReport.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
@@ -146,27 +170,27 @@
             this.btnReport.UseVisualStyleBackColor = false;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
-            // btnBook
+            // btnInvoice
             // 
-            this.btnBook.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.btnBook.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBook.ForeColor = System.Drawing.Color.White;
-            this.btnBook.IconChar = FontAwesome.Sharp.IconChar.Book;
-            this.btnBook.IconColor = System.Drawing.Color.White;
-            this.btnBook.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBook.IconSize = 36;
-            this.btnBook.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBook.Location = new System.Drawing.Point(12, 330);
-            this.btnBook.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
-            this.btnBook.Name = "btnBook";
-            this.btnBook.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.btnBook.Size = new System.Drawing.Size(224, 63);
-            this.btnBook.TabIndex = 0;
-            this.btnBook.Text = "Quản lý Sách";
-            this.btnBook.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBook.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBook.UseVisualStyleBackColor = false;
-            this.btnBook.Click += new System.EventHandler(this.btnBook_Click);
+            this.btnInvoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnInvoice.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInvoice.ForeColor = System.Drawing.Color.White;
+            this.btnInvoice.IconChar = FontAwesome.Sharp.IconChar.FileInvoiceDollar;
+            this.btnInvoice.IconColor = System.Drawing.Color.White;
+            this.btnInvoice.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnInvoice.IconSize = 36;
+            this.btnInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInvoice.Location = new System.Drawing.Point(12, 430);
+            this.btnInvoice.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
+            this.btnInvoice.Name = "btnInvoice";
+            this.btnInvoice.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.btnInvoice.Size = new System.Drawing.Size(224, 63);
+            this.btnInvoice.TabIndex = 0;
+            this.btnInvoice.Text = "Hóa Đơn";
+            this.btnInvoice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInvoice.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnInvoice.UseVisualStyleBackColor = false;
+            this.btnInvoice.Click += new System.EventHandler(this.btnInvoice_Click);
             // 
             // btnSales
             // 
@@ -308,8 +332,9 @@
         private System.Windows.Forms.Label lbRole;
         private FontAwesome.Sharp.IconDropDownButton iconDropDownButton1;
         private FontAwesome.Sharp.IconButton btnSales;
-        private FontAwesome.Sharp.IconButton btnBook;
+        private FontAwesome.Sharp.IconButton btnInvoice;
         private FontAwesome.Sharp.IconButton btnUser;
         private FontAwesome.Sharp.IconButton btnReport;
+        private FontAwesome.Sharp.IconButton btnBooks;
     }
 }

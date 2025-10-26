@@ -3,8 +3,28 @@
   "WorkspaceRootPath": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\controls\\ucorderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\ucorderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\modal\\frmaddeditbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\modal\\frmaddeditbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\modal\\frmaddeditbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\modal\\frmaddeditbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\modal\\frmaddeditbook.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\modal\\frmaddeditbook.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\controls\\bookscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\bookscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\controls\\bookscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\bookscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\data\\mockdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\data\\mockdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\theme\\appcolors.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,22 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\controls\\storecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\storecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\data\\mockdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\data\\mockdatabase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\controls\\ucorderitem.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\ucorderitem.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\controls\\ucorderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\ucorderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\controls\\storecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\storecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,75 +42,75 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "StoreControl.cs",
-              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\StoreControl.cs",
-              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\StoreControl.cs",
-              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\StoreControl.cs",
-              "RelativeToolTip": "book-management\\UI\\Controls\\StoreControl.cs",
-              "ViewState": "AgIAAJ4AAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "frmAddEditBook.Designer.cs",
+              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Modal\\frmAddEditBook.Designer.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Modal\\frmAddEditBook.Designer.cs",
+              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Modal\\frmAddEditBook.Designer.cs",
+              "RelativeToolTip": "book-management\\UI\\Modal\\frmAddEditBook.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T14:35:12.451Z",
+              "WhenOpened": "2025-10-26T04:29:29.082Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmAddEditBook.cs",
+              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Modal\\frmAddEditBook.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Modal\\frmAddEditBook.cs",
+              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Modal\\frmAddEditBook.cs",
+              "RelativeToolTip": "book-management\\UI\\Modal\\frmAddEditBook.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T03:57:21.024Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmAddEditBook.cs [Design]",
+              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Modal\\frmAddEditBook.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Modal\\frmAddEditBook.cs",
+              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Modal\\frmAddEditBook.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Modal\\frmAddEditBook.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T03:51:43.565Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ucOrderItem.cs",
-              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\ucOrderItem.cs",
-              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\ucOrderItem.cs",
-              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\ucOrderItem.cs",
-              "RelativeToolTip": "book-management\\UI\\Controls\\ucOrderItem.cs",
-              "ViewState": "AgIAAIgAAAAAAAAAAABRwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T14:33:31.788Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "MockDatabase.cs",
               "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\Data\\MockDatabase.cs",
               "RelativeDocumentMoniker": "book-management\\Data\\MockDatabase.cs",
               "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\Data\\MockDatabase.cs",
               "RelativeToolTip": "book-management\\Data\\MockDatabase.cs",
-              "ViewState": "AgIAAKUAAAAAAAAAAEBVwKkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-21T17:40:31.758Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ucOrderItem.Designer.cs",
-              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\ucOrderItem.Designer.cs",
-              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\ucOrderItem.Designer.cs",
-              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\ucOrderItem.Designer.cs",
-              "RelativeToolTip": "book-management\\UI\\Controls\\ucOrderItem.Designer.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAPBzwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "BooksControl.cs",
+              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\BooksControl.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\BooksControl.cs",
+              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\BooksControl.cs",
+              "RelativeToolTip": "book-management\\UI\\Controls\\BooksControl.cs",
+              "ViewState": "AgIAACECAAAAAAAAAAAAADcCAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T14:27:55.926Z",
+              "WhenOpened": "2025-10-26T02:45:33.761Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ucOrderItem.cs [Design]",
-              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\ucOrderItem.cs",
-              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\ucOrderItem.cs",
-              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\ucOrderItem.cs [Design]",
-              "RelativeToolTip": "book-management\\UI\\Controls\\ucOrderItem.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T14:03:37.703Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "AppColors.cs",
               "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Theme\\AppColors.cs",
               "RelativeDocumentMoniker": "book-management\\UI\\Theme\\AppColors.cs",
@@ -114,19 +118,31 @@
               "RelativeToolTip": "book-management\\UI\\Theme\\AppColors.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T13:16:26.715Z",
+              "WhenOpened": "2025-10-26T02:38:08.521Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
+              "Title": "BooksControl.cs [Design]",
+              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\BooksControl.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\BooksControl.cs",
+              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\BooksControl.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Controls\\BooksControl.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T02:22:54.739Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "StoreControl.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\StoreControl.cs",
               "RelativeDocumentMoniker": "book-management\\UI\\Controls\\StoreControl.cs",
               "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\StoreControl.cs [Design]",
               "RelativeToolTip": "book-management\\UI\\Controls\\StoreControl.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-25T13:16:11.954Z",
+              "WhenOpened": "2025-10-26T02:18:25.607Z",
               "EditorCaption": " [Design]"
             }
           ]

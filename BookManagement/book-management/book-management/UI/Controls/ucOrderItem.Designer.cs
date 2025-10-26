@@ -105,6 +105,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnDecrease, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnIncrease, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.ForeColor = System.Drawing.Color.White;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -117,9 +118,10 @@
             this.txtQuantity.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtQuantity.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQuantity.Location = new System.Drawing.Point(25, 25);
+            this.txtQuantity.Location = new System.Drawing.Point(26, 25);
+            this.txtQuantity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(38, 27);
+            this.txtQuantity.Size = new System.Drawing.Size(36, 27);
             this.txtQuantity.TabIndex = 0;
             this.txtQuantity.Text = "1";
             this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
