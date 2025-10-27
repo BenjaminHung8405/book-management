@@ -239,12 +239,6 @@ namespace book_management.UI
             ActivateButton(btnSales);
         }
 
-        private void btnBook_Click(object sender, EventArgs e)
-        {
-            LoadControl(new BooksControl());
-            ActivateButton(btnBook);
-        }
-
         private void btnUser_Click(object sender, EventArgs e)
         {
             LoadControl(new UsersControl());
@@ -264,6 +258,17 @@ namespace book_management.UI
         {
             CurrentUser.Logout();
             base.OnFormClosed(e);
+        }
+
+        private void btnBooks_Click(object sender, EventArgs e)
+        {
+            LoadControl(new BooksControl());
+            ActivateButton(btnBooks);
+        }
+
+        private void btnInvoice_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
