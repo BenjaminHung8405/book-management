@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using book_management.Data; // Thêm namespace để sử dụng UserRepository và CurrentUser
 
 namespace book_management
 {
@@ -17,43 +18,12 @@ namespace book_management
         public LoginForm()
         {
             InitializeComponent();
+            // Thêm event handlers cho KeyDown
+            txtUsername.KeyDown += txtUsername_KeyDown;
+            txtPassword.KeyDown += txtPassword_KeyDown;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -61,23 +31,56 @@ namespace book_management
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            // Mock credentials
-            const string mockUser = "admin";
-            const string mockPass = "123456";
+            // Lấy thông tin đăng nhập từ form
+            var username = txtUsername.Text.Trim();
+            var password = txtPassword.Text;
 
-            var username = textBox1.Text.Trim();
-            var password = textBox2.Text;
-
-            if (username == mockUser && password == mockPass)
+            // Validate input
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                // Open MainForm
-                var main = new UI.MainForm();
-                main.Show();
-                this.Hide();
+                MessageBox.Show("Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.", "Thông báo", 
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            try
             {
-                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng.", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Xác thực người dùng từ database
+                var user = UserRepository.AuthenticateUser(username, password);
+              
+                if (user != null)
+                {
+                    // Đăng nhập thành công
+                    CurrentUser.Login(user);
+           
+                    // Hiển thị thông báo chào mừng
+                    MessageBox.Show($"Chào mừng {CurrentUser.GetDisplayInfo()}!", "Đăng nhập thành công", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                  
+                    // Mở MainForm và ẩn LoginForm
+                    var main = new UI.MainForm();
+                    main.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    // Đăng nhập thất bại
+                    MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng.", "Lỗi đăng nhập", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                    // Clear password field
+                    txtPassword.Text = "";
+                    txtPassword.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi kết nối database
+                MessageBox.Show($"Lỗi kết nối cơ sở dữ liệu: {ex.Message}\n\nVui lòng kiểm tra kết nối và thử lại.", 
+                    "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
+                // Log error for debugging
+                System.Diagnostics.Debug.WriteLine($"Login error: {ex}");
             }
         }
 
@@ -94,15 +97,56 @@ namespace book_management
         {
             if (_isVisible)
             {
-                textBox2.UseSystemPasswordChar = true;
-                iconButton1.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+                txtPassword.UseSystemPasswordChar = true;
+                btnTogglePasswordVisibility.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
                 _isVisible = false;
             }
             else
             {
-                textBox2.UseSystemPasswordChar = false;
-                iconButton1.IconChar = FontAwesome.Sharp.IconChar.Eye;
+                txtPassword.UseSystemPasswordChar = false;
+                btnTogglePasswordVisibility.IconChar = FontAwesome.Sharp.IconChar.Eye;
                 _isVisible = true;
+            }
+        }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn Enter trong textbox username
+        /// </summary>
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtPassword.Focus();
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn Enter trong textbox password
+        /// </summary>
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonLogin_Click(sender, e);
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// Override xử lý khi form đóng để đảm bảo ứng dụng thoát hoàn toàn
+        /// </summary>
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            base.OnFormClosed(e);
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Application.Exit();
             }
         }
     }

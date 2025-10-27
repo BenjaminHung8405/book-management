@@ -54,7 +54,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\AdditionalRepositories.cs" />
+    <Compile Include="Data\BookRepository.cs" />
+    <Compile Include="Data\CurrentUser.cs" />
+    <Compile Include="Data\DashboardRepository.cs" />
+    <Compile Include="Data\DatabaseConnection.cs" />
+    <Compile Include="Data\DatabaseTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Data\MockDatabase.cs" />
+    <Compile Include="Data\Models\BookModels.cs" />
+    <Compile Include="Data\UserRepository.cs" />
     <Compile Include="UI\Controls\ReportControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,6 +163,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="README_Dashboard_Database.md" />
+    <None Include="README_Database.md" />
+    <None Include="README_Login_System.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -160,5 +173,6 @@
   <ItemGroup>
     <Content Include="assets\logo\logo.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

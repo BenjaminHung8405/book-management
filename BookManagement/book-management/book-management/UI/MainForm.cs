@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using FontAwesome.Sharp;
 using book_management.UI.Theme;
+using book_management.Data; // Thêm namespace để sử dụng DatabaseTestForm và CurrentUser
 
 namespace book_management.UI
 {
@@ -12,7 +13,7 @@ namespace book_management.UI
         private bool _isSelected = false;
         private IconButton _currentButton;
 
-        public MainForm()   
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -22,6 +23,159 @@ namespace book_management.UI
             LoadControl(new DashboardControl());
             // Highlight default button on load
             ActivateButton(btnDashboard);
+
+            // Test database connection khi khởi động
+            TestDatabaseOnStartup();
+
+            // Hiển thị thông tin người dùng hiện tại
+            UpdateUserInfo();
+        }
+
+        /// <summary>
+        /// Cập nhật thông tin người dùng hiển thị trên giao diện
+        /// </summary>
+        private void UpdateUserInfo()
+        {
+            if (CurrentUser.IsLoggedIn)
+            {
+                lbUsername.Text = CurrentUser.FullName ?? CurrentUser.Username;
+                lbRole.Text = CurrentUser.GetRoleDisplayName();
+
+                // Có thể thêm màu sắc khác nhau cho các vai trò
+                switch (CurrentUser.Role)
+                {
+                    case "Admin":
+                        lbRole.ForeColor = Color.Red;
+                        break;
+                    case "NhanVien":
+                        lbRole.ForeColor = Color.Blue;
+                        break;
+                    case "KhachHang":
+                        lbRole.ForeColor = Color.Green;
+                        break;
+                    default:
+                        lbRole.ForeColor = Color.Black;
+                        break;
+                }
+            }
+            else
+            {
+                lbUsername.Text = "Khách";
+                lbRole.Text = "Chưa đăng nhập";
+                lbRole.ForeColor = Color.Gray;
+            }
+        }
+
+        /// <summary>
+        /// Test kết nối database khi khởi động ứng dụng
+        /// </summary>
+        private void TestDatabaseOnStartup()
+        {
+            try
+            {
+                bool canConnect = DatabaseConnection.TestConnection();
+                if (!canConnect)
+                {
+                    // Hiển thị thông báo nếu không kết nối được database
+                    MessageBox.Show("Không thể kết nối đến database. Ứng dụng sẽ sử dụng dữ liệu mẫu.",
+                          "Cảnh báo Database", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi kiểm tra database: {ex.Message}",
+                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Mở form test database connection
+        /// </summary>
+        public void OpenDatabaseTestForm()
+        {
+            try
+            {
+                var testForm = new DatabaseTestForm();
+                testForm.ShowDialog(this);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi mở Database Test Form: {ex.Message}",
+                   "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Xử lý đăng xuất người dùng
+        /// </summary>
+        private void Logout()
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không?", "Xác nhận đăng xuất",
+             MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Đăng xuất người dùng hiện tại
+                CurrentUser.Logout();
+
+                // Đóng MainForm
+                this.Hide();
+
+                // Hiển thị lại LoginForm
+                var loginForm = new LoginForm();
+                loginForm.Show();
+            }
+        }
+
+        /// <summary>
+        /// Xử lý sự kiện click vào dropdown menu
+        /// </summary>
+        private void iconDropDownButton1_Click(object sender, EventArgs e)
+        {
+            // Tạo context menu cho dropdown
+            var contextMenu = new ContextMenuStrip();
+
+            // Thêm menu items
+            var profileItem = new ToolStripMenuItem("Thông tin cá nhân");
+            profileItem.Click += (s, args) => OpenProfileForm();
+
+            var testDbItem = new ToolStripMenuItem("Test Database");
+            testDbItem.Click += (s, args) => OpenDatabaseTestForm();
+
+            var logoutItem = new ToolStripMenuItem("Đăng xuất");
+            logoutItem.Click += (s, args) => Logout();
+
+            contextMenu.Items.Add(profileItem);
+            contextMenu.Items.Add(new ToolStripSeparator());
+            contextMenu.Items.Add(testDbItem);
+            contextMenu.Items.Add(new ToolStripSeparator());
+            contextMenu.Items.Add(logoutItem);
+
+            // Hiển thị context menu
+            var button = sender as Control;
+            contextMenu.Show(button, new Point(0, button.Height));
+        }
+
+        /// <summary>
+        /// Mở form thông tin cá nhân
+        /// </summary>
+        private void OpenProfileForm()
+        {
+            try
+            {
+                MessageBox.Show($"Thông tin người dùng:\n\n" +
+                    $"Tên đăng nhập: {CurrentUser.Username}\n" +
+               $"Họ tên: {CurrentUser.FullName}\n" +
+                $"Email: {CurrentUser.Email}\n" +
+                     $"Số điện thoại: {CurrentUser.Phone}\n" +
+               $"Vai trò: {CurrentUser.GetRoleDisplayName()}",
+                   "Thông tin cá nhân", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi hiển thị thông tin: {ex.Message}",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void LoadControl(System.Windows.Forms.UserControl uc)
@@ -101,6 +255,15 @@ namespace book_management.UI
         {
             LoadControl(new ReportControl());
             ActivateButton(btnReport);
+        }
+
+        /// <summary>
+        /// Override xử lý khi form đóng để đảm bảo đăng xuất người dùng
+        /// </summary>
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            CurrentUser.Logout();
+            base.OnFormClosed(e);
         }
     }
 }

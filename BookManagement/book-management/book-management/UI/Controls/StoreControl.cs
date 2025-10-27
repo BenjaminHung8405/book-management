@@ -22,32 +22,40 @@ namespace book_management.UI.Controls
 
         private void LoadBooks()
         {
-            // 1. Xóa tất cả sách cũ
-            flowPanelBooks.Controls.Clear();
-
-            // 2. Lấy danh sách sách từ Mock Database (dynamic)
-            var danhSachSach = Database.GetAllBooks();
-
-            // 3. Lặp qua danh sách và tạo Card
-            foreach (dynamic sach in danhSachSach)
+            try
             {
-                // 3a. Tạo một Card mới
-                ucBookCard card = new ucBookCard();
+                // 1. Xóa tất cả sách cũ
+                flowPanelBooks.Controls.Clear();
 
-                // 3b. Gán dữ liệu cho Card
-                string title = sach.TenSach;
-                string author = sach.TacGia;
-                decimal price = sach.Gia;
-                string cover = sach.AnhBiaUrl;
+                // 2. Lấy danh sách sách từ BookRepository (dynamic)
+                var danhSachSach = BookRepository.GetAllBooks();
 
-                card.SetBookData(title, author, price, cover);
+                // 3. Lặp qua danh sách và tạo Card
+                foreach (dynamic sach in danhSachSach)
+                {
+                    // 3a. Tạo một Card mới
+                    ucBookCard card = new ucBookCard();
 
-                // 3c. Thêm sự kiện click cho Card
-                card.Click += BookCard_Click;
-                card.Tag = sach; // Lưu trữ đối tượng dynamic để dùng khi click
+                    // 3b. Gán dữ liệu cho Card
+                    string title = sach.TenSach;
+                    string author = sach.TacGia;
+                    decimal price = sach.Gia;
+                    string cover = sach.AnhBiaUrl;
 
-                // 3d. Thêm Card vào FlowLayoutPanel
-                flowPanelBooks.Controls.Add(card);
+                    card.SetBookData(title, author, price, cover);
+
+                    // 3c. Thêm sự kiện click cho Card
+                    card.Click += BookCard_Click;
+                    card.Tag = sach; // Lưu trữ đối tượng dynamic để dùng khi click
+
+                    // 3d. Thêm Card vào FlowLayoutPanel
+                    flowPanelBooks.Controls.Add(card);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tải danh sách sách: {ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -61,7 +69,8 @@ namespace book_management.UI.Controls
             dynamic selectedSach = clickedCard.Tag;
 
             // TODO: Viết code để thêm sách này vào hóa đơn (khu vực bên phải)
-            MessageBox.Show("Bạn đã chọn: " + selectedSach.TenSach);
+            MessageBox.Show($"Bạn đã chọn: {selectedSach.TenSach}\nTác giả: {selectedSach.TacGia}\nGiá: {selectedSach.Gia:C}",
+                "Thông tin sách", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

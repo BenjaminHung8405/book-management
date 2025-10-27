@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.panelKpiContainer = new System.Windows.Forms.Panel();
             this.panelKpiKhachHang = new System.Windows.Forms.Panel();
@@ -40,11 +40,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.panelKpiDoanhThu = new System.Windows.Forms.Panel();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panelKpiDonHang = new System.Windows.Forms.Panel();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -55,6 +50,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.panelKpiDoanhThu = new System.Windows.Forms.Panel();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panelMidContainer = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chartDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -76,12 +76,12 @@
             this.panelKpiContainer.SuspendLayout();
             this.panelKpiKhachHang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
-            this.panelKpiDoanhThu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.panelKpiDonHang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
             this.panelKpiSachHet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
+            this.panelKpiDoanhThu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.panelMidContainer.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartDoanhThu)).BeginInit();
@@ -94,12 +94,12 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Roboto", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.label1.Location = new System.Drawing.Point(24, 24);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 24);
-            this.label1.Size = new System.Drawing.Size(200, 68);
+            this.label1.Size = new System.Drawing.Size(215, 66);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tổng Quan";
             // 
@@ -109,10 +109,10 @@
             this.panelKpiContainer.Controls.Add(this.panelKpiDonHang);
             this.panelKpiContainer.Controls.Add(this.panelKpiSachHet);
             this.panelKpiContainer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelKpiContainer.Location = new System.Drawing.Point(24, 92);
+            this.panelKpiContainer.Location = new System.Drawing.Point(24, 90);
             this.panelKpiContainer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 24);
             this.panelKpiContainer.Name = "panelKpiContainer";
-            this.panelKpiContainer.Size = new System.Drawing.Size(1251, 154);
+            this.panelKpiContainer.Size = new System.Drawing.Size(1234, 154);
             this.panelKpiContainer.TabIndex = 1;
             // 
             // panelKpiKhachHang
@@ -147,7 +147,7 @@
             // 
             this.label13.AutoEllipsis = true;
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(19, 51);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(27, 29);
@@ -157,88 +157,25 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(19, 16);
             this.label11.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(113, 19);
+            this.label11.Size = new System.Drawing.Size(123, 20);
             this.label11.TabIndex = 0;
             this.label11.Text = "Khách hàng mới";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.label12.Location = new System.Drawing.Point(19, 93);
             this.label12.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(105, 19);
+            this.label12.Size = new System.Drawing.Size(114, 20);
             this.label12.TabIndex = 0;
             this.label12.Text = "Trong hôm nay";
-            // 
-            // panelKpiDoanhThu
-            // 
-            this.panelKpiDoanhThu.BackColor = System.Drawing.Color.White;
-            this.panelKpiDoanhThu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelKpiDoanhThu.Controls.Add(this.iconPictureBox1);
-            this.panelKpiDoanhThu.Controls.Add(this.label3);
-            this.panelKpiDoanhThu.Controls.Add(this.label4);
-            this.panelKpiDoanhThu.Controls.Add(this.label2);
-            this.panelKpiDoanhThu.Location = new System.Drawing.Point(24, 92);
-            this.panelKpiDoanhThu.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
-            this.panelKpiDoanhThu.Name = "panelKpiDoanhThu";
-            this.panelKpiDoanhThu.Padding = new System.Windows.Forms.Padding(16);
-            this.panelKpiDoanhThu.Size = new System.Drawing.Size(307, 130);
-            this.panelKpiDoanhThu.TabIndex = 0;
-            // 
-            // iconPictureBox1
-            // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.MoneyBillTransfer;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.IconSize = 72;
-            this.iconPictureBox1.Location = new System.Drawing.Point(212, 29);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(72, 72);
-            this.iconPictureBox1.TabIndex = 1;
-            this.iconPictureBox1.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoEllipsis = true;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(19, 51);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 29);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "12.560.000₫";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
-            this.label4.Location = new System.Drawing.Point(19, 93);
-            this.label4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(146, 19);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "+15% so với hôm qua";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(19, 16);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 19);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Doanh thu hôm nay";
             // 
             // panelKpiDonHang
             // 
@@ -273,7 +210,7 @@
             // 
             this.label7.AutoEllipsis = true;
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(19, 51);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 29);
@@ -283,23 +220,23 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(19, 16);
             this.label5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 19);
+            this.label5.Size = new System.Drawing.Size(108, 20);
             this.label5.TabIndex = 0;
             this.label5.Text = "Đơn hàng mới";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.label6.Location = new System.Drawing.Point(19, 93);
             this.label6.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(165, 19);
+            this.label6.Size = new System.Drawing.Size(181, 20);
             this.label6.TabIndex = 0;
             this.label6.Text = "Tổng 562 đơn tháng này";
             // 
@@ -335,7 +272,7 @@
             // 
             this.label10.AutoEllipsis = true;
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(19, 51);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 29);
@@ -345,35 +282,98 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(179)))), ((int)(((byte)(8)))));
             this.label8.Location = new System.Drawing.Point(19, 93);
             this.label8.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(145, 19);
+            this.label8.Size = new System.Drawing.Size(158, 20);
             this.label8.TabIndex = 0;
             this.label8.Text = "Số lượng dưới 5 cuốn";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(19, 16);
             this.label9.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(92, 19);
+            this.label9.Size = new System.Drawing.Size(103, 20);
             this.label9.TabIndex = 0;
             this.label9.Text = "Sách sắp hết";
+            // 
+            // panelKpiDoanhThu
+            // 
+            this.panelKpiDoanhThu.BackColor = System.Drawing.Color.White;
+            this.panelKpiDoanhThu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelKpiDoanhThu.Controls.Add(this.iconPictureBox1);
+            this.panelKpiDoanhThu.Controls.Add(this.label3);
+            this.panelKpiDoanhThu.Controls.Add(this.label4);
+            this.panelKpiDoanhThu.Controls.Add(this.label2);
+            this.panelKpiDoanhThu.Location = new System.Drawing.Point(24, 92);
+            this.panelKpiDoanhThu.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
+            this.panelKpiDoanhThu.Name = "panelKpiDoanhThu";
+            this.panelKpiDoanhThu.Padding = new System.Windows.Forms.Padding(16);
+            this.panelKpiDoanhThu.Size = new System.Drawing.Size(307, 130);
+            this.panelKpiDoanhThu.TabIndex = 0;
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.MoneyBillTransfer;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconPictureBox1.IconSize = 72;
+            this.iconPictureBox1.Location = new System.Drawing.Point(212, 29);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(72, 72);
+            this.iconPictureBox1.TabIndex = 1;
+            this.iconPictureBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoEllipsis = true;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(19, 51);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(154, 29);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "12.560.000₫";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
+            this.label4.Location = new System.Drawing.Point(19, 93);
+            this.label4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(160, 20);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "+15% so với hôm qua";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(19, 16);
+            this.label2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(148, 20);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Doanh thu hôm nay";
             // 
             // panelMidContainer
             // 
             this.panelMidContainer.Controls.Add(this.panel2);
             this.panelMidContainer.Controls.Add(this.panelQuickActions);
             this.panelMidContainer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelMidContainer.Location = new System.Drawing.Point(24, 246);
+            this.panelMidContainer.Location = new System.Drawing.Point(24, 244);
             this.panelMidContainer.Margin = new System.Windows.Forms.Padding(0, 24, 0, 0);
             this.panelMidContainer.Name = "panelMidContainer";
-            this.panelMidContainer.Size = new System.Drawing.Size(1251, 344);
+            this.panelMidContainer.Size = new System.Drawing.Size(1234, 344);
             this.panelMidContainer.TabIndex = 2;
             // 
             // panel2
@@ -390,22 +390,22 @@
             // 
             // chartDoanhThu
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chartDoanhThu.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartDoanhThu.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chartDoanhThu.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartDoanhThu.Legends.Add(legend1);
             this.chartDoanhThu.Location = new System.Drawing.Point(24, 71);
             this.chartDoanhThu.Name = "chartDoanhThu";
-            series3.BorderWidth = 3;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series3.Legend = "Legend1";
-            series3.MarkerBorderWidth = 3;
-            series3.MarkerSize = 10;
-            series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series3.Name = "Doanh Thu";
-            this.chartDoanhThu.Series.Add(series3);
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series1.Legend = "Legend1";
+            series1.MarkerBorderWidth = 3;
+            series1.MarkerSize = 10;
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series1.Name = "Doanh Thu";
+            this.chartDoanhThu.Series.Add(series1);
             this.chartDoanhThu.Size = new System.Drawing.Size(814, 228);
             this.chartDoanhThu.TabIndex = 1;
             this.chartDoanhThu.Text = "v";
@@ -413,11 +413,11 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Roboto Cn", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(19, 23);
             this.label15.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(218, 29);
+            this.label15.Size = new System.Drawing.Size(243, 29);
             this.label15.TabIndex = 0;
             this.label15.Text = "Doanh thu 7 ngày qua";
             // 
@@ -438,7 +438,7 @@
             // iconButton2
             // 
             this.iconButton2.BackColor = System.Drawing.Color.White;
-            this.iconButton2.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
             this.iconButton2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
@@ -455,7 +455,7 @@
             // iconButton1
             // 
             this.iconButton1.BackColor = System.Drawing.Color.White;
-            this.iconButton1.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iconButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iconButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Book;
             this.iconButton1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
@@ -472,7 +472,7 @@
             // btnAddBill
             // 
             this.btnAddBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.btnAddBill.Font = new System.Drawing.Font("Roboto Lt", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddBill.ForeColor = System.Drawing.Color.White;
             this.btnAddBill.IconChar = FontAwesome.Sharp.IconChar.Plus;
             this.btnAddBill.IconColor = System.Drawing.Color.White;
@@ -489,11 +489,11 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Roboto Cn", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(19, 23);
             this.label14.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(139, 29);
+            this.label14.Size = new System.Drawing.Size(155, 29);
             this.label14.TabIndex = 0;
             this.label14.Text = "Tác vụ nhanh";
             // 
@@ -503,10 +503,10 @@
             this.panelRecentSales.Controls.Add(this.dataGridViewSales);
             this.panelRecentSales.Controls.Add(this.label16);
             this.panelRecentSales.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelRecentSales.Location = new System.Drawing.Point(24, 590);
+            this.panelRecentSales.Location = new System.Drawing.Point(24, 588);
             this.panelRecentSales.Name = "panelRecentSales";
             this.panelRecentSales.Padding = new System.Windows.Forms.Padding(16);
-            this.panelRecentSales.Size = new System.Drawing.Size(1251, 480);
+            this.panelRecentSales.Size = new System.Drawing.Size(1234, 480);
             this.panelRecentSales.TabIndex = 3;
             // 
             // dataGridViewSales
@@ -534,7 +534,7 @@
             this.dataGridViewSales.ReadOnly = true;
             this.dataGridViewSales.RowHeadersVisible = false;
             this.dataGridViewSales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSales.Size = new System.Drawing.Size(1219, 395);
+            this.dataGridViewSales.Size = new System.Drawing.Size(1202, 395);
             this.dataGridViewSales.TabIndex = 1;
             this.dataGridViewSales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSales_CellContentClick);
             this.dataGridViewSales.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewSales_CellFormatting);
@@ -558,9 +558,9 @@
             // colNgayTao
             // 
             this.colNgayTao.DataPropertyName = "NgayTao";
-            dataGridViewCellStyle5.Format = "dd/MM/yyyy HH:mm";
-            dataGridViewCellStyle5.NullValue = null;
-            this.colNgayTao.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Format = "dd/MM/yyyy HH:mm";
+            dataGridViewCellStyle1.NullValue = null;
+            this.colNgayTao.DefaultCellStyle = dataGridViewCellStyle1;
             this.colNgayTao.HeaderText = "Ngày tạo";
             this.colNgayTao.Name = "colNgayTao";
             this.colNgayTao.ReadOnly = true;
@@ -569,8 +569,8 @@
             // colTongTien
             // 
             this.colTongTien.DataPropertyName = "TongTien";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.colTongTien.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.colTongTien.DefaultCellStyle = dataGridViewCellStyle2;
             this.colTongTien.HeaderText = "Tổng tiền";
             this.colTongTien.Name = "colTongTien";
             this.colTongTien.ReadOnly = true;
@@ -600,18 +600,18 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label16.Font = new System.Drawing.Font("Roboto Cn", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(16, 16);
             this.label16.Margin = new System.Windows.Forms.Padding(3, 0, 3, 24);
             this.label16.Name = "label16";
             this.label16.Padding = new System.Windows.Forms.Padding(0, 0, 0, 24);
-            this.label16.Size = new System.Drawing.Size(171, 53);
+            this.label16.Size = new System.Drawing.Size(194, 53);
             this.label16.TabIndex = 0;
             this.label16.Text = "Hóa đơn gần đây";
             // 
             // DashboardControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
@@ -620,26 +620,26 @@
             this.Controls.Add(this.panelKpiDoanhThu);
             this.Controls.Add(this.panelKpiContainer);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Roboto Cn", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "DashboardControl";
             this.Padding = new System.Windows.Forms.Padding(24);
-            this.Size = new System.Drawing.Size(1299, 830);
+            this.Size = new System.Drawing.Size(1282, 830);
             this.Load += new System.EventHandler(this.DashboardControl_Load);
             this.panelKpiContainer.ResumeLayout(false);
             this.panelKpiKhachHang.ResumeLayout(false);
             this.panelKpiKhachHang.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).EndInit();
-            this.panelKpiDoanhThu.ResumeLayout(false);
-            this.panelKpiDoanhThu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.panelKpiDonHang.ResumeLayout(false);
             this.panelKpiDonHang.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
             this.panelKpiSachHet.ResumeLayout(false);
             this.panelKpiSachHet.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
+            this.panelKpiDoanhThu.ResumeLayout(false);
+            this.panelKpiDoanhThu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.panelMidContainer.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
