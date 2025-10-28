@@ -109,10 +109,6 @@ namespace book_management
             }
         }
 
-        private void txtUsername_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         /// <summary>
         /// Xử lý sự kiện khi nhấn Enter trong textbox username
@@ -145,6 +141,15 @@ namespace book_management
         {
             base.OnFormClosed(e);
             if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void linkExit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Xác nhận thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
             {
                 Application.Exit();
             }

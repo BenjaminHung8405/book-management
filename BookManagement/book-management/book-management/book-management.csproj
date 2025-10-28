@@ -56,24 +56,28 @@
   <ItemGroup>
     <Compile Include="Data\AdditionalRepositories.cs" />
     <Compile Include="Data\BookRepository.cs" />
+    <Compile Include="Data\ChiTietHoaDonRepository.cs" />
     <Compile Include="Data\CurrentUser.cs" />
     <Compile Include="Data\DashboardRepository.cs" />
     <Compile Include="Data\DatabaseConnection.cs" />
     <Compile Include="Data\DatabaseTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Data\MockDatabase.cs" />
-<<<<<<< HEAD
+    <Compile Include="Data\HoaDonRepository.cs" />
     <Compile Include="Data\Models\BookModels.cs" />
     <Compile Include="Data\UserRepository.cs" />
-=======
     <Compile Include="UI\Controls\InvoiceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Controls\InvoiceControl.Designer.cs">
       <DependentUpon>InvoiceControl.cs</DependentUpon>
     </Compile>
->>>>>>> 79aee6763066de5880618238ae4ee1755dd40527
+    <Compile Include="UI\Controls\OrderDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\PurchaseHistoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UI\Controls\ReportControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -157,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\ucOrderItem.resx">
       <DependentUpon>ucOrderItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\UsersControl.resx">
+      <DependentUpon>UsersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

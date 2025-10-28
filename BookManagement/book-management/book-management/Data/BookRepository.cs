@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,9 +9,9 @@ namespace book_management.Data
     public class BookRepository
     {
         /// <summary>
-     /// L?y t?t c? s·ch t? database v?i thÙng tin t·c gi? v‡ th? lo?i
+     /// L?y t?t c? s√°ch t? database v?i th√¥ng tin t√°c gi? v√† th? lo?i
         /// </summary>
-        /// <returns>List c·c dynamic object ch?a thÙng tin s·ch</returns>
+        /// <returns>List c√°c dynamic object ch?a th√¥ng tin s√°ch</returns>
       public static List<dynamic> GetAllBooks()
         {
             var books = new List<dynamic>();
@@ -35,6 +35,7 @@ try
        s.ngon_ngu,
      s.trang_thai,
  n.ten_nxb,
+
        STUFF((
      SELECT ', ' + tg.ten_tacgia
         FROM Sach_TacGia st
@@ -81,17 +82,17 @@ try
      }
             catch (Exception ex)
     {
-        throw new Exception($"L?i khi l?y danh s·ch s·ch: {ex.Message}", ex);
+        throw new Exception($"L?i khi l?y danh s√°ch s√°ch: {ex.Message}", ex);
      }
             
      return books;
 }
 
       /// <summary>
-    /// L?y thÙng tin s·ch theo ID
+    /// L?y th√¥ng tin s√°ch theo ID
     /// </summary>
-  /// <param name="sachId">ID c?a s·ch</param>
-      /// <returns>Dynamic object ch?a thÙng tin s·ch</returns>
+  /// <param name="sachId">ID c?a s√°ch</param>
+      /// <returns>Dynamic object ch?a th√¥ng tin s√°ch</returns>
       public static dynamic GetBookById(int sachId)
  {
          try
@@ -162,27 +163,27 @@ try
       }
 catch (Exception ex)
     {
-      throw new Exception($"L?i khi l?y thÙng tin s·ch ID {sachId}: {ex.Message}", ex);
+      throw new Exception($"L·ªói khi l·∫•y th√¥ng tin s√°ch ID {sachId}: {ex.Message}", ex);
    }
     
        return null;
  }
 
         /// <summary>
-        /// ThÍm s·ch m?i v‡o database
+        /// Th√™m s√°ch m?i v√†o database
         /// </summary>
- /// <param name="tenSach">TÍn s·ch</param>
-        /// <param name="nxbId">ID nh‡ xu?t b?n</param>
-        /// <param name="gia">Gi· s·ch</param>
+ /// <param name="tenSach">T√™n s√°ch</param>
+        /// <param name="nxbId">ID nh√† xu?t b?n</param>
+        /// <param name="gia">Gi√° s√°ch</param>
         /// <param name="soLuong">S? l??ng</param>
- /// <param name="anhBiaUrl">URL ?nh bÏa</param>
-        /// <param name="tacGiaIds">Danh s·ch ID t·c gi?</param>
-     /// <param name="theLoaiIds">Danh s·ch ID th? lo?i</param>
+ /// <param name="anhBiaUrl">URL ?nh b√¨a</param>
+        /// <param name="tacGiaIds">Danh s√°ch ID t√°c gi?</param>
+     /// <param name="theLoaiIds">Danh s√°ch ID th? lo?i</param>
         /// <param name="namXuatBan">N?m xu?t b?n</param>
         /// <param name="soTrang">S? trang</param>
-        /// <param name="moTa">MÙ t?</param>
-        /// <param name="ngonNgu">NgÙn ng?</param>
-     /// <returns>ID c?a s·ch v?a thÍm</returns>
+        /// <param name="moTa">M√¥ t?</param>
+        /// <param name="ngonNgu">Ng√¥n ng?</param>
+     /// <returns>ID c?a s√°ch v?a th√™m</returns>
     public static int AddBook(string tenSach, int nxbId, decimal gia, int soLuong, string anhBiaUrl, 
       List<int> tacGiaIds, List<int> theLoaiIds, int? namXuatBan = null, 
         int? soTrang = null, string moTa = null, string ngonNgu = "Ti?ng Vi?t")
@@ -195,7 +196,7 @@ catch (Exception ex)
            connection.Open();
       transaction = connection.BeginTransaction();
       
-         // 1. ThÍm s·ch
+         // 1. Th√™m s√°ch
           string insertBookQuery = @"
           INSERT INTO Sach (ten_sach, nxb_id, gia, so_luong, anh_bia_url, nam_xuat_ban, so_trang, mo_ta, ngon_ngu)
           VALUES (@TenSach, @NxbId, @Gia, @SoLuong, @AnhBiaUrl, @NamXuatBan, @SoTrang, @MoTa, @NgonNgu);
@@ -215,7 +216,7 @@ command.Parameters.AddWithValue("@SoTrang", (object)soTrang ?? DBNull.Value);
        
            var sachId = Convert.ToInt32(command.ExecuteScalar());
               
-    // 2. ThÍm liÍn k?t t·c gi?
+    // 2. Th√™m li√™n k?t t√°c gi?
        if (tacGiaIds != null && tacGiaIds.Count > 0)
  {
              foreach (var tacGiaId in tacGiaIds)
@@ -230,7 +231,7 @@ command.Parameters.AddWithValue("@SoTrang", (object)soTrang ?? DBNull.Value);
          }
        }
        
-          // 3. ThÍm liÍn k?t th? lo?i
+          // 3. Th√™m li√™n k?t th? lo?i
    if (theLoaiIds != null && theLoaiIds.Count > 0)
      {
        foreach (var theLoaiId in theLoaiIds)
@@ -253,12 +254,12 @@ theLoaiCommand.Parameters.AddWithValue("@SachId", sachId);
             catch (Exception ex)
          {
      transaction?.Rollback();
-   throw new Exception($"L?i khi thÍm s·ch m?i: {ex.Message}", ex);
+   throw new Exception($"L?i khi th√™m s√°ch m?i: {ex.Message}", ex);
          }
      }
 
 /// <summary>
-        /// C?p nh?t thÙng tin s·ch
+        /// C?p nh?t th√¥ng tin s√°ch
      /// </summary>
       public static bool UpdateBook(int sachId, string tenSach, int nxbId, decimal gia, int soLuong, string anhBiaUrl,
      List<int> tacGiaIds, List<int> theLoaiIds, int? namXuatBan = null, 
@@ -272,7 +273,7 @@ theLoaiCommand.Parameters.AddWithValue("@SachId", sachId);
    connection.Open();
      transaction = connection.BeginTransaction();
     
-           // 1. C?p nh?t thÙng tin s·ch
+           // 1. C?p nh?t th√¥ng tin s√°ch
  string updateQuery = @"
    UPDATE Sach 
      SET ten_sach = @TenSach,
@@ -302,7 +303,7 @@ nxb_id = @NxbId,
    command.ExecuteNonQuery();
     }
    
-     // 2. XÛa liÍn k?t c?
+     // 2. X√≥a li√™n k?t c?
   using (var deleteCommand = new SqlCommand("DELETE FROM Sach_TacGia WHERE sach_id = @SachId", connection, transaction))
           {
           deleteCommand.Parameters.AddWithValue("@SachId", sachId);
@@ -315,7 +316,7 @@ nxb_id = @NxbId,
         deleteCommand.ExecuteNonQuery();
         }
     
-            // 3. ThÍm liÍn k?t m?i
+            // 3. Th√™m li√™n k?t m?i
      if (tacGiaIds != null && tacGiaIds.Count > 0)
                   {
     foreach (var tacGiaId in tacGiaIds)
@@ -351,15 +352,15 @@ nxb_id = @NxbId,
             catch (Exception ex)
          {
     transaction?.Rollback();
- throw new Exception($"L?i khi c?p nh?t s·ch ID {sachId}: {ex.Message}", ex);
+ throw new Exception($"L?i khi c?p nh?t s√°ch ID {sachId}: {ex.Message}", ex);
    }
         }
 
         /// <summary>
-    /// XÛa s·ch kh?i database (soft delete)
+    /// X√≥a s√°ch kh?i database (soft delete)
   /// </summary>
- /// <param name="sachId">ID s·ch c?n xÛa</param>
-        /// <returns>True n?u xÛa th‡nh cÙng</returns>
+ /// <param name="sachId">ID s√°ch c?n x√≥a</param>
+        /// <returns>True n?u x√≥a th√†nh c√¥ng</returns>
       public static bool DeleteBook(int sachId)
         {
        try
@@ -368,7 +369,7 @@ nxb_id = @NxbId,
      {
                connection.Open();
      
-          // Soft delete - ch? ??i tr?ng th·i
+          // Soft delete - ch? ??i tr?ng th√°i
           string query = "UPDATE Sach SET trang_thai = 0 WHERE sach_id = @SachId";
       
      using (var command = new SqlCommand(query, connection))
@@ -382,12 +383,12 @@ nxb_id = @NxbId,
        }
       catch (Exception ex)
     {
-     throw new Exception($"L?i khi xÛa s·ch ID {sachId}: {ex.Message}", ex);
+     throw new Exception($"L?i khi x√≥a s√°ch ID {sachId}: {ex.Message}", ex);
        }
         }
 
   /// <summary>
-        /// L?y danh s·ch t?t c? t·c gi?
+        /// L?y danh s√°ch t?t c? t√°c gi?
         /// </summary>
      public static List<dynamic> GetAllAuthors()
         {
@@ -419,13 +420,13 @@ string query = "SELECT tacgia_id, ten_tacgia, quoc_tich, nam_sinh, nam_mat FROM 
             }
       catch (Exception ex)
             {
-    throw new Exception($"L?i khi l?y danh s·ch t·c gi?: {ex.Message}", ex);
+    throw new Exception($"L?i khi l?y danh s√°ch t√°c gi?: {ex.Message}", ex);
        }
             return authors;
         }
 
 /// <summary>
-      /// L?y danh s·ch t?t c? th? lo?i
+      /// L?y danh s√°ch t?t c? th? lo?i
         /// </summary>
         public static List<dynamic> GetAllCategories()
         {
@@ -454,13 +455,13 @@ categories.Add(category);
           }
             catch (Exception ex)
    {
-        throw new Exception($"L?i khi l?y danh s·ch th? lo?i: {ex.Message}", ex);
+        throw new Exception($"L?i khi l?y danh s√°ch th? lo?i: {ex.Message}", ex);
   }
           return categories;
         }
 
   /// <summary>
-        /// L?y danh s·ch t?t c? nh‡ xu?t b?n
+        /// L?y danh s√°ch t?t c? nh√† xu?t b?n
       /// </summary>
         public static List<dynamic> GetAllPublishers()
         {
@@ -492,13 +493,13 @@ categories.Add(category);
    }
             catch (Exception ex)
          {
-                throw new Exception($"L?i khi l?y danh s·ch nh‡ xu?t b?n: {ex.Message}", ex);
+                throw new Exception($"L?i khi l?y danh s√°ch nh√† xu?t b?n: {ex.Message}", ex);
             }
             return publishers;
         }
 
         /// <summary>
-        /// TÏm ki?m s·ch theo t? khÛa
+        /// T√¨m ki?m s√°ch theo t? kh√≥a
       /// </summary>
   public static List<dynamic> SearchBooks(string keyword)
      {
@@ -562,7 +563,7 @@ WHERE st.sach_id = s.sach_id
             }
  catch (Exception ex)
    {
-        throw new Exception($"L?i khi tÏm ki?m s·ch: {ex.Message}", ex);
+        throw new Exception($"L?i khi t√¨m ki?m s√°ch: {ex.Message}", ex);
             }
      return books;
      }

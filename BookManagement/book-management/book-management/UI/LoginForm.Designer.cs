@@ -42,6 +42,7 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.pnlUsername = new System.Windows.Forms.Panel();
             this.iconUser = new FontAwesome.Sharp.IconPictureBox();
+            this.linkExit = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.pnlPassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconLock)).BeginInit();
@@ -52,6 +53,7 @@
             // pbLogo
             // 
             this.pbLogo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pbLogo.Image = global::book_management.Properties.Resources.logo;
             this.pbLogo.Location = new System.Drawing.Point(125, 30);
             this.pbLogo.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.pbLogo.Name = "pbLogo";
@@ -134,6 +136,7 @@
             // 
             // btnTogglePasswordVisibility
             // 
+            this.btnTogglePasswordVisibility.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTogglePasswordVisibility.FlatAppearance.BorderSize = 0;
             this.btnTogglePasswordVisibility.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnTogglePasswordVisibility.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
@@ -163,6 +166,7 @@
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -197,7 +201,6 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(308, 24);
             this.txtUsername.TabIndex = 1;
-            this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
             // 
             // pnlUsername
             // 
@@ -224,6 +227,19 @@
             this.iconUser.TabIndex = 9;
             this.iconUser.TabStop = false;
             // 
+            // linkExit
+            // 
+            this.linkExit.AutoSize = true;
+            this.linkExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.linkExit.LinkColor = System.Drawing.Color.Black;
+            this.linkExit.Location = new System.Drawing.Point(344, 638);
+            this.linkExit.Name = "linkExit";
+            this.linkExit.Size = new System.Drawing.Size(67, 25);
+            this.linkExit.TabIndex = 8;
+            this.linkExit.TabStop = true;
+            this.linkExit.Text = "Thoát";
+            this.linkExit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkExit_LinkClicked);
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.btnLogin;
@@ -231,6 +247,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(450, 800);
+            this.Controls.Add(this.linkExit);
             this.Controls.Add(this.lblClose);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
@@ -275,6 +292,7 @@
         private FontAwesome.Sharp.IconButton btnTogglePasswordVisibility;
         private FontAwesome.Sharp.IconPictureBox iconLock;
         private FontAwesome.Sharp.IconPictureBox iconUser;
+        private System.Windows.Forms.LinkLabel linkExit;
     }
 }
 

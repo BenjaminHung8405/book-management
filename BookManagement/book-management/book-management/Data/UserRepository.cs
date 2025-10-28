@@ -6,21 +6,21 @@ namespace book_management.Data
 {
     public class UserRepository
     {
-      /// <summary>
-   /// Xác th?c ng??i dùng v?i username và password
+        /// <summary>
+        /// Xác th?c ng??i dùng v?i username và password
         /// </summary>
         /// <param name="username">Tên ??ng nh?p</param>
         /// <param name="password">M?t kh?u</param>
-     /// <returns>Thông tin ng??i dùng n?u ??ng nh?p thành công, null n?u th?t b?i</returns>
-    public static dynamic AuthenticateUser(string username, string password)
+        /// <returns>Thông tin ng??i dùng n?u ??ng nh?p thành công, null n?u th?t b?i</returns>
+        public static dynamic AuthenticateUser(string username, string password)
         {
-         try
-  {
-       using (var connection = DatabaseConnection.GetConnection())
+            try
+            {
+                using (var connection = DatabaseConnection.GetConnection())
                 {
-        connection.Open();
- 
-       string query = @"
+                    connection.Open();
+
+                    string query = @"
               SELECT 
                 user_id,
   username,
@@ -33,53 +33,53 @@ namespace book_management.Data
        WHERE username = @Username 
       AND password_hash = @Password 
          AND trang_thai = 1";
-       
-        using (var command = new SqlCommand(query, connection))
-      {
-             command.Parameters.AddWithValue("@Username", username);
-     command.Parameters.AddWithValue("@Password", password);
-     
-         using (var reader = command.ExecuteReader())
-    {
-        if (reader.Read())
-              {
-    dynamic user = new System.Dynamic.ExpandoObject();
-         user.UserId = reader["user_id"];
-     user.Username = reader["username"]?.ToString() ?? "";
-    user.HoTen = reader["ho_ten"]?.ToString() ?? "";
-       user.Email = reader["email"]?.ToString() ?? "";
-       user.SoDienThoai = reader["so_dien_thoai"]?.ToString() ?? "";
-          user.VaiTro = reader["vai_tro"]?.ToString() ?? "";
-        user.TrangThai = reader["trang_thai"] != DBNull.Value ? Convert.ToBoolean(reader["trang_thai"]) : true;
-        
-    return user;
-     }
-  }
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Username", username);
+                        command.Parameters.AddWithValue("@Password", password);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                dynamic user = new System.Dynamic.ExpandoObject();
+                                user.UserId = reader["user_id"];
+                                user.Username = reader["username"]?.ToString() ?? "";
+                                user.HoTen = reader["ho_ten"]?.ToString() ?? "";
+                                user.Email = reader["email"]?.ToString() ?? "";
+                                user.SoDienThoai = reader["so_dien_thoai"]?.ToString() ?? "";
+                                user.VaiTro = reader["vai_tro"]?.ToString() ?? "";
+                                user.TrangThai = reader["trang_thai"] != DBNull.Value ? Convert.ToBoolean(reader["trang_thai"]) : true;
+
+                                return user;
+                            }
+                        }
+                    }
+                }
             }
-     }
-            }
-  catch (Exception ex)
+            catch (Exception ex)
             {
-    throw new Exception($"L?i khi xác th?c ng??i dùng: {ex.Message}", ex);
-}
-            
-return null;
+                throw new Exception($"L?i khi xác th?c ng??i dùng: {ex.Message}", ex);
+            }
+
+            return null;
         }
 
         /// <summary>
-      /// L?y thông tin ng??i dùng theo ID
+        /// L?y thông tin ng??i dùng theo ID
         /// </summary>
-     /// <param name="userId">ID ng??i dùng</param>
+        /// <param name="userId">ID ng??i dùng</param>
         /// <returns>Thông tin ng??i dùng</returns>
         public static dynamic GetUserById(int userId)
         {
-     try
-     {
-    using (var connection = DatabaseConnection.GetConnection())
-     {
-          connection.Open();
-       
-   string query = @"
+            try
+            {
+                using (var connection = DatabaseConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    string query = @"
 SELECT 
         user_id,
   username,
@@ -91,53 +91,53 @@ SELECT
        trang_thai
        FROM NguoiDung 
        WHERE user_id = @UserId";
-              
-     using (var command = new SqlCommand(query, connection))
-        {
-   command.Parameters.AddWithValue("@UserId", userId);
-                  
-        using (var reader = command.ExecuteReader())
-       {
-         if (reader.Read())
-              {
-          dynamic user = new System.Dynamic.ExpandoObject();
-      user.UserId = reader["user_id"];
-          user.Username = reader["username"]?.ToString() ?? "";
-        user.HoTen = reader["ho_ten"]?.ToString() ?? "";
-        user.Email = reader["email"]?.ToString() ?? "";
-  user.SoDienThoai = reader["so_dien_thoai"]?.ToString() ?? "";
-       user.VaiTro = reader["vai_tro"]?.ToString() ?? "";
-              user.NgayTao = reader["ngay_tao"] != DBNull.Value ? Convert.ToDateTime(reader["ngay_tao"]) : DateTime.MinValue;
-  user.TrangThai = reader["trang_thai"] != DBNull.Value ? Convert.ToBoolean(reader["trang_thai"]) : true;
-                    
-  return user;
-          }
-  }
-       }
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserId", userId);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                dynamic user = new System.Dynamic.ExpandoObject();
+                                user.UserId = reader["user_id"];
+                                user.Username = reader["username"]?.ToString() ?? "";
+                                user.HoTen = reader["ho_ten"]?.ToString() ?? "";
+                                user.Email = reader["email"]?.ToString() ?? "";
+                                user.SoDienThoai = reader["so_dien_thoai"]?.ToString() ?? "";
+                                user.VaiTro = reader["vai_tro"]?.ToString() ?? "";
+                                user.NgayTao = reader["ngay_tao"] != DBNull.Value ? Convert.ToDateTime(reader["ngay_tao"]) : DateTime.MinValue;
+                                user.TrangThai = reader["trang_thai"] != DBNull.Value ? Convert.ToBoolean(reader["trang_thai"]) : true;
+
+                                return user;
+                            }
+                        }
+                    }
                 }
-         }
-        catch (Exception ex)
-      {
-            throw new Exception($"L?i khi l?y thông tin ng??i dùng: {ex.Message}", ex);
             }
-            
-         return null;
+            catch (Exception ex)
+            {
+                throw new Exception($"L?i khi l?y thông tin ng??i dùng: {ex.Message}", ex);
+            }
+
+            return null;
         }
 
         /// <summary>
         /// L?y t?t c? ng??i dùng
-    /// </summary>
+        /// </summary>
         /// <returns>Danh sách ng??i dùng</returns>
-  public static System.Collections.Generic.List<dynamic> GetAllUsers()
+        public static System.Collections.Generic.List<dynamic> GetAllUsers()
         {
-        var users = new System.Collections.Generic.List<dynamic>();
-     try
-   {
-      using (var connection = DatabaseConnection.GetConnection())
-         {
-           connection.Open();
-      
-      string query = @"
+            var users = new System.Collections.Generic.List<dynamic>();
+            try
+            {
+                using (var connection = DatabaseConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    string query = @"
           SELECT 
       user_id,
   username,
@@ -149,38 +149,38 @@ SELECT
        trang_thai
                 FROM NguoiDung 
         ORDER BY ho_ten";
-            
-            using (var command = new SqlCommand(query, connection))
-        {
-      using (var reader = command.ExecuteReader())
-              {
-         while (reader.Read())
-       {
-           dynamic user = new System.Dynamic.ExpandoObject();
-         user.UserId = reader["user_id"];
-         user.Username = reader["username"]?.ToString() ?? "";
-              user.HoTen = reader["ho_ten"]?.ToString() ?? "";
-   user.Email = reader["email"]?.ToString() ?? "";
-         user.SoDienThoai = reader["so_dien_thoai"]?.ToString() ?? "";
-  user.VaiTro = reader["vai_tro"]?.ToString() ?? "";
-      user.NgayTao = reader["ngay_tao"] != DBNull.Value ? Convert.ToDateTime(reader["ngay_tao"]) : DateTime.MinValue;
-                user.TrangThai = reader["trang_thai"] != DBNull.Value ? Convert.ToBoolean(reader["trang_thai"]) : true;
-  
-      users.Add(user);
-         }
-      }
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                dynamic user = new System.Dynamic.ExpandoObject();
+                                user.UserId = reader["user_id"];
+                                user.Username = reader["username"]?.ToString() ?? "";
+                                user.HoTen = reader["ho_ten"]?.ToString() ?? "";
+                                user.Email = reader["email"]?.ToString() ?? "";
+                                user.SoDienThoai = reader["so_dien_thoai"]?.ToString() ?? "";
+                                user.VaiTro = reader["vai_tro"]?.ToString() ?? "";
+                                user.NgayTao = reader["ngay_tao"] != DBNull.Value ? Convert.ToDateTime(reader["ngay_tao"]) : DateTime.MinValue;
+                                user.TrangThai = reader["trang_thai"] != DBNull.Value ? Convert.ToBoolean(reader["trang_thai"]) : true;
+
+                                users.Add(user);
+                            }
+                        }
                     }
-        }
-   }
+                }
+            }
             catch (Exception ex)
-    {
-     throw new Exception($"L?i khi l?y danh sách ng??i dùng: {ex.Message}", ex);
-      }
-    
-     return users;
+            {
+                throw new Exception($"L?i khi l?y danh sách ng??i dùng: {ex.Message}", ex);
+            }
+
+            return users;
         }
 
- /// <summary>
+        /// <summary>
         /// Thêm ng??i dùng m?i
         /// </summary>
         /// <param name="username">Tên ??ng nh?p</param>
@@ -192,39 +192,39 @@ SELECT
         /// <returns>ID ng??i dùng v?a t?o</returns>
         public static int AddUser(string username, string password, string hoTen, string email = null, string soDienThoai = null, string vaiTro = "NhanVien")
         {
- try
+            try
             {
-using (var connection = DatabaseConnection.GetConnection())
+                using (var connection = DatabaseConnection.GetConnection())
                 {
-      connection.Open();
-    
-   string query = @"
+                    connection.Open();
+
+                    string query = @"
             INSERT INTO NguoiDung (username, password_hash, ho_ten, email, so_dien_thoai, vai_tro)
          VALUES (@Username, @Password, @HoTen, @Email, @SoDienThoai, @VaiTro);
             SELECT SCOPE_IDENTITY();";
-            
-            using (var command = new SqlCommand(query, connection))
-      {
-          command.Parameters.AddWithValue("@Username", username);
-    command.Parameters.AddWithValue("@Password", password);
-          command.Parameters.AddWithValue("@HoTen", hoTen);
-         command.Parameters.AddWithValue("@Email", (object)email ?? DBNull.Value);
-    command.Parameters.AddWithValue("@SoDienThoai", (object)soDienThoai ?? DBNull.Value);
-           command.Parameters.AddWithValue("@VaiTro", vaiTro);
-                 
-   return Convert.ToInt32(command.ExecuteScalar());
-        }
-     }
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Username", username);
+                        command.Parameters.AddWithValue("@Password", password);
+                        command.Parameters.AddWithValue("@HoTen", hoTen);
+                        command.Parameters.AddWithValue("@Email", (object)email ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@SoDienThoai", (object)soDienThoai ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@VaiTro", vaiTro);
+
+                        return Convert.ToInt32(command.ExecuteScalar());
+                    }
+                }
             }
-      catch (Exception ex)
+            catch (Exception ex)
             {
-            throw new Exception($"L?i khi thêm ng??i dùng: {ex.Message}", ex);
-   }
+                throw new Exception($"L?i khi thêm ng??i dùng: {ex.Message}", ex);
+            }
         }
 
-  /// <summary>
+        /// <summary>
         /// C?p nh?t thông tin ng??i dùng
-    /// </summary>
+        /// </summary>
         /// <param name="userId">ID ng??i dùng</param>
         /// <param name="hoTen">H? tên</param>
         /// <param name="email">Email</param>
@@ -233,40 +233,40 @@ using (var connection = DatabaseConnection.GetConnection())
         /// <returns>True n?u c?p nh?t thành công</returns>
         public static bool UpdateUser(int userId, string hoTen, string email = null, string soDienThoai = null, string vaiTro = null)
         {
-       try
-     {
-        using (var connection = DatabaseConnection.GetConnection())
-              {
-          connection.Open();
-              
-       string query = @"
+            try
+            {
+                using (var connection = DatabaseConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    string query = @"
  UPDATE NguoiDung 
          SET ho_ten = @HoTen,
              email = @Email,
   so_dien_thoai = @SoDienThoai,
             vai_tro = @VaiTro
         WHERE user_id = @UserId";
-         
-           using (var command = new SqlCommand(query, connection))
-       {
-           command.Parameters.AddWithValue("@UserId", userId);
-      command.Parameters.AddWithValue("@HoTen", hoTen);
-      command.Parameters.AddWithValue("@Email", (object)email ?? DBNull.Value);
-              command.Parameters.AddWithValue("@SoDienThoai", (object)soDienThoai ?? DBNull.Value);
-  command.Parameters.AddWithValue("@VaiTro", vaiTro ?? "NhanVien");
-       
-       return command.ExecuteNonQuery() > 0;
-              }
-      }
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserId", userId);
+                        command.Parameters.AddWithValue("@HoTen", hoTen);
+                        command.Parameters.AddWithValue("@Email", (object)email ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@SoDienThoai", (object)soDienThoai ?? DBNull.Value);
+                        command.Parameters.AddWithValue("@VaiTro", vaiTro ?? "NhanVien");
+
+                        return command.ExecuteNonQuery() > 0;
+                    }
+                }
             }
-  catch (Exception ex)
-   {
-     throw new Exception($"L?i khi c?p nh?t ng??i dùng: {ex.Message}", ex);
-   }
+            catch (Exception ex)
+            {
+                throw new Exception($"L?i khi c?p nh?t ng??i dùng: {ex.Message}", ex);
+            }
         }
 
         /// <summary>
-   /// Thay ??i m?t kh?u ng??i dùng
+        /// Thay ??i m?t kh?u ng??i dùng
         /// </summary>
         /// <param name="userId">ID ng??i dùng</param>
         /// <param name="newPassword">M?t kh?u m?i</param>
@@ -275,56 +275,56 @@ using (var connection = DatabaseConnection.GetConnection())
         {
             try
             {
-          using (var connection = DatabaseConnection.GetConnection())
-         {
- connection.Open();
-    
-  string query = "UPDATE NguoiDung SET password_hash = @Password WHERE user_id = @UserId";
-     
-           using (var command = new SqlCommand(query, connection))
-         {
- command.Parameters.AddWithValue("@UserId", userId);
-            command.Parameters.AddWithValue("@Password", newPassword);
-       
-         return command.ExecuteNonQuery() > 0;
-          }
-              }
-     }
-  catch (Exception ex)
+                using (var connection = DatabaseConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    string query = "UPDATE NguoiDung SET password_hash = @Password WHERE user_id = @UserId";
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserId", userId);
+                        command.Parameters.AddWithValue("@Password", newPassword);
+
+                        return command.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
             {
-       throw new Exception($"L?i khi thay ??i m?t kh?u: {ex.Message}", ex);
+                throw new Exception($"L?i khi thay ??i m?t kh?u: {ex.Message}", ex);
             }
         }
 
         /// <summary>
- /// Vô hi?u hóa/kích ho?t ng??i dùng
+        /// Vô hi?u hóa/kích ho?t ng??i dùng
         /// </summary>
- /// <param name="userId">ID ng??i dùng</param>
+        /// <param name="userId">ID ng??i dùng</param>
         /// <param name="isActive">True ?? kích ho?t, False ?? vô hi?u hóa</param>
         /// <returns>True n?u c?p nh?t thành công</returns>
         public static bool SetUserStatus(int userId, bool isActive)
-   {
+        {
             try
             {
                 using (var connection = DatabaseConnection.GetConnection())
-           {
-            connection.Open();
-         
-        string query = "UPDATE NguoiDung SET trang_thai = @TrangThai WHERE user_id = @UserId";
-     
-        using (var command = new SqlCommand(query, connection))
-    {
-             command.Parameters.AddWithValue("@UserId", userId);
-         command.Parameters.AddWithValue("@TrangThai", isActive);
-        
-return command.ExecuteNonQuery() > 0;
-         }
-          }
-  }
-   catch (Exception ex)
-    {
-     throw new Exception($"L?i khi c?p nh?t tr?ng thái ng??i dùng: {ex.Message}", ex);
-         }
-  }
+                {
+                    connection.Open();
+
+                    string query = "UPDATE NguoiDung SET trang_thai = @TrangThai WHERE user_id = @UserId";
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserId", userId);
+                        command.Parameters.AddWithValue("@TrangThai", isActive);
+
+                        return command.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"L?i khi c?p nh?t tr?ng thái ng??i dùng: {ex.Message}", ex);
+            }
+        }
     }
 }

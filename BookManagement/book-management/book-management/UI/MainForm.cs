@@ -24,12 +24,70 @@ namespace book_management.UI
             // Highlight default button on load
             ActivateButton(btnDashboard);
 
-            // Test database connection khi khởi động
-            TestDatabaseOnStartup();
-
             // Hiển thị thông tin người dùng hiện tại
             UpdateUserInfo();
+            ConfigureButtonsByRole();
         }
+        ///
+        private void ConfigureButtonsByRole()
+        {
+            
+            switch (CurrentUser.Role)
+            {
+                case "Admin":
+                    // Admin có quyền truy cập tất cả
+                    ShowAllButtons();
+                    break;
+                case "NhanVien":
+                    // Nhân viên không có quyền truy cập quản lý người dùng và báo cáo
+                    btnUser.Visible = false;
+                    btnReport.Visible = false;
+                    break;
+                case "KhachHang":
+                    // Khách hàng chỉ có quyền truy cập trang tổng quan và bán hàng
+                    btnDashboard.Visible = false;
+                    btnBooks.Visible = false;  // Ẩn quản lý sách
+                    btnUser.Visible = false;   // Ẩn quản lý người dùng
+                    btnReport.Visible = false; // Ẩn báo cáo thống kê
+                                               // Đưa nút Bán hàng (Store) lên đầu
+                    btnSales.Location = new Point(btnSales.Location.X, 130); // Vị trí cũ của Dashboard
+                    btnSales.Text = "Mua Sách";
+
+                    // Điều chỉnh Invoice thành lịch sử mua hàng và đặt ngay dưới nút mua sách
+                    btnInvoice.Text = "Lịch sử mua hàng";
+                    btnInvoice.IconChar = IconChar.History;
+                    btnInvoice.Location = new Point(btnInvoice.Location.X, 230); // Vị trí ngay dưới nút mua sách
+                    break;
+                default:
+                    // Vai trò không xác định, ẩn tất cả các nút chức năng nhạy cảm
+                    HideSensitiveButtons();
+                    break;
+            }
+        }
+        /// 
+
+        /// Hiện thị tất cả các nút chức năng
+        private void ShowAllButtons()
+        {
+            btnDashboard.Visible = true;
+            btnSales.Visible = true;
+            btnUser.Visible = true;
+            btnReport.Visible = true;
+            btnBooks.Visible = true;
+            btnInvoice.Visible = true;
+        }
+        ///
+
+        /// ẩn các nút chuc năng nhạy cảm
+        private void HideSensitiveButtons()
+        {
+            btnBooks.Visible = false;
+            btnUser.Visible = false;
+            btnReport.Visible = false;
+            btnInvoice.Visible = false;
+        }
+        /// 
+
 
         /// <summary>
         /// Cập nhật thông tin người dùng hiển thị trên giao diện
@@ -57,54 +115,16 @@ namespace book_management.UI
                         lbRole.ForeColor = Color.Black;
                         break;
                 }
+                ConfigureButtonsByRole();
             }
             else
             {
                 lbUsername.Text = "Khách";
                 lbRole.Text = "Chưa đăng nhập";
                 lbRole.ForeColor = Color.Gray;
+                HideSensitiveButtons();
             }
         }
-
-        /// <summary>
-        /// Test kết nối database khi khởi động ứng dụng
-        /// </summary>
-        private void TestDatabaseOnStartup()
-        {
-            try
-            {
-                bool canConnect = DatabaseConnection.TestConnection();
-                if (!canConnect)
-                {
-                    // Hiển thị thông báo nếu không kết nối được database
-                    MessageBox.Show("Không thể kết nối đến database. Ứng dụng sẽ sử dụng dữ liệu mẫu.",
-                          "Cảnh báo Database", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi kiểm tra database: {ex.Message}",
-                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
-        /// Mở form test database connection
-        /// </summary>
-        public void OpenDatabaseTestForm()
-        {
-            try
-            {
-                var testForm = new DatabaseTestForm();
-                testForm.ShowDialog(this);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi mở Database Test Form: {ex.Message}",
-                   "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         /// <summary>
         /// Xử lý đăng xuất người dùng
         /// </summary>
@@ -120,7 +140,6 @@ namespace book_management.UI
 
                 // Đóng MainForm
                 this.Hide();
-
                 // Hiển thị lại LoginForm
                 var loginForm = new LoginForm();
                 loginForm.Show();
@@ -130,7 +149,7 @@ namespace book_management.UI
         /// <summary>
         /// Xử lý sự kiện click vào dropdown menu
         /// </summary>
-        private void iconDropDownButton1_Click(object sender, EventArgs e)
+        private void iconDropDownMenuProfile_Click(object sender, EventArgs e)
         {
             // Tạo context menu cho dropdown
             var contextMenu = new ContextMenuStrip();
@@ -139,21 +158,21 @@ namespace book_management.UI
             var profileItem = new ToolStripMenuItem("Thông tin cá nhân");
             profileItem.Click += (s, args) => OpenProfileForm();
 
-            var testDbItem = new ToolStripMenuItem("Test Database");
-            testDbItem.Click += (s, args) => OpenDatabaseTestForm();
-
             var logoutItem = new ToolStripMenuItem("Đăng xuất");
             logoutItem.Click += (s, args) => Logout();
 
             contextMenu.Items.Add(profileItem);
-            contextMenu.Items.Add(new ToolStripSeparator());
-            contextMenu.Items.Add(testDbItem);
             contextMenu.Items.Add(new ToolStripSeparator());
             contextMenu.Items.Add(logoutItem);
 
             // Hiển thị context menu
             var button = sender as Control;
             contextMenu.Show(button, new Point(0, button.Height));
+        }
+        private void pnUser_Click(object sender, EventArgs e)
+        {
+            // Gọi cùng phương thức xử lý dropdown
+            iconDropDownMenuProfile_Click(sender, e);
         }
 
         /// <summary>
@@ -270,5 +289,6 @@ namespace book_management.UI
         {
 
         }
+
     }
 }
