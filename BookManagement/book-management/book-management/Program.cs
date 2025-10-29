@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using book_management.Data;
 
 namespace book_management
 {
@@ -17,6 +18,8 @@ namespace book_management
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
+          //  Application.Run(new ());
+
         }
     }
 }

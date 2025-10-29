@@ -105,7 +105,7 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(40, 8);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(714, 21);
+            this.textBox1.Size = new System.Drawing.Size(714, 20);
             this.textBox1.TabIndex = 1;
             // 
             // iconPictureBox1
@@ -178,7 +178,7 @@
             // 
             this.btnCancelOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.btnCancelOrder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnCancelOrder.Font = new System.Drawing.Font("Roboto", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelOrder.ForeColor = System.Drawing.Color.White;
             this.btnCancelOrder.Location = new System.Drawing.Point(0, 0);
             this.btnCancelOrder.Margin = new System.Windows.Forms.Padding(0, 0, 8, 0);
@@ -192,7 +192,7 @@
             // 
             this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
             this.iconButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.iconButton1.Font = new System.Drawing.Font("Roboto", 15.75F, System.Drawing.FontStyle.Bold);
+            this.iconButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.iconButton1.ForeColor = System.Drawing.Color.White;
             this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.MoneyBillTransfer;
             this.iconButton1.IconColor = System.Drawing.Color.White;
@@ -235,11 +235,11 @@
             // 
             this.lblTotalValue.AutoSize = true;
             this.lblTotalValue.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblTotalValue.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
-            this.lblTotalValue.Location = new System.Drawing.Point(443, 0);
+            this.lblTotalValue.Location = new System.Drawing.Point(442, 0);
             this.lblTotalValue.Name = "lblTotalValue";
-            this.lblTotalValue.Size = new System.Drawing.Size(32, 23);
+            this.lblTotalValue.Size = new System.Drawing.Size(33, 24);
             this.lblTotalValue.TabIndex = 1;
             this.lblTotalValue.Text = "0₫";
             this.lblTotalValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -247,10 +247,10 @@
             // lblTotalLabel
             // 
             this.lblTotalLabel.AutoSize = true;
-            this.lblTotalLabel.Font = new System.Drawing.Font("Roboto Cn", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalLabel.Location = new System.Drawing.Point(0, 0);
             this.lblTotalLabel.Name = "lblTotalLabel";
-            this.lblTotalLabel.Size = new System.Drawing.Size(87, 23);
+            this.lblTotalLabel.Size = new System.Drawing.Size(103, 24);
             this.lblTotalLabel.TabIndex = 0;
             this.lblTotalLabel.Text = "Tổng cộng";
             // 
@@ -270,11 +270,11 @@
             // 
             this.lblDiscountValue.AutoSize = true;
             this.lblDiscountValue.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblDiscountValue.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiscountValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDiscountValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.lblDiscountValue.Location = new System.Drawing.Point(443, 0);
+            this.lblDiscountValue.Location = new System.Drawing.Point(442, 0);
             this.lblDiscountValue.Name = "lblDiscountValue";
-            this.lblDiscountValue.Size = new System.Drawing.Size(32, 23);
+            this.lblDiscountValue.Size = new System.Drawing.Size(33, 24);
             this.lblDiscountValue.TabIndex = 1;
             this.lblDiscountValue.Text = "0₫";
             this.lblDiscountValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -283,10 +283,10 @@
             // 
             this.lblDiscountLabel.AutoSize = true;
             this.lblDiscountLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblDiscountLabel.Font = new System.Drawing.Font("Roboto Cn", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiscountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDiscountLabel.Location = new System.Drawing.Point(0, 0);
             this.lblDiscountLabel.Name = "lblDiscountLabel";
-            this.lblDiscountLabel.Size = new System.Drawing.Size(95, 23);
+            this.lblDiscountLabel.Size = new System.Drawing.Size(110, 24);
             this.lblDiscountLabel.TabIndex = 0;
             this.lblDiscountLabel.Text = "Khuyến mãi";
             // 
@@ -305,10 +305,10 @@
             // 
             this.lblSubtotalValue.AutoSize = true;
             this.lblSubtotalValue.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblSubtotalValue.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubtotalValue.Location = new System.Drawing.Point(443, 0);
+            this.lblSubtotalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubtotalValue.Location = new System.Drawing.Point(442, 0);
             this.lblSubtotalValue.Name = "lblSubtotalValue";
-            this.lblSubtotalValue.Size = new System.Drawing.Size(32, 23);
+            this.lblSubtotalValue.Size = new System.Drawing.Size(33, 24);
             this.lblSubtotalValue.TabIndex = 1;
             this.lblSubtotalValue.Text = "0₫";
             this.lblSubtotalValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -317,10 +317,10 @@
             // 
             this.lblSubtotalLabel.AutoSize = true;
             this.lblSubtotalLabel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblSubtotalLabel.Font = new System.Drawing.Font("Roboto Cn", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubtotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubtotalLabel.Location = new System.Drawing.Point(0, 0);
             this.lblSubtotalLabel.Name = "lblSubtotalLabel";
-            this.lblSubtotalLabel.Size = new System.Drawing.Size(75, 23);
+            this.lblSubtotalLabel.Size = new System.Drawing.Size(83, 24);
             this.lblSubtotalLabel.TabIndex = 0;
             this.lblSubtotalLabel.Text = "Tạm tính";
             // 
@@ -341,10 +341,10 @@
             // 
             this.lblCustomerName.AutoSize = true;
             this.lblCustomerName.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblCustomerName.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomerName.Location = new System.Drawing.Point(16, 94);
+            this.lblCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCustomerName.Location = new System.Drawing.Point(16, 95);
             this.lblCustomerName.Name = "lblCustomerName";
-            this.lblCustomerName.Size = new System.Drawing.Size(89, 19);
+            this.lblCustomerName.Size = new System.Drawing.Size(98, 20);
             this.lblCustomerName.TabIndex = 2;
             this.lblCustomerName.Text = "Khách hàng:";
             // 
@@ -353,7 +353,7 @@
             this.panelCustomerSearch.Controls.Add(this.txtCustomerSearch);
             this.panelCustomerSearch.Controls.Add(this.btnAddCustomer);
             this.panelCustomerSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelCustomerSearch.Location = new System.Drawing.Point(16, 51);
+            this.panelCustomerSearch.Location = new System.Drawing.Point(16, 52);
             this.panelCustomerSearch.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
             this.panelCustomerSearch.Name = "panelCustomerSearch";
             this.panelCustomerSearch.Padding = new System.Windows.Forms.Padding(0, 0, 0, 8);
@@ -364,12 +364,11 @@
             // 
             this.txtCustomerSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCustomerSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCustomerSearch.Font = new System.Drawing.Font("Roboto Lt", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCustomerSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCustomerSearch.Location = new System.Drawing.Point(0, 0);
             this.txtCustomerSearch.Name = "txtCustomerSearch";
-            this.txtCustomerSearch.Size = new System.Drawing.Size(435, 33);
+            this.txtCustomerSearch.Size = new System.Drawing.Size(435, 31);
             this.txtCustomerSearch.TabIndex = 0;
-            this.txtCustomerSearch.TextChanged += new System.EventHandler(this.txtCustomerSearch_TextChanged);
             // 
             // btnAddCustomer
             // 
@@ -388,23 +387,23 @@
             // 
             this.lblOrderId.AutoSize = true;
             this.lblOrderId.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblOrderId.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOrderId.Location = new System.Drawing.Point(16, 16);
             this.lblOrderId.Margin = new System.Windows.Forms.Padding(0, 0, 0, 16);
             this.lblOrderId.Name = "lblOrderId";
             this.lblOrderId.Padding = new System.Windows.Forms.Padding(0, 0, 0, 16);
-            this.lblOrderId.Size = new System.Drawing.Size(116, 35);
+            this.lblOrderId.Size = new System.Drawing.Size(131, 36);
             this.lblOrderId.TabIndex = 0;
             this.lblOrderId.Text = "Hóa Đơn #HD1";
             // 
             // StoreControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
             this.Controls.Add(this.panelBookSelection);
             this.Controls.Add(this.panelOrderDetails);
-            this.Font = new System.Drawing.Font("Roboto Cn", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "StoreControl";

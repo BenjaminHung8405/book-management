@@ -28,239 +28,249 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.buttonLogin = new System.Windows.Forms.Button();
-            this.lbExit = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pbLogo = new System.Windows.Forms.PictureBox();
+            this.lblHeaderTitle = new System.Windows.Forms.Label();
+            this.lblWelcome = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.pnlPassword = new System.Windows.Forms.Panel();
+            this.iconLock = new FontAwesome.Sharp.IconPictureBox();
+            this.btnTogglePasswordVisibility = new FontAwesome.Sharp.IconButton();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.lblClose = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.pnlUsername = new System.Windows.Forms.Panel();
+            this.iconUser = new FontAwesome.Sharp.IconPictureBox();
+            this.linkExit = new System.Windows.Forms.LinkLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
+            this.pnlPassword.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconLock)).BeginInit();
+            this.pnlUsername.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // pbLogo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(127, 192);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(196, 38);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "ĐĂNG NHẬP";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            this.pbLogo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pbLogo.Image = global::book_management.Properties.Resources.logo;
+            this.pbLogo.Location = new System.Drawing.Point(125, 30);
+            this.pbLogo.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(200, 200);
+            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbLogo.TabIndex = 0;
+            this.pbLogo.TabStop = false;
             // 
-            // label2
+            // lblHeaderTitle
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Roboto Cn", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(134, 230);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 29);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Chào mừng trở lại!";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label2.Click += new System.EventHandler(this.label1_Click_1);
+            this.lblHeaderTitle.AutoSize = true;
+            this.lblHeaderTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeaderTitle.Location = new System.Drawing.Point(127, 192);
+            this.lblHeaderTitle.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblHeaderTitle.Name = "lblHeaderTitle";
+            this.lblHeaderTitle.Size = new System.Drawing.Size(219, 37);
+            this.lblHeaderTitle.TabIndex = 1;
+            this.lblHeaderTitle.Text = "ĐĂNG NHẬP";
+            this.lblHeaderTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label3
+            // lblWelcome
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(41, 299);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(116, 19);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Tên đăng nhập";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.Location = new System.Drawing.Point(134, 230);
+            this.lblWelcome.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(207, 29);
+            this.lblWelcome.TabIndex = 1;
+            this.lblWelcome.Text = "Chào mừng trở lại!";
+            this.lblWelcome.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label4
+            // lblUsername
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(41, 401);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 19);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Mật khẩu";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Location = new System.Drawing.Point(41, 299);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(116, 20);
+            this.lblUsername.TabIndex = 3;
+            this.lblUsername.Text = "Tên đăng nhập";
             // 
-            // panel2
+            // lblPassword
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.iconPictureBox2);
-            this.panel2.Controls.Add(this.iconButton1);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Location = new System.Drawing.Point(45, 426);
-            this.panel2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(366, 49);
-            this.panel2.TabIndex = 4;
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassword.Location = new System.Drawing.Point(41, 401);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(75, 20);
+            this.lblPassword.TabIndex = 5;
+            this.lblPassword.Text = "Mật khẩu";
             // 
-            // textBox2
+            // pnlPassword
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Roboto Lt", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(51, 9);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(267, 26);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.UseSystemPasswordChar = true;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.pnlPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlPassword.Controls.Add(this.iconLock);
+            this.pnlPassword.Controls.Add(this.btnTogglePasswordVisibility);
+            this.pnlPassword.Controls.Add(this.txtPassword);
+            this.pnlPassword.Location = new System.Drawing.Point(45, 426);
+            this.pnlPassword.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.pnlPassword.Name = "pnlPassword";
+            this.pnlPassword.Size = new System.Drawing.Size(366, 49);
+            this.pnlPassword.TabIndex = 4;
             // 
-            // buttonLogin
+            // iconLock
             // 
-            this.buttonLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.buttonLogin.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.buttonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLogin.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLogin.ForeColor = System.Drawing.Color.White;
-            this.buttonLogin.Location = new System.Drawing.Point(45, 560);
-            this.buttonLogin.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(366, 72);
-            this.buttonLogin.TabIndex = 6;
-            this.buttonLogin.Text = "Đăng nhập";
-            this.buttonLogin.UseVisualStyleBackColor = false;
-            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
+            this.iconLock.BackColor = System.Drawing.Color.White;
+            this.iconLock.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.iconLock.IconChar = FontAwesome.Sharp.IconChar.Lock;
+            this.iconLock.IconColor = System.Drawing.SystemColors.ControlText;
+            this.iconLock.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconLock.IconSize = 40;
+            this.iconLock.Location = new System.Drawing.Point(3, 2);
+            this.iconLock.Name = "iconLock";
+            this.iconLock.Size = new System.Drawing.Size(40, 40);
+            this.iconLock.TabIndex = 8;
+            this.iconLock.TabStop = false;
             // 
-            // lbExit
+            // btnTogglePasswordVisibility
             // 
-            this.lbExit.AutoSize = true;
-            this.lbExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbExit.Location = new System.Drawing.Point(396, 21);
-            this.lbExit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lbExit.Name = "lbExit";
-            this.lbExit.Size = new System.Drawing.Size(27, 25);
-            this.lbExit.TabIndex = 7;
-            this.lbExit.Text = "X";
-            this.lbExit.Click += new System.EventHandler(this.lbExit_Click);
+            this.btnTogglePasswordVisibility.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTogglePasswordVisibility.FlatAppearance.BorderSize = 0;
+            this.btnTogglePasswordVisibility.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnTogglePasswordVisibility.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnTogglePasswordVisibility.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTogglePasswordVisibility.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+            this.btnTogglePasswordVisibility.IconColor = System.Drawing.Color.Black;
+            this.btnTogglePasswordVisibility.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnTogglePasswordVisibility.IconSize = 35;
+            this.btnTogglePasswordVisibility.Location = new System.Drawing.Point(329, 7);
+            this.btnTogglePasswordVisibility.Name = "btnTogglePasswordVisibility";
+            this.btnTogglePasswordVisibility.Size = new System.Drawing.Size(30, 30);
+            this.btnTogglePasswordVisibility.TabIndex = 2;
+            this.btnTogglePasswordVisibility.UseVisualStyleBackColor = true;
+            this.btnTogglePasswordVisibility.Click += new System.EventHandler(this.iconButton1_Click);
             // 
-            // textBox1
+            // txtPassword
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Roboto Lt", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(51, 10);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(308, 26);
-            this.textBox1.TabIndex = 1;
+            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(51, 9);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(267, 24);
+            this.txtPassword.TabIndex = 1;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
-            // panel1
+            // btnLogin
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.iconPictureBox3);
-            this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Location = new System.Drawing.Point(45, 324);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(366, 49);
-            this.panel1.TabIndex = 2;
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogin.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(45, 560);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(366, 72);
+            this.btnLogin.TabIndex = 6;
+            this.btnLogin.Text = "Đăng nhập";
+            this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
-            // iconPictureBox2
+            // lblClose
             // 
-            this.iconPictureBox2.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Lock;
-            this.iconPictureBox2.IconColor = System.Drawing.SystemColors.ControlText;
-            this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox2.IconSize = 40;
-            this.iconPictureBox2.Location = new System.Drawing.Point(3, 2);
-            this.iconPictureBox2.Name = "iconPictureBox2";
-            this.iconPictureBox2.Size = new System.Drawing.Size(40, 40);
-            this.iconPictureBox2.TabIndex = 8;
-            this.iconPictureBox2.TabStop = false;
+            this.lblClose.AutoSize = true;
+            this.lblClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClose.Location = new System.Drawing.Point(396, 21);
+            this.lblClose.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblClose.Name = "lblClose";
+            this.lblClose.Size = new System.Drawing.Size(27, 25);
+            this.lblClose.TabIndex = 7;
+            this.lblClose.Text = "X";
+            this.lblClose.Click += new System.EventHandler(this.lbExit_Click);
             // 
-            // iconButton1
+            // txtUsername
             // 
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.iconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 35;
-            this.iconButton1.Location = new System.Drawing.Point(329, 7);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(30, 30);
-            this.iconButton1.TabIndex = 2;
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Location = new System.Drawing.Point(51, 10);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(308, 24);
+            this.txtUsername.TabIndex = 1;
             // 
-            // iconPictureBox3
+            // pnlUsername
             // 
-            this.iconPictureBox3.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.User;
-            this.iconPictureBox3.IconColor = System.Drawing.SystemColors.ControlText;
-            this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox3.IconSize = 40;
-            this.iconPictureBox3.Location = new System.Drawing.Point(3, 3);
-            this.iconPictureBox3.Name = "iconPictureBox3";
-            this.iconPictureBox3.Size = new System.Drawing.Size(40, 40);
-            this.iconPictureBox3.TabIndex = 9;
-            this.iconPictureBox3.TabStop = false;
+            this.pnlUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlUsername.Controls.Add(this.iconUser);
+            this.pnlUsername.Controls.Add(this.txtUsername);
+            this.pnlUsername.Location = new System.Drawing.Point(45, 324);
+            this.pnlUsername.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.pnlUsername.Name = "pnlUsername";
+            this.pnlUsername.Size = new System.Drawing.Size(366, 49);
+            this.pnlUsername.TabIndex = 2;
             // 
-            // pictureBox1
+            // iconUser
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(125, 30);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.iconUser.BackColor = System.Drawing.Color.White;
+            this.iconUser.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.iconUser.IconChar = FontAwesome.Sharp.IconChar.User;
+            this.iconUser.IconColor = System.Drawing.SystemColors.ControlText;
+            this.iconUser.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconUser.IconSize = 40;
+            this.iconUser.Location = new System.Drawing.Point(3, 3);
+            this.iconUser.Name = "iconUser";
+            this.iconUser.Size = new System.Drawing.Size(40, 40);
+            this.iconUser.TabIndex = 9;
+            this.iconUser.TabStop = false;
+            // 
+            // linkExit
+            // 
+            this.linkExit.AutoSize = true;
+            this.linkExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.linkExit.LinkColor = System.Drawing.Color.Black;
+            this.linkExit.Location = new System.Drawing.Point(344, 638);
+            this.linkExit.Name = "linkExit";
+            this.linkExit.Size = new System.Drawing.Size(67, 25);
+            this.linkExit.TabIndex = 8;
+            this.linkExit.TabStop = true;
+            this.linkExit.Text = "Thoát";
+            this.linkExit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkExit_LinkClicked);
             // 
             // LoginForm
             // 
-            this.AcceptButton = this.buttonLogin;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AcceptButton = this.btnLogin;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(450, 800);
-            this.Controls.Add(this.lbExit);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.buttonLogin);
-            this.Font = new System.Drawing.Font("Roboto Cn", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Controls.Add(this.linkExit);
+            this.Controls.Add(this.lblClose);
+            this.Controls.Add(this.lblPassword);
+            this.Controls.Add(this.lblUsername);
+            this.Controls.Add(this.pnlPassword);
+            this.Controls.Add(this.pnlUsername);
+            this.Controls.Add(this.lblWelcome);
+            this.Controls.Add(this.lblHeaderTitle);
+            this.Controls.Add(this.pbLogo);
+            this.Controls.Add(this.btnLogin);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2, 6, 2, 6);
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng Nhập";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
+            this.pnlPassword.ResumeLayout(false);
+            this.pnlPassword.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconLock)).EndInit();
+            this.pnlUsername.ResumeLayout(false);
+            this.pnlUsername.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,20 +278,21 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button buttonLogin;
-        private System.Windows.Forms.Label lbExit;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Panel panel1;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
+        private System.Windows.Forms.PictureBox pbLogo;
+        private System.Windows.Forms.Label lblHeaderTitle;
+        private System.Windows.Forms.Label lblWelcome;
+        private System.Windows.Forms.Label lblUsername; 
+        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Panel pnlPassword;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Label lblClose;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Panel pnlUsername;
+        private FontAwesome.Sharp.IconButton btnTogglePasswordVisibility;
+        private FontAwesome.Sharp.IconPictureBox iconLock;
+        private FontAwesome.Sharp.IconPictureBox iconUser;
+        private System.Windows.Forms.LinkLabel linkExit;
     }
 }
 

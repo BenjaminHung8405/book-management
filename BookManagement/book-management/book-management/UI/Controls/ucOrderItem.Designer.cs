@@ -73,13 +73,13 @@
             // 
             this.lblBookPrice.AutoSize = true;
             this.lblBookPrice.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblBookPrice.Font = new System.Drawing.Font("Roboto Cn", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBookPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBookPrice.ForeColor = System.Drawing.Color.Gray;
-            this.lblBookPrice.Location = new System.Drawing.Point(0, 27);
+            this.lblBookPrice.Location = new System.Drawing.Point(0, 28);
             this.lblBookPrice.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.lblBookPrice.Name = "lblBookPrice";
             this.lblBookPrice.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.lblBookPrice.Size = new System.Drawing.Size(96, 23);
+            this.lblBookPrice.Size = new System.Drawing.Size(105, 24);
             this.lblBookPrice.TabIndex = 2;
             this.lblBookPrice.Text = "Đơn giá: 18.350đ";
             // 
@@ -87,11 +87,11 @@
             // 
             this.lblBookTitle.AutoSize = true;
             this.lblBookTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblBookTitle.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBookTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBookTitle.Location = new System.Drawing.Point(0, 0);
             this.lblBookTitle.Name = "lblBookTitle";
             this.lblBookTitle.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.lblBookTitle.Size = new System.Drawing.Size(115, 27);
+            this.lblBookTitle.Size = new System.Drawing.Size(127, 28);
             this.lblBookTitle.TabIndex = 2;
             this.lblBookTitle.Text = "Đắc Nhân Tâm";
             // 
@@ -117,11 +117,11 @@
             // 
             this.txtQuantity.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtQuantity.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQuantity.Location = new System.Drawing.Point(26, 25);
+            this.txtQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuantity.Location = new System.Drawing.Point(26, 26);
             this.txtQuantity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(36, 27);
+            this.txtQuantity.Size = new System.Drawing.Size(36, 26);
             this.txtQuantity.TabIndex = 0;
             this.txtQuantity.Text = "1";
             this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -188,11 +188,11 @@
             // 
             this.lblLineTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblLineTotal.AutoSize = true;
-            this.lblLineTotal.Font = new System.Drawing.Font("Roboto Cn", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLineTotal.Location = new System.Drawing.Point(22, 30);
+            this.lblLineTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLineTotal.Location = new System.Drawing.Point(19, 30);
             this.lblLineTotal.Name = "lblLineTotal";
             this.lblLineTotal.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.lblLineTotal.Size = new System.Drawing.Size(69, 19);
+            this.lblLineTotal.Size = new System.Drawing.Size(75, 20);
             this.lblLineTotal.TabIndex = 0;
             this.lblLineTotal.Text = "99.000₫";
             this.lblLineTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -214,14 +214,14 @@
             // 
             // ucOrderItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.panelQuantity);
             this.Controls.Add(this.panelBookInfo);
             this.Controls.Add(this.picBookCover);
-            this.Font = new System.Drawing.Font("Roboto Cn", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "ucOrderItem";
             this.Size = new System.Drawing.Size(450, 80);
