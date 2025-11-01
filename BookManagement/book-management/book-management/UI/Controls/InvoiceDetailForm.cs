@@ -26,14 +26,14 @@ namespace book_management.UI.Controls
 
         private void InitializeComponent()
         {
-            this.Text = $"Chi tiết hóa đơn #{_hoaDonId}";
-            this.Size = new Size(900, 700);
-            this.StartPosition = FormStartPosition.CenterParent;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.SuspendLayout();
+            // 
+            // InvoiceDetailForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "InvoiceDetailForm";
+            this.ResumeLayout(false);
 
-            CreateControls();
         }
 
         private void CreateControls()
@@ -161,14 +161,6 @@ namespace book_management.UI.Controls
                 Font = new Font("Segoe UI", 10)
             };
 
-            var lblGhiChu = new Label
-            {
-                Text = "Ghi chú:",
-                Location = new Point(10, 70),
-                Size = new Size(60, 25),
-                Font = new Font("Segoe UI", 10, FontStyle.Bold)
-            };
-
             var txtGhiChu = new TextBox
             {
                 Name = "txtGhiChu",
@@ -184,7 +176,7 @@ namespace book_management.UI.Controls
         lblKhachHang, lblKhachHangValue,
      lblTrangThai, lblTrangThaiValue,
         lblNguoiLap, lblNguoiLapValue,
-        lblGhiChu, txtGhiChu
+      
             });
 
             return panel;
@@ -270,12 +262,10 @@ namespace book_management.UI.Controls
                     var lblKhachHangValue = this.Controls.Find("lblKhachHangValue", true)[0] as Label;
                     var lblTrangThaiValue = this.Controls.Find("lblTrangThaiValue", true)[0] as Label;
                     var lblNguoiLapValue = this.Controls.Find("lblNguoiLapValue", true)[0] as Label;
-                    var txtGhiChu = this.Controls.Find("txtGhiChu", true)[0] as TextBox;
 
                     lblNgayLapValue.Text = _hoaDon.NgayLap.ToString("dd/MM/yyyy HH:mm");
                     lblKhachHangValue.Text = _hoaDon.TenNguoiMua;
                     lblNguoiLapValue.Text = _hoaDon.NguoiLap;
-                    txtGhiChu.Text = _hoaDon.GhiChu;
 
                     lblTrangThaiValue.Text = _hoaDon.TrangThai;
                     switch (_hoaDon.TrangThai)

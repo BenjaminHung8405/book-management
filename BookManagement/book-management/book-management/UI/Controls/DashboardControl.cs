@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using book_management.Data; // Thêm namespace để sử dụng DashboardRepository
+using book_management.Data; // Thư viện cho DashboardRepository
+using book_management.DataAccess; // Thư viện cho ChiTietHoaDonRepository
+using book_management.Models; // Thư viện cho Model ChiTietHoaDon
 
 namespace book_management.UI.Controls
 {
     public partial class DashboardControl : System.Windows.Forms.UserControl
     {
+        public event EventHandler CreateInvoiceClicked;
         public DashboardControl()
         {
             InitializeComponent();
@@ -22,103 +25,64 @@ namespace book_management.UI.Controls
         {
             try
             {
-                // Load dữ liệu chart và grid từ database
+                // Load dữ liệu
                 LoadRevenueChart();
                 StyleDataGridView();
                 LoadRecentSales();
-
-                // Load thống kê tổng quan (nếu có labels để hiển thị)
                 LoadDashboardStats();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi khi tải dữ liệu dashboard:\n{ex.Message}",
-               "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // Fallback to mock data if database fails
+                               "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 LoadMockDataFallback();
             }
         }
 
         /// <summary>
-        /// Load biểu đồ doanh thu từ database (7 ngày gần nhất)
+        /// Load thống kê tổng quan vào 4 thẻ
         /// </summary>
-        private void LoadRevenueChart()
+        private void LoadDashboardStats()
         {
-            // Xóa dữ liệu cũ
-            chartDoanhThu.Series.Clear();
-
-            // Tạo series mới
-            var seriesDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Series("Doanh thu");
-            seriesDoanhThu.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-
-            // Lấy dữ liệu 7 ngày gần nhất từ database
-            var revenueData = DashboardRepository.GetLast7DaysRevenue();
-
-            foreach (dynamic revenue in revenueData)
+            var stats = DashboardRepository.GetDashboardStats();
+            if (stats != null)
             {
-                DateTime date = revenue.Ngay;
-                decimal amount = revenue.DoanhThu;
+                // 1. Thẻ Doanh thu hôm nay
+                lblTodayRevenueValue.Text = stats.DoanhThuHomNay.ToString("N0") + " đ";
 
-                // Format ngày hiển thị
-                string dateLabel = date.ToString("dd/MM");
+                // Tính % tăng trưởng
+                decimal revenueToday = stats.DoanhThuHomNay;
+                decimal revenueYesterday = stats.DoanhThuHomQua;
+                double percentageChange = 0;
+                if (revenueYesterday > 0)
+                {
+                    percentageChange = (double)((revenueToday - revenueYesterday) / revenueYesterday) * 100;
+                }
+                else if (revenueToday > 0)
+                {
+                    percentageChange = 100; // Tăng 100% nếu hôm qua là 0
+                }
 
-                seriesDoanhThu.Points.AddXY(dateLabel, (double)amount);
-            }
+                if (percentageChange > 0)
+                {
+                    lblRevenueComparison.Text = $"+{percentageChange:F1}% so với hôm qua";
+                    lblRevenueComparison.ForeColor = Color.Green;
+                }
+                else
+                {
+                    lblRevenueComparison.Text = $"{percentageChange:F1}% so với hôm qua";
+                    lblRevenueComparison.ForeColor = Color.Red;
+                }
 
-            // Thêm series vào chart
-            chartDoanhThu.Series.Add(seriesDoanhThu);
+                // 2. Thẻ Đơn hàng mới
+                lblNewOrdersValue.Text = stats.DonHangMoi.ToString();
+                lblMonthlyOrdersTotal.Text = $"Tổng {stats.DonHangThangNay} đơn tháng này";
 
-            // Cấu hình chart
-            ConfigureChart();
-        }
+                // 3. Thẻ Sách sắp hết
+                lblLowStockValue.Text = stats.SachSapHet.ToString();
 
-        /// <summary>
-        /// Cấu hình chart để hiển thị đẹp hơn
-        /// </summary>
-        private void ConfigureChart()
-        {
-            // Cấu hình trục Y để hiển thị tiền tệ
-            chartDoanhThu.ChartAreas[0].AxisY.LabelStyle.Format = "C0"; // Currency format
-
-            // Cấu hình màu sắc
-            chartDoanhThu.Series[0].Color = Color.FromArgb(74, 144, 226);
-            chartDoanhThu.Series[0].BorderWidth = 3;
-
-            // Hiển thị giá trị trên điểm
-            chartDoanhThu.Series[0].IsValueShownAsLabel = true;
-            chartDoanhThu.Series[0].LabelFormat = "C0";
-        }
-
-        /// <summary>
-        /// Load dữ liệu hóa đơn gần đây từ database
-        /// </summary>
-        private void LoadRecentSales()
-        {
-            // Nếu grid đang được bind tới DataSource khác, bỏ qua
-            if (dataGridViewSales.DataSource != null) return;
-
-            dataGridViewSales.Rows.Clear();
-
-            // Lấy 10 hóa đơn gần nhất từ database
-            var recentOrders = DashboardRepository.GetRecentOrders(10);
-
-            foreach (dynamic order in recentOrders)
-            {
-                // Format mã hóa đơn
-                string maHoaDon = $"HD-{order.HoaDonId:D4}";
-
-                // Format trạng thái hiển thị
-                string trangThaiDisplay = FormatOrderStatus(order.TrangThai);
-
-                dataGridViewSales.Rows.Add(
-  maHoaDon,  // colMaHoaDon
-       order.TenKhach,    // colKhachHang
-       order.NgayLap,            // colNgayTao
-      order.TongTien,     // colTongTien
-         trangThaiDisplay,       // colTrangThai
-      ""      // colChiTiet (link column)
-                );
+                // 4. Thẻ Khách hàng mới
+                lblNewCustomersValue.Text = stats.KhachHangMoi.ToString();
             }
         }
 
@@ -129,9 +93,9 @@ namespace book_management.UI.Controls
         {
             switch (status?.ToLower())
             {
-                case "dathanhtoans":
+                case "dathanhtoan":
                     return "Đã thanh toán";
-                case "chuathanhtoans":
+                case "chuathanhtoan":
                     return "Chờ xử lý";
                 default:
                     return status ?? "Không xác định";
@@ -139,25 +103,85 @@ namespace book_management.UI.Controls
         }
 
         /// <summary>
-        /// Load thống kê tổng quan (có thể hiển thị trên labels hoặc cards)
+        /// Xử lý sự kiện click vào link "Xem" (colChiTiet)
         /// </summary>
-        private void LoadDashboardStats()
+        private void dataGridViewSales_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var stats = DashboardRepository.GetDashboardStats();
-            if (stats != null)
+            if (e.RowIndex >= 0 && this.dataGridViewSales.Columns[e.ColumnIndex].Name == "colChiTiet")
             {
-                // Hiển thị thống kê trong console hoặc trên labels (nếu có)
-                System.Diagnostics.Debug.WriteLine($"Doanh thu hôm nay: {stats.DoanhThuHomNay:C}");
-                System.Diagnostics.Debug.WriteLine($"Doanh thu tháng này: {stats.DoanhThuThangNay:C}");
-                System.Diagnostics.Debug.WriteLine($"Đơn hàng hôm nay: {stats.DonHangHomNay}");
-                System.Diagnostics.Debug.WriteLine($"Tổng sách trong kho: {stats.TongSoSach}");
-                System.Diagnostics.Debug.WriteLine($"Sách sắp hết: {stats.SachSapHet}");
+                try
+                {
+                    // Lấy ID hóa đơn từ cột "colMaHoaDon"
+                    // Cần parse lại ID (loại bỏ "HD-")
+                    string maHoaDonText = this.dataGridViewSales.Rows[e.RowIndex].Cells["colMaHoaDon"].Value.ToString();
+                    int hoaDonId = int.Parse(maHoaDonText.Replace("HD-", ""));
 
-                // TODO: Nếu có labels trên form, cập nhật tại đây
-                // lblDoanhThuHomNay.Text = stats.DoanhThuHomNay.ToString("C");
-                // lblDoanhThuThang.Text = stats.DoanhThuThangNay.ToString("C");
-                // lblDonHangHomNay.Text = stats.DonHangHomNay.ToString();
-                // lblTongSach.Text = stats.TongSoSach.ToString();
+                    // Gọi Repository để lấy Chi Tiết Hóa Đơn
+                    List<ChiTietHoaDon> chiTietHD = ChiTietHoaDonRepository.GetChiTietHoaDon(hoaDonId);
+
+                    // Mở form chi tiết và truyền dữ liệu vào
+                    OrderDetailForm frmDetail = new OrderDetailForm(chiTietHD);
+                    frmDetail.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi mở chi tiết hóa đơn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Load biểu đồ doanh thu từ database (7 ngày gần nhất)
+        /// </summary>
+        private void LoadRevenueChart()
+        {
+            chartDoanhThu.Series.Clear();
+            var seriesDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Series("Doanh thu");
+            seriesDoanhThu.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            var revenueData = DashboardRepository.GetLast7DaysRevenue();
+            foreach (dynamic revenue in revenueData)
+            {
+                DateTime date = revenue.Ngay;
+                decimal amount = revenue.DoanhThu;
+                string dateLabel = date.ToString("dd/MM");
+                seriesDoanhThu.Points.AddXY(dateLabel, (double)amount);
+            }
+            chartDoanhThu.Series.Add(seriesDoanhThu);
+            ConfigureChart();
+        }
+
+        /// <summary>
+        /// Cấu hình chart để hiển thị đẹp hơn
+        /// </summary>
+        private void ConfigureChart()
+        {
+            chartDoanhThu.ChartAreas[0].AxisY.LabelStyle.Format = "C0";
+            chartDoanhThu.Series[0].Color = Color.FromArgb(74, 144, 226);
+            chartDoanhThu.Series[0].BorderWidth = 3;
+            chartDoanhThu.Series[0].IsValueShownAsLabel = true;
+            chartDoanhThu.Series[0].LabelFormat = "C0";
+        }
+
+        /// <summary>
+        /// Load dữ liệu hóa đơn gần đây từ database
+        /// </summary>
+        private void LoadRecentSales()
+        {
+            if (dataGridViewSales.DataSource != null) return;
+            dataGridViewSales.Rows.Clear();
+            var recentOrders = DashboardRepository.GetRecentOrders(10);
+            foreach (dynamic order in recentOrders)
+            {
+                string maHoaDon = $"HD-{order.HoaDonId:D4}";
+                string trangThaiDisplay = FormatOrderStatus(order.TrangThai);
+                dataGridViewSales.Rows.Add(
+                    maHoaDon,
+                    order.TenKhach,
+                    order.NgayLap,
+                    order.TongTien,
+                    trangThaiDisplay,
+                    "" // Giá trị cho cột colChiTiet (link)
+                );
             }
         }
 
@@ -166,12 +190,9 @@ namespace book_management.UI.Controls
         /// </summary>
         private void LoadMockDataFallback()
         {
-            // Load mock chart data
             chartDoanhThu.Series.Clear();
             var seriesDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Series("Doanh thu");
             seriesDoanhThu.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-
-            // Mock data for 7 days
             seriesDoanhThu.Points.AddXY("Ngày 1", 150000);
             seriesDoanhThu.Points.AddXY("Ngày 2", 300000);
             seriesDoanhThu.Points.AddXY("Ngày 3", 250000);
@@ -179,68 +200,57 @@ namespace book_management.UI.Controls
             seriesDoanhThu.Points.AddXY("Ngày 5", 350000);
             seriesDoanhThu.Points.AddXY("Ngày 6", 500000);
             seriesDoanhThu.Points.AddXY("Ngày 7", 450000);
-
             chartDoanhThu.Series.Add(seriesDoanhThu);
-
-            // Load mock sales data
             PopulateMockSales();
         }
 
+        /// <summary>
+        /// Định dạng giao diện cho DataGridView
+        /// </summary>
         private void StyleDataGridView()
         {
-            // --- Style cho Header (Tiêu đề cột) ---
             var headerStyle = dataGridViewSales.ColumnHeadersDefaultCellStyle;
-            headerStyle.BackColor = Color.FromArgb(249, 250, 251); // bg-gray-50
-            headerStyle.ForeColor = Color.FromArgb(55, 65, 81);    // text-gray-700
-            headerStyle.Font = new Font("Inter", 9F, FontStyle.Bold); // text-xs, uppercase (Bold)
-            headerStyle.Padding = new Padding(10, 8, 10, 8); // px-6 py-3
+            headerStyle.BackColor = Color.FromArgb(249, 250, 251);
+            headerStyle.ForeColor = Color.FromArgb(55, 65, 81);
+            headerStyle.Font = new Font("Inter", 9F, FontStyle.Bold);
+            headerStyle.Padding = new Padding(10, 8, 10, 8);
             dataGridViewSales.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewSales.ColumnHeadersHeight = 45; // Chiều cao header
-
-            // --- Style cho Dòng (Row) ---
+            dataGridViewSales.ColumnHeadersHeight = 45;
             var cellStyle = dataGridViewSales.DefaultCellStyle;
             cellStyle.BackColor = Color.White;
             cellStyle.Font = new Font("Inter", 9F, FontStyle.Regular);
-            cellStyle.ForeColor = Color.FromArgb(107, 114, 128); // text-gray-500
-            cellStyle.Padding = new Padding(10, 0, 10, 0); // px-6
-
-            // Style khi chọn dòng (hover:bg-gray-50)
+            cellStyle.ForeColor = Color.FromArgb(107, 114, 128);
+            cellStyle.Padding = new Padding(10, 0, 10, 0);
             cellStyle.SelectionBackColor = Color.FromArgb(249, 250, 251);
             cellStyle.SelectionForeColor = Color.Black;
-
-            // Set chiều cao dòng
-            dataGridViewSales.RowTemplate.Height = 45; // py-4
+            dataGridViewSales.RowTemplate.Height = 45;
         }
 
-        // Thêm mock data mẫu cho dataGridViewSales (fallback only)
+        /// <summary>
+        /// Thêm mock data mẫu cho dataGridViewSales (chỉ dùng khi fallback)
+        /// </summary>
         private void PopulateMockSales()
         {
-            // Nếu grid đang được bind tới DataSource khác, bỏ qua (để tránh lỗi)
             if (dataGridViewSales.DataSource != null) return;
-
             dataGridViewSales.Rows.Clear();
-
-            // Các trạng thái mẫu: "Đã thanh toán", "Chờ xử lý", "Đã hủy"
             var mockRows = new object[,]
-        {
-       { "HD-0001", "Nguyễn Văn A", DateTime.Now.AddHours(-2), 150000, "Đã thanh toán", "" },
-     { "HD-0002", "Trần Thị B", DateTime.Now.AddDays(-1).AddHours(-3), 320000, "Chờ xử lý", "" },
-        { "HD-0003", "Lê Văn C", DateTime.Now.AddDays(-2), 450000, "Đã thanh toán", "" },
-    { "HD-0004", "Phạm Thị D", DateTime.Now.AddDays(-3).AddHours(-6), 78000, "Đã hủy", "" },
+            {
+                { "HD-0001", "Nguyễn Văn A", DateTime.Now.AddHours(-2), 150000, "Đã thanh toán", "" },
+                { "HD-0002", "Trần Thị B", DateTime.Now.AddDays(-1).AddHours(-3), 320000, "Chờ xử lý", "" },
+                { "HD-0003", "Lê Văn C", DateTime.Now.AddDays(-2), 450000, "Đã thanh toán", "" },
+                { "HD-0004", "Phạm Thị D", DateTime.Now.AddDays(-3).AddHours(-6), 78000, "Đã hủy", "" },
                 { "HD-0005", "Hoàng Văn E", DateTime.Now.AddHours(-5), 220000, "Chờ xử lý", "" },
-    { "HD-0006", "Võ Thị F", DateTime.Now.AddDays(-7), 99000, "Đã thanh toán", "" }
-      };
-
+                { "HD-0006", "Võ Thị F", DateTime.Now.AddDays(-7), 99000, "Đã thanh toán", "" }
+            };
             for (int i = 0; i < mockRows.GetLength(0); i++)
             {
-                // Rows.Add theo thứ tự cột: colMaHoaDon, colKhachHang, colNgayTao, colTongTien, colTrangThai, colChiTiet
                 dataGridViewSales.Rows.Add(
-           mockRows[i, 0], // MaHoaDon
-                 mockRows[i, 1], // TenKhachHang
-                       mockRows[i, 2], // NgayTao (DateTime -> sẽ format theo DefaultCellStyle)
-                    mockRows[i, 3], // TongTien (number)
-             mockRows[i, 4], // TrangThai
-                   mockRows[i, 5]  // ChiTiet (link column uses column text)
+                    mockRows[i, 0],
+                    mockRows[i, 1],
+                    mockRows[i, 2],
+                    mockRows[i, 3],
+                    mockRows[i, 4],
+                    mockRows[i, 5]
                 );
             }
         }
@@ -259,65 +269,57 @@ namespace book_management.UI.Controls
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi khi làm mới dữ liệu dashboard:\n{ex.Message}",
-              "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        /// <summary>
+        /// Định dạng màu sắc cho ô Trạng Thái
+        /// </summary>
         private void dataGridViewSales_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Chỉ áp dụng cho cột "colTrangThai"
             if (this.dataGridViewSales.Columns[e.ColumnIndex].Name == "colTrangThai")
             {
                 if (e.Value != null)
                 {
                     string status = e.Value.ToString();
-
-                    // (bg-green-100, text-green-800)
                     if (status.Equals("Đã thanh toán", StringComparison.OrdinalIgnoreCase))
                     {
                         e.CellStyle.BackColor = Color.FromArgb(220, 252, 231);
                         e.CellStyle.ForeColor = Color.FromArgb(22, 101, 52);
                     }
-                    // (bg-yellow-100, text-yellow-800)
                     else if (status.Equals("Chờ xử lý", StringComparison.OrdinalIgnoreCase))
                     {
                         e.CellStyle.BackColor = Color.FromArgb(254, 249, 195);
                         e.CellStyle.ForeColor = Color.FromArgb(133, 77, 14);
                     }
-                    // (bg-red-100, text-red-800)
                     else if (status.Equals("Đã hủy", StringComparison.OrdinalIgnoreCase))
                     {
                         e.CellStyle.BackColor = Color.FromArgb(254, 226, 226);
                         e.CellStyle.ForeColor = Color.FromArgb(153, 27, 27);
                     }
-
-                    // Căn giữa chữ trong ô trạng thái
                     e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold); // font-medium
+                    e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
                     e.FormattingApplied = true;
                 }
             }
         }
 
-        private void dataGridViewSales_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// Lấy giá trị doanh thu hôm nay
+        /// </summary>
+        private int TodayRevenueValue()
         {
-            // Đảm bảo click không phải là header và là cột "colChiTiet"
-            if (e.RowIndex >= 0 && this.dataGridViewSales.Columns[e.ColumnIndex].Name == "colChiTiet")
-            {
-                // Lấy Mã Hóa Đơn từ cột đầu tiên của dòng được click
-                string maHoaDon = this.dataGridViewSales.Rows[e.RowIndex].Cells["colMaHoaDon"].Value.ToString();
-
-                MessageBox.Show("Mở chi tiết cho hóa đơn: " + maHoaDon);
-
-                // TODO: Viết code mở FormChiTietHoaDon tại đây
-                // FormChiTietHoaDon f = new FormChiTietHoaDon(maHoaDon);
-                // f.ShowDialog();
-            }
+            var stats = DashboardRepository.GetDashboardStats();
+            return stats != null ? (int)stats.DoanhThuHomNay : 0;
         }
 
+        /// <summary>
+        /// Xử lý sự kiện click nút Tạo Hóa Đơn Mới (Tác vụ nhanh)
+        /// </summary>
         private void btnAddBill_Click(object sender, EventArgs e)
         {
-
+            CreateInvoiceClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }

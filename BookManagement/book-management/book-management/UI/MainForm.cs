@@ -29,9 +29,7 @@ namespace book_management.UI
             }
             else
             {
-                LoadControl(new DashboardControl());
-                //// Highlight default button on load
-                ActivateButton(btnDashboard);
+                ShowDashboard();
             }
             // Hiển thị thông tin người dùng hiện tại
             UpdateUserInfo();
@@ -97,7 +95,22 @@ namespace book_management.UI
             btnInvoice.Visible = false;
         }
         /// 
+        
+        /// <summary>
+        /// Tạo, đăng ký sự kiện, và tải DashboardControl
+        /// </summary>
+        private void ShowDashboard()
+        {
+            // 1. Tạo control MỚI
+            DashboardControl dashboard = new DashboardControl();
 
+            // 2. Đăng ký lại sự kiện (QUAN TRỌNG NHẤT)
+            dashboard.CreateInvoiceClicked += Dashboard_CreateInvoiceClicked;
+
+            // 3. Tải control
+            LoadControl(dashboard);
+            ActivateButton(btnDashboard);
+        }
 
         /// <summary>
         /// Cập nhật thông tin người dùng hiển thị trên giao diện
@@ -258,8 +271,7 @@ namespace book_management.UI
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            LoadControl(new DashboardControl());
-            ActivateButton(btnDashboard);
+            ShowDashboard();
         }
 
         private void btnSales_Click(object sender, EventArgs e)
@@ -306,6 +318,13 @@ namespace book_management.UI
             LoadControl(new InvoicesControl());
             ActivateButton(btnInvoice);
         }
+        private void Dashboard_CreateInvoiceClicked(object sender, EventArgs e)
+        {
+            // Mở trang SalesControl
+            LoadControl(new SalesControl());
 
+            // Kích hoạt (highlight) nút Bán Hàng
+            ActivateButton(btnSales);
+        }
     }
 }
