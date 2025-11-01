@@ -20,18 +20,26 @@ namespace book_management.UI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            LoadControl(new DashboardControl());
-            // Highlight default button on load
-            ActivateButton(btnDashboard);
-
+            ConfigureButtonsByRole();
+            if (CurrentUser.IsCustomer)
+            {
+                LoadControl(new StoreControl());
+                //// Highlight default button on load
+                ActivateButton(btnSales);
+            }
+            else
+            {
+                LoadControl(new DashboardControl());
+                //// Highlight default button on load
+                ActivateButton(btnDashboard);
+            }
             // Hiển thị thông tin người dùng hiện tại
             UpdateUserInfo();
-            ConfigureButtonsByRole();
         }
         ///
         private void ConfigureButtonsByRole()
         {
-            
+
             switch (CurrentUser.Role)
             {
                 case "Admin":
@@ -49,14 +57,15 @@ namespace book_management.UI
                     btnBooks.Visible = false;  // Ẩn quản lý sách
                     btnUser.Visible = false;   // Ẩn quản lý người dùng
                     btnReport.Visible = false; // Ẩn báo cáo thống kê
-                                               // Đưa nút Bán hàng (Store) lên đầu
+                    btnInvoice.Visible = false; // Ẩn hóa đơn
+                    // Đưa nút Bán hàng (Store) lên đầu
                     btnSales.Location = new Point(btnSales.Location.X, 130); // Vị trí cũ của Dashboard
                     btnSales.Text = "Mua Sách";
 
                     // Điều chỉnh Invoice thành lịch sử mua hàng và đặt ngay dưới nút mua sách
-                    btnInvoice.Text = "Lịch sử mua hàng";
-                    btnInvoice.IconChar = IconChar.History;
-                    btnInvoice.Location = new Point(btnInvoice.Location.X, 230); // Vị trí ngay dưới nút mua sách
+                    btnHistoryBuy.Visible = true;
+                    btnHistoryBuy.IconChar = IconChar.History;
+                    btnHistoryBuy.Location = new Point(btnInvoice.Location.X, 230); // Vị trí ngay dưới nút mua sách
                     break;
                 default:
                     // Vai trò không xác định, ẩn tất cả các nút chức năng nhạy cảm
@@ -75,6 +84,7 @@ namespace book_management.UI
             btnReport.Visible = true;
             btnBooks.Visible = true;
             btnInvoice.Visible = true;
+            btnHistoryBuy.Visible = false;
         }
         ///
 
@@ -285,9 +295,16 @@ namespace book_management.UI
             ActivateButton(btnBooks);
         }
 
+        private void btnHistoryBuy_Click(object sender, EventArgs e)
+        {
+            LoadControl(new PurchaseHistoryControl(CurrentUser.UserId));
+            ActivateButton(btnHistoryBuy);
+        }
+
         private void btnInvoice_Click(object sender, EventArgs e)
         {
-
+            LoadControl(new InvoicesControl());
+            ActivateButton(btnInvoice);
         }
 
     }

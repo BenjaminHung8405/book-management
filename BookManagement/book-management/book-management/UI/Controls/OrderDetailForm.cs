@@ -1,7 +1,8 @@
-// book-management\UI\OrderDetailForm.cs
+﻿// book-management\UI\OrderDetailForm.cs
 using System.Windows.Forms;
 using book_management.Models;
-
+using System.Collections.Generic;
+using System.Drawing;
 namespace book_management.UI
 {
     public partial class OrderDetailForm : Form
@@ -17,11 +18,11 @@ namespace book_management.UI
 
         private void InitializeComponent()
         {
-            this.Text = "Chi ti?t h�a ??n";
+            this.Text = "Chi tiết hóa đơn";
             this.Size = new Size(800, 600);
             this.StartPosition = FormStartPosition.CenterParent;
 
-            // T?o DataGridView ?? hi?n th? chi ti?t
+            
             var dgvDetail = new DataGridView
             {
                 Dock = DockStyle.Fill,
@@ -32,12 +33,12 @@ namespace book_management.UI
                 ReadOnly = true
             };
 
-            // Th�m c�c c?t
-            dgvDetail.Columns.Add("TenSach", "T�n s�ch");
-            dgvDetail.Columns.Add("DonGia", "??n gi�");
-            dgvDetail.Columns.Add("SoLuong", "S? l??ng");
-            dgvDetail.Columns.Add("GiamGia", "Gi?m gi�");
-            dgvDetail.Columns.Add("ThanhTien", "Th�nh ti?n");
+         
+            dgvDetail.Columns.Add("TenSach", "Tên sách");
+            dgvDetail.Columns.Add("DonGia", "Đơn giá");
+            dgvDetail.Columns.Add("SoLuong", "Số lượng");
+            dgvDetail.Columns.Add("GiamGia", "Giảm giá");
+            dgvDetail.Columns.Add("ThanhTien", "Thành tiền");
 
             this.Controls.Add(dgvDetail);
         }
@@ -54,7 +55,7 @@ namespace book_management.UI
                         item.TenSach,
                         item.DonGia.ToString("N0") + " ?",
                         item.SoLuong,
-                        item.GiamGia.ToString("N0") + " ?",
+                        item.TienGiam.ToString("N0") + " ?",
                         item.ThanhTien.ToString("N0") + " ?"
                     );
                 }

@@ -65,12 +65,14 @@
     </Compile>
     <Compile Include="Data\HoaDonRepository.cs" />
     <Compile Include="Data\Models\BookModels.cs" />
+    <Compile Include="Data\Models\ChiTietHoaDon.cs" />
+    <Compile Include="Data\Models\HoaDon.cs" />
     <Compile Include="Data\UserRepository.cs" />
-    <Compile Include="UI\Controls\InvoiceControl.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="UI\Controls\InvoiceDetailForm.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Controls\InvoiceControl.Designer.cs">
-      <DependentUpon>InvoiceControl.cs</DependentUpon>
+    <Compile Include="UI\Controls\InvoicesControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Controls\OrderDetailForm.cs">
       <SubType>Form</SubType>
@@ -150,8 +152,8 @@
     <EmbeddedResource Include="UI\Controls\DashboardControl.resx">
       <DependentUpon>DashboardControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Controls\InvoiceControl.resx">
-      <DependentUpon>InvoiceControl.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Controls\PurchaseHistoryControl.resx">
+      <DependentUpon>PurchaseHistoryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\StoreControl.resx">
       <DependentUpon>StoreControl.cs</DependentUpon>
