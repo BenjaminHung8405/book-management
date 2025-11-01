@@ -256,5 +256,61 @@ namespace book_management.DataAccess
             }
             return null;
         }
+        public static bool CreateInvoice(HoaDon hoaDon, List<ChiTietHoaDon> details)
+        {
+            using (var conn = DatabaseConnection.GetConnection())
+            {
+                conn.Open();
+                // bat dau 1 giao dịch
+                SqlTransaction transaction = conn.BeginTransaction();
+                try
+                {
+                    //tao hoa don va lay id vua tao
+                    var cmdHoaDon = new SqlCommand(@"
+                        INSERT INTO HoaDon (user_id, kh_id, ten_khach_vang_lai, tong_tien, trang_thai)
+                        VALUES (@UserId, @KhId, @TenKhachVangLai, @TongTien, @TrangThai);
+                        SELECT SCOPE_IDENTITY();", conn, transaction);// lay id vua tao
+                    cmdHoaDon.Parameters.AddWithValue("@UserId", (object)hoaDon.UserId?? DBNull.Value);
+                    cmdHoaDon.Parameters.AddWithValue("@KhId", (object)hoaDon.KhId ?? DBNull.Value);
+                    cmdHoaDon.Parameters.AddWithValue("@TenKhachVangLai", (object)hoaDon.TenNguoiMua?? DBNull.Value);
+                    cmdHoaDon.Parameters.AddWithValue("@TongTien", hoaDon.TongTien);
+                    cmdHoaDon.Parameters.AddWithValue("@TrangThai", hoaDon.TrangThai);
+                    // Thực thi và lấy ID mới
+                    int newHoaDonId = Convert.ToInt32(cmdHoaDon.ExecuteScalar());
+
+                    // Tao cac dong chi tiet hoa don    
+                    foreach(var item in details)
+                    {
+                        var cmdChiTiet= new SqlCommand(@"
+                            INSERT INTO ChiTietHoaDon (hoadon_id, sach_id, so_luong, don_gia, tien_giam)
+                            VALUES (@HoaDonId, @SachId, @SoLuong, @DonGia, @TienGiam);", conn, transaction);
+                        cmdChiTiet.Parameters.AddWithValue("@HoaDonId", newHoaDonId);
+                        cmdChiTiet.Parameters.AddWithValue("@SachId", item.SachId);
+                        cmdChiTiet.Parameters.AddWithValue("@SoLuong", item.SoLuong);
+                        cmdChiTiet.Parameters.AddWithValue("@DonGia", item.DonGia);
+                        cmdChiTiet.Parameters.AddWithValue("@TienGiam", item.TienGiam);
+                        cmdChiTiet.ExecuteNonQuery();
+                        // tru so luong sach trong kho
+                        var cmdUpdateStock = new SqlCommand(@"
+                            UPDATE Sach
+                            SET so_luong = so_luong - @SoLuong
+                            WHERE sach_id = @SachId;", conn, transaction);
+                        cmdUpdateStock.Parameters.AddWithValue("@SoLuong", item.SoLuong);
+                        cmdUpdateStock.Parameters.AddWithValue("@SachId", item.SachId);
+                        // tru ton kho
+                        cmdUpdateStock.ExecuteNonQuery();
+                    }
+                    // neu ko co loi thi commit
+                    transaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    // nếu có lỗi thì rollback
+                    transaction.Rollback();
+                    throw new Exception("Lỗi khi tạo hóa đơn: " + ex.Message);
+                }
+            }
+        }
     }
 }

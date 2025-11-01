@@ -58,6 +58,7 @@
     <Compile Include="Data\BookRepository.cs" />
     <Compile Include="Data\ChiTietHoaDonRepository.cs" />
     <Compile Include="Data\CurrentUser.cs" />
+    <Compile Include="Data\CustomerRepository.cs" />
     <Compile Include="Data\DashboardRepository.cs" />
     <Compile Include="Data\DatabaseConnection.cs" />
     <Compile Include="Data\DatabaseTestForm.cs">
@@ -92,6 +93,10 @@
     <Compile Include="UI\Controls\DashboardControl.Designer.cs">
       <DependentUpon>DashboardControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\SalesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\SalesControl.Designer.cs" />
     <Compile Include="UI\Controls\StoreControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -151,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\DashboardControl.resx">
       <DependentUpon>DashboardControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\InvoiceDetailForm.resx">
+      <DependentUpon>InvoiceDetailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\PurchaseHistoryControl.resx">
       <DependentUpon>PurchaseHistoryControl.cs</DependentUpon>

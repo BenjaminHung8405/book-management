@@ -154,8 +154,6 @@ namespace book_management.UI.Controls
                 Location = new Point(740, 45),
                 Size = new Size(80, 30),
                 Text = "Tìm kiếm",
-                IconChar = IconChar.Search,
-                IconSize = 16,
                 BackColor = AppColors.Primary,
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat
@@ -167,8 +165,6 @@ namespace book_management.UI.Controls
                 Location = new Point(830, 45),
                 Size = new Size(100, 30),
                 Text = "Tạo hóa đơn",
-                IconChar = IconChar.Plus,
-                IconSize = 16,
                 BackColor = AppColors.SuccessGreen,
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat
@@ -180,8 +176,6 @@ namespace book_management.UI.Controls
                 Location = new Point(940, 45),
                 Size = new Size(80, 30),
                 Text = "Làm mới",
-                IconChar = IconChar.Refresh,
-                IconSize = 16,
                 BackColor = AppColors.Primary,
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat
@@ -244,7 +238,7 @@ namespace book_management.UI.Controls
             dgvInvoices = new DataGridView
             {
                 Dock = DockStyle.Fill,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
+                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
                 MultiSelect = false,
                 AllowUserToAddRows = false,
@@ -255,7 +249,12 @@ namespace book_management.UI.Controls
                 CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal,
                 ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing,
                 ColumnHeadersHeight = 40,
-                RowTemplate = { Height = 35 }
+                RowTemplate = { Height = 40 }, // Chiều cao dòng
+                DefaultCellStyle = new DataGridViewCellStyle
+                {
+                    Font = new Font("Segoe UI", 10.5F), // Tăng Font chữ
+                    Padding = new Padding(5, 0, 5, 0)   // Thêm đệm trái/phải
+                }
             };
 
             // Style the header
@@ -303,14 +302,30 @@ namespace book_management.UI.Controls
             };
             dgvInvoices.Columns.Add(colDelete);
 
-            // Set column widths
-            dgvInvoices.Columns["HoaDonId"].Width = 80;
-            dgvInvoices.Columns["NgayLap"].Width = 100;
-            dgvInvoices.Columns["TenNguoiMua"].Width = 150;
-            dgvInvoices.Columns["TongTien"].Width = 120;
-            dgvInvoices.Columns["TrangThai"].Width = 100;
-            dgvInvoices.Columns["NguoiLap"].Width = 120;
+            dgvInvoices.Columns["HoaDonId"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvInvoices.Columns["NgayLap"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvInvoices.Columns["TongTien"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvInvoices.Columns["TrangThai"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvInvoices.Columns["NguoiLap"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvInvoices.Columns["ViewDetail"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvInvoices.Columns["Edit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvInvoices.Columns["Delete"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
+            // Cột "Khách hàng" sẽ lấp đầy phần còn trống
+            dgvInvoices.Columns["TenNguoiMua"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // SỬA 4: Thêm khối Căn chỉnh (Alignment)
+            dgvInvoices.Columns["HoaDonId"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvInvoices.Columns["TenNguoiMua"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvInvoices.Columns["NgayLap"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Tiền tệ nên được căn phải
+            dgvInvoices.Columns["TongTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            dgvInvoices.Columns["TrangThai"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvInvoices.Columns["NguoiLap"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Gán sự kiện (Giữ nguyên)
             dgvInvoices.CellClick += DgvInvoices_CellClick;
             dgvInvoices.CellFormatting += DgvInvoices_CellFormatting;
         }
@@ -444,15 +459,18 @@ namespace book_management.UI.Controls
                 var status = e.Value.ToString();
                 switch (status)
                 {
-                    case "Đã thanh toán":
+                    case "DaThanhToan":
+                        e.Value = "Đã thanh toán";
                         e.CellStyle.BackColor = Color.LightGreen;
                         e.CellStyle.ForeColor = Color.DarkGreen;
                         break;
-                    case "Chưa thanh toán":
+                    case "ChuaThanhToan":
+                        e.Value = "Chưa thanh toán";
                         e.CellStyle.BackColor = Color.LightYellow;
                         e.CellStyle.ForeColor = Color.DarkOrange;
                         break;
-                    case "Đã hủy":
+                    case "DaHuy":
+                        e.Value = "Đã hủy";
                         e.CellStyle.BackColor = Color.LightCoral;
                         e.CellStyle.ForeColor = Color.DarkRed;
                         break;
