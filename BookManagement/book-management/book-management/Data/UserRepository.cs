@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -7,11 +7,7 @@ namespace book_management.Data
     public class UserRepository
     {
         /// <summary>
-        /// X·c th?c ng??i d˘ng v?i username v‡ password
-        /// </summary>
-        /// <param name="username">TÍn ??ng nh?p</param>
-        /// <param name="password">M?t kh?u</param>
-        /// <returns>ThÙng tin ng??i d˘ng n?u ??ng nh?p th‡nh cÙng, null n?u th?t b?i</returns>
+       
         public static dynamic AuthenticateUser(string username, string password)
         {
             try
@@ -60,17 +56,17 @@ namespace book_management.Data
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi x·c th?c ng??i d˘ng: {ex.Message}", ex);
+                throw new Exception($"L·ªói khi x√°c th·ª±c ng∆∞·ªùi d√πng: {ex.Message}", ex);
             }
 
             return null;
         }
 
         /// <summary>
-        /// L?y thÙng tin ng??i d˘ng theo ID
+        /// L?y th√¥ng tin ng??i d√πng theo ID
         /// </summary>
-        /// <param name="userId">ID ng??i d˘ng</param>
-        /// <returns>ThÙng tin ng??i d˘ng</returns>
+        /// <param name="userId">ID ng??i d√πng</param>
+        /// <returns>Th√¥ng tin ng??i d√πng</returns>
         public static dynamic GetUserById(int userId)
         {
             try
@@ -118,16 +114,14 @@ SELECT
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi l?y thÙng tin ng??i d˘ng: {ex.Message}", ex);
+                throw new Exception($"L·ªói khi l·∫•y th√¥ng tin ng∆∞·ªùi d√πng: {ex.Message}", ex);
             }
 
             return null;
         }
 
         /// <summary>
-        /// L?y t?t c? ng??i d˘ng
-        /// </summary>
-        /// <returns>Danh s·ch ng??i d˘ng</returns>
+        
         public static System.Collections.Generic.List<dynamic> GetAllUsers()
         {
             var users = new System.Collections.Generic.List<dynamic>();
@@ -174,22 +168,22 @@ SELECT
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi l?y danh s·ch ng??i d˘ng: {ex.Message}", ex);
+                throw new Exception($"L·ªói khi l·∫•y danh s√°ch ng∆∞·ªùi d√πng: {ex.Message}", ex);
             }
 
             return users;
         }
 
         /// <summary>
-        /// ThÍm ng??i d˘ng m?i
+        /// Th√™m ng??i d√πng m?i
         /// </summary>
-        /// <param name="username">TÍn ??ng nh?p</param>
+        /// <param name="username">T√™n ??ng nh?p</param>
         /// <param name="password">M?t kh?u</param>
-        /// <param name="hoTen">H? tÍn</param>
+        /// <param name="hoTen">H? t√™n</param>
         /// <param name="email">Email</param>
         /// <param name="soDienThoai">S? ?i?n tho?i</param>
-        /// <param name="vaiTro">Vai trÚ</param>
-        /// <returns>ID ng??i d˘ng v?a t?o</returns>
+        /// <param name="vaiTro">Vai tr√≤</param>
+        /// <returns>ID ng??i d√πng v?a t?o</returns>
         public static int AddUser(string username, string password, string hoTen, string email = null, string soDienThoai = null, string vaiTro = "NhanVien")
         {
             try
@@ -218,19 +212,19 @@ SELECT
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi thÍm ng??i d˘ng: {ex.Message}", ex);
+                throw new Exception($"L·ªói khi th√™m ng∆∞·ªùi d√πng: {ex.Message}", ex);
             }
         }
 
         /// <summary>
-        /// C?p nh?t thÙng tin ng??i d˘ng
+        /// C?p nh?t th√¥ng tin ng??i d√πng
         /// </summary>
-        /// <param name="userId">ID ng??i d˘ng</param>
-        /// <param name="hoTen">H? tÍn</param>
+        /// <param name="userId">ID ng??i d√πng</param>
+        /// <param name="hoTen">H? t√™n</param>
         /// <param name="email">Email</param>
         /// <param name="soDienThoai">S? ?i?n tho?i</param>
-        /// <param name="vaiTro">Vai trÚ</param>
-        /// <returns>True n?u c?p nh?t th‡nh cÙng</returns>
+        /// <param name="vaiTro">Vai tr√≤</param>
+        /// <returns>True n?u c?p nh?t th√†nh c√¥ng</returns>
         public static bool UpdateUser(int userId, string hoTen, string email = null, string soDienThoai = null, string vaiTro = null)
         {
             try
@@ -261,16 +255,16 @@ SELECT
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi c?p nh?t ng??i d˘ng: {ex.Message}", ex);
+                throw new Exception($"L·ªói khi c·∫≠p nh·∫≠t ng∆∞·ªùi d√πng: {ex.Message}", ex);
             }
         }
 
         /// <summary>
-        /// Thay ??i m?t kh?u ng??i d˘ng
+        /// Thay ??i m?t kh?u ng??i d√πng
         /// </summary>
-        /// <param name="userId">ID ng??i d˘ng</param>
+        /// <param name="userId">ID ng??i d√πng</param>
         /// <param name="newPassword">M?t kh?u m?i</param>
-        /// <returns>True n?u thay ??i th‡nh cÙng</returns>
+        /// <returns>True n?u thay ??i th√†nh c√¥ng</returns>
         public static bool ChangePassword(int userId, string newPassword)
         {
             try
@@ -292,16 +286,16 @@ SELECT
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi thay ??i m?t kh?u: {ex.Message}", ex);
+                throw new Exception($"L·ªói khi thay ƒë·ªïi m·∫≠t kh·∫©u: {ex.Message}", ex);
             }
         }
 
         /// <summary>
-        /// VÙ hi?u hÛa/kÌch ho?t ng??i d˘ng
+        /// V√¥ hi?u h√≥a/k√≠ch ho?t ng??i d√πng
         /// </summary>
-        /// <param name="userId">ID ng??i d˘ng</param>
-        /// <param name="isActive">True ?? kÌch ho?t, False ?? vÙ hi?u hÛa</param>
-        /// <returns>True n?u c?p nh?t th‡nh cÙng</returns>
+        /// <param name="userId">ID ng??i d√πng</param>
+        /// <param name="isActive">True ?? k√≠ch ho?t, False ?? v√¥ hi?u h√≥a</param>
+        /// <returns>True n?u c?p nh?t th√†nh c√¥ng</returns>
         public static bool SetUserStatus(int userId, bool isActive)
         {
             try
@@ -323,7 +317,7 @@ SELECT
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi c?p nh?t tr?ng th·i ng??i d˘ng: {ex.Message}", ex);
+                throw new Exception($"L·ªói khi c·∫≠p nh·∫≠t tr·∫°ng th√°i ng∆∞·ªùi d√πng {ex.Message}", ex);
             }
         }
     }
