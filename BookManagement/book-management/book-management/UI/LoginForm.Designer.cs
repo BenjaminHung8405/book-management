@@ -42,7 +42,6 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.pnlUsername = new System.Windows.Forms.Panel();
             this.iconUser = new FontAwesome.Sharp.IconPictureBox();
-            this.linkExit = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.pnlPassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconLock)).BeginInit();
@@ -227,19 +226,6 @@
             this.iconUser.TabIndex = 9;
             this.iconUser.TabStop = false;
             // 
-            // linkExit
-            // 
-            this.linkExit.AutoSize = true;
-            this.linkExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.linkExit.LinkColor = System.Drawing.Color.Black;
-            this.linkExit.Location = new System.Drawing.Point(344, 638);
-            this.linkExit.Name = "linkExit";
-            this.linkExit.Size = new System.Drawing.Size(67, 25);
-            this.linkExit.TabIndex = 8;
-            this.linkExit.TabStop = true;
-            this.linkExit.Text = "Thoát";
-            this.linkExit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkExit_LinkClicked);
-            // 
             // LoginForm
             // 
             this.AcceptButton = this.btnLogin;
@@ -247,7 +233,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(450, 800);
-            this.Controls.Add(this.linkExit);
             this.Controls.Add(this.lblClose);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
@@ -292,7 +277,6 @@
         private FontAwesome.Sharp.IconButton btnTogglePasswordVisibility;
         private FontAwesome.Sharp.IconPictureBox iconLock;
         private FontAwesome.Sharp.IconPictureBox iconUser;
-        private System.Windows.Forms.LinkLabel linkExit;
     }
 }
 
