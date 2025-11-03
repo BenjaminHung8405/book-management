@@ -246,15 +246,6 @@ namespace book_management.UI.Controls
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMainContent = new System.Windows.Forms.Panel();
             this.dgvBooks = new System.Windows.Forms.DataGridView();
-            this.panelPagination = new System.Windows.Forms.Panel();
-            this.flowPaginationButtons = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblPageInfo = new System.Windows.Forms.Label();
-            this.panelTopBar = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbStatusFilter = new System.Windows.Forms.ComboBox();
-            this.txtSearchBook = new System.Windows.Forms.TextBox();
-            this.cmbCategoryFilter = new System.Windows.Forms.ComboBox();
-            this.btnAddBook = new FontAwesome.Sharp.IconButton();
             this.colAnhBia = new System.Windows.Forms.DataGridViewImageColumn();
             this.colTenSach = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTacGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -264,6 +255,15 @@ namespace book_management.UI.Controls
             this.colTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panelPagination = new System.Windows.Forms.Panel();
+            this.flowPaginationButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblPageInfo = new System.Windows.Forms.Label();
+            this.panelTopBar = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.cmbStatusFilter = new System.Windows.Forms.ComboBox();
+            this.txtSearchBook = new System.Windows.Forms.TextBox();
+            this.cmbCategoryFilter = new System.Windows.Forms.ComboBox();
+            this.btnAddBook = new FontAwesome.Sharp.IconButton();
             this.panelMainContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
             this.panelPagination.SuspendLayout();
@@ -333,6 +333,116 @@ namespace book_management.UI.Controls
             this.dgvBooks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBooks.Size = new System.Drawing.Size(1252, 622);
             this.dgvBooks.TabIndex = 3;
+            // 
+            // colAnhBia
+            // 
+            this.colAnhBia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colAnhBia.DataPropertyName = "AnhBia";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            this.colAnhBia.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colAnhBia.FillWeight = 10F;
+            this.colAnhBia.HeaderText = "Ảnh bìa";
+            this.colAnhBia.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.colAnhBia.Name = "colAnhBia";
+            this.colAnhBia.ReadOnly = true;
+            // 
+            // colTenSach
+            // 
+            this.colTenSach.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colTenSach.DataPropertyName = "TenSach";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colTenSach.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colTenSach.FillWeight = 40F;
+            this.colTenSach.HeaderText = "Tên sách";
+            this.colTenSach.Name = "colTenSach";
+            this.colTenSach.ReadOnly = true;
+            // 
+            // colTacGia
+            // 
+            this.colTacGia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colTacGia.DataPropertyName = "TenTacGia";
+            this.colTacGia.FillWeight = 40F;
+            this.colTacGia.HeaderText = "Tác giả";
+            this.colTacGia.Name = "colTacGia";
+            this.colTacGia.ReadOnly = true;
+            // 
+            // colTheLoai
+            // 
+            this.colTheLoai.DataPropertyName = "TenTheLoai";
+            this.colTheLoai.FillWeight = 40F;
+            this.colTheLoai.HeaderText = "Thể loại";
+            this.colTheLoai.Name = "colTheLoai";
+            this.colTheLoai.ReadOnly = true;
+            // 
+            // colGiaBan
+            // 
+            this.colGiaBan.DataPropertyName = "Gia";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.NullValue = null;
+            this.colGiaBan.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colGiaBan.FillWeight = 40F;
+            this.colGiaBan.HeaderText = "Giá bán";
+            this.colGiaBan.Name = "colGiaBan";
+            this.colGiaBan.ReadOnly = true;
+            // 
+            // colTonKho
+            // 
+            this.colTonKho.DataPropertyName = "SoLuong";
+            this.colTonKho.FillWeight = 25F;
+            this.colTonKho.HeaderText = "Tồn kho";
+            this.colTonKho.Name = "colTonKho";
+            this.colTonKho.ReadOnly = true;
+            // 
+            // colTrangThai
+            // 
+            this.colTrangThai.DataPropertyName = "TrangThaiText";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTrangThai.DefaultCellStyle = dataGridViewCellStyle5;
+            this.colTrangThai.FillWeight = 40F;
+            this.colTrangThai.HeaderText = "Trạng thái";
+            this.colTrangThai.Name = "colTrangThai";
+            this.colTrangThai.ReadOnly = true;
+            // 
+            // colEdit
+            // 
+            this.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(0, 16, 4, 16);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.colEdit.DefaultCellStyle = dataGridViewCellStyle6;
+            this.colEdit.FillWeight = 158.8549F;
+            this.colEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.colEdit.HeaderText = "";
+            this.colEdit.Name = "colEdit";
+            this.colEdit.ReadOnly = true;
+            this.colEdit.Text = "Sửa";
+            this.colEdit.UseColumnTextForButtonValue = true;
+            this.colEdit.Width = 40;
+            // 
+            // colDelete
+            // 
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(4, 16, 0, 16);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle7;
+            this.colDelete.FillWeight = 228.4264F;
+            this.colDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.colDelete.HeaderText = "";
+            this.colDelete.Name = "colDelete";
+            this.colDelete.ReadOnly = true;
+            this.colDelete.Text = "Xóa";
+            this.colDelete.UseColumnTextForButtonValue = true;
+            this.colDelete.Width = 40;
             // 
             // panelPagination
             // 
@@ -448,116 +558,6 @@ namespace book_management.UI.Controls
             this.btnAddBook.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddBook.UseVisualStyleBackColor = false;
             this.btnAddBook.Click += new System.EventHandler(this.btnAddBook_Click);
-            // 
-            // colAnhBia
-            // 
-            this.colAnhBia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colAnhBia.DataPropertyName = "AnhBia";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = null;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
-            this.colAnhBia.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colAnhBia.FillWeight = 10F;
-            this.colAnhBia.HeaderText = "Ảnh bìa";
-            this.colAnhBia.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.colAnhBia.Name = "colAnhBia";
-            this.colAnhBia.ReadOnly = true;
-            // 
-            // colTenSach
-            // 
-            this.colTenSach.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colTenSach.DataPropertyName = "TenSach";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colTenSach.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colTenSach.FillWeight = 40F;
-            this.colTenSach.HeaderText = "Tên sách";
-            this.colTenSach.Name = "colTenSach";
-            this.colTenSach.ReadOnly = true;
-            // 
-            // colTacGia
-            // 
-            this.colTacGia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colTacGia.DataPropertyName = "TenTacGia";
-            this.colTacGia.FillWeight = 40F;
-            this.colTacGia.HeaderText = "Tác giả";
-            this.colTacGia.Name = "colTacGia";
-            this.colTacGia.ReadOnly = true;
-            // 
-            // colTheLoai
-            // 
-            this.colTheLoai.DataPropertyName = "TenTheLoai";
-            this.colTheLoai.FillWeight = 40F;
-            this.colTheLoai.HeaderText = "Thể loại";
-            this.colTheLoai.Name = "colTheLoai";
-            this.colTheLoai.ReadOnly = true;
-            // 
-            // colGiaBan
-            // 
-            this.colGiaBan.DataPropertyName = "Gia";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.NullValue = null;
-            this.colGiaBan.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colGiaBan.FillWeight = 40F;
-            this.colGiaBan.HeaderText = "Giá bán";
-            this.colGiaBan.Name = "colGiaBan";
-            this.colGiaBan.ReadOnly = true;
-            // 
-            // colTonKho
-            // 
-            this.colTonKho.DataPropertyName = "SoLuong";
-            this.colTonKho.FillWeight = 25F;
-            this.colTonKho.HeaderText = "Tồn kho";
-            this.colTonKho.Name = "colTonKho";
-            this.colTonKho.ReadOnly = true;
-            // 
-            // colTrangThai
-            // 
-            this.colTrangThai.DataPropertyName = "TrangThaiText";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTrangThai.DefaultCellStyle = dataGridViewCellStyle5;
-            this.colTrangThai.FillWeight = 40F;
-            this.colTrangThai.HeaderText = "Trạng thái";
-            this.colTrangThai.Name = "colTrangThai";
-            this.colTrangThai.ReadOnly = true;
-            // 
-            // colEdit
-            // 
-            this.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(0, 16, 4, 16);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.colEdit.DefaultCellStyle = dataGridViewCellStyle6;
-            this.colEdit.FillWeight = 158.8549F;
-            this.colEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.colEdit.HeaderText = "";
-            this.colEdit.Name = "colEdit";
-            this.colEdit.ReadOnly = true;
-            this.colEdit.Text = "Sửa";
-            this.colEdit.UseColumnTextForButtonValue = true;
-            this.colEdit.Width = 40;
-            // 
-            // colDelete
-            // 
-            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(4, 16, 0, 16);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle7;
-            this.colDelete.FillWeight = 228.4264F;
-            this.colDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.colDelete.HeaderText = "";
-            this.colDelete.Name = "colDelete";
-            this.colDelete.ReadOnly = true;
-            this.colDelete.Text = "Xóa";
-            this.colDelete.UseColumnTextForButtonValue = true;
-            this.colDelete.Width = 40;
             // 
             // BooksControl
             // 

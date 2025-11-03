@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using book_management.Data;
+using book_management.UI.Modal; // thêm using để dùng frmAddCustomer
 
 namespace book_management.UI.Controls
 {
@@ -71,8 +72,22 @@ namespace book_management.UI.Controls
             // Hiển thị thông tin sách được chọn
             MessageBox.Show($"Bạn đã chọn: {selectedSach.TenSach}\nTác giả: {selectedSach.TacGia}\nGiá: {selectedSach.Gia:C}",
                 "Thông tin sách", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+
             // TODO: Implement thêm sách vào hóa đơn khi có UI đầy đủ
+        }
+
+        private void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            // Mở form thêm khách hàng dạng modal
+            using (var form = new frmAddCustomer())
+            {
+                var dr = form.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    // Nếu cần refresh dữ liệu khách hàng hoặc UI liên quan thì gọi ở đây
+                    // Ví dụ: RefreshCustomerList();
+                }
+            }
         }
     }
 }
