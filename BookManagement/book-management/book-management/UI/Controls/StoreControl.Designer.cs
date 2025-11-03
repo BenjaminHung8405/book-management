@@ -81,6 +81,7 @@
             // 
             // flowPanelBooks
             // 
+            this.flowPanelBooks.AutoScroll = true;
             this.flowPanelBooks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowPanelBooks.Location = new System.Drawing.Point(0, 40);
             this.flowPanelBooks.Name = "flowPanelBooks";
@@ -373,7 +374,7 @@
             // btnAddCustomer
             // 
             this.btnAddCustomer.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnAddCustomer.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnAddCustomer.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
             this.btnAddCustomer.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.btnAddCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAddCustomer.IconSize = 28;
@@ -382,6 +383,7 @@
             this.btnAddCustomer.Size = new System.Drawing.Size(40, 35);
             this.btnAddCustomer.TabIndex = 2;
             this.btnAddCustomer.UseVisualStyleBackColor = true;
+            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
             // lblOrderId
             // 

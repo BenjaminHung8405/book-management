@@ -49,22 +49,6 @@ namespace book_management.UI
                     btnUser.Visible = false;
                     btnReport.Visible = false;
                     break;
-                case "KhachHang":
-                    // Khách hàng chỉ có quyền truy cập trang tổng quan và bán hàng
-                    btnDashboard.Visible = false;
-                    btnBooks.Visible = false;  // Ẩn quản lý sách
-                    btnUser.Visible = false;   // Ẩn quản lý người dùng
-                    btnReport.Visible = false; // Ẩn báo cáo thống kê
-                    btnInvoice.Visible = false; // Ẩn hóa đơn
-                    // Đưa nút Bán hàng (Store) lên đầu
-                    btnSales.Location = new Point(btnSales.Location.X, 130); // Vị trí cũ của Dashboard
-                    btnSales.Text = "Mua Sách";
-
-                    // Điều chỉnh Invoice thành lịch sử mua hàng và đặt ngay dưới nút mua sách
-                    btnHistoryBuy.Visible = true;
-                    btnHistoryBuy.IconChar = IconChar.History;
-                    btnHistoryBuy.Location = new Point(btnInvoice.Location.X, 230); // Vị trí ngay dưới nút mua sách
-                    break;
                 default:
                     // Vai trò không xác định, ẩn tất cả các nút chức năng nhạy cảm
                     HideSensitiveButtons();
@@ -82,7 +66,6 @@ namespace book_management.UI
             btnReport.Visible = true;
             btnBooks.Visible = true;
             btnInvoice.Visible = true;
-            btnHistoryBuy.Visible = false;
         }
         ///
 
@@ -95,7 +78,7 @@ namespace book_management.UI
             btnInvoice.Visible = false;
         }
         /// 
-        
+
         /// <summary>
         /// Tạo, đăng ký sự kiện, và tải DashboardControl
         /// </summary>
@@ -307,12 +290,6 @@ namespace book_management.UI
             ActivateButton(btnBooks);
         }
 
-        private void btnHistoryBuy_Click(object sender, EventArgs e)
-        {
-            LoadControl(new PurchaseHistoryControl(CurrentUser.UserId));
-            ActivateButton(btnHistoryBuy);
-        }
-
         private void btnInvoice_Click(object sender, EventArgs e)
         {
             LoadControl(new InvoicesControl());
@@ -320,8 +297,7 @@ namespace book_management.UI
         }
         private void Dashboard_CreateInvoiceClicked(object sender, EventArgs e)
         {
-            // Mở trang SalesControl
-            LoadControl(new SalesControl());
+            LoadControl(new StoreControl());
 
             // Kích hoạt (highlight) nút Bán Hàng
             ActivateButton(btnSales);

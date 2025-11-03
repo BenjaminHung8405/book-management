@@ -35,7 +35,6 @@
             this.btnBooks = new FontAwesome.Sharp.IconButton();
             this.btnUser = new FontAwesome.Sharp.IconButton();
             this.btnReport = new FontAwesome.Sharp.IconButton();
-            this.btnHistoryBuy = new FontAwesome.Sharp.IconButton();
             this.btnInvoice = new FontAwesome.Sharp.IconButton();
             this.btnSales = new FontAwesome.Sharp.IconButton();
             this.btnDashboard = new FontAwesome.Sharp.IconButton();
@@ -44,6 +43,7 @@
             this.lbUsername = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
             this.iconDropDownMenuProfile = new FontAwesome.Sharp.IconDropDownButton();
+            this.btnCustomer = new FontAwesome.Sharp.IconButton();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelSidebar.SuspendLayout();
@@ -90,10 +90,10 @@
             // 
             this.panelSidebar.BackColor = System.Drawing.Color.White;
             this.panelSidebar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelSidebar.Controls.Add(this.btnCustomer);
             this.panelSidebar.Controls.Add(this.btnBooks);
             this.panelSidebar.Controls.Add(this.btnUser);
             this.panelSidebar.Controls.Add(this.btnReport);
-            this.panelSidebar.Controls.Add(this.btnHistoryBuy);
             this.panelSidebar.Controls.Add(this.btnInvoice);
             this.panelSidebar.Controls.Add(this.btnSales);
             this.panelSidebar.Controls.Add(this.btnDashboard);
@@ -160,7 +160,7 @@
             this.btnReport.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnReport.IconSize = 36;
             this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReport.Location = new System.Drawing.Point(12, 630);
+            this.btnReport.Location = new System.Drawing.Point(12, 730);
             this.btnReport.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
             this.btnReport.Name = "btnReport";
             this.btnReport.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
@@ -171,29 +171,6 @@
             this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReport.UseVisualStyleBackColor = false;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
-            // 
-            // btnHistoryBuy
-            // 
-            this.btnHistoryBuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.btnHistoryBuy.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistoryBuy.ForeColor = System.Drawing.Color.White;
-            this.btnHistoryBuy.IconChar = FontAwesome.Sharp.IconChar.FileInvoiceDollar;
-            this.btnHistoryBuy.IconColor = System.Drawing.Color.White;
-            this.btnHistoryBuy.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnHistoryBuy.IconSize = 36;
-            this.btnHistoryBuy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHistoryBuy.Location = new System.Drawing.Point(12, 734);
-            this.btnHistoryBuy.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
-            this.btnHistoryBuy.Name = "btnHistoryBuy";
-            this.btnHistoryBuy.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.btnHistoryBuy.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnHistoryBuy.Size = new System.Drawing.Size(224, 75);
-            this.btnHistoryBuy.TabIndex = 0;
-            this.btnHistoryBuy.Text = "Lịch Sử Mua Hàng";
-            this.btnHistoryBuy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHistoryBuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnHistoryBuy.UseVisualStyleBackColor = false;
-            this.btnHistoryBuy.Click += new System.EventHandler(this.btnHistoryBuy_Click);
             // 
             // btnInvoice
             // 
@@ -323,6 +300,27 @@
             this.iconDropDownMenuProfile.Size = new System.Drawing.Size(23, 23);
             this.iconDropDownMenuProfile.Text = "iconDropDownButton1";
             // 
+            // btnCustomer
+            // 
+            this.btnCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnCustomer.IconChar = FontAwesome.Sharp.IconChar.UserTag;
+            this.btnCustomer.IconColor = System.Drawing.Color.White;
+            this.btnCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCustomer.IconSize = 36;
+            this.btnCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCustomer.Location = new System.Drawing.Point(12, 630);
+            this.btnCustomer.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
+            this.btnCustomer.Name = "btnCustomer";
+            this.btnCustomer.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.btnCustomer.Size = new System.Drawing.Size(224, 63);
+            this.btnCustomer.TabIndex = 2;
+            this.btnCustomer.Text = "Khách hàng";
+            this.btnCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCustomer.UseVisualStyleBackColor = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -365,6 +363,6 @@
         private FontAwesome.Sharp.IconButton btnReport;
         private FontAwesome.Sharp.IconButton btnBooks;
         private FontAwesome.Sharp.IconDropDownButton iconDropDownMenuProfile;
-        private FontAwesome.Sharp.IconButton btnHistoryBuy;
+        private FontAwesome.Sharp.IconButton btnCustomer;
     }
 }
