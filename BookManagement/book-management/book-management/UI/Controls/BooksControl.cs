@@ -51,11 +51,9 @@ namespace book_management.UI.Controls
 
         private void BooksControl_Load(object sender, EventArgs e)
         {
-            // Load first page then style
+            // Chỉ cần tải dữ liệu, việc style đã được xử lý bên trong LoadBookData
             LoadBookData(currentPage);
-
-            // Apply visual styles after data is loaded
-            StyleBooksGrid();
+            dgvBooks.AutoGenerateColumns = false;
         }
         private void LoadBookData(int page)
         {
@@ -85,7 +83,6 @@ namespace book_management.UI.Controls
                     // Provide a mock stock value and derive status text
                     SoLuong = (b.SoLuong != null) ? (int)b.SoLuong : 10,
                     TrangThaiText = ((b.SoLuong != null && (int)b.SoLuong <= 0) ? "Hết hàng" : "Còn hàng"),
-                    SachId = b.SachId
                 };
                 return value;
             }).ToList();
@@ -93,6 +90,9 @@ namespace book_management.UI.Controls
             // Bind to grid
             dgvBooks.DataSource = null;
             dgvBooks.DataSource = transformed;
+
+            // *** GIẢI PHÁP: Áp dụng lại style ngay sau khi gán dữ liệu mới ***
+            StyleBooksGrid();
 
             // Update pagination UI
             UpdatePaginationUI(currentPage, totalPages, totalRecords, pageSize);
@@ -237,11 +237,13 @@ namespace book_management.UI.Controls
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMainContent = new System.Windows.Forms.Panel();
             this.dgvBooks = new System.Windows.Forms.DataGridView();
             this.colAnhBia = new System.Windows.Forms.DataGridViewImageColumn();
@@ -293,6 +295,14 @@ namespace book_management.UI.Controls
             this.dgvBooks.BackgroundColor = System.Drawing.Color.White;
             this.dgvBooks.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvBooks.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvBooks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBooks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colAnhBia,
@@ -304,6 +314,14 @@ namespace book_management.UI.Controls
             this.colTrangThai,
             this.colEdit,
             this.colDelete});
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBooks.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvBooks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvBooks.EnableHeadersVisualStyles = false;
             this.dgvBooks.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
@@ -320,11 +338,11 @@ namespace book_management.UI.Controls
             // 
             this.colAnhBia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colAnhBia.DataPropertyName = "AnhBia";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = null;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5);
-            this.colAnhBia.DefaultCellStyle = dataGridViewCellStyle1;
-            this.colAnhBia.FillWeight = 1.547949F;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.NullValue = null;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
+            this.colAnhBia.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colAnhBia.FillWeight = 10F;
             this.colAnhBia.HeaderText = "Ảnh bìa";
             this.colAnhBia.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.colAnhBia.Name = "colAnhBia";
@@ -334,9 +352,9 @@ namespace book_management.UI.Controls
             // 
             this.colTenSach.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colTenSach.DataPropertyName = "TenSach";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colTenSach.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colTenSach.FillWeight = 36.25186F;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colTenSach.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colTenSach.FillWeight = 40F;
             this.colTenSach.HeaderText = "Tên sách";
             this.colTenSach.Name = "colTenSach";
             this.colTenSach.ReadOnly = true;
@@ -345,7 +363,7 @@ namespace book_management.UI.Controls
             // 
             this.colTacGia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colTacGia.DataPropertyName = "TenTacGia";
-            this.colTacGia.FillWeight = 24.1679F;
+            this.colTacGia.FillWeight = 40F;
             this.colTacGia.HeaderText = "Tác giả";
             this.colTacGia.Name = "colTacGia";
             this.colTacGia.ReadOnly = true;
@@ -353,7 +371,7 @@ namespace book_management.UI.Controls
             // colTheLoai
             // 
             this.colTheLoai.DataPropertyName = "TenTheLoai";
-            this.colTheLoai.FillWeight = 26.73945F;
+            this.colTheLoai.FillWeight = 40F;
             this.colTheLoai.HeaderText = "Thể loại";
             this.colTheLoai.Name = "colTheLoai";
             this.colTheLoai.ReadOnly = true;
@@ -361,11 +379,11 @@ namespace book_management.UI.Controls
             // colGiaBan
             // 
             this.colGiaBan.DataPropertyName = "Gia";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.NullValue = null;
-            this.colGiaBan.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colGiaBan.FillWeight = 15.16725F;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.NullValue = null;
+            this.colGiaBan.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colGiaBan.FillWeight = 40F;
             this.colGiaBan.HeaderText = "Giá bán";
             this.colGiaBan.Name = "colGiaBan";
             this.colGiaBan.ReadOnly = true;
@@ -373,7 +391,7 @@ namespace book_management.UI.Controls
             // colTonKho
             // 
             this.colTonKho.DataPropertyName = "SoLuong";
-            this.colTonKho.FillWeight = 25.66965F;
+            this.colTonKho.FillWeight = 25F;
             this.colTonKho.HeaderText = "Tồn kho";
             this.colTonKho.Name = "colTonKho";
             this.colTonKho.ReadOnly = true;
@@ -381,9 +399,9 @@ namespace book_management.UI.Controls
             // colTrangThai
             // 
             this.colTrangThai.DataPropertyName = "TrangThaiText";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colTrangThai.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colTrangThai.FillWeight = 26.88171F;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colTrangThai.DefaultCellStyle = dataGridViewCellStyle5;
+            this.colTrangThai.FillWeight = 40F;
             this.colTrangThai.HeaderText = "Trạng thái";
             this.colTrangThai.Name = "colTrangThai";
             this.colTrangThai.ReadOnly = true;
@@ -391,13 +409,13 @@ namespace book_management.UI.Controls
             // colEdit
             // 
             this.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(0, 16, 4, 16);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.colEdit.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(0, 16, 4, 16);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.colEdit.DefaultCellStyle = dataGridViewCellStyle6;
             this.colEdit.FillWeight = 158.8549F;
             this.colEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.colEdit.HeaderText = "";
@@ -410,13 +428,13 @@ namespace book_management.UI.Controls
             // colDelete
             // 
             this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(4, 16, 0, 16);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.colDelete.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(4, 16, 0, 16);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.colDelete.DefaultCellStyle = dataGridViewCellStyle7;
             this.colDelete.FillWeight = 228.4264F;
             this.colDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.colDelete.HeaderText = "";
