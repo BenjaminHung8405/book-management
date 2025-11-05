@@ -35,6 +35,7 @@ namespace book_management.UI.Controls
         private DataGridViewTextBoxColumn colTrangThai;
         private DataGridViewButtonColumn colEdit;
         private DataGridViewButtonColumn colDelete;
+        private DataGridViewTextBoxColumn colSachId;
         private int totalPages = 1;
 
         public BooksControl()
@@ -69,11 +70,12 @@ namespace book_management.UI.Controls
             var pageData = all.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
             
             // Transform mock data so property names match the DataGridView's DataPropertyName
-            // DataGridView expects: "AnhBia", "TenSach", "TenTacGia", "TenTheLoai", "Gia", "SoLuong", "TrangThaiText"
+            // DataGridView expects: "SachId", "AnhBia", "TenSach", "TenTacGia", "TenTheLoai", "Gia", "SoLuong", "TrangThaiText"
             var transformed = pageData.Select(b =>
             {
                 var value = new
                 {
+                    SachId = b.SachId,  // Added for editing
                     // We don't load images from URL in mock, keep null (column has NullValue placeholder)
                     AnhBia = (Image)null,
                     TenSach = b.TenSach,
@@ -221,8 +223,14 @@ namespace book_management.UI.Controls
 
             if (dgvBooks.Columns[e.ColumnIndex].Name == "colEdit")
             {
-                MessageBox.Show("Sửa sách (chức năng chưa triển khai)");
-                // Open edit form here
+                int sachId = Convert.ToInt32(dgvBooks.Rows[e.RowIndex].Cells["colSachId"].Value);
+                var book = BookRepository.GetBookById(sachId);
+                using (var form = new frmAddEditBook(book))  // Pass the book for editing
+                {
+                    form.ShowDialog();
+                }
+                // Refresh data after adding/editing
+                LoadBookData(currentPage);
             }
             else if (dgvBooks.Columns[e.ColumnIndex].Name == "colDelete")
             {
@@ -255,6 +263,7 @@ namespace book_management.UI.Controls
             this.colTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colSachId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelPagination = new System.Windows.Forms.Panel();
             this.flowPaginationButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.lblPageInfo = new System.Windows.Forms.Label();
@@ -313,7 +322,8 @@ namespace book_management.UI.Controls
             this.colTonKho,
             this.colTrangThai,
             this.colEdit,
-            this.colDelete});
+            this.colDelete,
+            this.colSachId});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -443,6 +453,14 @@ namespace book_management.UI.Controls
             this.colDelete.Text = "Xóa";
             this.colDelete.UseColumnTextForButtonValue = true;
             this.colDelete.Width = 40;
+            // 
+            // colSachId
+            // 
+            this.colSachId.DataPropertyName = "SachId";
+            this.colSachId.HeaderText = "ID";
+            this.colSachId.Name = "colSachId";
+            this.colSachId.ReadOnly = true;
+            this.colSachId.Visible = false;
             // 
             // panelPagination
             // 
