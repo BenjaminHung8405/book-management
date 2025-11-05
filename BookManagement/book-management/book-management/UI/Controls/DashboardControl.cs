@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using book_management.Data; // Thư viện cho DashboardRepository
 using book_management.DataAccess; // Thư viện cho ChiTietHoaDonRepository
-using book_management.Models; // Thư viện cho Model ChiTietHoaDon
+using book_management.Models;
+using book_management.UI.Modal; // Thư viện cho Model ChiTietHoaDon
 
 namespace book_management.UI.Controls
 {
@@ -116,7 +117,7 @@ namespace book_management.UI.Controls
                     string maHoaDonText = this.dataGridViewSales.Rows[e.RowIndex].Cells["colMaHoaDon"].Value.ToString();
                     int hoaDonId = int.Parse(maHoaDonText.Replace("HD-", ""));
 
-                    // Gọi Repository để lấy Chi Tiết Hóa Đơn
+                    // G gọi Repository để lấy Chi Tiết Hóa Đơn
                     List<ChiTietHoaDon> chiTietHD = ChiTietHoaDonRepository.GetChiTietHoaDon(hoaDonId);
 
                     // Mở form chi tiết và truyền dữ liệu vào
@@ -325,7 +326,19 @@ namespace book_management.UI.Controls
 
         private void btnAddNewBook_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                frmAddEditBook frmAddBook = new frmAddEditBook();
+                if (frmAddBook.ShowDialog() == DialogResult.OK)
+                {
+                    RefreshDashboard();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở form thêm sách:\n{ex.Message}", 
+                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAddNewCustomer_Click(object sender, EventArgs e)

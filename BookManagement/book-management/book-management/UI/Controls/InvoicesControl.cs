@@ -4,12 +4,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using book_management.Data;
-using book_management.DataAccess;
-using book_management.Models;
-using book_management.UI.Theme;
-using FontAwesome.Sharp;
 
 namespace book_management.UI.Controls
 {

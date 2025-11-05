@@ -93,6 +93,9 @@
     <Compile Include="UI\Controls\InvoicesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UI\Controls\InvoicesControl.Designer.cs">
+      <DependentUpon>InvoicesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\OrderDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\InvoiceDetailForm.resx">
       <DependentUpon>InvoiceDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\InvoicesControl.resx">
+      <DependentUpon>InvoicesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\PurchaseHistoryControl.resx">
       <DependentUpon>PurchaseHistoryControl.cs</DependentUpon>

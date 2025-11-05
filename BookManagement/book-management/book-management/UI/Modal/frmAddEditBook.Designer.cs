@@ -623,6 +623,7 @@
             this.btnSaveBook.Text = "Lưu lại";
             this.btnSaveBook.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSaveBook.UseVisualStyleBackColor = false;
+            this.btnSaveBook.Click += new System.EventHandler(this.btnSaveBook_Click);
             // 
             // frmAddEditBook
             // 
