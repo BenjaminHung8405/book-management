@@ -319,7 +319,8 @@ namespace book_management.UI.Controls
         /// </summary>
         private void btnAddBill_Click(object sender, EventArgs e)
         {
-            CreateInvoiceClicked?.Invoke(this, EventArgs.Empty);
+            //CreateInvoiceClicked?.Invoke(this, EventArgs.Empty);
+
         }
 
         private void btnAddNewBook_Click(object sender, EventArgs e)
