@@ -3,24 +3,128 @@
   "WorkspaceRootPath": "D:\\book-management\\BookManagement\\book-management\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\dashboardcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\dashboardcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\storecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\storecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\dashboardcontrol.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\dashboardcontrol.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\storecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\storecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\dashboardcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\dashboardcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\data\\hoadonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\data\\hoadonrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\userscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\userscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\data\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\data\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\salescontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\salescontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\data\\currentuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\data\\currentuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\salescontrol.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\salescontrol.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\reportcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\reportcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\invoicescontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\invoicescontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\orderdetailform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\orderdetailform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\invoicedetailform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\invoicedetailform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\invoicescontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\invoicescontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\invoicedetailform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\invoicedetailform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\orderdetailform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\orderdetailform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\purchasehistorycontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\purchasehistorycontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\ucbookcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\ucbookcard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\ucorderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\ucorderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|D:\\book-management\\BookManagement\\book-management\\book-management\\ui\\controls\\userscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\userscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\modal\\frmaddcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\modal\\frmaddcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\modal\\frmaddedituser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\modal\\frmaddedituser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\modal\\frmaddeditbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\modal\\frmaddeditbook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\data\\databaseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\data\\databaseconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\book-management\\bookmanagement\\book-management\\book-management\\ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\loginform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|D:\\book-management\\BookManagement\\book-management\\book-management\\ui\\controls\\dashboardcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\dashboardcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|D:\\book-management\\BookManagement\\book-management\\book-management\\ui\\controls\\dashboardcontrol.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\dashboardcontrol.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|D:\\book-management\\BookManagement\\book-management\\book-management\\ui\\controls\\dashboardcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\dashboardcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|D:\\book-management\\BookManagement\\book-management\\book-management\\ui\\controls\\userscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\userscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +134,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,7 +154,307 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CustomerRepository.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\CustomerRepository.cs",
+              "RelativeDocumentMoniker": "book-management\\Data\\CustomerRepository.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\CustomerRepository.cs",
+              "RelativeToolTip": "book-management\\Data\\CustomerRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAwBoAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T02:52:07.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StoreControl.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\StoreControl.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\StoreControl.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\StoreControl.cs",
+              "RelativeToolTip": "book-management\\UI\\Controls\\StoreControl.cs",
+              "ViewState": "AgIAAGoBAAAAAAAAAAApwIIBAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T02:14:17.51Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SalesControl.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\SalesControl.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\SalesControl.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\SalesControl.cs",
+              "RelativeToolTip": "book-management\\UI\\Controls\\SalesControl.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAYwHAAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T02:03:05.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "OrderDetailForm.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\OrderDetailForm.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\OrderDetailForm.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\OrderDetailForm.cs",
+              "RelativeToolTip": "book-management\\UI\\Controls\\OrderDetailForm.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAQwAcAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:43:56.207Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "InvoicesControl.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\InvoicesControl.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\InvoicesControl.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\InvoicesControl.cs",
+              "RelativeToolTip": "book-management\\UI\\Controls\\InvoicesControl.cs",
+              "ViewState": "AgIAANIAAAAAAAAAAAAhwNQAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:43:03.228Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "StoreControl.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\StoreControl.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\StoreControl.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\StoreControl.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Controls\\StoreControl.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:41:36.828Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HoaDonRepository.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\HoaDonRepository.cs",
+              "RelativeDocumentMoniker": "book-management\\Data\\HoaDonRepository.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\HoaDonRepository.cs",
+              "RelativeToolTip": "book-management\\Data\\HoaDonRepository.cs",
+              "ViewState": "AgIAAD4BAAAAAAAAAAAAAE0BAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T02:59:29.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "InvoiceDetailForm.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\InvoiceDetailForm.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\InvoiceDetailForm.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\InvoiceDetailForm.cs",
+              "RelativeToolTip": "book-management\\UI\\Controls\\InvoiceDetailForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALgAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:44:48.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\MainForm.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\MainForm.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\MainForm.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\MainForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:42:56.559Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\MainForm.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\MainForm.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\MainForm.cs",
+              "RelativeToolTip": "book-management\\UI\\MainForm.cs",
+              "ViewState": "AgIAAP8AAAAAAAAAAAAWwA0BAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:42:59.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CurrentUser.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\CurrentUser.cs",
+              "RelativeDocumentMoniker": "book-management\\Data\\CurrentUser.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\CurrentUser.cs",
+              "RelativeToolTip": "book-management\\Data\\CurrentUser.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAuwI0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T02:35:31.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SalesControl.Designer.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\SalesControl.Designer.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\SalesControl.Designer.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\SalesControl.Designer.cs",
+              "RelativeToolTip": "book-management\\UI\\Controls\\SalesControl.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:41:35.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ReportControl.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\ReportControl.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\ReportControl.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\ReportControl.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Controls\\ReportControl.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:41:40.926Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "InvoicesControl.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\InvoicesControl.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\InvoicesControl.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\InvoicesControl.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Controls\\InvoicesControl.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:43:13.527Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "InvoiceDetailForm.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\InvoiceDetailForm.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\InvoiceDetailForm.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\InvoiceDetailForm.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Controls\\InvoiceDetailForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:43:20.018Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "PurchaseHistoryControl.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\PurchaseHistoryControl.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\PurchaseHistoryControl.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\PurchaseHistoryControl.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Controls\\PurchaseHistoryControl.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:44:41.237Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "OrderDetailForm.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\OrderDetailForm.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\OrderDetailForm.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\OrderDetailForm.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Controls\\OrderDetailForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:43:31.167Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ucBookCard.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\ucBookCard.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\ucBookCard.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\ucBookCard.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Controls\\ucBookCard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:41:33.957Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ucOrderItem.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\ucOrderItem.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\ucOrderItem.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\ucOrderItem.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Controls\\ucOrderItem.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:41:31.397Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "frmAddEditUser.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Modal\\frmAddEditUser.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Modal\\frmAddEditUser.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Modal\\frmAddEditUser.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Modal\\frmAddEditUser.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:41:19.637Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\Program.cs",
+              "RelativeDocumentMoniker": "book-management\\Program.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\Program.cs",
+              "RelativeToolTip": "book-management\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:32:35.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "frmAddCustomer.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Modal\\frmAddCustomer.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Modal\\frmAddCustomer.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Modal\\frmAddCustomer.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Modal\\frmAddCustomer.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:41:18.04Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "frmAddEditBook.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Modal\\frmAddEditBook.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Modal\\frmAddEditBook.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Modal\\frmAddEditBook.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Modal\\frmAddEditBook.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:41:15.231Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "DatabaseConnection.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\DatabaseConnection.cs",
+              "RelativeDocumentMoniker": "book-management\\Data\\DatabaseConnection.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\DatabaseConnection.cs",
+              "RelativeToolTip": "book-management\\Data\\DatabaseConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-02T22:50:54.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
               "Title": "DashboardControl.Designer.cs",
               "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\DashboardControl.Designer.cs",
               "RelativeDocumentMoniker": "book-management\\UI\\Controls\\DashboardControl.Designer.cs",
@@ -58,24 +462,60 @@
               "RelativeToolTip": "book-management\\UI\\Controls\\DashboardControl.Designer.cs",
               "ViewState": "AgIAADQBAAAAAAAAAAD4v44BAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T22:46:32.799Z",
+              "WhenOpened": "2025-11-02T22:46:32.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "UsersControl.cs [Design]",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\UsersControl.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\UsersControl.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\UsersControl.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Controls\\UsersControl.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-03T04:26:58.181Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "LoginForm.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\LoginForm.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\LoginForm.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\LoginForm.cs",
+              "RelativeToolTip": "book-management\\UI\\LoginForm.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAowCMAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:34:21.959Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 25,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\UserRepository.cs",
+              "RelativeDocumentMoniker": "book-management\\Data\\UserRepository.cs",
+              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\UserRepository.cs",
+              "RelativeToolTip": "book-management\\Data\\UserRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACMAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-06T00:35:07.26Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
               "Title": "DashboardControl.cs [Design]",
               "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\DashboardControl.cs",
               "RelativeDocumentMoniker": "book-management\\UI\\Controls\\DashboardControl.cs",
               "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\DashboardControl.cs [Design]",
               "RelativeToolTip": "book-management\\UI\\Controls\\DashboardControl.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T22:46:24.239Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-11-02T22:46:24.239Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 27,
               "Title": "DashboardControl.cs",
               "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\DashboardControl.cs",
               "RelativeDocumentMoniker": "book-management\\UI\\Controls\\DashboardControl.cs",
@@ -83,12 +523,11 @@
               "RelativeToolTip": "book-management\\UI\\Controls\\DashboardControl.cs",
               "ViewState": "AgIAAP0AAAAAAAAAAAAEwBABAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T22:46:07.353Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-02T22:46:07.353Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 30,
               "Title": "UsersControl.cs",
               "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\UsersControl.cs",
               "RelativeDocumentMoniker": "book-management\\UI\\Controls\\UsersControl.cs",
@@ -98,17 +537,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-03T04:26:59.347Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UsersControl.cs [Design]",
-              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\UsersControl.cs",
-              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\UsersControl.cs",
-              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\UsersControl.cs [Design]",
-              "RelativeToolTip": "..\\..\\..\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\UsersControl.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T04:26:58.181Z"
             }
           ]
         }

@@ -270,18 +270,18 @@ namespace book_management.DataAccess
                         INSERT INTO HoaDon (user_id, kh_id, ten_khach_vang_lai, tong_tien, trang_thai)
                         VALUES (@UserId, @KhId, @TenKhachVangLai, @TongTien, @TrangThai);
                         SELECT SCOPE_IDENTITY();", conn, transaction);// lay id vua tao
-                    cmdHoaDon.Parameters.AddWithValue("@UserId", (object)hoaDon.UserId?? DBNull.Value);
+                    cmdHoaDon.Parameters.AddWithValue("@UserId", (object)hoaDon.UserId ?? DBNull.Value);
                     cmdHoaDon.Parameters.AddWithValue("@KhId", (object)hoaDon.KhId ?? DBNull.Value);
-                    cmdHoaDon.Parameters.AddWithValue("@TenKhachVangLai", (object)hoaDon.TenNguoiMua?? DBNull.Value);
+                    cmdHoaDon.Parameters.AddWithValue("@TenKhachVangLai", (object)hoaDon.TenNguoiMua ?? DBNull.Value);
                     cmdHoaDon.Parameters.AddWithValue("@TongTien", hoaDon.TongTien);
                     cmdHoaDon.Parameters.AddWithValue("@TrangThai", hoaDon.TrangThai);
                     // Thực thi và lấy ID mới
                     int newHoaDonId = Convert.ToInt32(cmdHoaDon.ExecuteScalar());
 
                     // Tao cac dong chi tiet hoa don    
-                    foreach(var item in details)
+                    foreach (var item in details)
                     {
-                        var cmdChiTiet= new SqlCommand(@"
+                        var cmdChiTiet = new SqlCommand(@"
                             INSERT INTO ChiTietHoaDon (hoadon_id, sach_id, so_luong, don_gia, tien_giam)
                             VALUES (@HoaDonId, @SachId, @SoLuong, @DonGia, @TienGiam);", conn, transaction);
                         cmdChiTiet.Parameters.AddWithValue("@HoaDonId", newHoaDonId);
@@ -311,6 +311,45 @@ namespace book_management.DataAccess
                     throw new Exception("Lỗi khi tạo hóa đơn: " + ex.Message);
                 }
             }
+        }
+
+        /// <summary>
+        /// Tìm kh_id mặc định cho user dựa trên hóa đơn gần nhất
+        /// </summary>
+        /// <param name="userId">ID của user</param>
+        /// <returns>kh_id nếu tìm thấy, 0 nếu không tìm thấy</returns>
+        public static int GetDefaultKhIdForUser(int userId)
+        {
+            try
+            {
+                using (var conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    // Tìm kh_id từ hóa đơn gần nhất của user này
+                    var cmd = new SqlCommand(@"
+                      SELECT TOP 1 kh_id 
+                      FROM HoaDon 
+                      WHERE user_id = @UserId 
+                      AND kh_id IS NOT NULL 
+                      ORDER BY ngay_lap DESC", conn);
+
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+
+                    var result = cmd.ExecuteScalar();
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi nếu cần thiết, nhưng không throw exception
+                // vì đây là hàm hỗ trợ, không nên làm crash ứng dụng
+                System.Diagnostics.Debug.WriteLine($"Lỗi khi tìm kh_id mặc định: {ex.Message}");
+            }
+
+            return 0; // Trả về 0 nếu không tìm thấy hoặc có lỗi
         }
     }
 }

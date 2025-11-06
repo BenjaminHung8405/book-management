@@ -76,6 +76,7 @@ namespace book_management.UI
             btnUser.Visible = false;
             btnReport.Visible = false;
             btnInvoice.Visible = false;
+            btnCustomer.Visible = false;
         }
         /// 
 
@@ -202,7 +203,15 @@ namespace book_management.UI
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        /// <summary>
+        /// Xử lý khi nút "Tạo hóa đơn" TỪ TRANG InvoicesControl được nhấn
+        /// </summary>
+        private void InvoicesControl_AddInvoiceClicked(object sender, EventArgs e)
+        {
+            // Chuyển sang trang SalesControl
+            LoadControl(new SalesControl());
 
+        }
         private void LoadControl(System.Windows.Forms.UserControl uc)
         {
             // Xóa bất kỳ control nào đang có trong panelContent
@@ -292,7 +301,14 @@ namespace book_management.UI
 
         private void btnInvoice_Click(object sender, EventArgs e)
         {
-            LoadControl(new InvoicesControl());
+            // 1. Tạo control
+            var invoicesControl = new InvoicesControl();
+
+            // 2. ĐĂNG KÝ (Subscribe) sự kiện mới
+            invoicesControl.AddInvoiceClicked += InvoicesControl_AddInvoiceClicked;
+
+            // 3. Tải control
+            LoadControl(invoicesControl);
             ActivateButton(btnInvoice);
         }
         private void Dashboard_CreateInvoiceClicked(object sender, EventArgs e)

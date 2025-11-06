@@ -20,6 +20,7 @@ namespace book_management.UI.Controls
             _hoaDonId = hoaDonId;
             _chiTietList = chiTietList;
             InitializeComponent();
+            CreateControls();
             LoadInvoiceInfo();
             LoadInvoiceDetails();
         }
@@ -30,8 +31,9 @@ namespace book_management.UI.Controls
             // 
             // InvoiceDetailForm
             // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(850, 700);
             this.Name = "InvoiceDetailForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
 
         }
@@ -58,11 +60,12 @@ namespace book_management.UI.Controls
 
             // Invoice info panel
             var pnlInvoiceInfo = CreateInvoiceInfoPanel();
-            pnlInvoiceInfo.Location = new Point(0, 50);
-
+            pnlInvoiceInfo.Location = new Point(5, 50);
+            pnlInvoiceInfo.Size = new Size(840, 100);
+            
             // Details grid
             var dgvDetails = CreateDetailsGrid();
-            dgvDetails.Location = new Point(0, 200);
+            dgvDetails.Location = new Point(5, 170);
             dgvDetails.Size = new Size(840, 350);
 
             // Summary panel
@@ -82,7 +85,7 @@ namespace book_management.UI.Controls
             btnClose.Click += (s, e) => this.Close();
 
             mainPanel.Controls.AddRange(new Control[] {
-          lblTitle, pnlInvoiceInfo, dgvDetails, pnlSummary, btnClose
+            lblTitle, pnlInvoiceInfo, dgvDetails, pnlSummary, btnClose
             });
 
             this.Controls.Add(mainPanel);
@@ -102,7 +105,7 @@ namespace book_management.UI.Controls
                 Text = "Ngày lập:",
                 Location = new Point(10, 10),
                 Size = new Size(80, 25),
-                Font = new Font("Segoe UI", 10, FontStyle.Bold)
+                Font = new Font("Segoe UI", 12, FontStyle.Bold)
             };
 
             var lblNgayLapValue = new Label
@@ -110,7 +113,7 @@ namespace book_management.UI.Controls
                 Name = "lblNgayLapValue",
                 Location = new Point(100, 10),
                 Size = new Size(200, 25),
-                Font = new Font("Segoe UI", 10)
+                Font = new Font("Segoe UI", 12)
             };
 
             var lblKhachHang = new Label
@@ -118,7 +121,7 @@ namespace book_management.UI.Controls
                 Text = "Khách hàng:",
                 Location = new Point(10, 40),
                 Size = new Size(80, 25),
-                Font = new Font("Segoe UI", 10, FontStyle.Bold)
+                Font = new Font("Segoe UI", 12, FontStyle.Bold)
             };
 
             var lblKhachHangValue = new Label
@@ -126,7 +129,7 @@ namespace book_management.UI.Controls
                 Name = "lblKhachHangValue",
                 Location = new Point(100, 40),
                 Size = new Size(300, 25),
-                Font = new Font("Segoe UI", 10)
+                Font = new Font("Segoe UI", 12)
             };
 
             var lblTrangThai = new Label
@@ -134,7 +137,7 @@ namespace book_management.UI.Controls
                 Text = "Trạng thái:",
                 Location = new Point(420, 10),
                 Size = new Size(80, 25),
-                Font = new Font("Segoe UI", 10, FontStyle.Bold)
+                Font = new Font("Segoe UI", 12, FontStyle.Bold)
             };
 
             var lblTrangThaiValue = new Label
@@ -142,7 +145,7 @@ namespace book_management.UI.Controls
                 Name = "lblTrangThaiValue",
                 Location = new Point(510, 10),
                 Size = new Size(150, 25),
-                Font = new Font("Segoe UI", 10, FontStyle.Bold)
+                Font = new Font("Segoe UI", 12, FontStyle.Bold),
             };
 
             var lblNguoiLap = new Label
@@ -150,7 +153,7 @@ namespace book_management.UI.Controls
                 Text = "Người lập:",
                 Location = new Point(420, 40),
                 Size = new Size(80, 25),
-                Font = new Font("Segoe UI", 10, FontStyle.Bold)
+                Font = new Font("Segoe UI", 12, FontStyle.Bold)
             };
 
             var lblNguoiLapValue = new Label
@@ -158,24 +161,14 @@ namespace book_management.UI.Controls
                 Name = "lblNguoiLapValue",
                 Location = new Point(510, 40),
                 Size = new Size(200, 25),
-                Font = new Font("Segoe UI", 10)
-            };
-
-            var txtGhiChu = new TextBox
-            {
-                Name = "txtGhiChu",
-                Location = new Point(80, 70),
-                Size = new Size(740, 60),
-                Multiline = true,
-                ReadOnly = true,
-                Font = new Font("Segoe UI", 10)
+                Font = new Font("Segoe UI", 12)
             };
 
             panel.Controls.AddRange(new Control[] {
-         lblNgayLap, lblNgayLapValue,
-        lblKhachHang, lblKhachHangValue,
-     lblTrangThai, lblTrangThaiValue,
-        lblNguoiLap, lblNguoiLapValue,
+            lblNgayLap, lblNgayLapValue,
+            lblKhachHang, lblKhachHangValue,
+            lblTrangThai, lblTrangThaiValue,
+            lblNguoiLap, lblNguoiLapValue,
       
             });
 
@@ -186,6 +179,7 @@ namespace book_management.UI.Controls
         {
             var dgv = new DataGridView
             {
+                Name = "dgvDetailsGrid",
                 AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
                 SelectionMode = DataGridViewSelectionMode.FullRowSelect,
                 MultiSelect = false,
@@ -194,14 +188,14 @@ namespace book_management.UI.Controls
                 ReadOnly = true,
                 BackgroundColor = Color.White,
                 BorderStyle = BorderStyle.Fixed3D,
-                ColumnHeadersHeight = 40,
-                RowTemplate = { Height = 35 }
+                ColumnHeadersHeight = 60,
+                RowTemplate = { Height = 60 }
             };
 
             // Style header
             dgv.ColumnHeadersDefaultCellStyle.BackColor = AppColors.Primary;
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 13, FontStyle.Bold);
             dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             // Add columns
@@ -213,18 +207,28 @@ namespace book_management.UI.Controls
             dgv.Columns.Add("ThanhTien", "Thành tiền");
 
             // Set column widths
-            dgv.Columns["STT"].Width = 50;
-            dgv.Columns["TenSach"].Width = 300;
-            dgv.Columns["SoLuong"].Width = 80;
-            dgv.Columns["DonGia"].Width = 120;
+            dgv.Columns["STT"].Width = 5;
+            dgv.Columns["TenSach"].Width = 100;
+            dgv.Columns["SoLuong"].Width = 5;
+            dgv.Columns["DonGia"].Width = 100;
             dgv.Columns["TienGiam"].Width = 120;
-            dgv.Columns["ThanhTien"].Width = 150;
+            dgv.Columns["ThanhTien"].Width = 100;
 
             // Style numeric columns
             dgv.Columns["SoLuong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgv.Columns["DonGia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgv.Columns["TienGiam"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgv.Columns["ThanhTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgv.Columns["DonGia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["TienGiam"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["ThanhTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["STT"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.Columns["TenSach"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            //font
+            dgv.Columns["SoLuong"].DefaultCellStyle.Font = new Font("Segoe UI", 12);
+            dgv.Columns["TenSach"].DefaultCellStyle.Font = new Font("Segoe UI", 12);
+            dgv.Columns["STT"].DefaultCellStyle.Font = new Font("Segoe UI", 12);
+            dgv.Columns["ThanhTien"].DefaultCellStyle.Font = new Font("Segoe UI", 12);
+            dgv.Columns["TienGiam"].DefaultCellStyle.Font = new Font("Segoe UI", 12);
+            dgv.Columns["DonGia"].DefaultCellStyle.Font = new Font("Segoe UI", 12);
 
             return dgv;
         }
@@ -242,7 +246,7 @@ namespace book_management.UI.Controls
                 Name = "lblTongTien",
                 Location = new Point(600, 10),
                 Size = new Size(230, 25),
-                Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                Font = new Font("Segoe UI", 13, FontStyle.Bold),
                 ForeColor = AppColors.Primary,
                 TextAlign = ContentAlignment.MiddleRight
             };
@@ -270,14 +274,17 @@ namespace book_management.UI.Controls
                     lblTrangThaiValue.Text = _hoaDon.TrangThai;
                     switch (_hoaDon.TrangThai)
                     {
-                        case "Đã thanh toán":
+                        case "DaThanhToan":
                             lblTrangThaiValue.ForeColor = Color.Green;
+                            lblTrangThaiValue.Text = "Đã Thanh Toán";
                             break;
-                        case "Chưa thanh toán":
+                        case "ChuaThanhToan":
                             lblTrangThaiValue.ForeColor = Color.Orange;
+                            lblTrangThaiValue.Text = "Chưa Thanh Toán";
                             break;
-                        case "Đã hủy":
+                        case "DaHuy":
                             lblTrangThaiValue.ForeColor = Color.Red;
+                            lblTrangThaiValue.Text = "Đã Hủy";
                             break;
                     }
                 }
@@ -293,7 +300,7 @@ namespace book_management.UI.Controls
         {
             try
             {
-                var dgv = this.Controls.Find("", true).OfType<DataGridView>().FirstOrDefault();
+                var dgv = this.Controls.Find("dgvDetailsGrid", true).OfType<DataGridView>().FirstOrDefault();
                 if (dgv != null)
                 {
                     dgv.Rows.Clear();

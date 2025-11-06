@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace book_management.Data
 {
@@ -138,5 +139,6 @@ namespace book_management.Data
                 }
             }
         }
+
     }
 }

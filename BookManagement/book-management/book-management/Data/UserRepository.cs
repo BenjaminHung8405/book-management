@@ -17,18 +17,18 @@ namespace book_management.Data
                     connection.Open();
 
                     string query = @"
-              SELECT 
-                user_id,
-  username,
-            ho_ten,
-       email,
-              so_dien_thoai,
-      vai_tro,
-    trang_thai
-                FROM NguoiDung 
-       WHERE username = @Username 
-      AND password_hash = @Password 
-         AND trang_thai = 1";
+                      SELECT 
+                        user_id,
+                        username,
+                        ho_ten,
+                        email,
+                        so_dien_thoai,
+                        vai_tro,
+                        trang_thai
+                        FROM NguoiDung 
+                      WHERE username = @Username 
+                      AND password_hash = @Password 
+                      AND trang_thai = 1";
 
                     using (var command = new SqlCommand(query, connection))
                     {

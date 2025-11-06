@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelBookSelection = new System.Windows.Forms.Panel();
             this.flowPanelBooks = new System.Windows.Forms.FlowLayoutPanel();
             this.panelSearchBook = new System.Windows.Forms.Panel();
@@ -47,7 +50,7 @@
             this.lblDiscountValue = new System.Windows.Forms.Label();
             this.lblDiscountLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblSubtotalValue = new System.Windows.Forms.Label();
+            this.lblSubtotal = new System.Windows.Forms.Label();
             this.lblSubtotalLabel = new System.Windows.Forms.Label();
             this.panelOrderHeader = new System.Windows.Forms.Panel();
             this.lblCustomerName = new System.Windows.Forms.Label();
@@ -55,10 +58,15 @@
             this.txtCustomerSearch = new System.Windows.Forms.TextBox();
             this.btnAddCustomer = new FontAwesome.Sharp.IconButton();
             this.lblOrderId = new System.Windows.Forms.Label();
+            this.dgvCart = new System.Windows.Forms.DataGridView();
+            this.lblCustomerInfo = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbPromotions = new System.Windows.Forms.ComboBox();
             this.panelBookSelection.SuspendLayout();
             this.panelSearchBook.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.panelOrderDetails.SuspendLayout();
+            this.flowPanelOrderItems.SuspendLayout();
             this.panelOrderFooter.SuspendLayout();
             this.tableLayoutPanelButtons.SuspendLayout();
             this.panelTotals.SuspendLayout();
@@ -67,6 +75,7 @@
             this.panel1.SuspendLayout();
             this.panelOrderHeader.SuspendLayout();
             this.panelCustomerSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             this.SuspendLayout();
             // 
             // panelBookSelection
@@ -138,12 +147,14 @@
             // flowPanelOrderItems
             // 
             this.flowPanelOrderItems.AutoScroll = true;
+            this.flowPanelOrderItems.Controls.Add(this.dgvCart);
+            this.flowPanelOrderItems.Controls.Add(this.cmbPromotions);
             this.flowPanelOrderItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowPanelOrderItems.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowPanelOrderItems.Location = new System.Drawing.Point(0, 140);
+            this.flowPanelOrderItems.Location = new System.Drawing.Point(0, 210);
             this.flowPanelOrderItems.Name = "flowPanelOrderItems";
             this.flowPanelOrderItems.Padding = new System.Windows.Forms.Padding(16);
-            this.flowPanelOrderItems.Size = new System.Drawing.Size(509, 470);
+            this.flowPanelOrderItems.Size = new System.Drawing.Size(509, 400);
             this.flowPanelOrderItems.TabIndex = 2;
             this.flowPanelOrderItems.WrapContents = false;
             // 
@@ -293,7 +304,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lblSubtotalValue);
+            this.panel1.Controls.Add(this.lblSubtotal);
             this.panel1.Controls.Add(this.lblSubtotalLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -302,17 +313,17 @@
             this.panel1.Size = new System.Drawing.Size(475, 33);
             this.panel1.TabIndex = 2;
             // 
-            // lblSubtotalValue
+            // lblSubtotal
             // 
-            this.lblSubtotalValue.AutoSize = true;
-            this.lblSubtotalValue.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblSubtotalValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubtotalValue.Location = new System.Drawing.Point(442, 0);
-            this.lblSubtotalValue.Name = "lblSubtotalValue";
-            this.lblSubtotalValue.Size = new System.Drawing.Size(33, 24);
-            this.lblSubtotalValue.TabIndex = 1;
-            this.lblSubtotalValue.Text = "0₫";
-            this.lblSubtotalValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblSubtotal.AutoSize = true;
+            this.lblSubtotal.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblSubtotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubtotal.Location = new System.Drawing.Point(442, 0);
+            this.lblSubtotal.Name = "lblSubtotal";
+            this.lblSubtotal.Size = new System.Drawing.Size(33, 24);
+            this.lblSubtotal.TabIndex = 1;
+            this.lblSubtotal.Text = "0₫";
+            this.lblSubtotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblSubtotalLabel
             // 
@@ -328,6 +339,8 @@
             // panelOrderHeader
             // 
             this.panelOrderHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelOrderHeader.Controls.Add(this.label1);
+            this.panelOrderHeader.Controls.Add(this.lblCustomerInfo);
             this.panelOrderHeader.Controls.Add(this.lblCustomerName);
             this.panelOrderHeader.Controls.Add(this.panelCustomerSearch);
             this.panelOrderHeader.Controls.Add(this.lblOrderId);
@@ -335,7 +348,7 @@
             this.panelOrderHeader.Location = new System.Drawing.Point(0, 0);
             this.panelOrderHeader.Name = "panelOrderHeader";
             this.panelOrderHeader.Padding = new System.Windows.Forms.Padding(16);
-            this.panelOrderHeader.Size = new System.Drawing.Size(509, 140);
+            this.panelOrderHeader.Size = new System.Drawing.Size(509, 210);
             this.panelOrderHeader.TabIndex = 0;
             // 
             // lblCustomerName
@@ -398,6 +411,69 @@
             this.lblOrderId.TabIndex = 0;
             this.lblOrderId.Text = "Hóa Đơn #HD1";
             // 
+            // dgvCart
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCart.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvCart.Location = new System.Drawing.Point(19, 19);
+            this.dgvCart.Name = "dgvCart";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCart.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvCart.Size = new System.Drawing.Size(473, 261);
+            this.dgvCart.TabIndex = 0;
+            // 
+            // lblCustomerInfo
+            // 
+            this.lblCustomerInfo.AutoSize = true;
+            this.lblCustomerInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblCustomerInfo.Location = new System.Drawing.Point(120, 95);
+            this.lblCustomerInfo.Name = "lblCustomerInfo";
+            this.lblCustomerInfo.Size = new System.Drawing.Size(51, 20);
+            this.lblCustomerInfo.TabIndex = 0;
+            this.lblCustomerInfo.Text = "label1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label1.Location = new System.Drawing.Point(16, 128);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(145, 20);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Địa Chỉ Giao Hàng:";
+            // 
+            // cmbPromotions
+            // 
+            this.cmbPromotions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPromotions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cmbPromotions.FormattingEnabled = true;
+            this.cmbPromotions.Location = new System.Drawing.Point(19, 286);
+            this.cmbPromotions.Name = "cmbPromotions";
+            this.cmbPromotions.Size = new System.Drawing.Size(473, 28);
+            this.cmbPromotions.Sorted = true;
+            this.cmbPromotions.TabIndex = 5;
+            // 
             // StoreControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,11 +487,13 @@
             this.Name = "StoreControl";
             this.Padding = new System.Windows.Forms.Padding(24);
             this.Size = new System.Drawing.Size(1350, 830);
+            this.Load += new System.EventHandler(this.StoreControl_Load_1);
             this.panelBookSelection.ResumeLayout(false);
             this.panelSearchBook.ResumeLayout(false);
             this.panelSearchBook.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.panelOrderDetails.ResumeLayout(false);
+            this.flowPanelOrderItems.ResumeLayout(false);
             this.panelOrderFooter.ResumeLayout(false);
             this.tableLayoutPanelButtons.ResumeLayout(false);
             this.panelTotals.ResumeLayout(false);
@@ -429,6 +507,7 @@
             this.panelOrderHeader.PerformLayout();
             this.panelCustomerSearch.ResumeLayout(false);
             this.panelCustomerSearch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -450,7 +529,6 @@
         private FontAwesome.Sharp.IconButton btnAddCustomer;
         private System.Windows.Forms.Label lblCustomerName;
         private System.Windows.Forms.Label lblSubtotalLabel;
-        private System.Windows.Forms.Label lblSubtotalValue;
         private System.Windows.Forms.Panel panelTotals;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
@@ -462,5 +540,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelButtons;
         private System.Windows.Forms.Button btnCancelOrder;
         private FontAwesome.Sharp.IconButton iconButton1;
+        private System.Windows.Forms.DataGridView dgvCart;
+        private System.Windows.Forms.Label lblSubtotal;
+        private System.Windows.Forms.Label lblCustomerInfo;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbPromotions;
     }
 }

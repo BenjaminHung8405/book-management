@@ -81,9 +81,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Data\HoaDonRepository.cs" />
+    <Compile Include="Data\KhuyenMaiRepository.cs" />
     <Compile Include="Data\Models\BookModels.cs" />
     <Compile Include="Data\Models\ChiTietHoaDon.cs" />
     <Compile Include="Data\Models\HoaDon.cs" />
+    <Compile Include="Data\Models\KhuyenMai.cs" />
     <Compile Include="Data\UserRepository.cs" />
     <Compile Include="UI\Controls\InvoiceDetailForm.cs">
       <SubType>Form</SubType>
@@ -238,8 +240,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="README_Dashboard_Database.md" />
-    <None Include="README_Database.md" />
     <None Include="README_Login_System.md" />
   </ItemGroup>
   <ItemGroup>

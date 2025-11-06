@@ -15,7 +15,7 @@ namespace book_management.UI.Controls
     {
         private List<CartItem> cartItems;
         private decimal totalAmount = 0;
-        private int currentCustomerId = 0;
+        private int currentCustomerId = 0; // 0 = Khách vãng lai
 
         public SalesControl()
         {
@@ -30,7 +30,7 @@ namespace book_management.UI.Controls
             ResetForm();
         }
 
-        #region Event Handlers
+        #region Event Handlers (Xử lý sự kiện)
 
         private void btnSearchBook_Click(object sender, EventArgs e)
         {
@@ -100,12 +100,13 @@ namespace book_management.UI.Controls
 
         #endregion
 
-        #region Methods
+        #region Methods (Hàm logic)
 
         private void LoadBookData()
         {
             try
             {
+                // Giả sử BookRepository.GetAllBooks() hoạt động đúng
                 var books = BookRepository.GetAllBooks();
                 var bookList = books.Select(b => new
                 {
@@ -137,7 +138,7 @@ namespace book_management.UI.Controls
                     LoadBookData();
                     return;
                 }
-
+                // Giả sử BookRepository.SearchBooks(keyword) hoạt động đúng
                 var books = BookRepository.SearchBooks(keyword);
                 var bookList = books.Select(b => new
                 {
@@ -177,7 +178,6 @@ namespace book_management.UI.Controls
                     return;
                 }
 
-                // Check if book already in cart
                 var existingItem = cartItems.FirstOrDefault(x => x.BookId == bookId);
                 if (existingItem != null)
                 {
@@ -201,10 +201,10 @@ namespace book_management.UI.Controls
                         BookName = bookName,
                         Price = price,
                         Quantity = 1,
-                        Total = price
+                        Total = price,
+                        AvailableStock = availableQty // Lưu lại tồn kho
                     });
                 }
-
                 RefreshCartDisplay();
             }
             catch (Exception ex)
@@ -240,13 +240,24 @@ namespace book_management.UI.Controls
             {
                 if (rowIndex >= 0 && rowIndex < cartItems.Count)
                 {
+                    var item = cartItems[rowIndex];
                     var newQty = Convert.ToInt32(dgvCart.Rows[rowIndex].Cells["colQuantity"].Value);
-                    if (newQty > 0)
+
+                    if (newQty <= 0)
                     {
-                        cartItems[rowIndex].Quantity = newQty;
-                        cartItems[rowIndex].Total = cartItems[rowIndex].Quantity * cartItems[rowIndex].Price;
-                        RefreshCartDisplay();
+                        cartItems.Remove(item);
                     }
+                    else if (newQty > item.AvailableStock)
+                    {
+                        MessageBox.Show("Số lượng vượt quá tồn kho!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        dgvCart.Rows[rowIndex].Cells["colQuantity"].Value = item.Quantity; // Hoàn tác
+                    }
+                    else
+                    {
+                        item.Quantity = newQty;
+                        item.Total = item.Quantity * item.Price;
+                    }
+                    RefreshCartDisplay();
                 }
             }
             catch (Exception ex)
@@ -268,10 +279,11 @@ namespace book_management.UI.Controls
                     return;
                 }
 
+                // Giả sử bạn đã tạo file DataAccess/CustomerRepository.cs
                 var customer = CustomerRepository.GetCustomerByPhone(phone);
+
                 if (customer != null)
                 {
-                    // tim thay khach hang
                     txtCustomerName.Text = customer.TenKhach;
                     txtCustomerAddress.Text = customer.DiaChi;
                     currentCustomerId = customer.KhId;
@@ -281,8 +293,6 @@ namespace book_management.UI.Controls
                 }
                 else
                 {
-
-                    // Không tìm thấy: Coi như khách vãng lai
                     MessageBox.Show("Không tìm thấy khách hàng. Nhập thông tin khách vãng lai.",
                                     "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtCustomerName.Clear();
@@ -299,6 +309,7 @@ namespace book_management.UI.Controls
             }
         }
 
+        // === ĐÂY LÀ HÀM ĐÃ SỬA LỖI ===
         private void CreateNewBill()
         {
             try
@@ -322,28 +333,34 @@ namespace book_management.UI.Controls
 
                 if (result == DialogResult.Yes)
                 {
-                    //1. chuan bi doi tuong hoadon
+                    // 1. Chuẩn bị đối tượng HoaDon
                     HoaDon newBill = new HoaDon
                     {
+                        // Giả sử bạn có class CurrentUser (người đang đăng nhập)
                         UserId = CurrentUser.UserId,
                         TongTien = totalAmount,
                         TrangThai = "DaThanhToan",
 
-                        //Gac Id khach hang hoac 0 neu khach vang lai
+                        // SỬA LỖI 1: Gán NULL (không phải 0) cho khách vãng lai
                         KhId = (currentCustomerId > 0) ? (int?)currentCustomerId : null,
+
+                        // SỬA LỖI 2: Gán tên khách vãng lai vào đúng thuộc tính
                         TenNguoiMua = (currentCustomerId == 0) ? txtCustomerName.Text.Trim() : null,
                     };
-                    //2. Chuan bi List<ChiTietHoaDon>
-                    // (chuyen doi tu private class CartItem sang ChiTietHoaDon)
+
+                    // 2. Chuyển đổi List<CartItem> sang List<ChiTietHoaDon>
                     var details = cartItems.Select(item => new ChiTietHoaDon
                     {
                         SachId = item.BookId,
                         SoLuong = item.Quantity,
                         DonGia = item.Price,
-                        ThanhTien = item.Total
+                        // SỬA LỖI 3: Gán TienGiam, KHÔNG GÁN ThanhTien (vì là cột tự động)
+                        TienGiam = 0 // Tạm thời, bạn có thể thêm logic khuyến mãi ở đây
                     }).ToList();
-                    //3. Goi ham repository de luu hoa don va chi tiet hoa don
+
+                    // 3. Gọi Repository để lưu (hàm này sẽ tự động trừ kho)
                     bool success = HoaDonRepository.CreateInvoice(newBill, details);
+
                     if (success)
                     {
                         MessageBox.Show("Tạo hóa đơn thành công!",
@@ -363,7 +380,6 @@ namespace book_management.UI.Controls
         {
             var result = MessageBox.Show("Bạn có chắc chắn muốn hủy hóa đơn hiện tại?",
                                        "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
             if (result == DialogResult.Yes)
             {
                 ResetForm();
@@ -379,13 +395,16 @@ namespace book_management.UI.Controls
         private void RefreshCartDisplay()
         {
             dgvCart.DataSource = null;
-            dgvCart.DataSource = cartItems.Select(item => new
+            if (cartItems.Any())
             {
-                BookName = item.BookName,
-                Price = item.Price,
-                Quantity = item.Quantity,
-                Total = item.Total
-            }).ToList();
+                dgvCart.DataSource = cartItems.Select(item => new
+                {
+                    BookName = item.BookName,
+                    Price = item.Price,
+                    Quantity = item.Quantity,
+                    Total = item.Total
+                }).ToList();
+            }
 
             CalculateTotal();
         }
@@ -406,6 +425,10 @@ namespace book_management.UI.Controls
             txtCustomerPhone.Clear();
             txtCustomerAddress.Clear();
             txtSearchBook.Clear();
+
+            // Đặt lại trạng thái ReadOnly
+            txtCustomerName.ReadOnly = false;
+            txtCustomerAddress.ReadOnly = false;
 
             RefreshCartDisplay();
             LoadBookData();
@@ -462,7 +485,6 @@ namespace book_management.UI.Controls
                 dgvBooks.Columns["TheLoai"].HeaderText = "Thể loại";
                 dgvBooks.Columns["Gia"].HeaderText = "Giá";
                 dgvBooks.Columns["SoLuong"].HeaderText = "Tồn kho";
-
                 dgvBooks.Columns["Gia"].DefaultCellStyle.Format = "C0";
             }
         }
@@ -477,6 +499,7 @@ namespace book_management.UI.Controls
             public decimal Price { get; set; }
             public int Quantity { get; set; }
             public decimal Total { get; set; }
+            public int AvailableStock { get; set; } // Thêm tồn kho
         }
     }
 }

@@ -15,7 +15,8 @@ namespace book_management.UI.Controls
 {
     public partial class InvoicesControl : UserControl
     {
-      
+        public event EventHandler AddInvoiceClicked;
+        
 
         // SỬA LỖI: Di chuyển dòng này từ trong hàm ra ngoài đây
         private string placeholderText = "Tìm theo mã HD, tên khách...";
@@ -200,9 +201,9 @@ namespace book_management.UI.Controls
             };
 
             panelTop.Controls.AddRange(new Control[] {
-     lblTitle, txtSearch, cmbStatusFilter,
+                lblTitle, txtSearch, cmbStatusFilter,
                 lblFromDate, dtpFromDate, lblToDate, dtpToDate,
-       btnSearch, btnAddInvoice, btnRefresh,
+                btnSearch, btnAddInvoice, btnRefresh,
                 lblTotalInvoices, lblTotalAmount
         });
         }
@@ -341,7 +342,35 @@ namespace book_management.UI.Controls
 
             panelMain.Controls.Add(panelSummary);
         }
+        private void AddInvoices()
+        {
+            try
+            {
+                var invoices = HoaDonRepository.GetAllInvoices();
+                dgvInvoices.Rows.Clear();
+                decimal totalAmount = 0;
 
+                foreach (var invoice in invoices)
+                {
+                    dgvInvoices.Rows.Add(
+                    invoice.HoaDonId,
+                    invoice.NgayLap.ToString("dd/MM/yyyy HH:mm"),
+                    invoice.TenNguoiMua,
+                    invoice.TongTien.ToString("N0") + " đ",
+                    invoice.TrangThai,
+                    invoice.NguoiLap
+                   );
+                    totalAmount += invoice.TongTien;
+                }
+
+                UpdateSummary(invoices.Count, totalAmount);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tải hóa đơn: {ex.Message}",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void LoadInvoices()
         {
             try
@@ -387,8 +416,7 @@ namespace book_management.UI.Controls
         private void BtnAddInvoice_Click(object sender, EventArgs e)
         {
             // Open create invoice form
-            MessageBox.Show("Chức năng tạo hóa đơn sẽ được phát triển trong phiên bản sau",
-      "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            AddInvoiceClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void BtnRefresh_Click(object sender, EventArgs e)
@@ -495,8 +523,22 @@ namespace book_management.UI.Controls
 
         private void EditInvoice(int hoaDonId)
         {
-            MessageBox.Show($"Chức năng sửa hóa đơn {hoaDonId} sẽ được phát triển",
-      "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                var invoice = HoaDonRepository.GetInvoiceById(hoaDonId);
+                if (invoice == null)
+                {
+                    MessageBox.Show("Hóa đơn không tồn tại.", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+               // var editForm = new EditInvoiceForm(invoice);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi sửa hóa đơn: {ex.Message}",
+                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void DeleteInvoice(int hoaDonId)
@@ -510,7 +552,7 @@ namespace book_management.UI.Controls
                 {
                     HoaDonRepository.DeleteInvoice(hoaDonId);
                     MessageBox.Show("Xóa hóa đơn thành công!", "Thông báo",
-                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadInvoices();
                 }
                 catch (Exception ex)
