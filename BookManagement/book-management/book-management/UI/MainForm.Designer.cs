@@ -35,7 +35,7 @@
             this.btnCustomer = new FontAwesome.Sharp.IconButton();
             this.btnBooks = new FontAwesome.Sharp.IconButton();
             this.btnUser = new FontAwesome.Sharp.IconButton();
-            this.btnReport = new FontAwesome.Sharp.IconButton();
+            this.btnWarehouse = new FontAwesome.Sharp.IconButton();
             this.btnInvoice = new FontAwesome.Sharp.IconButton();
             this.btnSales = new FontAwesome.Sharp.IconButton();
             this.btnDashboard = new FontAwesome.Sharp.IconButton();
@@ -93,7 +93,7 @@
             this.panelSidebar.Controls.Add(this.btnCustomer);
             this.panelSidebar.Controls.Add(this.btnBooks);
             this.panelSidebar.Controls.Add(this.btnUser);
-            this.panelSidebar.Controls.Add(this.btnReport);
+            this.panelSidebar.Controls.Add(this.btnWarehouse);
             this.panelSidebar.Controls.Add(this.btnInvoice);
             this.panelSidebar.Controls.Add(this.btnSales);
             this.panelSidebar.Controls.Add(this.btnDashboard);
@@ -116,7 +116,7 @@
             this.btnCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCustomer.IconSize = 36;
             this.btnCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCustomer.Location = new System.Drawing.Point(12, 630);
+            this.btnCustomer.Location = new System.Drawing.Point(12, 730);
             this.btnCustomer.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
@@ -160,7 +160,7 @@
             this.btnUser.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnUser.IconSize = 36;
             this.btnUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUser.Location = new System.Drawing.Point(12, 530);
+            this.btnUser.Location = new System.Drawing.Point(12, 630);
             this.btnUser.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
             this.btnUser.Name = "btnUser";
             this.btnUser.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
@@ -172,27 +172,27 @@
             this.btnUser.UseVisualStyleBackColor = false;
             this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
             // 
-            // btnReport
+            // btnWarehouse
             // 
-            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.btnReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.IconChar = FontAwesome.Sharp.IconChar.FileContract;
-            this.btnReport.IconColor = System.Drawing.Color.White;
-            this.btnReport.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnReport.IconSize = 36;
-            this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReport.Location = new System.Drawing.Point(12, 730);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.btnReport.Size = new System.Drawing.Size(224, 63);
-            this.btnReport.TabIndex = 0;
-            this.btnReport.Text = "Thống kê";
-            this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnReport.UseVisualStyleBackColor = false;
-            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
+            this.btnWarehouse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWarehouse.ForeColor = System.Drawing.Color.White;
+            this.btnWarehouse.IconChar = FontAwesome.Sharp.IconChar.Warehouse;
+            this.btnWarehouse.IconColor = System.Drawing.Color.White;
+            this.btnWarehouse.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnWarehouse.IconSize = 36;
+            this.btnWarehouse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnWarehouse.Location = new System.Drawing.Point(12, 430);
+            this.btnWarehouse.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
+            this.btnWarehouse.Name = "btnWarehouse";
+            this.btnWarehouse.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.btnWarehouse.Size = new System.Drawing.Size(224, 63);
+            this.btnWarehouse.TabIndex = 0;
+            this.btnWarehouse.Text = "Nhập Kho";
+            this.btnWarehouse.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnWarehouse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnWarehouse.UseVisualStyleBackColor = false;
+            this.btnWarehouse.Click += new System.EventHandler(this.btnWarehouse_Click);
             // 
             // btnInvoice
             // 
@@ -204,7 +204,7 @@
             this.btnInvoice.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnInvoice.IconSize = 36;
             this.btnInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInvoice.Location = new System.Drawing.Point(12, 430);
+            this.btnInvoice.Location = new System.Drawing.Point(12, 530);
             this.btnInvoice.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
             this.btnInvoice.Name = "btnInvoice";
             this.btnInvoice.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
@@ -361,7 +361,7 @@
         private FontAwesome.Sharp.IconButton btnSales;
         private FontAwesome.Sharp.IconButton btnInvoice;
         private FontAwesome.Sharp.IconButton btnUser;
-        private FontAwesome.Sharp.IconButton btnReport;
+        private FontAwesome.Sharp.IconButton btnWarehouse;
         private FontAwesome.Sharp.IconButton btnBooks;
         private FontAwesome.Sharp.IconDropDownButton iconDropDownMenuProfile;
         private FontAwesome.Sharp.IconButton btnCustomer;

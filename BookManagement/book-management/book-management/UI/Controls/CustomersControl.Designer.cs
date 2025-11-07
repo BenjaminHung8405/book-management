@@ -36,12 +36,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.txtSearchUser = new System.Windows.Forms.TextBox();
+            this.btnAddCustomer = new FontAwesome.Sharp.IconButton();
             this.flowPaginationButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.lblPageInfo = new System.Windows.Forms.Label();
             this.panelPagination = new System.Windows.Forms.Panel();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.panelMainContent = new System.Windows.Forms.Panel();
-            this.btnAddUser = new FontAwesome.Sharp.IconButton();
             this.colHoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSdt = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +48,7 @@
             this.colNgayTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.panelMainContent = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelPagination.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
@@ -63,7 +63,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.2936F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.txtSearchUser, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnAddUser, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnAddCustomer, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(24, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -82,6 +82,26 @@
             this.txtSearchUser.Name = "txtSearchUser";
             this.txtSearchUser.Size = new System.Drawing.Size(1002, 31);
             this.txtSearchUser.TabIndex = 0;
+            // 
+            // btnAddCustomer
+            // 
+            this.btnAddCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnAddCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnAddCustomer.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
+            this.btnAddCustomer.IconColor = System.Drawing.Color.White;
+            this.btnAddCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAddCustomer.IconSize = 28;
+            this.btnAddCustomer.Location = new System.Drawing.Point(1012, 4);
+            this.btnAddCustomer.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddCustomer.Name = "btnAddCustomer";
+            this.btnAddCustomer.Size = new System.Drawing.Size(236, 52);
+            this.btnAddCustomer.TabIndex = 4;
+            this.btnAddCustomer.Text = "Thêm Khách hàng";
+            this.btnAddCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddCustomer.UseVisualStyleBackColor = false;
+            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
             // flowPaginationButtons
             // 
@@ -163,40 +183,6 @@
             this.dgvUsers.Size = new System.Drawing.Size(1252, 622);
             this.dgvUsers.TabIndex = 4;
             // 
-            // panelMainContent
-            // 
-            this.panelMainContent.BackColor = System.Drawing.Color.White;
-            this.panelMainContent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelMainContent.Controls.Add(this.dgvUsers);
-            this.panelMainContent.Controls.Add(this.panelPagination);
-            this.panelMainContent.Controls.Add(this.tableLayoutPanel1);
-            this.panelMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMainContent.Location = new System.Drawing.Point(24, 24);
-            this.panelMainContent.Name = "panelMainContent";
-            this.panelMainContent.Padding = new System.Windows.Forms.Padding(24);
-            this.panelMainContent.Size = new System.Drawing.Size(1302, 782);
-            this.panelMainContent.TabIndex = 1;
-            // 
-            // btnAddUser
-            // 
-            this.btnAddUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.btnAddUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddUser.ForeColor = System.Drawing.Color.White;
-            this.btnAddUser.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
-            this.btnAddUser.IconColor = System.Drawing.Color.White;
-            this.btnAddUser.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAddUser.IconSize = 28;
-            this.btnAddUser.Location = new System.Drawing.Point(1012, 4);
-            this.btnAddUser.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(236, 52);
-            this.btnAddUser.TabIndex = 4;
-            this.btnAddUser.Text = "Thêm Khách hàng";
-            this.btnAddUser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAddUser.UseVisualStyleBackColor = false;
-            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
-            // 
             // colHoTen
             // 
             this.colHoTen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -267,6 +253,20 @@
             this.colDelete.Text = "Xóa";
             this.colDelete.UseColumnTextForButtonValue = true;
             // 
+            // panelMainContent
+            // 
+            this.panelMainContent.BackColor = System.Drawing.Color.White;
+            this.panelMainContent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelMainContent.Controls.Add(this.dgvUsers);
+            this.panelMainContent.Controls.Add(this.panelPagination);
+            this.panelMainContent.Controls.Add(this.tableLayoutPanel1);
+            this.panelMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMainContent.Location = new System.Drawing.Point(24, 24);
+            this.panelMainContent.Name = "panelMainContent";
+            this.panelMainContent.Padding = new System.Windows.Forms.Padding(24);
+            this.panelMainContent.Size = new System.Drawing.Size(1302, 782);
+            this.panelMainContent.TabIndex = 1;
+            // 
             // CustomersControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,7 +286,7 @@
         }
 
         #endregion
-        private FontAwesome.Sharp.IconButton btnAddUser;
+        private FontAwesome.Sharp.IconButton btnAddCustomer;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox txtSearchUser;
         private System.Windows.Forms.FlowLayoutPanel flowPaginationButtons;

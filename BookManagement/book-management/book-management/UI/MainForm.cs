@@ -47,7 +47,7 @@ namespace book_management.UI
                 case "NhanVien":
                     // Nhân viên không có quyền truy cập quản lý người dùng và báo cáo
                     btnUser.Visible = false;
-                    btnReport.Visible = false;
+                    btnWarehouse.Visible = false;
                     break;
                 default:
                     // Vai trò không xác định, ẩn tất cả các nút chức năng nhạy cảm
@@ -63,7 +63,7 @@ namespace book_management.UI
             btnDashboard.Visible = true;
             btnSales.Visible = true;
             btnUser.Visible = true;
-            btnReport.Visible = true;
+            btnWarehouse.Visible = true;
             btnBooks.Visible = true;
             btnInvoice.Visible = true;
         }
@@ -74,7 +74,7 @@ namespace book_management.UI
         {
             btnBooks.Visible = false;
             btnUser.Visible = false;
-            btnReport.Visible = false;
+            btnWarehouse.Visible = false;
             btnInvoice.Visible = false;
             btnCustomer.Visible = false;
         }
@@ -278,12 +278,6 @@ namespace book_management.UI
             ActivateButton(btnUser);
         }
 
-        private void btnReport_Click(object sender, EventArgs e)
-        {
-            LoadControl(new ReportControl());
-            ActivateButton(btnReport);
-        }
-
         /// <summary>
         /// Override xử lý khi form đóng để đảm bảo đăng xuất người dùng
         /// </summary>
@@ -323,6 +317,12 @@ namespace book_management.UI
         {
             LoadControl(new CustomersControl());
             ActivateButton(btnCustomer);
+        }
+
+        private void btnWarehouse_Click(object sender, EventArgs e)
+        {
+            LoadControl(new WarehouseControl());
+            ActivateButton(btnWarehouse);
         }
     }
 }

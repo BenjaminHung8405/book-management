@@ -1,4 +1,5 @@
-﻿using System;
+﻿using book_management.UI.Modal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,14 @@ namespace book_management.UI.Controls
         public WarehouseControl()
         {
             InitializeComponent();
+        }
+
+        private void btnAddImport_Click(object sender, EventArgs e)
+        {
+            using (var form = new frmAddImport())
+            {
+                form.ShowDialog();
+            }
         }
     }
 }

@@ -18,12 +18,9 @@ namespace book_management.UI.Controls
             InitializeComponent();
         }
 
-        private void btnAddUser_Click(object sender, EventArgs e)
+        private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            using (var form = new frmAddCustomer())
-            {
-                form.ShowDialog();
-            }
+
         }
     }
 }

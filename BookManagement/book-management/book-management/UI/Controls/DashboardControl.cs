@@ -343,11 +343,6 @@ namespace book_management.UI.Controls
 
         private void btnAddNewCustomer_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnAddNewCustomer_Click_1(object sender, EventArgs e)
-        {
             try
             {
                 frmAddCustomer frmAddCustomer = new frmAddCustomer();
