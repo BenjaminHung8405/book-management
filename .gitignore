@@ -32,3 +32,43 @@ packages/
 # OS files
 Thumbs.db
 Desktop.ini
+
+# Ignore specific DB connection source file
+BookManagement/book-management/book-management/Data/DatabaseConnection.cs
+
+# Visual Studio - user-specific
+*.rsuser
+*.sln.ide
+*.sln.GhostDoc.xml
+*.csproj.user
+*.vbproj.user
+*.userprefs
+
+# Publish profiles and local publish artifacts
+*.pubxml.user
+*.pubxml~
+**/Properties/PublishProfiles/*.pubxml.user
+app.publish/
+
+# Test results and coverage
+TestResult*/
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+BenchmarkDotNet.Artifacts/
+
+# ReSharper / Rider caches and settings
+_ReSharper.Caches/
+*.DotSettings.user
+
+# NuGet executable
+nuget.exe
+
+# Misc tooling and temp
+*.svclog
+*.pidb
+*.tmp
+*.tmp.*
+~$*
+.DS_Store
