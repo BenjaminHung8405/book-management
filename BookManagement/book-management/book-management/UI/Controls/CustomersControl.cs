@@ -11,19 +11,16 @@ using System.Windows.Forms;
 
 namespace book_management.UI.Controls
 {
-    public partial class WarehouseControl : System.Windows.Forms.UserControl
+    public partial class CustomersControl : UserControl
     {
-        public WarehouseControl()
+        public CustomersControl()
         {
             InitializeComponent();
         }
 
-        private void btnAddImport_Click(object sender, EventArgs e)
+        private void btnAddCustomer_Click(object sender, EventArgs e)
         {
-            //using (var form = new frmAddImport())
-            //{
-            //    form.ShowDialog();
-            //}
+
         }
     }
 }

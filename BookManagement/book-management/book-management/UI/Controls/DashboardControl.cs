@@ -9,23 +9,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using book_management.Data; // Thư viện cho DashboardRepository
 using book_management.DataAccess; // Thư viện cho ChiTietHoaDonRepository
-using book_management.Models; // Thư viện cho Model ChiTietHoaDon
+using book_management.Models;
+using book_management.UI.Modal; // Thư viện cho Model ChiTietHoaDon
+using FontAwesome.Sharp; // Thêm thư viện này
 
 namespace book_management.UI.Controls
 {
+    // Thêm 'partial' để nó liên kết với file Designer
     public partial class DashboardControl : System.Windows.Forms.UserControl
     {
         public event EventHandler CreateInvoiceClicked;
         public DashboardControl()
         {
-            InitializeComponent();
+            InitializeComponent(); // Hàm này sẽ gọi code từ file .Designer.cs
         }
 
         private void DashboardControl_Load(object sender, EventArgs e)
         {
             try
             {
-                // Load dữ liệu
+                // Toàn bộ logic tải dữ liệu phải nằm ở đây
                 LoadRevenueChart();
                 StyleDataGridView();
                 LoadRecentSales();
@@ -35,7 +38,6 @@ namespace book_management.UI.Controls
             {
                 MessageBox.Show($"Lỗi khi tải dữ liệu dashboard:\n{ex.Message}",
                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                LoadMockDataFallback();
             }
         }
 
@@ -111,15 +113,11 @@ namespace book_management.UI.Controls
             {
                 try
                 {
-                    // Lấy ID hóa đơn từ cột "colMaHoaDon"
-                    // Cần parse lại ID (loại bỏ "HD-")
                     string maHoaDonText = this.dataGridViewSales.Rows[e.RowIndex].Cells["colMaHoaDon"].Value.ToString();
                     int hoaDonId = int.Parse(maHoaDonText.Replace("HD-", ""));
-
-                    // Gọi Repository để lấy Chi Tiết Hóa Đơn
                     List<ChiTietHoaDon> chiTietHD = ChiTietHoaDonRepository.GetChiTietHoaDon(hoaDonId);
 
-                    // Mở form chi tiết và truyền dữ liệu vào
+                    // Sửa lỗi: Truyền 1 tham số thay vì 2
                     OrderDetailForm frmDetail = new OrderDetailForm(chiTietHD);
                     frmDetail.ShowDialog();
                 }
@@ -188,21 +186,17 @@ namespace book_management.UI.Controls
         /// <summary>
         /// Fallback về mock data nếu database không khả dụng
         /// </summary>
-        private void LoadMockDataFallback()
-        {
-            chartDoanhThu.Series.Clear();
-            var seriesDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Series("Doanh thu");
-            seriesDoanhThu.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            seriesDoanhThu.Points.AddXY("Ngày 1", 150000);
-            seriesDoanhThu.Points.AddXY("Ngày 2", 300000);
-            seriesDoanhThu.Points.AddXY("Ngày 3", 250000);
-            seriesDoanhThu.Points.AddXY("Ngày 4", 400000);
-            seriesDoanhThu.Points.AddXY("Ngày 5", 350000);
-            seriesDoanhThu.Points.AddXY("Ngày 6", 500000);
-            seriesDoanhThu.Points.AddXY("Ngày 7", 450000);
-            chartDoanhThu.Series.Add(seriesDoanhThu);
-            PopulateMockSales();
-        }
+        //private void LoadMockDataFallback()
+        //{
+        //    chartDoanhThu.Series.Clear();
+        //    var seriesDoanhThu = new System.Windows.Forms.DataVisualization.Charting.Series("Doanh thu");
+        //    seriesDoanhThu.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+        //    seriesDoanhThu.Points.AddXY("Ngày 1", 150000);
+        //    seriesDoanhThu.Points.AddXY("Ngày 2", 300000);
+        //    // ... (thêm mock data khác)
+        //    chartDoanhThu.Series.Add(seriesDoanhThu);
+        //    PopulateMockSales();
+        //}
 
         /// <summary>
         /// Định dạng giao diện cho DataGridView
@@ -229,31 +223,24 @@ namespace book_management.UI.Controls
         /// <summary>
         /// Thêm mock data mẫu cho dataGridViewSales (chỉ dùng khi fallback)
         /// </summary>
-        private void PopulateMockSales()
-        {
-            if (dataGridViewSales.DataSource != null) return;
-            dataGridViewSales.Rows.Clear();
-            var mockRows = new object[,]
-            {
-                { "HD-0001", "Nguyễn Văn A", DateTime.Now.AddHours(-2), 150000, "Đã thanh toán", "" },
-                { "HD-0002", "Trần Thị B", DateTime.Now.AddDays(-1).AddHours(-3), 320000, "Chờ xử lý", "" },
-                { "HD-0003", "Lê Văn C", DateTime.Now.AddDays(-2), 450000, "Đã thanh toán", "" },
-                { "HD-0004", "Phạm Thị D", DateTime.Now.AddDays(-3).AddHours(-6), 78000, "Đã hủy", "" },
-                { "HD-0005", "Hoàng Văn E", DateTime.Now.AddHours(-5), 220000, "Chờ xử lý", "" },
-                { "HD-0006", "Võ Thị F", DateTime.Now.AddDays(-7), 99000, "Đã thanh toán", "" }
-            };
-            for (int i = 0; i < mockRows.GetLength(0); i++)
-            {
-                dataGridViewSales.Rows.Add(
-                    mockRows[i, 0],
-                    mockRows[i, 1],
-                    mockRows[i, 2],
-                    mockRows[i, 3],
-                    mockRows[i, 4],
-                    mockRows[i, 5]
-                );
-            }
-        }
+        //private void PopulateMockSales()
+        //{
+        //    if (dataGridViewSales.DataSource != null) return;
+        //    dataGridViewSales.Rows.Clear();
+        //    var mockRows = new object[,]
+        //    {
+        //        { "HD-0001", "Nguyễn Văn A", DateTime.Now.AddHours(-2), 150000, "Đã thanh toán", "" },
+        //        { "HD-0002", "Trần Thị B", DateTime.Now.AddDays(-1).AddHours(-3), 320000, "Chờ xử lý", "" }
+        //        // ... (thêm mock data khác)
+        //    };
+        //    for (int i = 0; i < mockRows.GetLength(0); i++)
+        //    {
+        //        dataGridViewSales.Rows.Add(
+        //            mockRows[i, 0], mockRows[i, 1], mockRows[i, 2],
+        //            mockRows[i, 3], mockRows[i, 4], mockRows[i, 5]
+        //        );
+        //    }
+        //}
 
         /// <summary>
         /// Refresh dữ liệu dashboard
@@ -319,18 +306,42 @@ namespace book_management.UI.Controls
         /// </summary>
         private void btnAddBill_Click(object sender, EventArgs e)
         {
-            //CreateInvoiceClicked?.Invoke(this, EventArgs.Empty);
-
+            // Bắn sự kiện lên MainForm
+            CreateInvoiceClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnAddNewBook_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                frmAddEditBook frmAddBook = new frmAddEditBook();
+                if (frmAddBook.ShowDialog() == DialogResult.OK)
+                {
+                    RefreshDashboard();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở form thêm sách:\n{ex.Message}",
+                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnAddNewCustomer_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                frmAddCustomer frmAddCustomer = new frmAddCustomer();
+                if (frmAddCustomer.ShowDialog() == DialogResult.OK)
+                {
+                    RefreshDashboard();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở form thêm khách hàng:\n{ex.Message}",
+                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

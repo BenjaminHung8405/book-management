@@ -25,19 +25,6 @@ namespace book_management.UI.Controls
             LoadInvoiceDetails();
         }
 
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // InvoiceDetailForm
-            // 
-            this.ClientSize = new System.Drawing.Size(850, 700);
-            this.Name = "InvoiceDetailForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.ResumeLayout(false);
-
-        }
-
         private void CreateControls()
         {
             var mainPanel = new Panel
@@ -62,7 +49,7 @@ namespace book_management.UI.Controls
             var pnlInvoiceInfo = CreateInvoiceInfoPanel();
             pnlInvoiceInfo.Location = new Point(5, 50);
             pnlInvoiceInfo.Size = new Size(840, 100);
-            
+
             // Details grid
             var dgvDetails = CreateDetailsGrid();
             dgvDetails.Location = new Point(5, 170);
@@ -85,8 +72,8 @@ namespace book_management.UI.Controls
             btnClose.Click += (s, e) => this.Close();
 
             mainPanel.Controls.AddRange(new Control[] {
-            lblTitle, pnlInvoiceInfo, dgvDetails, pnlSummary, btnClose
-            });
+lblTitle, pnlInvoiceInfo, dgvDetails, pnlSummary, btnClose
+          });
 
             this.Controls.Add(mainPanel);
         }
@@ -165,12 +152,11 @@ namespace book_management.UI.Controls
             };
 
             panel.Controls.AddRange(new Control[] {
-            lblNgayLap, lblNgayLapValue,
-            lblKhachHang, lblKhachHangValue,
-            lblTrangThai, lblTrangThaiValue,
-            lblNguoiLap, lblNguoiLapValue,
-      
-            });
+             lblNgayLap, lblNgayLapValue,
+             lblKhachHang, lblKhachHangValue,
+             lblTrangThai, lblTrangThaiValue,
+             lblNguoiLap, lblNguoiLapValue,
+        });
 
             return panel;
         }
@@ -292,7 +278,7 @@ namespace book_management.UI.Controls
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi khi tải thông tin hóa đơn: {ex.Message}",
-                 "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -310,13 +296,13 @@ namespace book_management.UI.Controls
                     foreach (var item in _chiTietList)
                     {
                         dgv.Rows.Add(
-                        stt++,
-                        item.TenSach,
-                        item.SoLuong,
-                        item.DonGia.ToString("N0") + " đ",
-                        item.TienGiam.ToString("N0") + " đ",
-                        item.ThanhTien.ToString("N0") + " đ"
-                        );
+                       stt++,
+                          item.TenSach,
+                               item.SoLuong,
+                            item.DonGia.ToString("N0") + " đ",
+                     item.TienGiam.ToString("N0") + " đ",
+                           item.ThanhTien.ToString("N0") + " đ"
+                          );
                         tongTien += item.ThanhTien;
                     }
 
@@ -327,7 +313,7 @@ namespace book_management.UI.Controls
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi khi tải chi tiết hóa đơn: {ex.Message}",
-               "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                          "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

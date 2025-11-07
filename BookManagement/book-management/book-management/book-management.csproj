@@ -87,17 +87,38 @@
     <Compile Include="Data\Models\HoaDon.cs" />
     <Compile Include="Data\Models\KhuyenMai.cs" />
     <Compile Include="Data\UserRepository.cs" />
-    <Compile Include="UI\Controls\InvoiceDetailForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="UI\Controls\BooksControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\BooksControl.Designer.cs">
+      <DependentUpon>BooksControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\CustomersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\CustomersControl.Designer.cs">
+      <DependentUpon>CustomersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\InvoicesControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\InvoicesControl.Designer.cs">
+      <DependentUpon>InvoicesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\InvoicesDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\InvoicesDetailForm.Designer.cs">
+      <DependentUpon>InvoicesDetailForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\OrderDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\Controls\PurchaseHistoryControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\PurchaseHistoryControl.Designer.cs">
+      <DependentUpon>PurchaseHistoryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\ReportControl.cs">
       <SubType>UserControl</SubType>
@@ -114,7 +135,9 @@
     <Compile Include="UI\Controls\SalesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Controls\SalesControl.Designer.cs" />
+    <Compile Include="UI\Controls\SalesControl.Designer.cs">
+      <DependentUpon>SalesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\StoreControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -151,9 +174,6 @@
     <Compile Include="UI\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Controls\BooksControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="UI\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,14 +201,11 @@
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Theme\AppColors.cs" />
-    <EmbeddedResource Include="UI\Controls\BooksControl.resx">
-      <DependentUpon>BooksControl.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Controls\CustomersControl.resx">
+      <DependentUpon>CustomersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\DashboardControl.resx">
       <DependentUpon>DashboardControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Controls\InvoiceDetailForm.resx">
-      <DependentUpon>InvoiceDetailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\PurchaseHistoryControl.resx">
       <DependentUpon>PurchaseHistoryControl.cs</DependentUpon>

@@ -19,7 +19,7 @@ namespace book_management.UI.Controls
     {
         // Biến lưu ID hồ sơ khách hàng (kh_id)
         private int _currentCustomerId = 0;
-        
+        private decimal _currentDiscount = 0; // Biến lưu tiền giảm giá hiện tại
         // Lưu trữ danh sách KM để tính toán
         private List<KhuyenMai> _availablePromotions;
 

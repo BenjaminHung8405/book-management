@@ -1,19 +1,24 @@
-﻿// book-management\UI\OrderDetailForm.cs
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using book_management.Models;
 using System.Collections.Generic;
 using System.Drawing;
+
 namespace book_management.UI
 {
+    // SỬA 1: Thêm 'partial' (Dù không có file Designer,
+    // đây là thói quen tốt để VS nhận diện nó là Form)
     public partial class OrderDetailForm : Form
     {
         private List<ChiTietHoaDon> _chiTietHD;
 
+        // SỬA 2: Khai báo DataGridView ở cấp độ class
+        private DataGridView dgvDetail;
+
         public OrderDetailForm(List<ChiTietHoaDon> chiTietHD)
         {
-            InitializeComponent();
+            InitializeComponent(); // Hàm này TẠO dgvDetail
             _chiTietHD = chiTietHD;
-            LoadOrderDetails();
+            LoadOrderDetails(); // Hàm này SỬ DỤNG dgvDetail
         }
 
         private void InitializeComponent()
@@ -22,8 +27,8 @@ namespace book_management.UI
             this.Size = new Size(800, 600);
             this.StartPosition = FormStartPosition.CenterParent;
 
-            
-            var dgvDetail = new DataGridView
+            // SỬA 3: Gán vào biến class (không dùng 'var')
+            dgvDetail = new DataGridView
             {
                 Dock = DockStyle.Fill,
                 AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
@@ -33,7 +38,6 @@ namespace book_management.UI
                 ReadOnly = true
             };
 
-         
             dgvDetail.Columns.Add("TenSach", "Tên sách");
             dgvDetail.Columns.Add("DonGia", "Đơn giá");
             dgvDetail.Columns.Add("SoLuong", "Số lượng");
@@ -45,18 +49,18 @@ namespace book_management.UI
 
         private void LoadOrderDetails()
         {
-            var dgv = this.Controls[0] as DataGridView;
-            if (dgv != null)
+            // SỬA 4: Sử dụng biến class trực tiếp, không cần 'Find'
+            if (dgvDetail != null)
             {
-                dgv.Rows.Clear();
+                dgvDetail.Rows.Clear();
                 foreach (var item in _chiTietHD)
                 {
-                    dgv.Rows.Add(
+                    dgvDetail.Rows.Add(
                         item.TenSach,
-                        item.DonGia.ToString("N0") + " ?",
+                        item.DonGia.ToString("N0") + " đ", // Sửa ký tự '?' thành 'đ'
                         item.SoLuong,
-                        item.TienGiam.ToString("N0") + " ?",
-                        item.ThanhTien.ToString("N0") + " ?"
+                        item.TienGiam.ToString("N0") + " đ",
+                        item.ThanhTien.ToString("N0") + " đ"
                     );
                 }
             }
