@@ -114,7 +114,7 @@
             this.panelKpiContainer.Location = new System.Drawing.Point(24, 90);
             this.panelKpiContainer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 24);
             this.panelKpiContainer.Name = "panelKpiContainer";
-            this.panelKpiContainer.Size = new System.Drawing.Size(1115, 154);
+            this.panelKpiContainer.Size = new System.Drawing.Size(1098, 154);
             this.panelKpiContainer.TabIndex = 1;
             // 
             // panelKpiKhachHang
@@ -375,7 +375,7 @@
             this.panelMidContainer.Location = new System.Drawing.Point(24, 244);
             this.panelMidContainer.Margin = new System.Windows.Forms.Padding(0, 24, 0, 0);
             this.panelMidContainer.Name = "panelMidContainer";
-            this.panelMidContainer.Size = new System.Drawing.Size(1115, 344);
+            this.panelMidContainer.Size = new System.Drawing.Size(1098, 344);
             this.panelMidContainer.TabIndex = 2;
             // 
             // panel2
@@ -453,6 +453,7 @@
             this.btnAddNewCustomer.Text = "Thêm khách hàng";
             this.btnAddNewCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddNewCustomer.UseVisualStyleBackColor = false;
+            this.btnAddNewCustomer.Click += new System.EventHandler(this.btnAddNewCustomer_Click_1);
             // 
             // btnAddNewBook
             // 
@@ -509,7 +510,7 @@
             this.panelRecentSales.Location = new System.Drawing.Point(24, 588);
             this.panelRecentSales.Name = "panelRecentSales";
             this.panelRecentSales.Padding = new System.Windows.Forms.Padding(16);
-            this.panelRecentSales.Size = new System.Drawing.Size(1115, 480);
+            this.panelRecentSales.Size = new System.Drawing.Size(1098, 480);
             this.panelRecentSales.TabIndex = 3;
             // 
             // dataGridViewSales
@@ -553,7 +554,7 @@
             this.dataGridViewSales.ReadOnly = true;
             this.dataGridViewSales.RowHeadersVisible = false;
             this.dataGridViewSales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSales.Size = new System.Drawing.Size(1083, 395);
+            this.dataGridViewSales.Size = new System.Drawing.Size(1066, 395);
             this.dataGridViewSales.TabIndex = 1;
             this.dataGridViewSales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSales_CellContentClick);
             this.dataGridViewSales.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewSales_CellFormatting);
@@ -644,7 +645,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "DashboardControl";
             this.Padding = new System.Windows.Forms.Padding(24);
-            this.Size = new System.Drawing.Size(1163, 830);
+            this.Size = new System.Drawing.Size(1146, 830);
             this.Load += new System.EventHandler(this.DashboardControl_Load);
             this.panelKpiContainer.ResumeLayout(false);
             this.panelKpiKhachHang.ResumeLayout(false);

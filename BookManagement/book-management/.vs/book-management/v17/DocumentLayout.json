@@ -1,20 +1,7 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\book-management\\BookManagement\\book-management\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\controls\\invoicescontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\invoicescontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\controls\\bookscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\bookscontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management-dotnet\\bookmanagement\\book-management\\book-management\\ui\\controls\\invoicescontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\invoicescontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -39,144 +26,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "HoaDon.cs",
-              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\Models\\HoaDon.cs",
-              "RelativeDocumentMoniker": "book-management\\Data\\Models\\HoaDon.cs",
-              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\Models\\HoaDon.cs",
-              "RelativeToolTip": "book-management\\Data\\Models\\HoaDon.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-06T03:46:25.046Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "KhuyenMai.cs",
-              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\Models\\KhuyenMai.cs",
-              "RelativeDocumentMoniker": "book-management\\Data\\Models\\KhuyenMai.cs",
-              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\Models\\KhuyenMai.cs",
-              "RelativeToolTip": "book-management\\Data\\Models\\KhuyenMai.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-06T03:46:21.478Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "KhuyenMaiRepository.cs",
-              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\KhuyenMaiRepository.cs",
-              "RelativeDocumentMoniker": "book-management\\Data\\KhuyenMaiRepository.cs",
-              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\KhuyenMaiRepository.cs",
-              "RelativeToolTip": "book-management\\Data\\KhuyenMaiRepository.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAQwCoAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-06T03:38:05.438Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InvoicesControl.cs",
-              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\InvoicesControl.cs",
-              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\InvoicesControl.cs",
-              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\InvoicesControl.cs",
-              "RelativeToolTip": "book-management\\UI\\Controls\\InvoicesControl.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAiwBIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T16:02:43.114Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BooksControl.cs [Design]",
-              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\BooksControl.cs",
-              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\BooksControl.cs",
-              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\BooksControl.cs [Design]",
-              "RelativeToolTip": "book-management\\UI\\Controls\\BooksControl.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T15:59:01.875Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "InvoicesControl.cs [Design]",
-              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\InvoicesControl.cs",
-              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\InvoicesControl.cs",
-              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management-dotnet\\BookManagement\\book-management\\book-management\\UI\\Controls\\InvoicesControl.cs [Design]",
-              "RelativeToolTip": "book-management\\UI\\Controls\\InvoicesControl.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T15:57:12.725Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "LoginForm.cs",
-              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\LoginForm.cs",
-              "RelativeDocumentMoniker": "book-management\\UI\\LoginForm.cs",
-              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\LoginForm.cs",
-              "RelativeToolTip": "book-management\\UI\\LoginForm.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAowCMAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-06T00:34:21.959Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\UserRepository.cs",
-              "RelativeDocumentMoniker": "book-management\\Data\\UserRepository.cs",
-              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\Data\\UserRepository.cs",
-              "RelativeToolTip": "book-management\\Data\\UserRepository.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACMAAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-06T00:35:07.26Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "DashboardControl.cs [Design]",
-              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\DashboardControl.cs",
-              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\DashboardControl.cs",
-              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\DashboardControl.cs [Design]",
-              "RelativeToolTip": "book-management\\UI\\Controls\\DashboardControl.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T22:46:24.239Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "DashboardControl.cs",
-              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\DashboardControl.cs",
-              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\DashboardControl.cs",
-              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\DashboardControl.cs",
-              "RelativeToolTip": "book-management\\UI\\Controls\\DashboardControl.cs",
-              "ViewState": "AgIAAP0AAAAAAAAAAAAEwBABAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-02T22:46:07.353Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "UsersControl.cs",
-              "DocumentMoniker": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\UsersControl.cs",
-              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\UsersControl.cs",
-              "ToolTip": "D:\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\UsersControl.cs",
-              "RelativeToolTip": "book-management\\UI\\Controls\\UsersControl.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-03T04:26:59.347Z",
-              "EditorCaption": ""
             }
           ]
         }

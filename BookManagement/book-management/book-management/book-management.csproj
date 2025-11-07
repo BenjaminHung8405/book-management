@@ -87,6 +87,12 @@
     <Compile Include="Data\Models\HoaDon.cs" />
     <Compile Include="Data\Models\KhuyenMai.cs" />
     <Compile Include="Data\UserRepository.cs" />
+    <Compile Include="UI\Controls\CustomersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\CustomersControl.Designer.cs">
+      <DependentUpon>CustomersControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\InvoiceDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     <Compile Include="UI\Theme\AppColors.cs" />
     <EmbeddedResource Include="UI\Controls\BooksControl.resx">
       <DependentUpon>BooksControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\CustomersControl.resx">
+      <DependentUpon>CustomersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\DashboardControl.resx">
       <DependentUpon>DashboardControl.cs</DependentUpon>

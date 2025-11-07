@@ -23,6 +23,9 @@ namespace book_management.UI.Controls
         // Lưu trữ danh sách KM để tính toán
         private List<KhuyenMai> _availablePromotions;
 
+        // Biến lưu giá trị giảm giá hiện tại
+        private decimal _currentDiscount = 0;
+
         // Biến lưu giỏ hàng
         private List<CartItem> _cart = new List<CartItem>();
 

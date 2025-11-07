@@ -345,5 +345,22 @@ namespace book_management.UI.Controls
         {
 
         }
+
+        private void btnAddNewCustomer_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                frmAddCustomer frmAddCustomer = new frmAddCustomer();
+                if (frmAddCustomer.ShowDialog() == DialogResult.OK)
+                {
+                    RefreshDashboard();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở form thêm khách hàng:\n{ex.Message}",
+                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
