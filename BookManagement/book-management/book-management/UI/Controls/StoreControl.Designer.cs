@@ -396,7 +396,6 @@
             this.btnAddCustomer.Size = new System.Drawing.Size(40, 35);
             this.btnAddCustomer.TabIndex = 2;
             this.btnAddCustomer.UseVisualStyleBackColor = true;
-            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
             // lblOrderId
             // 

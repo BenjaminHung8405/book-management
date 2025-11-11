@@ -148,6 +148,12 @@
     <Compile Include="UI\Controls\UsersControl.Designer.cs">
       <DependentUpon>UsersControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\VoucherControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\VoucherControl.Designer.cs">
+      <DependentUpon>VoucherControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\WarehouseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -171,11 +177,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Modal\frmAddCustomer.cs">
+    <Compile Include="UI\Modal\frmAddVoucher.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Modal\frmAddCustomer.Designer.cs">
-      <DependentUpon>frmAddCustomer.cs</DependentUpon>
+    <Compile Include="UI\Modal\frmAddVoucher.Designer.cs">
+      <DependentUpon>frmAddVoucher.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Modal\frmAddImport.cs">
       <SubType>Form</SubType>
@@ -226,6 +232,9 @@
     <EmbeddedResource Include="UI\Controls\UsersControl.resx">
       <DependentUpon>UsersControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\VoucherControl.resx">
+      <DependentUpon>VoucherControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\WarehouseControl.resx">
       <DependentUpon>WarehouseControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,8 +254,8 @@
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Modal\frmAddCustomer.resx">
-      <DependentUpon>frmAddCustomer.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Modal\frmAddVoucher.resx">
+      <DependentUpon>frmAddVoucher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Modal\frmAddImport.resx">
       <DependentUpon>frmAddImport.cs</DependentUpon>

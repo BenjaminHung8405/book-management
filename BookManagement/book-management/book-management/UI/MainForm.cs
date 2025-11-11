@@ -76,7 +76,6 @@ namespace book_management.UI
             btnUser.Visible = false;
             btnWarehouse.Visible = false;
             btnInvoice.Visible = false;
-            btnCustomer.Visible = false;
         }
         /// 
 
@@ -313,16 +312,16 @@ namespace book_management.UI
             ActivateButton(btnSales);
         }
 
-        private void btnCustomer_Click(object sender, EventArgs e)
-        {
-            LoadControl(new CustomersControl());
-            ActivateButton(btnCustomer);
-        }
-
         private void btnWarehouse_Click(object sender, EventArgs e)
         {
             LoadControl(new WarehouseControl());
             ActivateButton(btnWarehouse);
+        }
+
+        private void btnVoucher_Click(object sender, EventArgs e)
+        {
+            LoadControl(new VoucherControl());
+            ActivateButton(btnVoucher);
         }
     }
 }

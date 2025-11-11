@@ -197,22 +197,6 @@ namespace book_management.UI.Controls
             // Khi người dùng chọn một khuyến mãi, tính toán lại tổng tiền
             UpdateTotals();
         }
-        /// <summary>
-        /// Mở form thêm khách hàng (Nút tìm kiếm khách hàng)
-        /// </summary>
-        private void btnAddCustomer_Click(object sender, EventArgs e)
-        {
-            // Mở form thêm khách hàng dạng modal
-            using (var form = new frmAddCustomer())
-            {
-                var dr = form.ShowDialog();
-                if (dr == DialogResult.OK)
-                {
-                    // Nếu thêm KH thành công, tải lại thông tin KH
-                    LoadCustomerInfo();
-                }
-            }
-        }
 
         /// <summary>
         /// Xử lý sự kiện click cho nút "Thanh Toán" (ĐÃ SỬA)

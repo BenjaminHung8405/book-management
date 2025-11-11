@@ -453,7 +453,6 @@
             this.btnAddNewCustomer.Text = "Thêm khách hàng";
             this.btnAddNewCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAddNewCustomer.UseVisualStyleBackColor = false;
-            this.btnAddNewCustomer.Click += new System.EventHandler(this.btnAddNewCustomer_Click);
             // 
             // btnAddNewBook
             // 
