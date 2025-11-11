@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using book_management.Data;
-using book_management.Data.book_management.DataAccess;
 using book_management.DataAccess; // Cần thêm
 using book_management.Models; // Cần thêm
 using book_management.UI.Modal;
@@ -40,6 +39,16 @@ namespace book_management.UI.Controls
         {
             // Tự động tải thông tin khách hàng khi form load
             LoadCustomerInfo();
+            try
+            {
+                // Dọn dẹp khách vãng lai cũ khi load form
+                CustomerRepository.CleanupExpiredTemporaryCustomers();
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi nhưng không hiện thông báo cho user
+                System.Diagnostics.Debug.WriteLine($"Cleanup error: {ex.Message}");
+            }
         }
 
         /// <summary>
@@ -51,14 +60,17 @@ namespace book_management.UI.Controls
             {
                 // Tìm kh_id dựa trên user_id (dùng hàm mới trong Repository)
                 // Giả sử: Chúng ta tìm kh_id mà user này đã dùng ở hóa đơn gần nhất
-                _currentCustomerId = HoaDonRepository.GetDefaultKhIdForUser(CurrentUser.UserId);
+                var customer = CustomerRepository.GetCustomerByUserId(CurrentUser.UserId);
 
-                if (_currentCustomerId > 0)
+                if (customer != null)
                 {
-                    
-                    var customer = CustomerRepository.GetCustomerById(_currentCustomerId);
-                    
+
+                    _currentCustomerId = customer.KhId;
+                    lblCustomerInfo.Text = $"Giao đến: {customer.TenKhach} | SĐT: {customer.SoDienThoai}";
+                    rtbAddressDelivery.Text = customer.DiaChi;
+                    ibtnThanhToan.Enabled = true;
                 }
+
                 // Nếu _currentCustomerId = 0, hệ thống sẽ hiểu là có lỗi (hoặc user mới)
                 // và btnThanhToan_Click sẽ báo lỗi (như hiện tại)
                 // LƯU Ý: Cần có 1 User liên kết với 1 KhachHang
@@ -73,7 +85,7 @@ namespace book_management.UI.Controls
             try
             {
                 // 1. Lấy dữ liệu
-               // _availablePromotions = KhuyenMaiRepository.GetAvailablePromotions();
+                _availablePromotions = KhuyenMaiRepository.GetAvailablePromotions();
 
                 // 2. Tạo một item "Không chọn"
                 var displayList = new List<KhuyenMai>();
@@ -216,68 +228,7 @@ namespace book_management.UI.Controls
         /// </summary>
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // 1. Kiểm tra giỏ hàng
-                if (_cart.Count == 0)
-                {
-                    MessageBox.Show("Giỏ hàng của bạn đang trống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
 
-                // 2. SỬA LỖI: Kiểm tra _currentCustomerId
-                if (_currentCustomerId == 0)
-                {
-                    MessageBox.Show("Không tìm thấy thông tin khách hàng của bạn. Vui lòng liên kết tài khoản của bạn với một hồ sơ khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // 3. Xác nhận
-                decimal tongTien = _cart.Sum(item => item.Total);
-                var result = MessageBox.Show($"Xác nhận thanh toán {tongTien:N0} đ?",
-                                              "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    // 4. Chuẩn bị HoaDon
-                    HoaDon newBill = new HoaDon
-                    {
-                        UserId = CurrentUser.UserId,
-                        TongTien = tongTien,
-                        TrangThai = "DaThanhToan",
-
-                        // SỬA LỖI: Gán KhId đã tìm được lúc Load
-                        KhId = _currentCustomerId,
-                        TenNguoiMua = null
-                    };
-
-                    // 5. Chuẩn bị ChiTietHoaDon
-                    var details = _cart.Select(item => new ChiTietHoaDon
-                    {
-                        SachId = item.BookId,
-                        SoLuong = item.Quantity,
-                        DonGia = item.Price,
-                        TienGiam = 0 // (Cần logic khuyến mãi nếu có)
-                    }).ToList();
-
-                    // 6. Gọi Repository (Hàm này đã được sửa ở tin nhắn trước)
-                    bool success = HoaDonRepository.CreateInvoice(newBill, details);
-
-                    if (success)
-                    {
-                        MessageBox.Show("Thanh toán thành công! Cảm ơn bạn đã mua hàng.", "Thành công",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        _cart.Clear();
-                        RefreshCart();
-                        LoadBooks(); // Tải lại sách để cập nhật Tồn kho
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi thanh toán: {ex.Message}",
-                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         #region Cart UI Methods (Hàm giao diện giỏ hàng)
@@ -371,7 +322,7 @@ namespace book_management.UI.Controls
                 decimal percent = selectedPromo.PhanTramGiam / 100;
                 discount = subtotal * percent;
 
-                // TODO: Thêm logic "Giảm tối đa" (maxMoney) nếu CSDL của bạn có
+                // TODO: Thêm logic "Giảm tối đa" (maxMoney) nếu CSDL có
                 // decimal maxDiscount = selectedPromo.MaxDiscount;
                 // if (discount > maxDiscount) { discount = maxDiscount; }
             }
@@ -444,5 +395,95 @@ namespace book_management.UI.Controls
         {
 
         }
+
+        private void ibtnThanhToan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 1. Kiểm tra giỏ hàng
+                if (_cart.Count == 0)
+                {
+                    MessageBox.Show("Giỏ hàng của bạn đang trống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 2. SỬA LỖI: Kiểm tra _currentCustomerId
+                if (_currentCustomerId == 0)
+                {
+                    MessageBox.Show("Không tìm thấy thông tin khách hàng của bạn. Vui lòng liên kết tài khoản của bạn với một hồ sơ khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 3. Xác nhận
+                decimal tongTien = _cart.Sum(item => item.Total);
+                var result = MessageBox.Show($"Xác nhận thanh toán {tongTien:N0} đ?",
+                                              "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // 4. Chuẩn bị HoaDon
+                    HoaDon newBill = new HoaDon
+                    {
+                        UserId = CurrentUser.UserId,
+                        TongTien = tongTien,
+                        TrangThai = "DaThanhToan",
+                        DiaChiGiaoHang = null,
+                        // SỬA LỖI: Gán KhId đã tìm được lúc Load
+                        KhId = _currentCustomerId,
+                        TenNguoiMua = null
+                    };
+
+                    // 5. Chuẩn bị ChiTietHoaDon
+                    var details = _cart.Select(item => new ChiTietHoaDon
+                    {
+                        SachId = item.BookId,
+                        SoLuong = item.Quantity,
+                        DonGia = item.Price,
+                        TienGiam = 0 // (Cần logic khuyến mãi nếu có)
+                    }).ToList();
+
+                    // 6. Gọi Repository 
+                    bool success = HoaDonRepository.CreateInvoice(newBill, details);
+
+                    if (success)
+                    {
+                        MessageBox.Show("Thanh toán thành công! Cảm ơn bạn đã mua hàng.", "Thành công",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _cart.Clear();
+                        RefreshCart();
+                        LoadBooks(); // Tải lại sách để cập nhật Tồn kho
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi thanh toán: {ex.Message}",
+                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSearchCustomer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var customerPhone = CustomerRepository.GetCustomerByPhone(txtCustomerSearch.Text);
+                if (customerPhone != null)
+                {
+                    _currentCustomerId = customerPhone.KhId;
+                    lblCustomerInfo.Text = $"Giao đến: {customerPhone.TenKhach} | SĐT: {customerPhone.SoDienThoai}";
+                    rtbAddressDelivery.Text = customerPhone.DiaChi;
+                    ibtnThanhToan.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy khách hàng với số điện thoại này.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

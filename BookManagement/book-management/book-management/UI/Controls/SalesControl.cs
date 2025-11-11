@@ -309,7 +309,6 @@ namespace book_management.UI.Controls
             }
         }
 
-        // === ĐÂY LÀ HÀM ĐÃ SỬA LỖI ===
         private void CreateNewBill()
         {
             try
@@ -454,8 +453,8 @@ namespace book_management.UI.Controls
                 HeaderText = "Đơn giá",
                 DataPropertyName = "Price",
                 ReadOnly = true,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "C0" }
-            });
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "C0" },
+             });
 
             dgvCart.Columns.Add(new DataGridViewTextBoxColumn
             {

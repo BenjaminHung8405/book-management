@@ -27,7 +27,6 @@
         /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
-        // SỬA LỖI: Đây là code giao diện của bạn
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -173,7 +172,7 @@
             // colGiaBan
             // 
             this.colGiaBan.DataPropertyName = "Gia";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.NullValue = null;
             this.colGiaBan.DefaultCellStyle = dataGridViewCellStyle4;
@@ -202,13 +201,14 @@
             // 
             // colEdit
             // 
-            this.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(0, 16, 4, 16);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(99)))), ((int)(((byte)(235)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.colEdit.DefaultCellStyle = dataGridViewCellStyle6;
             this.colEdit.FillWeight = 158.8549F;
             this.colEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -217,17 +217,18 @@
             this.colEdit.ReadOnly = true;
             this.colEdit.Text = "Sửa";
             this.colEdit.UseColumnTextForButtonValue = true;
-            this.colEdit.Width = 40;
+            this.colEdit.Width = 5;
             // 
             // colDelete
             // 
-            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(4, 16, 0, 16);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
             this.colDelete.DefaultCellStyle = dataGridViewCellStyle7;
             this.colDelete.FillWeight = 228.4264F;
             this.colDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -236,7 +237,7 @@
             this.colDelete.ReadOnly = true;
             this.colDelete.Text = "Xóa";
             this.colDelete.UseColumnTextForButtonValue = true;
-            this.colDelete.Width = 40;
+            this.colDelete.Width = 5;
             // 
             // panelPagination
             // 
@@ -253,7 +254,6 @@
             // 
             this.flowPaginationButtons.AutoSize = true;
             this.flowPaginationButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowPaginationButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowPaginationButtons.Location = new System.Drawing.Point(1252, 8);
             this.flowPaginationButtons.Name = "flowPaginationButtons";
             this.flowPaginationButtons.Size = new System.Drawing.Size(0, 42);
@@ -303,6 +303,8 @@
             // cmbStatusFilter
             // 
             this.cmbStatusFilter.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbStatusFilter.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbStatusFilter.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbStatusFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatusFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.cmbStatusFilter.FormattingEnabled = true;
@@ -321,10 +323,13 @@
             this.txtSearchBook.Name = "txtSearchBook";
             this.txtSearchBook.Size = new System.Drawing.Size(660, 31);
             this.txtSearchBook.TabIndex = 0;
+            this.txtSearchBook.TextChanged += new System.EventHandler(this.txtSearchBook_TextChanged);
             // 
             // cmbCategoryFilter
             // 
             this.cmbCategoryFilter.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbCategoryFilter.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbCategoryFilter.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbCategoryFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCategoryFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.cmbCategoryFilter.FormattingEnabled = true;
@@ -368,6 +373,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -1,66 +1,85 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using book_management.Data;
 using book_management.DataAccess;
 using book_management.Models;
-using book_management.UI.Theme;
-using FontAwesome.Sharp;
 
 namespace book_management.UI.Controls
 {
-    // Đảm bảo có 'partial'
     public partial class InvoicesControl : UserControl
     {
+        #region Fields and Properties
         public event EventHandler AddInvoiceClicked;
 
         private string placeholderText = "Tìm theo mã HD, tên khách...";
-
-        // Các biến logic
         private int currentPage = 1;
         private int pageSize = 20;
         private int totalRecords = 0;
         private int totalPages = 1;
+        #endregion
 
+        #region Constructor
         public InvoicesControl()
         {
-            InitializeComponent(); // Gọi hàm từ file .Designer.cs
-            AssignEvents();
+            InitializeComponent();
+            InitializeData();
+        }
+        #endregion
 
-            // SỬA LỖI: Chuyển LoadInvoices() vào sự kiện _Load
+        #region Initialization
+        private void InitializeData()
+        {
+            // Set default values
+            cmbStatusFilter.SelectedIndex = 0;
+            dtpFromDate.Value = DateTime.Now.AddMonths(-1);
+            dtpToDate.Value = DateTime.Now;
+            
+            // Apply initial placeholder
+            TxtSearch_LostFocus(txtSearch, null);
+            
+            // Style DataGridView
+            StyleDataGridView();
         }
 
-        // SỬA LỖI: Thêm sự kiện Load
+        private void StyleDataGridView()
+        {
+            // Header styling
+            dgvInvoices.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(59, 130, 246);
+            dgvInvoices.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvInvoices.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            dgvInvoices.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            // Cell styling
+            dgvInvoices.DefaultCellStyle.Font = new Font("Segoe UI", 10);
+            dgvInvoices.DefaultCellStyle.Padding = new Padding(5, 0, 5, 0);
+            dgvInvoices.DefaultCellStyle.SelectionBackColor = Color.FromArgb(219, 234, 254);
+            dgvInvoices.DefaultCellStyle.SelectionForeColor = Color.Black;
+
+            // Column alignments
+            HoaDonId.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            NgayLap.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            TenNguoiMua.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            TongTien.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            TrangThai.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            NguoiLap.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+        #endregion
+
+        #region Event Handlers
         private void InvoicesControl_Load(object sender, EventArgs e)
         {
-            // Chỉ tải dữ liệu khi Form được Load (lúc chạy F5)
-            LoadInvoices();
+            try
+            {
+                LoadInvoices();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tải InvoicesControl: {ex.Message}", "Lỗi nghiêm trọng",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        /// <summary>
-        /// Gán các sự kiện cho control
-        /// </summary>
-        private void AssignEvents()
-        {
-            txtSearch.GotFocus += TxtSearch_GotFocus;
-            txtSearch.LostFocus += TxtSearch_LostFocus;
-            TxtSearch_LostFocus(txtSearch, null); // Set placeholder
-
-            btnSearch.Click += BtnSearch_Click;
-            btnAddInvoice.Click += BtnAddInvoice_Click;
-            btnRefresh.Click += BtnRefresh_Click;
-
-            dgvInvoices.CellClick += DgvInvoices_CellClick;
-            dgvInvoices.CellFormatting += DgvInvoices_CellFormatting;
-        }
-
-        /// <summary>
-        /// Xử lý khi người dùng nhấp vào TextBox
-        /// </summary>
         private void TxtSearch_GotFocus(object sender, EventArgs e)
         {
             TextBox tb = (TextBox)sender;
@@ -71,9 +90,6 @@ namespace book_management.UI.Controls
             }
         }
 
-        /// <summary>
-        /// Xử lý khi người dùng nhấp ra ngoài TextBox
-        /// </summary>
         private void TxtSearch_LostFocus(object sender, EventArgs e)
         {
             TextBox tb = (TextBox)sender;
@@ -82,41 +98,6 @@ namespace book_management.UI.Controls
                 tb.Text = placeholderText;
                 tb.ForeColor = Color.Gray;
             }
-        }
-
-        private void LoadInvoices()
-        {
-            try
-            {
-                var invoices = HoaDonRepository.GetAllInvoices();
-                dgvInvoices.Rows.Clear();
-                decimal totalAmount = 0;
-
-                foreach (var invoice in invoices)
-                {
-                    dgvInvoices.Rows.Add(
-                       invoice.HoaDonId,
-                       invoice.NgayLap.ToString("dd/MM/yyyy HH:mm"),
-                       invoice.TenNguoiMua,
-                       invoice.TongTien.ToString("N0") + " đ",
-                       invoice.TrangThai,
-                       invoice.NguoiLap
-                      );
-                    totalAmount += invoice.TongTien;
-                }
-                UpdateSummary(invoices.Count, totalAmount);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi tải danh sách hóa đơn: {ex.Message}",
-                       "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void UpdateSummary(int totalInvoices, decimal totalAmount)
-        {
-            lblTotalInvoices.Text = $"Tổng số hóa đơn: {totalInvoices}";
-            lblTotalAmount.Text = $"Tổng doanh thu: {totalAmount:N0} đ";
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)
@@ -131,51 +112,107 @@ namespace book_management.UI.Controls
 
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
-            txtSearch.Text = string.Empty;
-            TxtSearch_LostFocus(txtSearch, null);
-            cmbStatusFilter.SelectedIndex = 0;
-            dtpFromDate.Value = DateTime.Now.AddMonths(-1);
-            dtpToDate.Value = DateTime.Now;
-            LoadInvoices();
+            RefreshData();
+        }
+
+        private void DgvInvoices_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+                if (e.RowIndex >= dgvInvoices.Rows.Count) return;
+
+                if (dgvInvoices.Rows[e.RowIndex].Tag == null) return;
+
+                if (!int.TryParse(dgvInvoices.Rows[e.RowIndex].Tag.ToString(), out int hoaDonId)) return;
+
+                string columnName = dgvInvoices.Columns[e.ColumnIndex].Name;
+
+                switch (columnName)
+                {
+                    case "ViewDetail":
+                        ViewInvoiceDetail(hoaDonId);
+                        break;
+                    case "Edit":
+                        EditInvoice(hoaDonId);
+                        break;
+                    case "Delete":
+                        DeleteInvoice(hoaDonId);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi xử lý click: {ex.Message}", "Lỗi",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DgvInvoices_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+                if (e.ColumnIndex >= dgvInvoices.Columns.Count) return;
+
+                if (dgvInvoices.Columns[e.ColumnIndex].Name == "TrangThai" && e.Value != null)
+                {
+                    var status = e.Value.ToString();
+                    switch (status)
+                    {
+                        case "DaThanhToan":
+                            e.Value = "Đã thanh toán";
+                            e.CellStyle.BackColor = Color.FromArgb(220, 252, 231);
+                            e.CellStyle.ForeColor = Color.FromArgb(22, 101, 52);
+                            break;
+                        case "ChuaThanhToan":
+                            e.Value = "Chưa thanh toán";
+                            e.CellStyle.BackColor = Color.FromArgb(254, 249, 195);
+                            e.CellStyle.ForeColor = Color.FromArgb(133, 77, 14);
+                            break;
+                        case "DaHuy":
+                            e.Value = "Đã hủy";
+                            e.CellStyle.BackColor = Color.FromArgb(254, 226, 226);
+                            e.CellStyle.ForeColor = Color.FromArgb(153, 27, 27);
+                            break;
+                    }
+                    e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+                    e.FormattingApplied = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in CellFormatting: {ex.Message}");
+            }
+        }
+        #endregion
+
+        #region Data Operations
+        private void LoadInvoices()
+        {
+            try
+            {
+                var invoices = HoaDonRepository.GetAllInvoices();
+                PopulateDataGridView(invoices);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tải danh sách hóa đơn: {ex.Message}",
+                       "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void SearchInvoices()
         {
             try
             {
-                var searchTerm = txtSearch.Text.Trim();
-                if (searchTerm == placeholderText) searchTerm = "";
-
-                var statusDisplay = cmbStatusFilter.SelectedItem?.ToString();
-                var fromDate = dtpFromDate.Value.Date;
-                var toDate = dtpToDate.Value.Date.AddDays(1);
-
-                string statusDb = statusDisplay;
-                if (statusDisplay == "Đã thanh toán")
-                    statusDb = "DaThanhToan";
-                else if (statusDisplay == "Chưa thanh toán")
-                    statusDb = "ChuaThanhToan";
-                else if (statusDisplay == "Đã hủy")
-                    statusDb = "DaHuy";
+                string searchTerm = GetSearchTerm();
+                string statusDb = GetStatusFilter();
+                DateTime fromDate = dtpFromDate.Value.Date;
+                DateTime toDate = dtpToDate.Value.Date.AddDays(1);
 
                 var invoices = HoaDonRepository.SearchInvoices(searchTerm, statusDb, fromDate, toDate);
-
-                dgvInvoices.Rows.Clear();
-                decimal totalAmount = 0;
-
-                foreach (var invoice in invoices)
-                {
-                    dgvInvoices.Rows.Add(
-                       invoice.HoaDonId,
-                       invoice.NgayLap.ToString("dd/MM/yyyy HH:mm"),
-                       invoice.TenNguoiMua,
-                       invoice.TongTien.ToString("N0") + " đ",
-                       invoice.TrangThai,
-                       invoice.NguoiLap
-                       );
-                    totalAmount += invoice.TongTien;
-                }
-                UpdateSummary(invoices.Count, totalAmount);
+                PopulateDataGridView(invoices);
             }
             catch (Exception ex)
             {
@@ -184,53 +221,71 @@ namespace book_management.UI.Controls
             }
         }
 
-        private void DgvInvoices_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void PopulateDataGridView(dynamic invoices)
         {
-            if (e.RowIndex < 0) return;
-            var hoaDonId = Convert.ToInt32(dgvInvoices.Rows[e.RowIndex].Cells["HoaDonId"].Value);
+            dgvInvoices.Rows.Clear();
+            decimal totalAmount = 0;
 
-            switch (dgvInvoices.Columns[e.ColumnIndex].Name)
+            foreach (var invoice in invoices)
             {
-                case "ViewDetail":
-                    ViewInvoiceDetail(hoaDonId);
-                    break;
-                case "Edit":
-                    EditInvoice(hoaDonId);
-                    break;
-                case "Delete":
-                    DeleteInvoice(hoaDonId);
-                    break;
+                var rowIndex = dgvInvoices.Rows.Add(
+                   invoice.HoaDonId,
+                   invoice.NgayLap.ToString("dd/MM/yyyy HH:mm"),
+                   invoice.TenNguoiMua,
+                   invoice.TongTien.ToString("N0") + " đ",
+                   invoice.TrangThai,
+                   invoice.NguoiLap
+                );
+
+                dgvInvoices.Rows[rowIndex].Tag = invoice.HoaDonId;
+                totalAmount += invoice.TongTien;
+            }
+
+            UpdateSummary(invoices.Count, totalAmount);
+        }
+
+        private void RefreshData()
+        {
+            txtSearch.Text = string.Empty;
+            TxtSearch_LostFocus(txtSearch, null);
+            cmbStatusFilter.SelectedIndex = 0;
+            dtpFromDate.Value = DateTime.Now.AddMonths(-1);
+            dtpToDate.Value = DateTime.Now;
+            LoadInvoices();
+        }
+        #endregion
+
+        #region Helper Methods
+        private string GetSearchTerm()
+        {
+            string searchTerm = txtSearch.Text.Trim();
+            return searchTerm == placeholderText ? "" : searchTerm;
+        }
+
+        private string GetStatusFilter()
+        {
+            string statusDisplay = cmbStatusFilter.SelectedItem?.ToString();
+            switch (statusDisplay)
+            {
+                case "Đã thanh toán":
+                    return "DaThanhToan";
+                case "Chưa thanh toán":
+                    return "ChuaThanhToan";
+                case "Đã hủy":
+                    return "DaHuy";
+                default:
+                    return statusDisplay;
             }
         }
 
-        private void DgvInvoices_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void UpdateSummary(int totalInvoices, decimal totalAmount)
         {
-            if (dgvInvoices.Columns[e.ColumnIndex].Name == "TrangThai" && e.Value != null)
-            {
-                var status = e.Value.ToString();
-                switch (status)
-                {
-                    case "DaThanhToan":
-                        e.Value = "Đã thanh toán";
-                        e.CellStyle.BackColor = Color.FromArgb(220, 252, 231);
-                        e.CellStyle.ForeColor = Color.FromArgb(22, 101, 52);
-                        break;
-                    case "ChuaThanhToan":
-                        e.Value = "Chưa thanh toán";
-                        e.CellStyle.BackColor = Color.FromArgb(254, 249, 195);
-                        e.CellStyle.ForeColor = Color.FromArgb(133, 77, 14);
-                        break;
-                    case "DaHuy":
-                        e.Value = "Đã hủy";
-                        e.CellStyle.BackColor = Color.FromArgb(254, 226, 226);
-                        e.CellStyle.ForeColor = Color.FromArgb(153, 27, 27);
-                        break;
-                }
-                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
-                e.FormattingApplied = true;
-            }
+            lblTotalInvoices.Text = $"Tổng số hóa đơn: {totalInvoices}";
+            lblTotalAmount.Text = $"Tổng doanh thu: {totalAmount:N0} đ";
         }
+        #endregion
 
+        #region Action Methods
         private void ViewInvoiceDetail(int hoaDonId)
         {
             try
@@ -257,7 +312,16 @@ namespace book_management.UI.Controls
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                MessageBox.Show("Chức năng sửa hóa đơn đang phát triển.");
+
+                using (var editForm = new EditInvoiceControl(hoaDonId))
+                {
+                    if (editForm.ShowDialog() == DialogResult.OK)
+                    {
+                        LoadInvoices();
+                        MessageBox.Show("Hóa đơn đã được cập nhật thành công!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -278,7 +342,7 @@ namespace book_management.UI.Controls
                     HoaDonRepository.DeleteInvoice(hoaDonId);
                     MessageBox.Show("Xóa hóa đơn thành công!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadInvoices(); // Tải lại dữ liệu
+                    LoadInvoices();
                 }
                 catch (Exception ex)
                 {
@@ -287,5 +351,13 @@ namespace book_management.UI.Controls
                 }
             }
         }
+        #endregion
+
+        #region Public Methods
+        public void RefreshInvoices()
+        {
+            LoadInvoices();
+        }
+        #endregion
     }
 }

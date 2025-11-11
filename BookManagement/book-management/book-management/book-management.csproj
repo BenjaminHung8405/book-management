@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Data\AdditionalRepositories.cs" />
     <Compile Include="Data\BookRepository.cs" />
+    <Compile Include="Data\CategoryRepository.cs" />
     <Compile Include="Data\ChiTietHoaDonRepository.cs" />
     <Compile Include="Data\CurrentUser.cs" />
     <Compile Include="Data\CustomerRepository.cs" />
@@ -83,10 +84,8 @@
     <Compile Include="Data\HoaDonRepository.cs" />
     <Compile Include="Data\KhuyenMaiRepository.cs" />
     <Compile Include="Data\Models\BookModels.cs" />
-    <Compile Include="Data\Models\ChiTietHoaDon.cs" />
-    <Compile Include="Data\Models\HoaDon.cs" />
-    <Compile Include="Data\Models\KhuyenMai.cs" />
     <Compile Include="Data\UserRepository.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="UI\Controls\BooksControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,6 +97,12 @@
     </Compile>
     <Compile Include="UI\Controls\CustomersControl.Designer.cs">
       <DependentUpon>CustomersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\EditInvoiceControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\EditInvoiceControl.Designer.cs">
+      <DependentUpon>EditInvoiceControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\InvoicesControl.cs">
       <SubType>UserControl</SubType>
@@ -113,6 +118,9 @@
     </Compile>
     <Compile Include="UI\Controls\OrderDetailForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\OrderDetailForm.Designer.cs">
+      <DependentUpon>OrderDetailForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\PurchaseHistoryControl.cs">
       <SubType>UserControl</SubType>
@@ -201,11 +209,17 @@
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Theme\AppColors.cs" />
+    <EmbeddedResource Include="UI\Controls\BooksControl.resx">
+      <DependentUpon>BooksControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\CustomersControl.resx">
       <DependentUpon>CustomersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\DashboardControl.resx">
       <DependentUpon>DashboardControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\InvoicesControl.resx">
+      <DependentUpon>InvoicesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\PurchaseHistoryControl.resx">
       <DependentUpon>PurchaseHistoryControl.cs</DependentUpon>

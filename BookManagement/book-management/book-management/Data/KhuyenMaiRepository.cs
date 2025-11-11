@@ -4,10 +4,9 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using book_management.Data.Models;
+using book_management.Data;
+using book_management.Models;
 
-namespace book_management.Data
-{
 namespace book_management.DataAccess
     {
         public static class KhuyenMaiRepository
@@ -53,4 +52,3 @@ namespace book_management.DataAccess
             }
         }
     }
-}

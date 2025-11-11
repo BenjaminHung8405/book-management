@@ -111,7 +111,6 @@ namespace book_management.Data
                 using (var connection = DatabaseConnection.GetConnection())
                 {
                     connection.Open();
-                    // Sửa lại câu SQL để lấy đúng 4 mục trên UI
                     string query = @"
                         SELECT 
                             -- 1. Doanh thu hôm nay

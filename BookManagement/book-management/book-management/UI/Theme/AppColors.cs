@@ -1,5 +1,4 @@
 using System.Drawing;
-
 namespace book_management.UI.Theme
 {
     public static class AppColors

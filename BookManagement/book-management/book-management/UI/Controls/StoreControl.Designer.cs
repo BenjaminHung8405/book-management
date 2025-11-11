@@ -43,7 +43,7 @@
             this.panelOrderFooter = new System.Windows.Forms.Panel();
             this.tableLayoutPanelButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancelOrder = new System.Windows.Forms.Button();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.ibtnThanhToan = new FontAwesome.Sharp.IconButton();
             this.panelTotals = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblTotalValue = new System.Windows.Forms.Label();
@@ -55,6 +55,7 @@
             this.lblSubtotal = new System.Windows.Forms.Label();
             this.lblSubtotalLabel = new System.Windows.Forms.Label();
             this.panelOrderHeader = new System.Windows.Forms.Panel();
+            this.rtbAddressDelivery = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCustomerInfo = new System.Windows.Forms.Label();
             this.lblCustomerName = new System.Windows.Forms.Label();
@@ -62,6 +63,7 @@
             this.txtCustomerSearch = new System.Windows.Forms.TextBox();
             this.btnAddCustomer = new FontAwesome.Sharp.IconButton();
             this.lblOrderId = new System.Windows.Forms.Label();
+            this.btnSearchCustomer = new FontAwesome.Sharp.IconButton();
             this.panelBookSelection.SuspendLayout();
             this.panelSearchBook.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -160,18 +162,18 @@
             // 
             // dgvCart
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -179,9 +181,9 @@
             this.dgvCart.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCart.Location = new System.Drawing.Point(19, 19);
             this.dgvCart.Name = "dgvCart";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -219,7 +221,7 @@
             this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelButtons.Controls.Add(this.btnCancelOrder, 0, 0);
-            this.tableLayoutPanelButtons.Controls.Add(this.iconButton1, 1, 0);
+            this.tableLayoutPanelButtons.Controls.Add(this.ibtnThanhToan, 1, 0);
             this.tableLayoutPanelButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelButtons.Location = new System.Drawing.Point(16, 116);
             this.tableLayoutPanelButtons.Margin = new System.Windows.Forms.Padding(0, 16, 0, 0);
@@ -243,24 +245,25 @@
             this.btnCancelOrder.Text = "Hủy";
             this.btnCancelOrder.UseVisualStyleBackColor = false;
             // 
-            // iconButton1
+            // ibtnThanhToan
             // 
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
-            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.iconButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
-            this.iconButton1.ForeColor = System.Drawing.Color.White;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.MoneyBillTransfer;
-            this.iconButton1.IconColor = System.Drawing.Color.White;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 35;
-            this.iconButton1.Location = new System.Drawing.Point(245, 0);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(230, 36);
-            this.iconButton1.TabIndex = 1;
-            this.iconButton1.Text = "Thanh Toán";
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
+            this.ibtnThanhToan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
+            this.ibtnThanhToan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ibtnThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
+            this.ibtnThanhToan.ForeColor = System.Drawing.Color.White;
+            this.ibtnThanhToan.IconChar = FontAwesome.Sharp.IconChar.MoneyBillTransfer;
+            this.ibtnThanhToan.IconColor = System.Drawing.Color.White;
+            this.ibtnThanhToan.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnThanhToan.IconSize = 35;
+            this.ibtnThanhToan.Location = new System.Drawing.Point(245, 0);
+            this.ibtnThanhToan.Margin = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this.ibtnThanhToan.Name = "ibtnThanhToan";
+            this.ibtnThanhToan.Size = new System.Drawing.Size(230, 36);
+            this.ibtnThanhToan.TabIndex = 1;
+            this.ibtnThanhToan.Text = "Thanh Toán";
+            this.ibtnThanhToan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.ibtnThanhToan.UseVisualStyleBackColor = false;
+            this.ibtnThanhToan.Click += new System.EventHandler(this.ibtnThanhToan_Click);
             // 
             // panelTotals
             // 
@@ -382,6 +385,7 @@
             // panelOrderHeader
             // 
             this.panelOrderHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelOrderHeader.Controls.Add(this.rtbAddressDelivery);
             this.panelOrderHeader.Controls.Add(this.label1);
             this.panelOrderHeader.Controls.Add(this.lblCustomerInfo);
             this.panelOrderHeader.Controls.Add(this.lblCustomerName);
@@ -393,6 +397,15 @@
             this.panelOrderHeader.Padding = new System.Windows.Forms.Padding(16);
             this.panelOrderHeader.Size = new System.Drawing.Size(509, 210);
             this.panelOrderHeader.TabIndex = 0;
+            // 
+            // rtbAddressDelivery
+            // 
+            this.rtbAddressDelivery.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.rtbAddressDelivery.Location = new System.Drawing.Point(18, 151);
+            this.rtbAddressDelivery.Name = "rtbAddressDelivery";
+            this.rtbAddressDelivery.Size = new System.Drawing.Size(433, 38);
+            this.rtbAddressDelivery.TabIndex = 5;
+            this.rtbAddressDelivery.Text = "";
             // 
             // label1
             // 
@@ -408,11 +421,11 @@
             // 
             this.lblCustomerInfo.AutoSize = true;
             this.lblCustomerInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.lblCustomerInfo.Location = new System.Drawing.Point(120, 95);
+            this.lblCustomerInfo.Location = new System.Drawing.Point(110, 95);
             this.lblCustomerInfo.Name = "lblCustomerInfo";
-            this.lblCustomerInfo.Size = new System.Drawing.Size(51, 20);
+            this.lblCustomerInfo.Size = new System.Drawing.Size(170, 20);
             this.lblCustomerInfo.TabIndex = 0;
-            this.lblCustomerInfo.Text = "label1";
+            this.lblCustomerInfo.Text = "Thông tin khách hàng..";
             // 
             // lblCustomerName
             // 
@@ -427,6 +440,7 @@
             // 
             // panelCustomerSearch
             // 
+            this.panelCustomerSearch.Controls.Add(this.btnSearchCustomer);
             this.panelCustomerSearch.Controls.Add(this.txtCustomerSearch);
             this.panelCustomerSearch.Controls.Add(this.btnAddCustomer);
             this.panelCustomerSearch.Dock = System.Windows.Forms.DockStyle.Top;
@@ -470,9 +484,26 @@
             this.lblOrderId.Margin = new System.Windows.Forms.Padding(0, 0, 0, 16);
             this.lblOrderId.Name = "lblOrderId";
             this.lblOrderId.Padding = new System.Windows.Forms.Padding(0, 0, 0, 16);
-            this.lblOrderId.Size = new System.Drawing.Size(131, 36);
+            this.lblOrderId.Size = new System.Drawing.Size(217, 36);
             this.lblOrderId.TabIndex = 0;
-            this.lblOrderId.Text = "Hóa Đơn #HD1";
+            this.lblOrderId.Text = "Tìm kiếm SDT khách hàng\r\n";
+            // 
+            // btnSearchCustomer
+            // 
+            this.btnSearchCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnSearchCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnSearchCustomer.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnSearchCustomer.IconColor = System.Drawing.Color.White;
+            this.btnSearchCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSearchCustomer.IconSize = 16;
+            this.btnSearchCustomer.Location = new System.Drawing.Point(355, 0);
+            this.btnSearchCustomer.Name = "btnSearchCustomer";
+            this.btnSearchCustomer.Size = new System.Drawing.Size(80, 35);
+            this.btnSearchCustomer.TabIndex = 3;
+            this.btnSearchCustomer.Text = "Tìm";
+            this.btnSearchCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSearchCustomer.UseVisualStyleBackColor = false;
+            this.btnSearchCustomer.Click += new System.EventHandler(this.btnSearchCustomer_Click);
             // 
             // StoreControl
             // 
@@ -539,11 +570,13 @@
         private System.Windows.Forms.Label lblTotalLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelButtons;
         private System.Windows.Forms.Button btnCancelOrder;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton ibtnThanhToan;
         private System.Windows.Forms.DataGridView dgvCart;
         private System.Windows.Forms.Label lblSubtotal;
         private System.Windows.Forms.Label lblCustomerInfo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbPromotions;
+        private System.Windows.Forms.RichTextBox rtbAddressDelivery;
+        private FontAwesome.Sharp.IconButton btnSearchCustomer;
     }
 }

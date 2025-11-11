@@ -98,7 +98,7 @@ namespace book_management.Data
                 using (var connection = DatabaseConnection.GetConnection())
                 {
                     connection.Open();
-
+    
                     string query = @"
     UPDATE TacGia 
     SET ten_tacgia = @TenTacGia,

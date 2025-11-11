@@ -351,5 +351,41 @@ namespace book_management.DataAccess
 
             return 0; // Trả về 0 nếu không tìm thấy hoặc có lỗi
         }
+
+        /// <summary>
+        /// Cập nhật thông tin hóa đơn
+        /// </summary>
+        /// <param name="hoaDon">Thông tin hóa đơn cần cập nhật</param>
+        /// <returns>True nếu cập nhật thành công, False nếu thất bại</returns>
+        public static bool UpdateInvoice(HoaDon hoaDon)
+        {
+            try
+            {
+                using (var conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    var cmd = new SqlCommand(@"
+           UPDATE HoaDon 
+      SET ngay_lap = @NgayLap,
+       ten_khach_vang_lai = @TenKhachVangLai,
+   tong_tien = @TongTien,
+  trang_thai = @TrangThai
+            WHERE hoadon_id = @HoaDonId", conn);
+
+                    cmd.Parameters.AddWithValue("@HoaDonId", hoaDon.HoaDonId);
+                    cmd.Parameters.AddWithValue("@NgayLap", hoaDon.NgayLap);
+                    cmd.Parameters.AddWithValue("@TenKhachVangLai", (object)hoaDon.TenNguoiMua ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@TongTien", hoaDon.TongTien);
+                    cmd.Parameters.AddWithValue("@TrangThai", hoaDon.TrangThai);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi cập nhật hóa đơn: " + ex.Message);
+            }
+        }
     }
 }

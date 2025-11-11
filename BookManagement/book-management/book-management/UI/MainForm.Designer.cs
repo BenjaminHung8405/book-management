@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelSidebar = new System.Windows.Forms.Panel();
+            this.btnCustomer = new FontAwesome.Sharp.IconButton();
             this.btnBooks = new FontAwesome.Sharp.IconButton();
             this.btnUser = new FontAwesome.Sharp.IconButton();
             this.btnReport = new FontAwesome.Sharp.IconButton();
@@ -43,7 +44,6 @@
             this.lbUsername = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
             this.iconDropDownMenuProfile = new FontAwesome.Sharp.IconDropDownButton();
-            this.btnCustomer = new FontAwesome.Sharp.IconButton();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelSidebar.SuspendLayout();
@@ -105,6 +105,28 @@
             this.panelSidebar.Padding = new System.Windows.Forms.Padding(12, 14, 12, 14);
             this.panelSidebar.Size = new System.Drawing.Size(250, 830);
             this.panelSidebar.TabIndex = 2;
+            // 
+            // btnCustomer
+            // 
+            this.btnCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnCustomer.IconChar = FontAwesome.Sharp.IconChar.UserTag;
+            this.btnCustomer.IconColor = System.Drawing.Color.White;
+            this.btnCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCustomer.IconSize = 36;
+            this.btnCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCustomer.Location = new System.Drawing.Point(12, 630);
+            this.btnCustomer.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
+            this.btnCustomer.Name = "btnCustomer";
+            this.btnCustomer.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.btnCustomer.Size = new System.Drawing.Size(224, 63);
+            this.btnCustomer.TabIndex = 2;
+            this.btnCustomer.Text = "Khách hàng";
+            this.btnCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCustomer.UseVisualStyleBackColor = false;
+            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
             // btnBooks
             // 
@@ -299,27 +321,6 @@
             this.iconDropDownMenuProfile.Name = "iconDropDownMenuProfile";
             this.iconDropDownMenuProfile.Size = new System.Drawing.Size(23, 23);
             this.iconDropDownMenuProfile.Text = "iconDropDownButton1";
-            // 
-            // btnCustomer
-            // 
-            this.btnCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.btnCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnCustomer.IconChar = FontAwesome.Sharp.IconChar.UserTag;
-            this.btnCustomer.IconColor = System.Drawing.Color.White;
-            this.btnCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCustomer.IconSize = 36;
-            this.btnCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCustomer.Location = new System.Drawing.Point(12, 630);
-            this.btnCustomer.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
-            this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.btnCustomer.Size = new System.Drawing.Size(224, 63);
-            this.btnCustomer.TabIndex = 2;
-            this.btnCustomer.Text = "Khách hàng";
-            this.btnCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCustomer.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 

@@ -318,5 +318,11 @@ namespace book_management.UI
             // Kích hoạt (highlight) nút Bán Hàng
             ActivateButton(btnSales);
         }
+
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            LoadControl(new CustomersControl());
+            ActivateButton(btnCustomer);
+        }
     }
 }

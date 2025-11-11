@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace book_management.Data.Models
+namespace book_management.Models
 {
     public class TacGia
     {
@@ -84,11 +84,12 @@ namespace book_management.Data.Models
         public int HoaDonId { get; set; }
         public int? UserId { get; set; }
         public int? KhId { get; set; }
-        public string TenKhachVangLai { get; set; }
+        public string TenNguoiMua{ get; set; }
         public DateTime NgayLap { get; set; }
         public decimal TongTien { get; set; }
         public string TrangThai { get; set; }
-
+        public string DiaChiGiaoHang { get; set; }
+        public string NguoiLap { get; set; }
         // Navigation properties
         public NguoiDung NguoiDung { get; set; }
         public KhachHang KhachHang { get; set; }
@@ -98,11 +99,16 @@ namespace book_management.Data.Models
     public class ChiTietHoaDon
     {
         public int CthdId { get; set; }
+
         public int HoaDonId { get; set; }
         public int SachId { get; set; }
+
+        public int? KhuyenMaiId { get; set; }
+
+        public string TenSach { get; set; }
+
         public int SoLuong { get; set; }
         public decimal DonGia { get; set; }
-        public int? KhuyenMaiId { get; set; }
         public decimal TienGiam { get; set; }
         public decimal ThanhTien { get; set; }
 

@@ -11,7 +11,7 @@ using book_management.Data; // Thư viện cho DashboardRepository
 using book_management.DataAccess; // Thư viện cho ChiTietHoaDonRepository
 using book_management.Models;
 using book_management.UI.Modal; // Thư viện cho Model ChiTietHoaDon
-using FontAwesome.Sharp; // Thêm thư viện này
+using FontAwesome.Sharp;
 
 namespace book_management.UI.Controls
 {
@@ -28,7 +28,7 @@ namespace book_management.UI.Controls
         {
             try
             {
-                // Toàn bộ logic tải dữ liệu phải nằm ở đây
+                // Toàn bộ logic tải dữ liệu 
                 LoadRevenueChart();
                 StyleDataGridView();
                 LoadRecentSales();

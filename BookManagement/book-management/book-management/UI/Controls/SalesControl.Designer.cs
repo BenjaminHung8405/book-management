@@ -198,6 +198,7 @@
             // dgvCart
             // 
             this.dgvCart.AllowUserToAddRows = false;
+            this.dgvCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvCart.AllowUserToDeleteRows = false;
             this.dgvCart.BackgroundColor = System.Drawing.Color.White;
             this.dgvCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -206,7 +207,7 @@
             this.dgvCart.Location = new System.Drawing.Point(15, 85);
             this.dgvCart.Name = "dgvCart";
             this.dgvCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCart.Size = new System.Drawing.Size(486, 375);
+            this.dgvCart.Size = new System.Drawing.Size(600,600);
             this.dgvCart.TabIndex = 1;
             this.dgvCart.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCart_CellValueChanged);
             // 
