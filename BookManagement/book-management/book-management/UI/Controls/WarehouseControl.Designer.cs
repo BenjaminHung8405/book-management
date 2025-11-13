@@ -33,18 +33,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.cmbNXBFilter = new System.Windows.Forms.ComboBox();
-            this.txtSearchBook = new System.Windows.Forms.TextBox();
+            this.txtSearchWareHouse = new System.Windows.Forms.TextBox();
             this.btnAddImport = new FontAwesome.Sharp.IconButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dtpToDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
             this.panelTopBar = new System.Windows.Forms.Panel();
             this.flowPaginationButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.lblPageInfo = new System.Windows.Forms.Label();
             this.panelPagination = new System.Windows.Forms.Panel();
             this.panelMainContent = new System.Windows.Forms.Panel();
             this.dgvImports = new System.Windows.Forms.DataGridView();
-            this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
-            this.dtpToDate = new System.Windows.Forms.DateTimePicker();
             this.colMaPN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNXB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,28 +57,18 @@
             this.panelMainContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvImports)).BeginInit();
             this.SuspendLayout();
+           
             // 
-            // cmbNXBFilter
+            // txtSearchWareHouse
             // 
-            this.cmbNXBFilter.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cmbNXBFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbNXBFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.cmbNXBFilter.FormattingEnabled = true;
-            this.cmbNXBFilter.Location = new System.Drawing.Point(895, 13);
-            this.cmbNXBFilter.Name = "cmbNXBFilter";
-            this.cmbNXBFilter.Size = new System.Drawing.Size(172, 33);
-            this.cmbNXBFilter.TabIndex = 3;
-            // 
-            // txtSearchBook
-            // 
-            this.txtSearchBook.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSearchBook.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSearchBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.txtSearchBook.Location = new System.Drawing.Point(3, 14);
-            this.txtSearchBook.Name = "txtSearchBook";
-            this.txtSearchBook.Size = new System.Drawing.Size(530, 31);
-            this.txtSearchBook.TabIndex = 0;
+            this.txtSearchWareHouse.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtSearchWareHouse.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearchWareHouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchWareHouse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.txtSearchWareHouse.Location = new System.Drawing.Point(3, 14);
+            this.txtSearchWareHouse.Name = "txtSearchWareHouse";
+            this.txtSearchWareHouse.Size = new System.Drawing.Size(530, 31);
+            this.txtSearchWareHouse.TabIndex = 0;
             // 
             // btnAddImport
             // 
@@ -109,9 +98,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel1.Controls.Add(this.dtpToDate, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtSearchBook, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtSearchWareHouse, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnAddImport, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.cmbNXBFilter, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.dtpFromDate, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -120,6 +108,28 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1252, 60);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // dtpToDate
+            // 
+            this.dtpToDate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtpToDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpToDate.Location = new System.Drawing.Point(717, 14);
+            this.dtpToDate.Name = "dtpToDate";
+            this.dtpToDate.Size = new System.Drawing.Size(172, 31);
+            this.dtpToDate.TabIndex = 6;
+            // 
+            // dtpFromDate
+            // 
+            this.dtpFromDate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dtpFromDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFromDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFromDate.Location = new System.Drawing.Point(539, 14);
+            this.dtpFromDate.Name = "dtpFromDate";
+            this.dtpFromDate.Size = new System.Drawing.Size(172, 31);
+            this.dtpFromDate.TabIndex = 5;
             // 
             // panelTopBar
             // 
@@ -225,28 +235,6 @@
             this.dgvImports.Size = new System.Drawing.Size(1252, 622);
             this.dgvImports.TabIndex = 3;
             // 
-            // dtpFromDate
-            // 
-            this.dtpFromDate.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dtpFromDate.CalendarFont = new System.Drawing.Font("Roboto Lt", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFromDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFromDate.Location = new System.Drawing.Point(539, 14);
-            this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Size = new System.Drawing.Size(172, 31);
-            this.dtpFromDate.TabIndex = 5;
-            // 
-            // dtpToDate
-            // 
-            this.dtpToDate.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dtpToDate.CalendarFont = new System.Drawing.Font("Roboto Lt", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpToDate.Location = new System.Drawing.Point(717, 14);
-            this.dtpToDate.Name = "dtpToDate";
-            this.dtpToDate.Size = new System.Drawing.Size(172, 31);
-            this.dtpToDate.TabIndex = 6;
-            // 
             // colMaPN
             // 
             this.colMaPN.DataPropertyName = "pn_id";
@@ -331,6 +319,7 @@
             this.Name = "WarehouseControl";
             this.Padding = new System.Windows.Forms.Padding(24);
             this.Size = new System.Drawing.Size(1350, 830);
+            this.Load += new System.EventHandler(this.WarehouseControl_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panelTopBar.ResumeLayout(false);
@@ -344,8 +333,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmbNXBFilter;
-        private System.Windows.Forms.TextBox txtSearchBook;
+        private System.Windows.Forms.TextBox txtSearchWareHouse;
         private FontAwesome.Sharp.IconButton btnAddImport;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panelTopBar;

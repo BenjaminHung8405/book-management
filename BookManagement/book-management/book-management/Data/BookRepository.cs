@@ -79,7 +79,7 @@ namespace book_management.Data
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi l?y danh sách sách: {ex.Message}", ex);
+                throw new Exception($"Loi khi lay danh sách sách: {ex.Message}", ex);
             }
 
             return books;
@@ -99,34 +99,34 @@ namespace book_management.Data
                     connection.Open();
 
                     string query = @"
-  SELECT DISTINCT
-             s.sach_id,
-     s.ten_sach,
-     s.gia,
-     s.so_luong,
-      s.anh_bia_url,
-    s.nam_xuat_ban,
-    s.so_trang,
-  s.mo_ta,
-             s.ngon_ngu,
-      s.trang_thai,
-   s.nxb_id,
-   n.ten_nxb,
-      STUFF((
-        SELECT ', ' + tg.ten_tacgia
-       FROM Sach_TacGia st
-       INNER JOIN TacGia tg ON st.tacgia_id = tg.tacgia_id
-    WHERE st.sach_id = s.sach_id
-     FOR XML PATH('')), 1, 2, '') AS tacgia_names,
-       STUFF((
-        SELECT ', ' + tl.ten_theloai
-     FROM Sach_TheLoai stl
-      INNER JOIN TheLoai tl ON stl.theloai_id = tl.theloai_id
-               WHERE stl.sach_id = s.sach_id
-           FOR XML PATH('')), 1, 2, '') AS theloai_names
-    FROM Sach s
-       INNER JOIN NhaXuatBan n ON s.nxb_id = n.nxb_id
-            WHERE s.sach_id = @SachId";
+                     SELECT DISTINCT
+                         s.sach_id,
+                         s.ten_sach,
+                         s.gia,
+                         s.so_luong,
+                         s.anh_bia_url,
+                         s.nam_xuat_ban,
+                         s.so_trang,
+                         s.mo_ta,
+                         s.ngon_ngu,
+                         s.trang_thai,
+                         s.nxb_id,
+                         n.ten_nxb,
+                     STUFF((
+                     SELECT ', ' + tg.ten_tacgia
+                     FROM Sach_TacGia st
+                     INNER JOIN TacGia tg ON st.tacgia_id = tg.tacgia_id
+                     WHERE st.sach_id = s.sach_id
+                     FOR XML PATH('')), 1, 2, '') AS tacgia_names,
+                     STUFF((
+                     SELECT ', ' + tl.ten_theloai
+                     FROM Sach_TheLoai stl
+                     INNER JOIN TheLoai tl ON stl.theloai_id = tl.theloai_id
+                     WHERE stl.sach_id = s.sach_id
+                     FOR XML PATH('')), 1, 2, '') AS theloai_names
+                     FROM Sach s
+                     INNER JOIN NhaXuatBan n ON s.nxb_id = n.nxb_id
+                     WHERE s.sach_id = @SachId";
 
                     using (var command = new SqlCommand(query, connection))
                     {

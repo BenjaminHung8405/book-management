@@ -81,22 +81,26 @@
     <Compile Include="Data\DatabaseTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Data\PublisherRepository.cs" />
+    <Compile Include="UI\Controls\EditWareHouseControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\EditWareHouseControl.Designer.cs">
+      <DependentUpon>EditWareHouseControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\HoaDonRepository.cs" />
     <Compile Include="Data\KhuyenMaiRepository.cs" />
     <Compile Include="Data\Models\BookModels.cs" />
     <Compile Include="Data\UserRepository.cs" />
+    <Compile Include="Data\WareHouseDetailRepository.cs" />
+    <Compile Include="Data\WareHouseRepository.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Service\BookSearchService.cs" />
     <Compile Include="UI\Controls\BooksControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UI\Controls\BooksControl.Designer.cs">
       <DependentUpon>BooksControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Controls\CustomersControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\Controls\CustomersControl.Designer.cs">
-      <DependentUpon>CustomersControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Controls\EditInvoiceControl.cs">
       <SubType>Form</SubType>
@@ -170,6 +174,12 @@
     <Compile Include="UI\Controls\UsersControl.Designer.cs">
       <DependentUpon>UsersControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Controls\VoucherControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Controls\VoucherControl.Designer.cs">
+      <DependentUpon>VoucherControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Controls\WarehouseControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -208,12 +218,21 @@
     <Compile Include="UI\Modal\frmAddEditUser.Designer.cs">
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Modal\frmAddImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Modal\frmAddImport.Designer.cs">
+      <DependentUpon>frmAddImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Modal\frmAddVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Modal\frmAddVoucher.Designer.cs">
+      <DependentUpon>frmAddVoucher.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\Theme\AppColors.cs" />
     <EmbeddedResource Include="UI\Controls\BooksControl.resx">
       <DependentUpon>BooksControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Controls\CustomersControl.resx">
-      <DependentUpon>CustomersControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\DashboardControl.resx">
       <DependentUpon>DashboardControl.cs</DependentUpon>
@@ -235,6 +254,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\UsersControl.resx">
       <DependentUpon>UsersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\VoucherControl.resx">
+      <DependentUpon>VoucherControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\WarehouseControl.resx">
+      <DependentUpon>WarehouseControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -260,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Modal\frmAddEditUser.resx">
       <DependentUpon>frmAddEditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Modal\frmAddImport.resx">
+      <DependentUpon>frmAddImport.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

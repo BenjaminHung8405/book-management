@@ -34,8 +34,8 @@
             this.panelBookSelection = new System.Windows.Forms.Panel();
             this.flowPanelBooks = new System.Windows.Forms.FlowLayoutPanel();
             this.panelSearchBook = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.txtSearchBook = new System.Windows.Forms.TextBox();
+            this.iconSearchBook = new FontAwesome.Sharp.IconPictureBox();
             this.panelOrderDetails = new System.Windows.Forms.Panel();
             this.flowPanelOrderItems = new System.Windows.Forms.FlowLayoutPanel();
             this.dgvCart = new System.Windows.Forms.DataGridView();
@@ -60,13 +60,13 @@
             this.lblCustomerInfo = new System.Windows.Forms.Label();
             this.lblCustomerName = new System.Windows.Forms.Label();
             this.panelCustomerSearch = new System.Windows.Forms.Panel();
+            this.btnSearchCustomer = new FontAwesome.Sharp.IconButton();
             this.txtCustomerSearch = new System.Windows.Forms.TextBox();
             this.btnAddCustomer = new FontAwesome.Sharp.IconButton();
             this.lblOrderId = new System.Windows.Forms.Label();
-            this.btnSearchCustomer = new FontAwesome.Sharp.IconButton();
             this.panelBookSelection.SuspendLayout();
             this.panelSearchBook.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconSearchBook)).BeginInit();
             this.panelOrderDetails.SuspendLayout();
             this.flowPanelOrderItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
@@ -103,8 +103,8 @@
             // 
             this.panelSearchBook.BackColor = System.Drawing.Color.White;
             this.panelSearchBook.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelSearchBook.Controls.Add(this.textBox1);
-            this.panelSearchBook.Controls.Add(this.iconPictureBox1);
+            this.panelSearchBook.Controls.Add(this.txtSearchBook);
+            this.panelSearchBook.Controls.Add(this.iconSearchBook);
             this.panelSearchBook.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelSearchBook.Location = new System.Drawing.Point(0, 0);
             this.panelSearchBook.Name = "panelSearchBook";
@@ -112,26 +112,28 @@
             this.panelSearchBook.Size = new System.Drawing.Size(767, 40);
             this.panelSearchBook.TabIndex = 2;
             // 
-            // textBox1
+            // txtSearchBook
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(40, 8);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(714, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtSearchBook.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearchBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtSearchBook.Location = new System.Drawing.Point(40, 8);
+            this.txtSearchBook.Name = "txtSearchBook";
+            this.txtSearchBook.Size = new System.Drawing.Size(714, 26);
+            this.txtSearchBook.TabIndex = 1;
             // 
-            // iconPictureBox1
+            // iconSearchBook
             // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.Location = new System.Drawing.Point(2, 2);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.iconPictureBox1.TabIndex = 0;
-            this.iconPictureBox1.TabStop = false;
+            this.iconSearchBook.BackColor = System.Drawing.Color.White;
+            this.iconSearchBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.iconSearchBook.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.iconSearchBook.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.iconSearchBook.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconSearchBook.Location = new System.Drawing.Point(2, 2);
+            this.iconSearchBook.Name = "iconSearchBook";
+            this.iconSearchBook.Size = new System.Drawing.Size(32, 32);
+            this.iconSearchBook.TabIndex = 0;
+            this.iconSearchBook.TabStop = false;
+            this.iconSearchBook.Click += new System.EventHandler(this.iconSearchBook_Click);
             // 
             // panelOrderDetails
             // 
@@ -181,15 +183,8 @@
             this.dgvCart.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCart.Location = new System.Drawing.Point(19, 19);
             this.dgvCart.Name = "dgvCart";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCart.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvCart.Size = new System.Drawing.Size(473, 261);
+            this.dgvCart.Size = new System.Drawing.Size(600, 400);
+            this.dgvCart.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgvCart.TabIndex = 0;
             // 
             // cmbPromotions
@@ -263,7 +258,6 @@
             this.ibtnThanhToan.Text = "Thanh Toán";
             this.ibtnThanhToan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ibtnThanhToan.UseVisualStyleBackColor = false;
-            this.ibtnThanhToan.Click += new System.EventHandler(this.ibtnThanhToan_Click);
             // 
             // panelTotals
             // 
@@ -451,6 +445,23 @@
             this.panelCustomerSearch.Size = new System.Drawing.Size(475, 43);
             this.panelCustomerSearch.TabIndex = 1;
             // 
+            // btnSearchCustomer
+            // 
+            this.btnSearchCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnSearchCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnSearchCustomer.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnSearchCustomer.IconColor = System.Drawing.Color.White;
+            this.btnSearchCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSearchCustomer.IconSize = 16;
+            this.btnSearchCustomer.Location = new System.Drawing.Point(355, 0);
+            this.btnSearchCustomer.Name = "btnSearchCustomer";
+            this.btnSearchCustomer.Size = new System.Drawing.Size(80, 35);
+            this.btnSearchCustomer.TabIndex = 3;
+            this.btnSearchCustomer.Text = "Tìm";
+            this.btnSearchCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSearchCustomer.UseVisualStyleBackColor = false;
+            this.btnSearchCustomer.Click += new System.EventHandler(this.btnSearchCustomer_Click);
+            // 
             // txtCustomerSearch
             // 
             this.txtCustomerSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -488,23 +499,6 @@
             this.lblOrderId.TabIndex = 0;
             this.lblOrderId.Text = "Tìm kiếm SDT khách hàng\r\n";
             // 
-            // btnSearchCustomer
-            // 
-            this.btnSearchCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.btnSearchCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnSearchCustomer.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnSearchCustomer.IconColor = System.Drawing.Color.White;
-            this.btnSearchCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSearchCustomer.IconSize = 16;
-            this.btnSearchCustomer.Location = new System.Drawing.Point(355, 0);
-            this.btnSearchCustomer.Name = "btnSearchCustomer";
-            this.btnSearchCustomer.Size = new System.Drawing.Size(80, 35);
-            this.btnSearchCustomer.TabIndex = 3;
-            this.btnSearchCustomer.Text = "Tìm";
-            this.btnSearchCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSearchCustomer.UseVisualStyleBackColor = false;
-            this.btnSearchCustomer.Click += new System.EventHandler(this.btnSearchCustomer_Click);
-            // 
             // StoreControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -518,11 +512,10 @@
             this.Name = "StoreControl";
             this.Padding = new System.Windows.Forms.Padding(24);
             this.Size = new System.Drawing.Size(1350, 830);
-            this.Load += new System.EventHandler(this.StoreControl_Load_1);
             this.panelBookSelection.ResumeLayout(false);
             this.panelSearchBook.ResumeLayout(false);
             this.panelSearchBook.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.iconSearchBook)).EndInit();
             this.panelOrderDetails.ResumeLayout(false);
             this.flowPanelOrderItems.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).EndInit();
@@ -548,8 +541,8 @@
         private System.Windows.Forms.Panel panelBookSelection;
         private System.Windows.Forms.FlowLayoutPanel flowPanelBooks;
         private System.Windows.Forms.Panel panelSearchBook;
-        private System.Windows.Forms.TextBox textBox1;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private System.Windows.Forms.TextBox txtSearchBook;
+        private FontAwesome.Sharp.IconPictureBox iconSearchBook;
         private System.Windows.Forms.Panel panelOrderDetails;
         private System.Windows.Forms.FlowLayoutPanel flowPanelOrderItems;
         private System.Windows.Forms.Panel panelOrderFooter;

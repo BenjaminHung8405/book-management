@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelHeader = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelSidebar = new System.Windows.Forms.Panel();
-            this.btnCustomer = new FontAwesome.Sharp.IconButton();
+            this.btnVoucher = new FontAwesome.Sharp.IconButton();
             this.btnBooks = new FontAwesome.Sharp.IconButton();
             this.btnUser = new FontAwesome.Sharp.IconButton();
-            this.btnReport = new FontAwesome.Sharp.IconButton();
-            this.btnInvoice = new FontAwesome.Sharp.IconButton();
+            this.btnWarehouse = new FontAwesome.Sharp.IconButton();
             this.btnSales = new FontAwesome.Sharp.IconButton();
             this.btnDashboard = new FontAwesome.Sharp.IconButton();
             this.pnUser = new System.Windows.Forms.Panel();
             this.lbRole = new System.Windows.Forms.Label();
             this.lbUsername = new System.Windows.Forms.Label();
+            this.btnInvoice = new FontAwesome.Sharp.IconButton();
             this.panelContent = new System.Windows.Forms.Panel();
             this.iconDropDownMenuProfile = new FontAwesome.Sharp.IconDropDownButton();
             this.panelHeader.SuspendLayout();
@@ -77,7 +78,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::book_management.Properties.Resources.logo;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.pictureBox1.Name = "pictureBox1";
@@ -90,11 +91,11 @@
             // 
             this.panelSidebar.BackColor = System.Drawing.Color.White;
             this.panelSidebar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelSidebar.Controls.Add(this.btnCustomer);
+            this.panelSidebar.Controls.Add(this.btnInvoice);
+            this.panelSidebar.Controls.Add(this.btnVoucher);
             this.panelSidebar.Controls.Add(this.btnBooks);
             this.panelSidebar.Controls.Add(this.btnUser);
-            this.panelSidebar.Controls.Add(this.btnReport);
-            this.panelSidebar.Controls.Add(this.btnInvoice);
+            this.panelSidebar.Controls.Add(this.btnWarehouse);
             this.panelSidebar.Controls.Add(this.btnSales);
             this.panelSidebar.Controls.Add(this.btnDashboard);
             this.panelSidebar.Controls.Add(this.pnUser);
@@ -106,27 +107,27 @@
             this.panelSidebar.Size = new System.Drawing.Size(250, 830);
             this.panelSidebar.TabIndex = 2;
             // 
-            // btnCustomer
+            // btnVoucher
             // 
-            this.btnCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.btnCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnCustomer.IconChar = FontAwesome.Sharp.IconChar.UserTag;
-            this.btnCustomer.IconColor = System.Drawing.Color.White;
-            this.btnCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCustomer.IconSize = 36;
-            this.btnCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCustomer.Location = new System.Drawing.Point(12, 630);
-            this.btnCustomer.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
-            this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.btnCustomer.Size = new System.Drawing.Size(224, 63);
-            this.btnCustomer.TabIndex = 2;
-            this.btnCustomer.Text = "Khách hàng";
-            this.btnCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCustomer.UseVisualStyleBackColor = false;
-            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
+            this.btnVoucher.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnVoucher.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVoucher.ForeColor = System.Drawing.Color.White;
+            this.btnVoucher.IconChar = FontAwesome.Sharp.IconChar.Ticket;
+            this.btnVoucher.IconColor = System.Drawing.Color.White;
+            this.btnVoucher.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVoucher.IconSize = 36;
+            this.btnVoucher.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVoucher.Location = new System.Drawing.Point(12, 727);
+            this.btnVoucher.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
+            this.btnVoucher.Name = "btnVoucher";
+            this.btnVoucher.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.btnVoucher.Size = new System.Drawing.Size(224, 63);
+            this.btnVoucher.TabIndex = 2;
+            this.btnVoucher.Text = "Khuyến Mãi";
+            this.btnVoucher.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVoucher.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnVoucher.UseVisualStyleBackColor = false;
+            this.btnVoucher.Click += new System.EventHandler(this.btnVoucher_Click);
             // 
             // btnBooks
             // 
@@ -160,7 +161,7 @@
             this.btnUser.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnUser.IconSize = 36;
             this.btnUser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUser.Location = new System.Drawing.Point(12, 530);
+            this.btnUser.Location = new System.Drawing.Point(12, 632);
             this.btnUser.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
             this.btnUser.Name = "btnUser";
             this.btnUser.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
@@ -172,49 +173,27 @@
             this.btnUser.UseVisualStyleBackColor = false;
             this.btnUser.Click += new System.EventHandler(this.btnUser_Click);
             // 
-            // btnReport
+            // btnWarehouse
             // 
-            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.btnReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.IconChar = FontAwesome.Sharp.IconChar.FileContract;
-            this.btnReport.IconColor = System.Drawing.Color.White;
-            this.btnReport.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnReport.IconSize = 36;
-            this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReport.Location = new System.Drawing.Point(12, 730);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.btnReport.Size = new System.Drawing.Size(224, 63);
-            this.btnReport.TabIndex = 0;
-            this.btnReport.Text = "Thống kê";
-            this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnReport.UseVisualStyleBackColor = false;
-            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
-            // 
-            // btnInvoice
-            // 
-            this.btnInvoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.btnInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInvoice.ForeColor = System.Drawing.Color.White;
-            this.btnInvoice.IconChar = FontAwesome.Sharp.IconChar.FileInvoiceDollar;
-            this.btnInvoice.IconColor = System.Drawing.Color.White;
-            this.btnInvoice.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnInvoice.IconSize = 36;
-            this.btnInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInvoice.Location = new System.Drawing.Point(12, 430);
-            this.btnInvoice.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
-            this.btnInvoice.Name = "btnInvoice";
-            this.btnInvoice.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
-            this.btnInvoice.Size = new System.Drawing.Size(224, 63);
-            this.btnInvoice.TabIndex = 0;
-            this.btnInvoice.Text = "Hóa Đơn";
-            this.btnInvoice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInvoice.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnInvoice.UseVisualStyleBackColor = false;
-            this.btnInvoice.Click += new System.EventHandler(this.btnInvoice_Click);
+            this.btnWarehouse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnWarehouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWarehouse.ForeColor = System.Drawing.Color.White;
+            this.btnWarehouse.IconChar = FontAwesome.Sharp.IconChar.Warehouse;
+            this.btnWarehouse.IconColor = System.Drawing.Color.White;
+            this.btnWarehouse.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnWarehouse.IconSize = 36;
+            this.btnWarehouse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnWarehouse.Location = new System.Drawing.Point(12, 533);
+            this.btnWarehouse.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
+            this.btnWarehouse.Name = "btnWarehouse";
+            this.btnWarehouse.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.btnWarehouse.Size = new System.Drawing.Size(224, 63);
+            this.btnWarehouse.TabIndex = 0;
+            this.btnWarehouse.Text = "Nhập Kho";
+            this.btnWarehouse.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnWarehouse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnWarehouse.UseVisualStyleBackColor = false;
+            this.btnWarehouse.Click += new System.EventHandler(this.btnWarehouse_Click);
             // 
             // btnSales
             // 
@@ -302,6 +281,28 @@
             this.lbUsername.Text = "Nguyễn Phi Hùng";
             this.lbUsername.Click += new System.EventHandler(this.pnUser_Click);
             // 
+            // btnInvoice
+            // 
+            this.btnInvoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInvoice.ForeColor = System.Drawing.Color.White;
+            this.btnInvoice.IconChar = FontAwesome.Sharp.IconChar.FileInvoiceDollar;
+            this.btnInvoice.IconColor = System.Drawing.Color.White;
+            this.btnInvoice.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnInvoice.IconSize = 36;
+            this.btnInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInvoice.Location = new System.Drawing.Point(12, 431);
+            this.btnInvoice.Margin = new System.Windows.Forms.Padding(258, 310, 258, 310);
+            this.btnInvoice.Name = "btnInvoice";
+            this.btnInvoice.Padding = new System.Windows.Forms.Padding(7, 8, 7, 8);
+            this.btnInvoice.Size = new System.Drawing.Size(224, 63);
+            this.btnInvoice.TabIndex = 0;
+            this.btnInvoice.Text = "Hóa Đơn";
+            this.btnInvoice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInvoice.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnInvoice.UseVisualStyleBackColor = false;
+            this.btnInvoice.Click += new System.EventHandler(this.btnInvoice_Click);
+            // 
             // panelContent
             // 
             this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(244)))), ((int)(((byte)(246)))));
@@ -357,6 +358,7 @@
         private System.Windows.Forms.Label lbUsername;
         private FontAwesome.Sharp.IconButton btnDashboard;
         private System.Windows.Forms.Panel pnUser;
+        private FontAwesome.Sharp.IconButton btnWarehouse;
         private System.Windows.Forms.Label lbRole;
         private FontAwesome.Sharp.IconButton btnSales;
         private FontAwesome.Sharp.IconButton btnInvoice;
@@ -364,6 +366,6 @@
         private FontAwesome.Sharp.IconButton btnReport;
         private FontAwesome.Sharp.IconButton btnBooks;
         private FontAwesome.Sharp.IconDropDownButton iconDropDownMenuProfile;
-        private FontAwesome.Sharp.IconButton btnCustomer;
+        private FontAwesome.Sharp.IconButton btnVoucher;
     }
 }

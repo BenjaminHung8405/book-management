@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using book_management.Models;
 
 namespace book_management.Data
 {
@@ -61,12 +63,6 @@ namespace book_management.Data
 
             return null;
         }
-
-        /// <summary>
-        /// L?y thông tin ng??i dùng theo ID
-        /// </summary>
-        /// <param name="userId">ID ng??i dùng</param>
-        /// <returns>Thông tin ng??i dùng</returns>
         public static dynamic GetUserById(int userId)
         {
             try
@@ -76,17 +72,17 @@ namespace book_management.Data
                     connection.Open();
 
                     string query = @"
-SELECT 
-        user_id,
-  username,
-    ho_ten,
-     email,
-      so_dien_thoai,
-       vai_tro,
-  ngay_tao,
-       trang_thai
-       FROM NguoiDung 
-       WHERE user_id = @UserId";
+                    SELECT 
+                    user_id,
+                    username,
+                    ho_ten,
+                    email,
+                    so_dien_thoai,
+                    vai_tro,
+                    ngay_tao,
+                    trang_thai
+                    FROM NguoiDung 
+                    WHERE user_id = @UserId";
 
                     using (var command = new SqlCommand(query, connection))
                     {
@@ -131,18 +127,18 @@ SELECT
                 {
                     connection.Open();
 
-                    string query = @"
-          SELECT 
-      user_id,
-  username,
-        ho_ten,
-       email,
-       so_dien_thoai,
-      vai_tro,
-                 ngay_tao,
-       trang_thai
-                FROM NguoiDung 
-        ORDER BY ho_ten";
+                     string query = @"
+                         SELECT 
+                         user_id,
+                         username,
+                         ho_ten,
+                         email,
+                         so_dien_thoai,
+                         vai_tro,
+                         ngay_tao,
+                         trang_thai
+                         FROM NguoiDung 
+                         ORDER BY ho_ten";
 
                     using (var command = new SqlCommand(query, connection))
                     {
@@ -174,16 +170,7 @@ SELECT
             return users;
         }
 
-        /// <summary>
-        /// Thêm ng??i dùng m?i
-        /// </summary>
-        /// <param name="username">Tên ??ng nh?p</param>
-        /// <param name="password">M?t kh?u</param>
-        /// <param name="hoTen">H? tên</param>
-        /// <param name="email">Email</param>
-        /// <param name="soDienThoai">S? ?i?n tho?i</param>
-        /// <param name="vaiTro">Vai trò</param>
-        /// <returns>ID ng??i dùng v?a t?o</returns>
+
         public static int AddUser(string username, string password, string hoTen, string email = null, string soDienThoai = null, string vaiTro = "NhanVien")
         {
             try
@@ -216,15 +203,7 @@ SELECT
             }
         }
 
-        /// <summary>
-        /// C?p nh?t thông tin ng??i dùng
-        /// </summary>
-        /// <param name="userId">ID ng??i dùng</param>
-        /// <param name="hoTen">H? tên</param>
-        /// <param name="email">Email</param>
-        /// <param name="soDienThoai">S? ?i?n tho?i</param>
-        /// <param name="vaiTro">Vai trò</param>
-        /// <returns>True n?u c?p nh?t thành công</returns>
+
         public static bool UpdateUser(int userId, string hoTen, string email = null, string soDienThoai = null, string vaiTro = null)
         {
             try
@@ -259,12 +238,7 @@ SELECT
             }
         }
 
-        /// <summary>
-        /// Thay ??i m?t kh?u ng??i dùng
-        /// </summary>
-        /// <param name="userId">ID ng??i dùng</param>
-        /// <param name="newPassword">M?t kh?u m?i</param>
-        /// <returns>True n?u thay ??i thành công</returns>
+
         public static bool ChangePassword(int userId, string newPassword)
         {
             try
@@ -289,13 +263,59 @@ SELECT
                 throw new Exception($"Lỗi khi thay đổi mật khẩu: {ex.Message}", ex);
             }
         }
+        public static List<dynamic> SearchUser(string keyword)
+        {
+            var users = new List<dynamic>();
+            try
+            {
+                using (var conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+                    var cmd = new SqlCommand(@"
+                SELECT 
+                    user_id, 
+                    username, 
+                    ho_ten, 
+                    email, 
+                    so_dien_thoai, 
+                    vai_tro, 
+                    ngay_tao, 
+                    trang_thai
+                FROM NguoiDung
+                WHERE 
+                    username LIKE @Keyword 
+                    OR so_dien_thoai LIKE @Keyword 
+                    OR ho_ten LIKE @Keyword
+                ORDER BY ngay_tao DESC", conn);
 
-        /// <summary>
-        /// Vô hi?u hóa/kích ho?t ng??i dùng
-        /// </summary>
-        /// <param name="userId">ID ng??i dùng</param>
-        /// <param name="isActive">True ?? kích ho?t, False ?? vô hi?u hóa</param>
-        /// <returns>True n?u c?p nh?t thành công</returns>
+                    cmd.Parameters.AddWithValue("@Keyword", "%" + keyword + "%");
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                          
+                            users.Add(new NguoiDung
+                            {
+                                UserId = Convert.ToInt32(reader["user_id"]),
+                                HoTen = reader["ho_ten"]?.ToString() ?? "",
+                                Username = reader["username"]?.ToString() ?? "",
+                                Email = reader["email"]?.ToString() ?? "",
+                                SoDienThoai = reader["so_dien_thoai"]?.ToString() ?? "",
+                                VaiTro = reader["vai_tro"]?.ToString() ?? "",
+                                NgayTao = Convert.ToDateTime(reader["ngay_tao"]),
+                                TrangThai = Convert.ToBoolean(reader["trang_thai"])
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi tìm kiếm khách hàng: " + ex.Message);
+            }
+            return users;
+        }
         public static bool SetUserStatus(int userId, bool isActive)
         {
             try
@@ -318,6 +338,72 @@ SELECT
             catch (Exception ex)
             {
                 throw new Exception($"Lỗi khi cập nhật trạng thái người dùng {ex.Message}", ex);
+            }
+        }
+        /// <summary>
+        /// Lấy danh sách người dùng ĐÃ LỌC theo vai trò
+        /// </summary>
+        public static System.Collections.Generic.List<dynamic> GetUsersByRole(string vaiTro)
+        {
+            var users = new System.Collections.Generic.List<dynamic>();
+            try
+            {
+                using (var connection = DatabaseConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    // Câu query này có thêm mệnh đề WHERE
+                    string query = @"
+                        SELECT 
+                            user_id, username, ho_ten, email, so_dien_thoai, 
+                            vai_tro, ngay_tao, trang_thai
+                        FROM NguoiDung 
+                        WHERE vai_tro = @VaiTro  -- Lọc theo vai trò
+                        ORDER BY ho_ten";
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        // Gán tham số cho @VaiTro
+                        command.Parameters.AddWithValue("@VaiTro", vaiTro);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                dynamic user = new System.Dynamic.ExpandoObject();
+                                user.UserId = reader["user_id"];
+                                user.Username = reader["username"]?.ToString() ?? "";
+                                user.HoTen = reader["ho_ten"]?.ToString() ?? "";
+                                user.Email = reader["email"]?.ToString() ?? "";
+                                user.SoDienThoai = reader["so_dien_thoai"]?.ToString() ?? "";
+                                user.VaiTro = reader["vai_tro"]?.ToString() ?? "";
+                                user.NgayTao = reader["ngay_tao"] != DBNull.Value ? Convert.ToDateTime(reader["ngay_tao"]) : DateTime.MinValue;
+                                user.TrangThai = reader["trang_thai"] != DBNull.Value ? Convert.ToBoolean(reader["trang_thai"]) : true;
+
+                                users.Add(user);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi lấy danh sách người dùng theo vai trò: {ex.Message}", ex);
+            }
+
+            return users;
+        }
+        public static bool DeleteUser(int userId)
+        {
+            try
+            {
+                // Gọi hàm SetUserStatus (đã có trong UserRepository)
+                // để đánh dấu người dùng là không hoạt động (bị khóa)
+                return UserRepository.SetUserStatus(userId, false);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi xóa người dùng: " + ex.Message);
             }
         }
     }

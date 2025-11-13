@@ -137,7 +137,7 @@ namespace book_management.Models
         public int UserId { get; set; }
         public DateTime NgayNhap { get; set; }
         public decimal TongTien { get; set; }
-
+        public string TenNguoiNhap { get; set; }
         // Navigation properties
         public NguoiDung NguoiDung { get; set; }
         public List<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; } = new List<ChiTietPhieuNhap>();

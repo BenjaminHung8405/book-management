@@ -4,23 +4,25 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using book_management.Data;
-using book_management.DataAccess; // Cần thêm
-using book_management.Models; // Cần thêm
+using book_management.DataAccess;
+using book_management.Models; 
 using book_management.UI.Modal;
-
+using book_management.Services;
+using book_management.Helpers;
 namespace book_management.UI.Controls
 {
     public partial class StoreControl : UserControl
     {
         // Biến lưu ID hồ sơ khách hàng (kh_id)
         private int _currentCustomerId = 0;
+        private string currentSearchKeyword = "";
         private decimal _currentDiscount = 0; // Biến lưu tiền giảm giá hiện tại
         // Lưu trữ danh sách KM để tính toán
         private List<KhuyenMai> _availablePromotions;
+        private List<dynamic> allBooks; // Tất cả sách từ database
+        private List<dynamic> filteredBooks; // Sách sau khi filter
 
         // Biến lưu giỏ hàng
         private List<CartItem> _cart = new List<CartItem>();
@@ -28,13 +30,24 @@ namespace book_management.UI.Controls
         public StoreControl()
         {
             InitializeComponent();
+            InitializeSearchEvents();
             LoadBooks();
 
             // Thêm hàm thiết lập DataGridView cho giỏ hàng
             SetupCartGrid();
             LoadPromotions();
         }
-
+        /// <summary>
+        /// Khởi tạo events cho tìm kiếm - Tương tự BooksControl
+        /// </summary>
+        private void InitializeSearchEvents()
+        {
+            // Search events
+            //txtSearchBook.TextChanged += TxtSearchBook_TextChanged;
+            //txtSearchBook.KeyDown += TxtSearchBook_KeyDown;
+            this.iconSearchBook.Click += iconSearchBook_Click;
+            SetSearchPlaceholder();
+        }
         private void StoreControl_Load(object sender, EventArgs e)
         {
             // Tự động tải thông tin khách hàng khi form load
@@ -103,6 +116,64 @@ namespace book_management.UI.Controls
             }
         }
         /// <summary>
+        /// Thiết lập placeholder cho search textbox
+        /// </summary>
+        private void SetSearchPlaceholder()
+        {
+            txtSearchBook.Text = "Tìm kiếm theo tên, số điện thoại hoặc địa chỉ...";
+            txtSearchBook.ForeColor = Color.Gray;
+
+            txtSearchBook.GotFocus += (s, e) =>
+            {
+                if (txtSearchBook.Text == "Tìm kiếm theo tên, số điện thoại hoặc địa chỉ...")
+                {
+                    txtSearchBook.Text = "";
+                    txtSearchBook.ForeColor = Color.Black;
+                }
+            };
+
+            txtSearchBook.LostFocus += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtSearchBook.Text))
+                {
+                    txtSearchBook.Text = "Tìm kiếm theo tên, thể loại, trạng thái...";
+                    txtSearchBook.ForeColor = Color.Gray;
+                }
+            };
+        }
+        /// <summary>
+        /// Tìm kiếm sách - Sử dụng SearchService
+        /// </summary>
+        private void SearchBooks()
+        {
+            try
+            {
+                currentSearchKeyword = txtSearchBook.Text.Trim();
+
+                if (currentSearchKeyword == "Tìm kiếm theo tên sách, tác giả..." || string.IsNullOrEmpty(currentSearchKeyword))
+                {
+                    currentSearchKeyword = "";
+                }
+                System.Diagnostics.Debug.WriteLine($"Searching with keyword: '{currentSearchKeyword}'");
+                System.Diagnostics.Debug.WriteLine($"Total books available: {allBooks?.Count ?? 0}");
+                
+                 filteredBooks = BookSearchService.SearchAndFilter(
+                      allBooks,
+                      currentSearchKeyword
+                      );
+                System.Diagnostics.Debug.WriteLine($"Search results: {filteredBooks.Count} books found");
+
+                // Refresh display
+                RefreshBookDisplay();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tìm kiếm sách: {ex.Message}",
+                         "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+      
+        /// <summary>
         // Lớp nội bộ để giữ thông tin giỏ hàng
         /// </summary>
         internal class CartItem
@@ -122,32 +193,93 @@ namespace book_management.UI.Controls
         {
             try
             {
-                flowPanelBooks.Controls.Clear();
-                var danhSachSach = BookRepository.GetAllBooks();
+                 //1. Clear existing data
+                //flowPanelBooks.Controls.Clear();
 
-                foreach (dynamic sach in danhSachSach)
+                // 2. Load all books từ database: Gán vào allBooks
+                allBooks = BookRepository.GetAllBooks();
+                if (allBooks == null)
                 {
-                    ucBookCard card = new ucBookCard();
-                    string title = sach.TenSach;
-                    string author = sach.TacGia;
-                    decimal price = sach.Gia;
-                    string cover = sach.AnhBiaUrl;
-
-                    card.SetBookData(title, author, price, cover);
-                    card.Click += BookCard_Click;
-                    card.Tag = sach;
-                    flowPanelBooks.Controls.Add(card);
+                    allBooks = new List<dynamic>();
                 }
+
+                // 3. Initialize filtered books - Ban đầu hiển thị tất cả
+                filteredBooks = allBooks.ToList();
+                System.Diagnostics.Debug.WriteLine($"LoadBooks: Loaded {allBooks.Count} books from database");
+
+                // 4. Display books trong FlowPanel
+                RefreshBookDisplay();
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"LoadBooks error: {ex}");
                 MessageBox.Show($"Lỗi khi tải danh sách sách: {ex.Message}", "Lỗi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                // Fallback: Initialize empty lists để tránh null reference
+                allBooks = new List<dynamic>();
+                filteredBooks = new List<dynamic>();
+            }
+        }
+        /// <summary>
+        /// Refresh hiển thị sách trong FlowPanel
+        /// </summary>
+        private void RefreshBookDisplay()
+        {
+            try
+            {
+                flowPanelBooks.Controls.Clear();
+                // Kiểm tra null safety
+                if (filteredBooks == null || filteredBooks.Count == 0)
+                {
+                    return;
+                }
+                System.Diagnostics.Debug.WriteLine($"RefreshBookDisplay: Displaying {filteredBooks.Count} books");
+            
+                // Sử dụng filteredBooks
+                foreach (dynamic sach in filteredBooks)
+                {
+                    try
+                    {
+                        ucBookCard card = new ucBookCard();
+                        string title = sach.TenSach?.ToString() ?? "";
+                        string author = sach.TacGia?.ToString() ?? "";
+                        string cover = sach.AnhBiaUrl?.ToString() ?? "";
+                        decimal price = 0;
+                        try
+                        {
+                            if (sach.Gia != null)
+                                price = Convert.ToDecimal(sach.Gia);
+                        }
+                        catch (Exception priceEx)
+                        {
+                            System.Diagnostics.Debug.WriteLine($"Price conversion error: {priceEx.Message}");
+                        }
+
+                        card.SetBookData(title, author, price, cover);
+                        card.Click += BookCard_Click;
+                        card.Tag = sach;
+                        flowPanelBooks.Controls.Add(card);
+                    }
+                    catch (Exception cardEx)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Error creating book card: {cardEx.Message}");
+                        // Continue với book tiếp theo
+                    }
+                }
+
+
+                System.Diagnostics.Debug.WriteLine($"RefreshBookDisplay completed: {flowPanelBooks.Controls.Count} cards added");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"RefreshBookDisplay error: {ex}");
+                MessageBox.Show($"Lỗi khi hiển thị sách: {ex.Message}", "Lỗi",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         /// <summary>
-        /// Hàm xử lý khi người dùng click vào một thẻ sách (ĐÃ SỬA)
+        /// Hàm xử lý khi người dùng click vào một thẻ sách 
         /// </summary>
         private void BookCard_Click(object sender, EventArgs e)
         {
@@ -224,11 +356,71 @@ namespace book_management.UI.Controls
         }
 
         /// <summary>
-        /// Xử lý sự kiện click cho nút "Thanh Toán" (ĐÃ SỬA)
+        /// Xử lý sự kiện click cho nút "Thanh Toán"
         /// </summary>
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // 1. Kiểm tra giỏ hàng
+                if (_cart.Count == 0)
+                {
+                    MessageBox.Show("Giỏ hàng của bạn đang trống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
+                // 2. SỬA LỖI: Kiểm tra _currentCustomerId
+                if (_currentCustomerId == 0)
+                {
+                    MessageBox.Show("Không tìm thấy thông tin khách hàng của bạn. Vui lòng liên kết tài khoản của bạn với một hồ sơ khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 3. Xác nhận
+                decimal tongTien = _cart.Sum(item => item.Total);
+                var result = MessageBox.Show($"Xác nhận thanh toán {tongTien:N0} đ?",
+                                              "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // 4. Chuẩn bị HoaDon
+                    HoaDon newBill = new HoaDon
+                    {
+                        UserId = CurrentUser.UserId,
+                        TongTien = tongTien,
+                        TrangThai = "DaThanhToan",
+                        DiaChiGiaoHang = null,
+                        KhId = _currentCustomerId,
+                        TenNguoiMua = null
+                    };
+
+                    // 5. Chuẩn bị ChiTietHoaDon
+                    var details = _cart.Select(item => new ChiTietHoaDon
+                    {
+                        SachId = item.BookId,
+                        SoLuong = item.Quantity,
+                        DonGia = item.Price,
+                        TienGiam = 0 // (Cần logic khuyến mãi nếu có)
+                    }).ToList();
+
+                    // 6. Gọi Repository 
+                    bool success = HoaDonRepository.CreateInvoice(newBill, details);
+
+                    if (success)
+                    {
+                        MessageBox.Show("Thanh toán thành công! Cảm ơn bạn đã mua hàng.", "Thành công",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        _cart.Clear();
+                        RefreshCart();
+                        LoadBooks(); // Tải lại sách để cập nhật Tồn kho
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi thanh toán: {ex.Message}",
+                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #region Cart UI Methods (Hàm giao diện giỏ hàng)
@@ -391,76 +583,6 @@ namespace book_management.UI.Controls
 
         #endregion
 
-        private void StoreControl_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ibtnThanhToan_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // 1. Kiểm tra giỏ hàng
-                if (_cart.Count == 0)
-                {
-                    MessageBox.Show("Giỏ hàng của bạn đang trống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // 2. SỬA LỖI: Kiểm tra _currentCustomerId
-                if (_currentCustomerId == 0)
-                {
-                    MessageBox.Show("Không tìm thấy thông tin khách hàng của bạn. Vui lòng liên kết tài khoản của bạn với một hồ sơ khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // 3. Xác nhận
-                decimal tongTien = _cart.Sum(item => item.Total);
-                var result = MessageBox.Show($"Xác nhận thanh toán {tongTien:N0} đ?",
-                                              "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    // 4. Chuẩn bị HoaDon
-                    HoaDon newBill = new HoaDon
-                    {
-                        UserId = CurrentUser.UserId,
-                        TongTien = tongTien,
-                        TrangThai = "DaThanhToan",
-                        DiaChiGiaoHang = null,
-                        // SỬA LỖI: Gán KhId đã tìm được lúc Load
-                        KhId = _currentCustomerId,
-                        TenNguoiMua = null
-                    };
-
-                    // 5. Chuẩn bị ChiTietHoaDon
-                    var details = _cart.Select(item => new ChiTietHoaDon
-                    {
-                        SachId = item.BookId,
-                        SoLuong = item.Quantity,
-                        DonGia = item.Price,
-                        TienGiam = 0 // (Cần logic khuyến mãi nếu có)
-                    }).ToList();
-
-                    // 6. Gọi Repository 
-                    bool success = HoaDonRepository.CreateInvoice(newBill, details);
-
-                    if (success)
-                    {
-                        MessageBox.Show("Thanh toán thành công! Cảm ơn bạn đã mua hàng.", "Thành công",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        _cart.Clear();
-                        RefreshCart();
-                        LoadBooks(); // Tải lại sách để cập nhật Tồn kho
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi thanh toán: {ex.Message}",
-                                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void btnSearchCustomer_Click(object sender, EventArgs e)
         {
@@ -484,6 +606,9 @@ namespace book_management.UI.Controls
                 MessageBox.Show("Lỗi khi tìm kiếm khách hàng: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        private void iconSearchBook_Click(object sender, EventArgs e)
+        {
+            SearchBooks();
+        }
     }
 }

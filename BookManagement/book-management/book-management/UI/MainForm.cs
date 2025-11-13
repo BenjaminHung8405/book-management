@@ -63,7 +63,6 @@ namespace book_management.UI
             btnDashboard.Visible = true;
             btnSales.Visible = true;
             btnUser.Visible = true;
-            btnReport.Visible = true;
             btnBooks.Visible = true;
             btnInvoice.Visible = true;
         }
@@ -74,9 +73,8 @@ namespace book_management.UI
         {
             btnBooks.Visible = false;
             btnUser.Visible = false;
-            btnReport.Visible = false;
             btnInvoice.Visible = false;
-            btnCustomer.Visible = false;
+            btnUser.Visible = false;    
         }
         /// 
 
@@ -319,10 +317,16 @@ namespace book_management.UI
             ActivateButton(btnSales);
         }
 
-        private void btnCustomer_Click(object sender, EventArgs e)
+        private void btnWarehouse_Click(object sender, EventArgs e)
         {
-            LoadControl(new CustomersControl());
-            ActivateButton(btnCustomer);
+            LoadControl(new WarehouseControl());
+            ActivateButton(btnWarehouse);
+        }
+
+        private void btnVoucher_Click(object sender, EventArgs e)
+        {
+            LoadControl(new VoucherControl());
+            ActivateButton(btnVoucher);
         }
     }
 }

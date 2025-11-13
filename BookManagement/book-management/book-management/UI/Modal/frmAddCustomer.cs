@@ -20,11 +20,9 @@ namespace book_management.UI.Modal
 
         private void btnCancelModal_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Xác nhận thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
+            
                 this.Close();
-            }
+           
         }
 
         private void btnSaveBook_Click(object sender, EventArgs e)

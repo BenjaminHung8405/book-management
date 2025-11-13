@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using book_management.Data;
-using book_management.Helpers;
+using book_management.Services;
 using book_management.UI.Modal;
-using System.Collections.Generic;
 
 namespace book_management.UI.Controls
 {
@@ -21,9 +21,9 @@ namespace book_management.UI.Controls
         // Filter data - Tương tự như CustomersControl
         private List<dynamic> allBooks; // Tất cả sách từ database
         private List<dynamic> filteredBooks; // Sách sau khi filter
+        private string currentSearchKeyword = "";
         private string currentCategoryFilter = "";
         private string currentStatusFilter = "";
-        private string currentSearchKeyword = "";
         private System.Windows.Forms.Timer filterTimer; // Timer để delay filter
         #endregion
 
@@ -47,7 +47,7 @@ namespace book_management.UI.Controls
 
         #region Initialization
         /// <summary>
-        /// Khởi tạo các sự kiện filter - Tương tự CustomersControl
+        /// Khởi tạo các sự kiện filter
         /// </summary>
         private void InitializeFilterEvents()
         {
@@ -137,7 +137,7 @@ namespace book_management.UI.Controls
             };
         }
         /// <summary>
-        /// Tìm kiếm khách hàng
+        /// Tìm kiếm sach
         /// </summary>
         private void SearchBooks()
         {
@@ -145,27 +145,13 @@ namespace book_management.UI.Controls
             {
                 currentSearchKeyword = txtSearchBook.Text.Trim();
 
-                if (string.IsNullOrEmpty(currentSearchKeyword) ||
-                  currentSearchKeyword == "Tìm kiếm theo tên, thể loại, tác giả...")
+                if (currentSearchKeyword == "Tìm kiếm theo tên, thể loại, trạng thái...")
                 {
-                    // Hiển thị tất cả sách
-                    filteredBooks = allBooks.ToList();
+                    currentSearchKeyword = "";
                 }
-                else
-                {
-                    // Tìm kiếm trên local data trước
-                    filteredBooks = allBooks.Where(c =>
-                    StringExtensions.SafeContains(c.TenSach, currentSearchKeyword) ||
-                    StringExtensions.SafeContains(c.TheLoai, currentSearchKeyword) ||
-                    StringExtensions.SafeContains(c.TacGia, currentSearchKeyword)
-                      ).ToList();
 
-                    // Nếu không tìm thấy, tìm kiếm từ database
-                    if (filteredBooks.Count == 0)
-                    {
-                        filteredBooks = BookRepository.SearchBooks(currentSearchKeyword);
-                    }
-                }
+                // Sử dụng SearchService
+                filteredBooks = BookSearchService.SearchBooks(allBooks, currentSearchKeyword);
 
                 currentPage = 1; // Reset về trang đầu
                 RefreshDataGridView();
@@ -173,7 +159,7 @@ namespace book_management.UI.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tìm kiếm Sách: {ex.Message}",
+                MessageBox.Show($"Lỗi khi tìm kiếm sách: {ex.Message}",
                          "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -215,7 +201,7 @@ namespace book_management.UI.Controls
 
         #region Data Loading 
         /// <summary>
-        /// Load danh sách sách từ database - Tương tự LoadCustomers
+        /// Load danh sách sách từ database
         /// </summary>
         private void LoadBooks()
         {
@@ -254,64 +240,16 @@ namespace book_management.UI.Controls
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine("Starting filter books...");
-
                 // Lấy filter values
                 currentCategoryFilter = cmbCategoryFilter.SelectedIndex > 0 ?
-                cmbCategoryFilter.SelectedItem.ToString() : "";
+                    cmbCategoryFilter.SelectedItem.ToString() : "";
                 currentStatusFilter = cmbStatusFilter.SelectedIndex > 0 ?
-                cmbStatusFilter.SelectedItem.ToString() : "";
+                    cmbStatusFilter.SelectedItem.ToString() : "";
 
-                System.Diagnostics.Debug.WriteLine($"Category filter: '{currentCategoryFilter}'");
-                System.Diagnostics.Debug.WriteLine($"Status filter: '{currentStatusFilter}'");
+                // Sử dụng SearchService
+                filteredBooks = BookSearchService.SearchAndFilter(allBooks,
+                    currentSearchKeyword, currentCategoryFilter, currentStatusFilter);
 
-                // Apply filters trên local data trước - tương tự CustomersControl
-                filteredBooks = allBooks.Where(book =>
-                {
-                    bool matchCategory = true;
-                    bool matchStatus = true;
-
-                    // Filter theo thể loại
-                    if (!string.IsNullOrEmpty(currentCategoryFilter))
-                    {
-                        string bookCategory = book.TheLoai?.ToString() ?? "";
-                        matchCategory = bookCategory.IndexOf(currentCategoryFilter, StringComparison.OrdinalIgnoreCase) >= 0;
-                    }
-
-                    // Filter theo trạng thái
-                    if (!string.IsNullOrEmpty(currentStatusFilter))
-                    {
-                        int soLuong = 0;
-                        try
-                        {
-                            if (book.SoLuong != null)
-                                soLuong = Convert.ToInt32(book.SoLuong);
-                        }
-                        catch(Exception ex) {
-                            MessageBox.Show($"Lỗi: {ex.Message}",
-                                            "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
-                        switch (currentStatusFilter)
-                        {
-                            case "Còn hàng":
-                                matchStatus = soLuong > 10;
-                                break;
-                            case "Hết hàng":
-                                matchStatus = soLuong <= 0;
-                                break;
-                            case "Sắp hết":
-                                matchStatus = soLuong > 0 && soLuong <= 5;
-                                break;
-                        }
-                    }
-
-                    return matchCategory && matchStatus;
-                }).ToList();
-
-                System.Diagnostics.Debug.WriteLine($"Filtered to {filteredBooks.Count} books");
-
-                // Reset về trang đầu và refresh
                 currentPage = 1;
                 RefreshDataGridView();
                 UpdatePageInfo();
@@ -319,7 +257,7 @@ namespace book_management.UI.Controls
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi khi lọc sách: {ex.Message}",
-          "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

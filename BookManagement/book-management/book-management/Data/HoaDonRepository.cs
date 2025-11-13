@@ -8,7 +8,6 @@ namespace book_management.DataAccess
 {
     public static class HoaDonRepository
     {
-        // Hàm này của bạn đã đúng (giữ nguyên)
         public static List<HoaDon> GetHoaDonsByUserId(int userId)
         {
             var list = new List<HoaDon>();
@@ -49,8 +48,6 @@ namespace book_management.DataAccess
             }
             return list;
         }
-
-        // Hàm này của bạn đã đúng (giữ nguyên)
         public static List<HoaDon> GetAllInvoices()
         {
             var list = new List<HoaDon>();
@@ -96,7 +93,7 @@ namespace book_management.DataAccess
             return list;
         }
 
-        // === SỬA HÀM TÌM KIẾM NÀY ===
+        // === HÀM TÌM KIẾM ===
         public static List<HoaDon> SearchInvoices(string searchTerm, string status, DateTime fromDate, DateTime toDate)
         {
             var list = new List<HoaDon>();
@@ -105,7 +102,6 @@ namespace book_management.DataAccess
                 using (var conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
-                    // SỬA SQL: Thêm 'nguoi_lap' và JOIN NguoiDung
                     var query = @"
                         SELECT 
                             hd.hoadon_id, 
@@ -173,8 +169,6 @@ namespace book_management.DataAccess
             }
             return list;
         }
-
-        // Hàm này của bạn đã đúng (giữ nguyên)
         public static bool DeleteInvoice(int hoaDonId)
         {
             using (var conn = DatabaseConnection.GetConnection())
@@ -206,7 +200,6 @@ namespace book_management.DataAccess
             }
         }
 
-        // === SỬA HÀM GetInvoiceById ===
         public static HoaDon GetInvoiceById(int hoaDonId)
         {
             try
@@ -214,7 +207,6 @@ namespace book_management.DataAccess
                 using (var conn = DatabaseConnection.GetConnection())
                 {
                     conn.Open();
-                    // SỬA SQL: Thêm 'nguoi_lap' và JOIN NguoiDung
                     var cmd = new SqlCommand(@"
                         SELECT 
                             hd.hoadon_id, hd.ngay_lap, hd.tong_tien, hd.trang_thai,
@@ -239,11 +231,8 @@ namespace book_management.DataAccess
                                 TongTien = Convert.ToDecimal(reader["tong_tien"]),
                                 TrangThai = reader["trang_thai"].ToString(),
                                 TenNguoiMua = reader["ten_nguoi_mua"]?.ToString() ?? "",
-
-                                // Dòng này bây giờ đã an toàn
                                 NguoiLap = reader["nguoi_lap"]?.ToString() ?? "",
 
-                                // SỬA LỖI: Cột user_id có thể là NULL, cần kiểm tra DBNull
                                 UserId = (int)(reader["user_id"] != DBNull.Value ? Convert.ToInt32(reader["user_id"]) : (int?)null)
                             };
                         }
@@ -365,12 +354,12 @@ namespace book_management.DataAccess
                 {
                     conn.Open();
                     var cmd = new SqlCommand(@"
-           UPDATE HoaDon 
-      SET ngay_lap = @NgayLap,
-       ten_khach_vang_lai = @TenKhachVangLai,
-   tong_tien = @TongTien,
-  trang_thai = @TrangThai
-            WHERE hoadon_id = @HoaDonId", conn);
+                        UPDATE HoaDon 
+                        SET ngay_lap = @NgayLap,
+                        ten_khach_vang_lai = @TenKhachVangLai,
+                        tong_tien = @TongTien,
+                        trang_thai = @TrangThai
+                        WHERE hoadon_id = @HoaDonId", conn);
 
                     cmd.Parameters.AddWithValue("@HoaDonId", hoaDon.HoaDonId);
                     cmd.Parameters.AddWithValue("@NgayLap", hoaDon.NgayLap);

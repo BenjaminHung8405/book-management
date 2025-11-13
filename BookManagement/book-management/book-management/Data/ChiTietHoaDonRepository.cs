@@ -60,15 +60,15 @@ namespace book_management.DataAccess
                 {
                     conn.Open();
                     var cmd = new SqlCommand(@"
-         SELECT ct.cthd_id, ct.hoadon_id, ct.sach_id, s.ten_sach, 
-   ct.so_luong, ct.don_gia, 
-     ISNULL(ct.khuyenmai_id, 0) as khuyenmai_id,
-         ISNULL(ct.tien_giam, 0) as tien_giam, 
-        ct.thanh_tien
-   FROM ChiTietHoaDon ct
-       JOIN Sach s ON ct.sach_id = s.sach_id
-     WHERE ct.hoadon_id = @HoaDonId
-    ORDER BY ct.cthd_id", conn);
+                        SELECT ct.cthd_id, ct.hoadon_id, ct.sach_id, s.ten_sach, 
+                        ct.so_luong, ct.don_gia, 
+                        ISNULL(ct.khuyenmai_id, 0) as khuyenmai_id,
+                        ISNULL(ct.tien_giam, 0) as tien_giam, 
+                        ct.thanh_tien
+                        FROM ChiTietHoaDon ct
+                        JOIN Sach s ON ct.sach_id = s.sach_id
+                        WHERE ct.hoadon_id = @HoaDonId
+                        ORDER BY ct.cthd_id", conn);
 
                     cmd.Parameters.AddWithValue("@HoaDonId", hoaDonId);
 
