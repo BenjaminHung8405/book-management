@@ -220,9 +220,9 @@ namespace book_management.Data
                     connection.Open();
 
                     string query = @"
- INSERT INTO TheLoai (ten_theloai)
-   VALUES (@TenTheLoai);
-              SELECT SCOPE_IDENTITY();";
+                         INSERT INTO TheLoai (ten_theloai)
+                           VALUES (@TenTheLoai);
+                                      SELECT SCOPE_IDENTITY();";
 
                     using (var command = new SqlCommand(query, connection))
                     {

@@ -242,9 +242,9 @@
             this.label1.Location = new System.Drawing.Point(16, 16);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 16);
-            this.label1.Size = new System.Drawing.Size(179, 40);
+            this.label1.Size = new System.Drawing.Size(164, 40);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Thêm khách hàng";
+            this.label1.Text = "Sửa Người Dùng";
             // 
             // frmAddCustomer
             // 

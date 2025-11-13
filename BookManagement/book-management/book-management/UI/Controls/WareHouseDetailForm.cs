@@ -8,19 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace book_management.UI.Modal
+namespace book_management.UI.Controls
 {
-    public partial class frmAddEditUser : Form
+    public partial class WareHouseDetailForm : Form
     {
-        public frmAddEditUser()
+        public WareHouseDetailForm()
         {
             InitializeComponent();
-        }
-
-        private void btnCancelModal_Click(object sender, EventArgs e)
-        {
-                this.Close();
-         
         }
     }
 }

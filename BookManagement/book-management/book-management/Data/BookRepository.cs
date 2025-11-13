@@ -270,19 +270,19 @@ namespace book_management.Data
                     connection.Open();
                     transaction = connection.BeginTransaction();
 
-                    // 1. C?p nh?t thông tin sách
+                   
                     string updateQuery = @"
-   UPDATE Sach 
-     SET ten_sach = @TenSach,
-nxb_id = @NxbId,
-         gia = @Gia,
-         so_luong = @SoLuong,
-         anh_bia_url = @AnhBiaUrl,
-  nam_xuat_ban = @NamXuatBan,
-  so_trang = @SoTrang,
-           mo_ta = @MoTa,
-         ngon_ngu = @NgonNgu
-      WHERE sach_id = @SachId";
+                    UPDATE Sach 
+                    SET ten_sach = @TenSach,
+                    nxb_id = @NxbId,
+                    gia = @Gia,
+                    so_luong = @SoLuong,
+                    anh_bia_url = @AnhBiaUrl,
+                    nam_xuat_ban = @NamXuatBan,
+                    so_trang = @SoTrang,
+                    mo_ta = @MoTa,
+                    ngon_ngu = @NgonNgu
+                    WHERE sach_id = @SachId";
 
                     using (var command = new SqlCommand(updateQuery, connection, transaction))
                     {
@@ -352,10 +352,10 @@ nxb_id = @NxbId,
         }
 
         /// <summary>
-        /// Xóa sách kh?i database (soft delete)
+       
         /// </summary>
-        /// <param name="sachId">ID sách c?n xóa</param>
-        /// <returns>True n?u xóa thành công</returns>
+        /// <param name="sachId">I
+        /// <returns>True neu xóa thành công</returns>
         public static bool DeleteBook(int sachId)
         {
             try
@@ -378,12 +378,12 @@ nxb_id = @NxbId,
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi xóa sách ID {sachId}: {ex.Message}", ex);
+                throw new Exception($"Loi khi xóa sách ID {sachId}: {ex.Message}", ex);
             }
         }
 
         /// <summary>
-        /// L?y danh sách t?t c? tác gi?
+        /// Lay danh sach tac gia
         /// </summary>
         public static List<dynamic> GetAllAuthors()
         {
@@ -421,7 +421,7 @@ nxb_id = @NxbId,
         }
 
         /// <summary>
-        /// L?y danh sách t?t c? th? lo?i
+        /// L?y danh sách tat ca the loai
         /// </summary>
         public static List<dynamic> GetAllCategories()
         {
@@ -456,7 +456,7 @@ nxb_id = @NxbId,
         }
 
         /// <summary>
-        /// L?y danh sách t?t c? nhà xu?t b?n
+        /// Lay danh sach nxb
         /// </summary>
         public static List<dynamic> GetAllPublishers()
         {
@@ -494,7 +494,7 @@ nxb_id = @NxbId,
         }
 
         /// <summary>
-        /// Tìm ki?m sách theo t? khóa
+        /// Tìm kiem sach theo tu khoa
         /// </summary>
         public static List<dynamic> SearchBooks(string keyword)
         {
@@ -506,32 +506,32 @@ nxb_id = @NxbId,
                     connection.Open();
 
                     string query = @"
-   SELECT DISTINCT
-       s.sach_id,
-     s.ten_sach,
-           s.gia,
-    s.so_luong,
-         s.anh_bia_url,
-    n.ten_nxb,
- STUFF((
-              SELECT ', ' + tg.ten_tacgia
-         FROM Sach_TacGia st
-     INNER JOIN TacGia tg ON st.tacgia_id = tg.tacgia_id
-WHERE st.sach_id = s.sach_id
-   FOR XML PATH('')), 1, 2, '') AS tacgia_names,
- STUFF((
- SELECT ', ' + tl.ten_theloai
-      FROM Sach_TheLoai stl
-     INNER JOIN TheLoai tl ON stl.theloai_id = tl.theloai_id
-    WHERE stl.sach_id = s.sach_id
-          FOR XML PATH('')), 1, 2, '') AS theloai_names
-    FROM Sach s
-  INNER JOIN NhaXuatBan n ON s.nxb_id = n.nxb_id
-          LEFT JOIN Sach_TacGia st ON s.sach_id = st.sach_id
-       LEFT JOIN TacGia tg ON st.tacgia_id = tg.tacgia_id
-        WHERE s.trang_thai = 1 
-      AND (s.ten_sach LIKE @Keyword OR tg.ten_tacgia LIKE @Keyword OR n.ten_nxb LIKE @Keyword)
-             ORDER BY s.sach_id";
+                       SELECT DISTINCT
+                            s.sach_id,
+                            s.ten_sach,
+                            s.gia,
+                            s.so_luong,
+                            s.anh_bia_url,
+                            n.ten_nxb,
+                     STUFF((
+                            SELECT ', ' + tg.ten_tacgia
+                            FROM Sach_TacGia st
+                            INNER JOIN TacGia tg ON st.tacgia_id = tg.tacgia_id
+                    WHERE st.sach_id = s.sach_id
+                       FOR XML PATH('')), 1, 2, '') AS tacgia_names,
+                    STUFF((
+                    SELECT ', ' + tl.ten_theloai
+                         FROM Sach_TheLoai stl
+                         INNER JOIN TheLoai tl ON stl.theloai_id = tl.theloai_id
+                    WHERE stl.sach_id = s.sach_id
+                              FOR XML PATH('')), 1, 2, '') AS theloai_names
+                    FROM Sach s
+                    INNER JOIN NhaXuatBan n ON s.nxb_id = n.nxb_id
+                    LEFT JOIN Sach_TacGia st ON s.sach_id = st.sach_id
+                    LEFT JOIN TacGia tg ON st.tacgia_id = tg.tacgia_id
+                    WHERE s.trang_thai = 1 
+                    AND (s.ten_sach LIKE @Keyword OR tg.ten_tacgia LIKE @Keyword OR n.ten_nxb LIKE @Keyword)
+                    ORDER BY s.sach_id";
 
                     using (var command = new SqlCommand(query, connection))
                     {
@@ -558,7 +558,7 @@ WHERE st.sach_id = s.sach_id
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi tìm ki?m sách: {ex.Message}", ex);
+                throw new Exception($"Loi khi tim kiem sach: {ex.Message}", ex);
             }
             return books;
         }

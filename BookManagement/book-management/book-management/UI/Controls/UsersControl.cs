@@ -18,7 +18,7 @@ namespace book_management.UI.Controls
         private List<dynamic> filteredUsers;
 
         private int currentPage = 1;
-        private int pageSize = 20;
+        private int pageSize = 8;
         private int totalPages = 1;
         private string currentSearchKeyword = "";
         private System.Windows.Forms.Timer searchTimer;
@@ -376,8 +376,8 @@ namespace book_management.UI.Controls
         {
             try
             {
-                var customer = CustomerRepository.GetCustomerById(khId);
-                if (customer == null)
+                var user = UserRepository.GetUserById(khId);
+                if (user == null)
                 {
                     MessageBox.Show("Không tìm thấy thông tin khách hàng!", "Lỗi",
                   MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -385,7 +385,7 @@ namespace book_management.UI.Controls
                 }
 
                 // Tạo form edit (có thể tái sử dụng frmAddCustomer)
-                using (var editForm = new frmAddCustomer())
+                using (var editForm = new EditUserControl())
                 {
                     editForm.Text = "Sửa thông tin khách hàng";
                     // editForm.SetCustomerInfo(customer); // Cần implement method này

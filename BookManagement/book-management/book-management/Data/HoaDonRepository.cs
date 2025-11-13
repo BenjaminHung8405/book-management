@@ -270,13 +270,16 @@ namespace book_management.DataAccess
                     // Tao cac dong chi tiet hoa don    
                     foreach (var item in details)
                     {
+                        // 'thanh_tien' may be a computed column in the database (don_gia * so_luong - tien_giam).
+                        // Do not attempt to insert into it. Insert don_gia, so_luong, tien_giam and optional khuyenmai_id.
                         var cmdChiTiet = new SqlCommand(@"
-                            INSERT INTO ChiTietHoaDon (hoadon_id, sach_id, so_luong, don_gia, tien_giam)
-                            VALUES (@HoaDonId, @SachId, @SoLuong, @DonGia, @TienGiam);", conn, transaction);
+                            INSERT INTO ChiTietHoaDon (hoadon_id, sach_id, so_luong, don_gia, khuyenmai_id, tien_giam)
+                            VALUES (@HoaDonId, @SachId, @SoLuong, @DonGia, @KhuyenMaiId, @TienGiam);", conn, transaction);
                         cmdChiTiet.Parameters.AddWithValue("@HoaDonId", newHoaDonId);
                         cmdChiTiet.Parameters.AddWithValue("@SachId", item.SachId);
                         cmdChiTiet.Parameters.AddWithValue("@SoLuong", item.SoLuong);
                         cmdChiTiet.Parameters.AddWithValue("@DonGia", item.DonGia);
+                        cmdChiTiet.Parameters.AddWithValue("@KhuyenMaiId", (object)item.KhuyenMaiId ?? DBNull.Value);
                         cmdChiTiet.Parameters.AddWithValue("@TienGiam", item.TienGiam);
                         cmdChiTiet.ExecuteNonQuery();
                         // tru so luong sach trong kho

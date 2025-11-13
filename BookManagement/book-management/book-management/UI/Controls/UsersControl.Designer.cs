@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMainContent = new System.Windows.Forms.Panel();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.colHoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,10 +82,10 @@
             this.dgvUsers.BackgroundColor = System.Drawing.Color.White;
             this.dgvUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvUsers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -101,7 +102,7 @@
             this.colDelete});
             dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -116,6 +117,7 @@
             this.dgvUsers.ReadOnly = true;
             this.dgvUsers.RowHeadersVisible = false;
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvUsers.RowTemplate.Height = 48;
             this.dgvUsers.Size = new System.Drawing.Size(1400, 622);
             this.dgvUsers.TabIndex = 4;
             // 
@@ -123,7 +125,7 @@
             // 
             this.colHoTen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colHoTen.DataPropertyName = "ho_ten";
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colHoTen.DefaultCellStyle = dataGridViewCellStyle8;
             this.colHoTen.FillWeight = 40F;
             this.colHoTen.HeaderText = "Họ tên";
@@ -150,8 +152,8 @@
             // colSdt
             // 
             this.colSdt.DataPropertyName = "so_dien_thoai";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.NullValue = null;
             this.colSdt.DefaultCellStyle = dataGridViewCellStyle9;
             this.colSdt.FillWeight = 40F;
@@ -163,6 +165,7 @@
             // 
             this.colVaiTro.DataPropertyName = "vai_tro";
             dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.colVaiTro.DefaultCellStyle = dataGridViewCellStyle10;
             this.colVaiTro.FillWeight = 25F;
             this.colVaiTro.HeaderText = "Vai trò";
@@ -183,6 +186,7 @@
             // colEdit
             // 
             this.colEdit.FillWeight = 30F;
+
             this.colEdit.HeaderText = "";
             this.colEdit.Name = "colEdit";
             this.colEdit.ReadOnly = true;
@@ -193,6 +197,7 @@
             // 
             this.colDelete.FillWeight = 30F;
             this.colDelete.HeaderText = "";
+
             this.colDelete.Name = "colDelete";
             this.colDelete.ReadOnly = true;
             this.colDelete.Text = "Xóa";
@@ -213,7 +218,7 @@
             // 
             this.flowPaginationButtons.AutoSize = true;
             this.flowPaginationButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowPaginationButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowPaginationButtons.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
             this.flowPaginationButtons.Location = new System.Drawing.Point(1252, 8);
             this.flowPaginationButtons.Name = "flowPaginationButtons";
             this.flowPaginationButtons.Size = new System.Drawing.Size(0, 42);
@@ -224,7 +229,7 @@
             // 
             this.lblPageInfo.AutoSize = true;
             this.lblPageInfo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblPageInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPageInfo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPageInfo.Location = new System.Drawing.Point(0, 8);
             this.lblPageInfo.Name = "lblPageInfo";
             this.lblPageInfo.Size = new System.Drawing.Size(160, 20);
@@ -252,30 +257,30 @@
             // cmbRoleFilter
             // 
             this.cmbRoleFilter.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cmbRoleFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRoleFilter.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRoleFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.cmbRoleFilter.FormattingEnabled = true;
             this.cmbRoleFilter.Location = new System.Drawing.Point(855, 13);
             this.cmbRoleFilter.Name = "cmbRoleFilter";
-            this.cmbRoleFilter.Size = new System.Drawing.Size(181, 33);
+            this.cmbRoleFilter.Size = new System.Drawing.Size(181, 38);
             this.cmbRoleFilter.TabIndex = 3;
             // 
             // txtSearchUser
             // 
             this.txtSearchUser.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtSearchUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSearchUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchUser.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.txtSearchUser.Location = new System.Drawing.Point(9, 14);
             this.txtSearchUser.Name = "txtSearchUser";
-            this.txtSearchUser.Size = new System.Drawing.Size(825, 31);
+            this.txtSearchUser.Size = new System.Drawing.Size(825, 35);
             this.txtSearchUser.TabIndex = 0;
             // 
             // btnAddUser
             // 
             this.btnAddUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
             this.btnAddUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddUser.ForeColor = System.Drawing.Color.White;
             this.btnAddUser.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
             this.btnAddUser.IconColor = System.Drawing.Color.White;

@@ -92,7 +92,7 @@ namespace book_management.UI.Controls
                 System.Diagnostics.Debug.WriteLine($"Error loading filter data: {ex.Message}");
             }
         }
-      
+
         private void BooksControl_Load(object sender, EventArgs e)
         {
             try
@@ -306,7 +306,8 @@ namespace book_management.UI.Controls
                             if (book.Gia != null)
                                 gia = Convert.ToDecimal(book.Gia);
                         }
-                        catch(Exception e) {
+                        catch (Exception e)
+                        {
                             MessageBox.Show($"Lỗi khi cập nhật gía: {e.Message}",
                                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -319,7 +320,8 @@ namespace book_management.UI.Controls
                             if (book.SoLuong != null)
                                 soLuong = Convert.ToInt32(book.SoLuong);
                         }
-                        catch(Exception ex) {
+                        catch (Exception ex)
+                        {
                             MessageBox.Show($"Lỗi khi cập nhật SL tồn kho: {ex.Message}",
            "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
@@ -573,7 +575,7 @@ namespace book_management.UI.Controls
                         case "colTenSach":
                             col.DefaultCellStyle.ForeColor = Color.FromArgb(17, 24, 39);
                             col.DefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-                            col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                             break;
                         case "colGiaBan":
                             col.DefaultCellStyle.ForeColor = Color.FromArgb(17, 24, 39);
@@ -787,7 +789,7 @@ namespace book_management.UI.Controls
                         // Refresh data sau khi delete
                         LoadBooks();
                         MessageBox.Show("Xóa sách thành công!", "Thông báo",
-      MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {

@@ -49,6 +49,7 @@
             this.colNguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colNgayNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTongTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colView = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tableLayoutPanel1.SuspendLayout();
@@ -57,7 +58,6 @@
             this.panelMainContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvImports)).BeginInit();
             this.SuspendLayout();
-           
             // 
             // txtSearchWareHouse
             // 
@@ -214,7 +214,8 @@
             this.colNgayNhap,
             this.colTongTien,
             this.colView,
-            this.colDelete});
+            this.colDelete,
+            this.colEdit});
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -234,6 +235,7 @@
             this.dgvImports.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvImports.Size = new System.Drawing.Size(1252, 622);
             this.dgvImports.TabIndex = 3;
+            this.dgvImports.RowTemplate.Height =40;
             // 
             // colMaPN
             // 
@@ -283,33 +285,47 @@
             this.colTongTien.Name = "colTongTien";
             this.colTongTien.ReadOnly = true;
             // 
+            // colEdit
+            // 
+            this.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.colEdit.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.colEdit.HeaderText = "Sửa";
+            this.colEdit.Name = "colEdit";
+            this.colEdit.ReadOnly = true;
+            this.colEdit.Text = "Sửa";
+            this.colEdit.UseColumnTextForButtonValue = true;
+            this.colEdit.Width = 60;
+            // 
             // colView
             // 
             this.colView.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(0, 16, 4, 16);
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(0);
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.colView.DefaultCellStyle = dataGridViewCellStyle9;
             this.colView.FillWeight = 158.8549F;
-            this.colView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.colView.HeaderText = "Hành động";
+            this.colView.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.colView.HeaderText = "Xem";
             this.colView.Name = "colView";
             this.colView.ReadOnly = true;
             this.colView.Text = "Xem";
             this.colView.UseColumnTextForButtonValue = true;
-            this.colView.Width = 40;
+            this.colView.Width = 60;
             // 
             // colDelete
             // 
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.colDelete.FillWeight = 68.7898F;
-            this.colDelete.HeaderText = "";
+            this.colDelete.HeaderText = "Xóa";
             this.colDelete.Name = "colDelete";
             this.colDelete.ReadOnly = true;
             this.colDelete.Text = "Xóa";
             this.colDelete.UseColumnTextForButtonValue = true;
+            this.colDelete.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.colDelete.Width = 80;
             // 
             // WarehouseControl
             // 
@@ -349,6 +365,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colNguoiTao;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNgayNhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTongTien;
+        private System.Windows.Forms.DataGridViewButtonColumn colEdit;
         private System.Windows.Forms.DataGridViewButtonColumn colView;
         private System.Windows.Forms.DataGridViewButtonColumn colDelete;
     }

@@ -28,6 +28,10 @@ namespace book_management.UI.Controls
         {
             InitializeComponent();
             InitializeData();
+
+            // Register DataGridView events
+            this.Load += WarehouseControl_Load;
+            this.dgvImports.CellContentClick += dgvImports_CellContentClick;
         }
         private void InitializeData()
         {
@@ -154,7 +158,8 @@ namespace book_management.UI.Controls
                     return;
                 }
 
-                using (var editForm = new EditInvoiceControl(phieuNhapId))
+                // Open EditWareHouseControl form (not EditInvoiceControl)
+                using (var editForm = new EditWareHouseControl(phieuNhapId))
                 {
                     if (editForm.ShowDialog() == DialogResult.OK)
                     {
@@ -192,6 +197,45 @@ namespace book_management.UI.Controls
                 }
             }
         }
+        
+        // xu ly xu kien edit warehouse
+        private void dgvImports_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex <0 || e.ColumnIndex <0) return;
+
+                var column = dgvImports.Columns[e.ColumnIndex];
+                int pnId =0;
+                if (dgvImports.Rows[e.RowIndex].Tag != null)
+                {
+                    int.TryParse(dgvImports.Rows[e.RowIndex].Tag.ToString(), out pnId);
+                }
+
+                if (pnId ==0)
+                {
+                    // try read from first cell
+                    int.TryParse(dgvImports.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "0", out pnId);
+                }
+
+                if (pnId ==0) return;
+
+                if (column.Name == "colEdit")
+                {
+                    EditWareHouse(pnId);
+                }
+                
+                else if (column.Name == "colDelete")
+                {
+                    DeleteInvoice(pnId);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi xử lý click: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         public void RefreshWareHouse()
         {
             LoadWareHouse();

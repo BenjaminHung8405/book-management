@@ -63,6 +63,53 @@ namespace book_management.Data
 
             return null;
         }
+        public static dynamic GetUserByPhone(string soDienThoai)
+        {
+            try
+            {
+                using (var connection = DatabaseConnection.GetConnection())
+                {
+                    connection.Open();
+                    string query = @"
+                    SELECT 
+                    user_id,
+                    username,
+                    ho_ten,
+                    email,
+                    so_dien_thoai,
+                    vai_tro,
+                    ngay_tao,
+                    trang_thai
+                    FROM NguoiDung 
+                    WHERE so_dien_thoai = @SoDienThoai";
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@SoDienThoai", soDienThoai);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                dynamic user = new System.Dynamic.ExpandoObject();
+                                user.UserId = reader["user_id"];
+                                user.Username = reader["username"]?.ToString() ?? "";
+                                user.HoTen = reader["ho_ten"]?.ToString() ?? "";
+                                user.Email = reader["email"]?.ToString() ?? "";
+                                user.SoDienThoai = reader["so_dien_thoai"]?.ToString() ?? "";
+                                user.VaiTro = reader["vai_tro"]?.ToString() ?? "";
+                                user.NgayTao = reader["ngay_tao"] != DBNull.Value ? Convert.ToDateTime(reader["ngay_tao"]) : DateTime.MinValue;
+                                user.TrangThai = reader["trang_thai"] != DBNull.Value ? Convert.ToBoolean(reader["trang_thai"]) : true;
+                                return user;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi lấy thông tin người dùng: {ex.Message}", ex);
+            }
+            return null;
+        }
         public static dynamic GetUserById(int userId)
         {
             try

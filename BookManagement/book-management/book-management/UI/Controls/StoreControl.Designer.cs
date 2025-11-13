@@ -30,7 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelBookSelection = new System.Windows.Forms.Panel();
             this.flowPanelBooks = new System.Windows.Forms.FlowLayoutPanel();
             this.panelSearchBook = new System.Windows.Forms.Panel();
@@ -124,6 +123,7 @@
             // iconSearchBook
             // 
             this.iconSearchBook.BackColor = System.Drawing.Color.White;
+            this.iconSearchBook.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconSearchBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.iconSearchBook.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
             this.iconSearchBook.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
@@ -181,10 +181,10 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvCart.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvCart.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgvCart.Location = new System.Drawing.Point(19, 19);
             this.dgvCart.Name = "dgvCart";
-            this.dgvCart.Size = new System.Drawing.Size(600, 400);
-            this.dgvCart.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dgvCart.Size = new System.Drawing.Size(473, 302);
             this.dgvCart.TabIndex = 0;
             // 
             // cmbPromotions
@@ -192,7 +192,7 @@
             this.cmbPromotions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPromotions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.cmbPromotions.FormattingEnabled = true;
-            this.cmbPromotions.Location = new System.Drawing.Point(19, 286);
+            this.cmbPromotions.Location = new System.Drawing.Point(19, 327);
             this.cmbPromotions.Name = "cmbPromotions";
             this.cmbPromotions.Size = new System.Drawing.Size(473, 28);
             this.cmbPromotions.Sorted = true;
