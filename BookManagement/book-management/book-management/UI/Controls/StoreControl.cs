@@ -7,7 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using book_management.Data;
 using book_management.DataAccess;
-using book_management.Models; 
+using book_management.Models;
 using book_management.UI.Modal;
 using book_management.Services;
 using book_management.Helpers;
@@ -36,10 +36,10 @@ namespace book_management.UI.Controls
             // Thêm hàm thiết lập DataGridView cho giỏ hàng
             SetupCartGrid();
             LoadPromotions();
-            
+
             // Gắn sự kiện cho ComboBox khuyến mãi để cập nhật lại tổng khi người dùng đổi khuyến mãi
             this.cmbPromotions.SelectedIndexChanged += this.cmbPromotions_SelectedIndexChanged;
-            
+
             // Cập nhật hiển thị tổng ban đầu
             UpdateTotals();
             // Gắn event cho nút thanh toán (ibtnThanhToan) tới handler hiện có
@@ -104,15 +104,22 @@ namespace book_management.UI.Controls
 
                 // 2. Tạo một item "Không chọn"
                 var displayList = new List<KhuyenMai>();
-                displayList.Add(new KhuyenMai { KmId = 0, TenKm = "--- Chọn khuyến mãi ---" });
+                displayList.Add(new KhuyenMai
+                {
+                    KmId = 0,
+                    TenKm = "--- Chọn khuyến mãi ---",
+                    PhanTramGiam = 0,
+                    MoTa = ""
+                });
                 displayList.AddRange(_availablePromotions);
 
                 // 3. Nạp vào ComboBox
                 cmbPromotions.DataSource = displayList;
                 cmbPromotions.DisplayMember = "TenKm"; // Hiển thị tên (VD: "Giảm10%")
                 cmbPromotions.ValueMember = "KmId"; // Lưu lại ID
-                // Đặt lựa chọn mặc định về phần tử đầu và cập nhật tổng
-                cmbPromotions.SelectedIndex =0;
+
+                // 4. Đặt lựa chọn mặc định về phần tử đầu và cập nhật tổng
+                cmbPromotions.SelectedIndex = 0;
                 UpdateTotals();
             }
             catch (Exception ex)
@@ -161,11 +168,11 @@ namespace book_management.UI.Controls
                 }
                 System.Diagnostics.Debug.WriteLine($"Searching with keyword: '{currentSearchKeyword}'");
                 System.Diagnostics.Debug.WriteLine($"Total books available: {allBooks?.Count ?? 0}");
-                
-                 filteredBooks = BookSearchService.SearchAndFilter(
-                      allBooks,
-                      currentSearchKeyword
-                      );
+
+                filteredBooks = BookSearchService.SearchAndFilter(
+                     allBooks,
+                     currentSearchKeyword
+                     );
                 System.Diagnostics.Debug.WriteLine($"Search results: {filteredBooks.Count} books found");
 
                 // Refresh display
@@ -177,7 +184,7 @@ namespace book_management.UI.Controls
                          "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-      
+
         /// <summary>
         // Lớp nội bộ để giữ thông tin giỏ hàng
         /// </summary>
@@ -198,7 +205,7 @@ namespace book_management.UI.Controls
         {
             try
             {
-                 //1. Clear existing data
+                //1. Clear existing data
                 //flowPanelBooks.Controls.Clear();
 
                 // 2. Load all books từ database: Gán vào allBooks
@@ -240,7 +247,7 @@ namespace book_management.UI.Controls
                     return;
                 }
                 System.Diagnostics.Debug.WriteLine($"RefreshBookDisplay: Displaying {filteredBooks.Count} books");
-            
+
                 // Sử dụng filteredBooks
                 foreach (dynamic sach in filteredBooks)
                 {
@@ -269,7 +276,7 @@ namespace book_management.UI.Controls
                     catch (Exception cardEx)
                     {
                         System.Diagnostics.Debug.WriteLine($"Error creating book card: {cardEx.Message}");
-                       
+
                     }
                 }
 
@@ -340,8 +347,37 @@ namespace book_management.UI.Controls
         }
         private void cmbPromotions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Khi người dùng chọn một khuyến mãi, tính toán lại tổng tiền
-            UpdateTotals();
+            try
+            {
+                // Khi người dùng chọn một khuyến mãi, tính toán lại tổng tiền
+                var selectedPromo = cmbPromotions.SelectedItem as KhuyenMai;
+
+                if (selectedPromo != null && selectedPromo.KmId > 0)
+                {
+                    // Hiển thị thông tin chi tiết của voucher
+                    string promoInfo = $"{selectedPromo.TenKm} ({selectedPromo.PhanTramGiam}%)";
+
+                    // Nếu có mô tả, thêm vào
+                    if (!string.IsNullOrWhiteSpace(selectedPromo.MoTa))
+                    {
+                        promoInfo += $"\n{selectedPromo.MoTa}";
+                    }
+
+                    // Debug: In ra thông tin
+                    System.Diagnostics.Debug.WriteLine($"Selected Voucher: {promoInfo}");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("No voucher selected or invalid selection");
+                }
+
+                // Cập nhật tổng tiền
+                UpdateTotals();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi chọn khuyến mãi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         /// <summary>
         /// Mở form thêm khách hàng (Nút tìm kiếm khách hàng)
@@ -359,7 +395,7 @@ namespace book_management.UI.Controls
                         // Dùng customer vừa tạo để điền ngay vào các toolbox
                         var created = form.CreatedCustomer;
                         _currentCustomerId = created.KhId;
-                        lblCustomerInfo.Text = $"Giao đến: { (string.IsNullOrEmpty(created.TenKhach) ? "Khách vãng lai" : created.TenKhach) } | SĐT: {created.SoDienThoai}";
+                        lblCustomerInfo.Text = $"Giao đến: {(string.IsNullOrEmpty(created.TenKhach) ? "Khách vãng lai" : created.TenKhach)} | SĐT: {created.SoDienThoai}";
                         rtbAddressDelivery.Text = created.DiaChi ?? "";
                         // Điền số điện thoại vào ô tìm kiếm để dễ theo dõi
                         txtCustomerSearch.Text = created.SoDienThoai ?? "";
@@ -367,7 +403,7 @@ namespace book_management.UI.Controls
                         ibtnThanhToan.Enabled = true;
 
                         // Nếu đã có sản phẩm trong giỏ, hỏi người dùng có muốn tiến hành thanh toán ngay
-                        if (_cart.Count >0)
+                        if (_cart.Count > 0)
                         {
                             var ask = MessageBox.Show("Khách hàng được tạo thành công. Bạn có muốn tiến hành thanh toán ngay không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (ask == DialogResult.Yes)
@@ -413,19 +449,19 @@ namespace book_management.UI.Controls
 
                 // 3. Xác nhận
                 decimal tongTien = _cart.Sum(item => item.Total);
-                
+
                 // Lấy khuyến mãi đang chọn (nếu có) và tính tiền giảm
                 var selectedPromo = cmbPromotions.SelectedItem as KhuyenMai;
-                decimal discount =0m;
-                decimal percent =0m;
-                if (selectedPromo != null && selectedPromo.KmId >0)
+                decimal discount = 0m;
+                decimal percent = 0m;
+                if (selectedPromo != null && selectedPromo.KmId > 0)
                 {
-                    percent = selectedPromo.PhanTramGiam /100m;
-                    discount = Math.Round(tongTien * percent,2);
+                    percent = selectedPromo.PhanTramGiam / 100m;
+                    discount = Math.Round(tongTien * percent, 2);
                 }
-                
+
                 decimal netTotal = tongTien - discount;
-                
+
                 var result = MessageBox.Show($"Xác nhận thanh toán {netTotal:N0} đ?",
                                               "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -448,18 +484,18 @@ namespace book_management.UI.Controls
                     {
                         decimal itemTotal = item.Total;
                         decimal itemDiscount = 0m;
-                        if (percent >0)
+                        if (percent > 0)
                         {
-                            itemDiscount = Math.Round(itemTotal * percent,2);
+                            itemDiscount = Math.Round(itemTotal * percent, 2);
                         }
-                        
+
                         var detail = new ChiTietHoaDon
                         {
                             SachId = item.BookId,
                             SoLuong = item.Quantity,
                             DonGia = item.Price,
                             TienGiam = itemDiscount,
-                            KhuyenMaiId = (selectedPromo != null && selectedPromo.KmId >0) ? (int?)selectedPromo.KmId : null,
+                            KhuyenMaiId = (selectedPromo != null && selectedPromo.KmId > 0) ? (int?)selectedPromo.KmId : null,
                             ThanhTien = (itemTotal - itemDiscount)
                         };
                         details.Add(detail);
@@ -563,30 +599,44 @@ namespace book_management.UI.Controls
         /// </summary>
         private void UpdateTotals()
         {
-            decimal subtotal = _cart.Sum(item => item.Total);
-            decimal discount = 0; // Đặt lại KM về 0
-
-            // Lấy Khuyến mãi đang được chọn
-            var selectedPromo = cmbPromotions.SelectedItem as KhuyenMai;
-
-            if (selectedPromo != null && selectedPromo.KmId > 0)
+            try
             {
-                // Tính toán khuyến mãi
-                // VÍ DỤ: Giảm %
-                decimal percent = selectedPromo.PhanTramGiam / 100;
-                discount = subtotal * percent;
+                decimal subtotal = _cart.Sum(item => item.Total);
+                decimal discount = 0; // Đặt lại KM về 0
 
-                // TODO: Thêm logic "Giảm tối đa" (maxMoney) nếu CSDL có
-                // decimal maxDiscount = selectedPromo.MaxDiscount;
-                // if (discount > maxDiscount) { discount = maxDiscount; }
+                // Lấy Khuyến mãi đang được chọn
+                var selectedPromo = cmbPromotions.SelectedItem as KhuyenMai;
+
+                if (selectedPromo != null && selectedPromo.KmId > 0)
+                {
+                    // Tính toán khuyến mãi theo phần trăm
+                    decimal percent = selectedPromo.PhanTramGiam / 100;
+                    discount = subtotal * percent;
+                    discount = Math.Round(discount, 2); // Làm tròn 2 chữ số thập phân
+
+                    // Debug: In ra chi tiết tính toán
+                    System.Diagnostics.Debug.WriteLine($"Voucher: {selectedPromo.TenKm}");
+                    System.Diagnostics.Debug.WriteLine($"Discount: {selectedPromo.PhanTramGiam}%");
+                    System.Diagnostics.Debug.WriteLine($"Subtotal: {subtotal}, Discount Amount: {discount}");
+
+                    // TODO: Thêm logic "Giảm tối đa" (maxMoney) nếu CSDL có
+                    // decimal maxDiscount = selectedPromo.MaxDiscount;
+                    // if (discount > maxDiscount) { discount = maxDiscount; }
+                }
+
+                _currentDiscount = discount;
+                decimal total = subtotal - discount;
+
+                // Cập nhật hiển thị
+                lblSubtotal.Text = subtotal.ToString("N0") + "đ";
+                lblDiscountValue.Text = discount.ToString("N0") + "đ"; // Hiển thị tiền giảm
+                lblTotalValue.Text = total.ToString("N0") + "đ";
             }
-
-            _currentDiscount = discount; 
-            decimal total = subtotal - discount;
-
-            lblSubtotal.Text = subtotal.ToString("N0") + "đ";
-            lblDiscountValue.Text = discount.ToString("N0") + "đ"; // Hiển thị tiền giảm
-            lblTotalValue.Text = total.ToString("N0") + "đ";
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in UpdateTotals: {ex.Message}");
+                MessageBox.Show($"Lỗi khi cập nhật tổng tiền: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>

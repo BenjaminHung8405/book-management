@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -9,7 +9,7 @@ using book_management.Models;
 
 namespace book_management.DataAccess
 {
-    public static class KhuyenMaiRepository
+    public static class VoucherRepository
     {
         /// <summary>
         /// Lấy tất cả Khuyến mãi (Voucher)
@@ -26,48 +26,6 @@ namespace book_management.DataAccess
                         SELECT km_id, ten_km, mo_ta, phan_tram_giam, ngay_bat_dau, ngay_ket_thuc
                         FROM KhuyenMai
                         ORDER BY ngay_bat_dau DESC", conn);
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            list.Add(new KhuyenMai
-                            {
-                                KmId = Convert.ToInt32(reader["km_id"]),
-                                TenKm = reader["ten_km"].ToString(),
-                                MoTa = reader["mo_ta"] != DBNull.Value ? reader["mo_ta"].ToString() : "",
-                                PhanTramGiam = Convert.ToDecimal(reader["phan_tram_giam"]),
-                                NgayBatDau = Convert.ToDateTime(reader["ngay_bat_dau"]),
-                                NgayKetThuc = Convert.ToDateTime(reader["ngay_ket_thuc"])
-                            });
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi khi lấy danh sách khuyến mãi: " + ex.Message);
-            }
-            return list;
-        }
-
-        /// <summary>
-        /// Lấy tất cả Khuyến mãi CÒN HIỆU LỰC (Active Promotions)
-        /// </summary>
-        public static List<KhuyenMai> GetAvailablePromotions()
-        {
-            var list = new List<KhuyenMai>();
-            try
-            {
-                using (var conn = DatabaseConnection.GetConnection())
-                {
-                    conn.Open();
-                    // Chỉ lấy các KM đang trong thời gian áp dụng
-                    var cmd = new SqlCommand(@"
-                        SELECT km_id, ten_km, mo_ta, phan_tram_giam, ngay_bat_dau, ngay_ket_thuc
-                        FROM KhuyenMai
-                        WHERE GETDATE() BETWEEN ngay_bat_dau AND ngay_ket_thuc
-                        ORDER BY phan_tram_giam DESC", conn);
 
                     using (var reader = cmd.ExecuteReader())
                     {
