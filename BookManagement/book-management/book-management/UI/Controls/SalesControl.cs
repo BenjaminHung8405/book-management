@@ -354,7 +354,8 @@ namespace book_management.UI.Controls
                         // Giả sử bạn có class CurrentUser (người đang đăng nhập)
                         UserId = CurrentUser.UserId,
                         TongTien = totalAmount,
-                        TrangThai = "DaThanhToan",
+                        // Lấy trạng thái từ combobox (nếu combobox không tồn tại/không chọn -> mặc định Chưa thanh toán)
+                        TrangThai = MapPaymentStatusToCode(cmbPaymentStatus?.SelectedItem?.ToString()),
 
                         // SỬA LỖI 1: Gán NULL (không phải 0) cho khách vãng lai
                         KhId = (currentCustomerId > 0) ? (int?)currentCustomerId : null,
@@ -518,6 +519,27 @@ namespace book_management.UI.Controls
             public int Quantity { get; set; }
             public decimal Total { get; set; }
             public int AvailableStock { get; set; } // Thêm tồn kho
+        }
+
+        // Thêm helper dưới vùng Methods của class
+        private string MapPaymentStatusToCode(string display)
+        {
+            if (string.IsNullOrWhiteSpace(display))
+                return "ChuaThanhToan";
+
+            display = display.Trim();
+
+            // Map các text hiển thị sang mã lưu DB
+            if (display.Equals("Đã thanh toán", StringComparison.OrdinalIgnoreCase) ||
+                display.Equals("DaThanhToan", StringComparison.OrdinalIgnoreCase))
+                return "DaThanhToan";
+
+            if (display.Equals("Chưa thanh toán", StringComparison.OrdinalIgnoreCase) ||
+                display.Equals("ChuaThanhToan", StringComparison.OrdinalIgnoreCase))
+                return "ChuaThanhToan";
+
+            // Fallback: sử dụng IndexOf với StringComparison (hỗ trợ trong .NET Framework)
+            return (display.IndexOf("đã", StringComparison.OrdinalIgnoreCase) >= 0) ? "DaThanhToan" : "ChuaThanhToan";
         }
     }
 }

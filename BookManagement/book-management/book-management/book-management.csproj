@@ -260,6 +260,9 @@
     <EmbeddedResource Include="UI\Controls\PurchaseHistoryControl.resx">
       <DependentUpon>PurchaseHistoryControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\SalesControl.resx">
+      <DependentUpon>SalesControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\StoreControl.resx">
       <DependentUpon>StoreControl.cs</DependentUpon>
     </EmbeddedResource>

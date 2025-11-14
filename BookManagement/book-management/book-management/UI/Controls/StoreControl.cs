@@ -40,6 +40,18 @@ namespace book_management.UI.Controls
             // Gắn sự kiện cho ComboBox khuyến mãi để cập nhật lại tổng khi người dùng đổi khuyến mãi
             this.cmbPromotions.SelectedIndexChanged += this.cmbPromotions_SelectedIndexChanged;
 
+            // Thiết lập combobox trạng thái thanh toán mặc định (Chưa thanh toán / Đã thanh toán)
+            try
+            {
+                if (this.cmbPaymentStatus != null && this.cmbPaymentStatus.Items.Count > 0)
+                {
+                    // Mặc định chọn "Đã thanh toán" để phù hợp với hành động thanh toán ngay
+                    // Nếu muốn mặc định là chưa thanh toán, đổi SelectedIndex = 0
+                    this.cmbPaymentStatus.SelectedIndex = 0;
+                }
+            }
+            catch { }
+
             // Cập nhật hiển thị tổng ban đầu
             UpdateTotals();
             // Gắn event cho nút thanh toán (ibtnThanhToan) tới handler hiện có
@@ -475,11 +487,21 @@ namespace book_management.UI.Controls
                 if (result == DialogResult.Yes)
                 {
                     // 4. Chuẩn bị HoaDon (lưu tổng tiền sau giảm)
+                    // Map selected combobox value to database status code
+                    string selectedStatusText = null;
+                    try { selectedStatusText = this.cmbPaymentStatus?.SelectedItem?.ToString(); } catch { selectedStatusText = null; }
+                    string trangThaiDb = "DaThanhToan"; // default
+                    if (!string.IsNullOrWhiteSpace(selectedStatusText))
+                    {
+                        if (selectedStatusText.Contains("Chưa")) trangThaiDb = "ChuaThanhToan";
+                        else if (selectedStatusText.Contains("Đã") || selectedStatusText.Contains("Da")) trangThaiDb = "DaThanhToan";
+                    }
+
                     HoaDon newBill = new HoaDon
                     {
                         UserId = CurrentUser.UserId,
                         TongTien = netTotal,
-                        TrangThai = "DaThanhToan",
+                        TrangThai = trangThaiDb,
                         // Nếu có địa chỉ giao hàng nhập sẵn thì lưu
                         DiaChiGiaoHang = string.IsNullOrWhiteSpace(rtbAddressDelivery.Text) ? null : rtbAddressDelivery.Text.Trim(),
                         // Nếu có khách (kh_id != 0) gán KhId, nếu không để null để biểu thị khách vãng lai
@@ -487,11 +509,11 @@ namespace book_management.UI.Controls
                         // Nếu là khách vãng lai, dùng txtCustomerSearch làm tên (nếu người dùng đã nhập), ngược lại ghi 'Khách vãng lai'
                         TenNguoiMua = _currentCustomerId > 0 ? null : (string.IsNullOrWhiteSpace(txtCustomerSearch.Text) ? "Khách vãng lai" : txtCustomerSearch.Text.Trim())
                     };
-
-                    // 5. Chuẩn bị ChiTietHoaDon: phân bổ tiền giảm theo tỉ lệ phần trăm (hoặc theo percent)
-                    var details = new List<ChiTietHoaDon>();
-                    foreach (var item in _cart)
-                    {
+                
+                     // 5. Chuẩn bị ChiTietHoaDon: phân bổ tiền giảm theo tỉ lệ phần trăm (hoặc theo percent)
+                     var details = new List<ChiTietHoaDon>();
+                     foreach (var item in _cart)
+                     {
                         decimal itemTotal = item.Total;
                         decimal itemDiscount = 0m;
                         if (percent > 0)

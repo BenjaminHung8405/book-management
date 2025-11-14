@@ -63,6 +63,8 @@
             this.txtCustomerSearch = new System.Windows.Forms.TextBox();
             this.btnAddCustomer = new FontAwesome.Sharp.IconButton();
             this.lblOrderId = new System.Windows.Forms.Label();
+            this.cmbPaymentStatus = new System.Windows.Forms.ComboBox();
+            this.lblPaymentStatusLabel = new System.Windows.Forms.Label();
             this.panelBookSelection.SuspendLayout();
             this.panelSearchBook.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconSearchBook)).BeginInit();
@@ -155,10 +157,10 @@
             this.flowPanelOrderItems.Controls.Add(this.cmbPromotions);
             this.flowPanelOrderItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowPanelOrderItems.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowPanelOrderItems.Location = new System.Drawing.Point(0, 210);
+            this.flowPanelOrderItems.Location = new System.Drawing.Point(0, 252);
             this.flowPanelOrderItems.Name = "flowPanelOrderItems";
             this.flowPanelOrderItems.Padding = new System.Windows.Forms.Padding(16);
-            this.flowPanelOrderItems.Size = new System.Drawing.Size(509, 400);
+            this.flowPanelOrderItems.Size = new System.Drawing.Size(509, 358);
             this.flowPanelOrderItems.TabIndex = 2;
             this.flowPanelOrderItems.WrapContents = false;
             // 
@@ -385,11 +387,13 @@
             this.panelOrderHeader.Controls.Add(this.lblCustomerName);
             this.panelOrderHeader.Controls.Add(this.panelCustomerSearch);
             this.panelOrderHeader.Controls.Add(this.lblOrderId);
+            this.panelOrderHeader.Controls.Add(this.cmbPaymentStatus);
+            this.panelOrderHeader.Controls.Add(this.lblPaymentStatusLabel);
             this.panelOrderHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelOrderHeader.Location = new System.Drawing.Point(0, 0);
             this.panelOrderHeader.Name = "panelOrderHeader";
             this.panelOrderHeader.Padding = new System.Windows.Forms.Padding(16);
-            this.panelOrderHeader.Size = new System.Drawing.Size(509, 210);
+            this.panelOrderHeader.Size = new System.Drawing.Size(509, 252);
             this.panelOrderHeader.TabIndex = 0;
             // 
             // rtbAddressDelivery
@@ -499,6 +503,29 @@
             this.lblOrderId.TabIndex = 0;
             this.lblOrderId.Text = "Tìm kiếm SDT khách hàng\r\n";
             // 
+            // cmbPaymentStatus
+            // 
+            this.cmbPaymentStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPaymentStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cmbPaymentStatus.FormattingEnabled = true;
+            this.cmbPaymentStatus.Items.AddRange(new object[] {
+            "Chưa thanh toán",
+            "Đã thanh toán"});
+            this.cmbPaymentStatus.Location = new System.Drawing.Point(187, 200);
+            this.cmbPaymentStatus.Name = "cmbPaymentStatus";
+            this.cmbPaymentStatus.Size = new System.Drawing.Size(239, 28);
+            this.cmbPaymentStatus.TabIndex = 7;
+            // 
+            // lblPaymentStatusLabel
+            // 
+            this.lblPaymentStatusLabel.AutoSize = true;
+            this.lblPaymentStatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblPaymentStatusLabel.Location = new System.Drawing.Point(16, 203);
+            this.lblPaymentStatusLabel.Name = "lblPaymentStatusLabel";
+            this.lblPaymentStatusLabel.Size = new System.Drawing.Size(165, 20);
+            this.lblPaymentStatusLabel.TabIndex = 6;
+            this.lblPaymentStatusLabel.Text = "Trạng thái thanh toán:";
+            // 
             // StoreControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -548,6 +575,8 @@
         private System.Windows.Forms.Panel panelOrderFooter;
         private System.Windows.Forms.Panel panelOrderHeader;
         private System.Windows.Forms.Label lblOrderId;
+        private System.Windows.Forms.Label lblPaymentStatusLabel;
+        private System.Windows.Forms.ComboBox cmbPaymentStatus;
         private System.Windows.Forms.Panel panelCustomerSearch;
         private System.Windows.Forms.TextBox txtCustomerSearch;
         private FontAwesome.Sharp.IconButton btnAddCustomer;

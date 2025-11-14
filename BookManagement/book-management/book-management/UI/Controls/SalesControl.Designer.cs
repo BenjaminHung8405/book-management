@@ -20,15 +20,12 @@
             this.panelBooks = new System.Windows.Forms.Panel();
             this.dgvBooks = new System.Windows.Forms.DataGridView();
             this.panelBookSearch = new System.Windows.Forms.Panel();
-            this.btnAddToCart = new FontAwesome.Sharp.IconButton();
-            this.btnSearchBook = new FontAwesome.Sharp.IconButton();
             this.txtSearchBook = new System.Windows.Forms.TextBox();
             this.lblBookSearch = new System.Windows.Forms.Label();
             this.panelCart = new System.Windows.Forms.Panel();
             this.dgvCart = new System.Windows.Forms.DataGridView();
             this.panelCartActions = new System.Windows.Forms.Panel();
             this.lblTotalAmount = new System.Windows.Forms.Label();
-            this.btnRemoveFromCart = new FontAwesome.Sharp.IconButton();
             this.lblCart = new System.Windows.Forms.Label();
             this.panelCustomer = new System.Windows.Forms.Panel();
             this.tableLayoutCustomer = new System.Windows.Forms.TableLayoutPanel();
@@ -37,11 +34,16 @@
             this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.lblCustomerPhone = new System.Windows.Forms.Label();
             this.txtCustomerPhone = new System.Windows.Forms.TextBox();
-            this.btnSearchCustomer = new FontAwesome.Sharp.IconButton();
             this.lblCustomerAddress = new System.Windows.Forms.Label();
             this.txtCustomerAddress = new System.Windows.Forms.TextBox();
-            this.btnNewCustomer = new FontAwesome.Sharp.IconButton();
             this.panelActions = new System.Windows.Forms.Panel();
+            this.cmbPaymentStatus = new System.Windows.Forms.ComboBox();
+            this.lblPaymentStatusLabel = new System.Windows.Forms.Label();
+            this.btnAddToCart = new FontAwesome.Sharp.IconButton();
+            this.btnSearchBook = new FontAwesome.Sharp.IconButton();
+            this.btnRemoveFromCart = new FontAwesome.Sharp.IconButton();
+            this.btnSearchCustomer = new FontAwesome.Sharp.IconButton();
+            this.btnNewCustomer = new FontAwesome.Sharp.IconButton();
             this.btnPrintBill = new FontAwesome.Sharp.IconButton();
             this.btnCancelBill = new FontAwesome.Sharp.IconButton();
             this.btnCreateBill = new FontAwesome.Sharp.IconButton();
@@ -128,41 +130,6 @@
             this.panelBookSearch.Size = new System.Drawing.Size(748, 70);
             this.panelBookSearch.TabIndex = 0;
             // 
-            // btnAddToCart
-            // 
-            this.btnAddToCart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddToCart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
-            this.btnAddToCart.ForeColor = System.Drawing.Color.White;
-            this.btnAddToCart.IconChar = FontAwesome.Sharp.IconChar.CartPlus;
-            this.btnAddToCart.IconColor = System.Drawing.Color.White;
-            this.btnAddToCart.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAddToCart.IconSize = 20;
-            this.btnAddToCart.Location = new System.Drawing.Point(618, 35);
-            this.btnAddToCart.Name = "btnAddToCart";
-            this.btnAddToCart.Size = new System.Drawing.Size(120, 30);
-            this.btnAddToCart.TabIndex = 3;
-            this.btnAddToCart.Text = "Thêm vào giỏ";
-            this.btnAddToCart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAddToCart.UseVisualStyleBackColor = false;
-            this.btnAddToCart.Click += new System.EventHandler(this.btnAddToCart_Click);
-            // 
-            // btnSearchBook
-            // 
-            this.btnSearchBook.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.btnSearchBook.ForeColor = System.Drawing.Color.White;
-            this.btnSearchBook.IconChar = FontAwesome.Sharp.IconChar.Search;
-            this.btnSearchBook.IconColor = System.Drawing.Color.White;
-            this.btnSearchBook.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSearchBook.IconSize = 16;
-            this.btnSearchBook.Location = new System.Drawing.Point(350, 35);
-            this.btnSearchBook.Name = "btnSearchBook";
-            this.btnSearchBook.Size = new System.Drawing.Size(80, 30);
-            this.btnSearchBook.TabIndex = 2;
-            this.btnSearchBook.Text = "Tìm";
-            this.btnSearchBook.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSearchBook.UseVisualStyleBackColor = false;
-            this.btnSearchBook.Click += new System.EventHandler(this.btnSearchBook_Click);
-            // 
             // txtSearchBook
             // 
             this.txtSearchBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -178,7 +145,7 @@
             this.lblBookSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lblBookSearch.Location = new System.Drawing.Point(0, 5);
             this.lblBookSearch.Name = "lblBookSearch";
-            this.lblBookSearch.Size = new System.Drawing.Size(166, 24);
+            this.lblBookSearch.Size = new System.Drawing.Size(159, 24);
             this.lblBookSearch.TabIndex = 0;
             this.lblBookSearch.Text = "Danh sách sách";
             // 
@@ -198,16 +165,16 @@
             // dgvCart
             // 
             this.dgvCart.AllowUserToAddRows = false;
-            this.dgvCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvCart.AllowUserToDeleteRows = false;
             this.dgvCart.BackgroundColor = System.Drawing.Color.White;
             this.dgvCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvCart.Location = new System.Drawing.Point(15, 85);
             this.dgvCart.Name = "dgvCart";
             this.dgvCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCart.Size = new System.Drawing.Size(600,600);
+            this.dgvCart.Size = new System.Drawing.Size(486, 445);
             this.dgvCart.TabIndex = 1;
             this.dgvCart.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCart_CellValueChanged);
             // 
@@ -233,31 +200,13 @@
             this.lblTotalAmount.TabIndex = 2;
             this.lblTotalAmount.Text = "Tổng tiền: 0 đ";
             // 
-            // btnRemoveFromCart
-            // 
-            this.btnRemoveFromCart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.btnRemoveFromCart.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnRemoveFromCart.ForeColor = System.Drawing.Color.White;
-            this.btnRemoveFromCart.IconChar = FontAwesome.Sharp.IconChar.Trash;
-            this.btnRemoveFromCart.IconColor = System.Drawing.Color.White;
-            this.btnRemoveFromCart.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnRemoveFromCart.IconSize = 16;
-            this.btnRemoveFromCart.Location = new System.Drawing.Point(366, 0);
-            this.btnRemoveFromCart.Name = "btnRemoveFromCart";
-            this.btnRemoveFromCart.Size = new System.Drawing.Size(120, 70);
-            this.btnRemoveFromCart.TabIndex = 1;
-            this.btnRemoveFromCart.Text = "Xóa khỏi giỏ";
-            this.btnRemoveFromCart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRemoveFromCart.UseVisualStyleBackColor = false;
-            this.btnRemoveFromCart.Click += new System.EventHandler(this.btnRemoveFromCart_Click);
-            // 
             // lblCart
             // 
             this.lblCart.AutoSize = true;
             this.lblCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.lblCart.Location = new System.Drawing.Point(0, 5);
             this.lblCart.Name = "lblCart";
-            this.lblCart.Size = new System.Drawing.Size(93, 24);
+            this.lblCart.Size = new System.Drawing.Size(95, 24);
             this.lblCart.TabIndex = 0;
             this.lblCart.Text = "Giỏ hàng";
             // 
@@ -280,7 +229,9 @@
             this.tableLayoutCustomer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutCustomer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutCustomer.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutCustomer.Controls.Add(this.cmbPaymentStatus, 3, 1);
             this.tableLayoutCustomer.Controls.Add(this.lblCustomerInfo, 0, 0);
+            this.tableLayoutCustomer.Controls.Add(this.lblPaymentStatusLabel, 2, 1);
             this.tableLayoutCustomer.Controls.Add(this.lblCustomerName, 0, 1);
             this.tableLayoutCustomer.Controls.Add(this.txtCustomerName, 1, 1);
             this.tableLayoutCustomer.Controls.Add(this.lblCustomerPhone, 0, 2);
@@ -308,7 +259,7 @@
             this.lblCustomerInfo.Location = new System.Drawing.Point(3, 8);
             this.lblCustomerInfo.Margin = new System.Windows.Forms.Padding(3, 8, 3, 0);
             this.lblCustomerInfo.Name = "lblCustomerInfo";
-            this.lblCustomerInfo.Size = new System.Drawing.Size(191, 24);
+            this.lblCustomerInfo.Size = new System.Drawing.Size(214, 24);
             this.lblCustomerInfo.TabIndex = 0;
             this.lblCustomerInfo.Text = "Thông tin khách hàng";
             // 
@@ -316,7 +267,7 @@
             // 
             this.lblCustomerName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCustomerName.AutoSize = true;
-            this.lblCustomerName.Location = new System.Drawing.Point(3, 61);
+            this.lblCustomerName.Location = new System.Drawing.Point(3, 60);
             this.lblCustomerName.Name = "lblCustomerName";
             this.lblCustomerName.Size = new System.Drawing.Size(57, 13);
             this.lblCustomerName.TabIndex = 1;
@@ -326,7 +277,7 @@
             // 
             this.txtCustomerName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCustomerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtCustomerName.Location = new System.Drawing.Point(103, 58);
+            this.txtCustomerName.Location = new System.Drawing.Point(103, 55);
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.Size = new System.Drawing.Size(382, 23);
             this.txtCustomerName.TabIndex = 2;
@@ -335,7 +286,7 @@
             // 
             this.lblCustomerPhone.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCustomerPhone.AutoSize = true;
-            this.lblCustomerPhone.Location = new System.Drawing.Point(3, 114);
+            this.lblCustomerPhone.Location = new System.Drawing.Point(3, 113);
             this.lblCustomerPhone.Name = "lblCustomerPhone";
             this.lblCustomerPhone.Size = new System.Drawing.Size(73, 13);
             this.lblCustomerPhone.TabIndex = 3;
@@ -345,34 +296,16 @@
             // 
             this.txtCustomerPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCustomerPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtCustomerPhone.Location = new System.Drawing.Point(103, 111);
+            this.txtCustomerPhone.Location = new System.Drawing.Point(103, 108);
             this.txtCustomerPhone.Name = "txtCustomerPhone";
             this.txtCustomerPhone.Size = new System.Drawing.Size(382, 23);
             this.txtCustomerPhone.TabIndex = 4;
-            // 
-            // btnSearchCustomer
-            // 
-            this.btnSearchCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearchCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.btnSearchCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnSearchCustomer.IconChar = FontAwesome.Sharp.IconChar.Search;
-            this.btnSearchCustomer.IconColor = System.Drawing.Color.White;
-            this.btnSearchCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSearchCustomer.IconSize = 16;
-            this.btnSearchCustomer.Location = new System.Drawing.Point(491, 105);
-            this.btnSearchCustomer.Name = "btnSearchCustomer";
-            this.btnSearchCustomer.Size = new System.Drawing.Size(123, 35);
-            this.btnSearchCustomer.TabIndex = 5;
-            this.btnSearchCustomer.Text = "Tìm kiếm";
-            this.btnSearchCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSearchCustomer.UseVisualStyleBackColor = false;
-            this.btnSearchCustomer.Click += new System.EventHandler(this.btnSearchCustomer_Click);
             // 
             // lblCustomerAddress
             // 
             this.lblCustomerAddress.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCustomerAddress.AutoSize = true;
-            this.lblCustomerAddress.Location = new System.Drawing.Point(3, 167);
+            this.lblCustomerAddress.Location = new System.Drawing.Point(3, 166);
             this.lblCustomerAddress.Name = "lblCustomerAddress";
             this.lblCustomerAddress.Size = new System.Drawing.Size(43, 13);
             this.lblCustomerAddress.TabIndex = 6;
@@ -383,28 +316,10 @@
             this.txtCustomerAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutCustomer.SetColumnSpan(this.txtCustomerAddress, 3);
             this.txtCustomerAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtCustomerAddress.Location = new System.Drawing.Point(103, 164);
+            this.txtCustomerAddress.Location = new System.Drawing.Point(103, 161);
             this.txtCustomerAddress.Name = "txtCustomerAddress";
             this.txtCustomerAddress.Size = new System.Drawing.Size(642, 23);
             this.txtCustomerAddress.TabIndex = 7;
-            // 
-            // btnNewCustomer
-            // 
-            this.btnNewCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
-            this.btnNewCustomer.ForeColor = System.Drawing.Color.White;
-            this.btnNewCustomer.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
-            this.btnNewCustomer.IconColor = System.Drawing.Color.White;
-            this.btnNewCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnNewCustomer.IconSize = 16;
-            this.btnNewCustomer.Location = new System.Drawing.Point(620, 105);
-            this.btnNewCustomer.Name = "btnNewCustomer";
-            this.btnNewCustomer.Size = new System.Drawing.Size(125, 35);
-            this.btnNewCustomer.TabIndex = 8;
-            this.btnNewCustomer.Text = "Khách mới";
-            this.btnNewCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnNewCustomer.UseVisualStyleBackColor = false;
-            this.btnNewCustomer.Click += new System.EventHandler(this.btnNewCustomer_Click);
             // 
             // panelActions
             // 
@@ -420,9 +335,124 @@
             this.panelActions.Size = new System.Drawing.Size(518, 231);
             this.panelActions.TabIndex = 3;
             // 
+            // cmbPaymentStatus
+            // 
+            this.cmbPaymentStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbPaymentStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPaymentStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cmbPaymentStatus.FormattingEnabled = true;
+            this.cmbPaymentStatus.Items.AddRange(new object[] {
+            "Chưa thanh toán",
+            "Đã thanh toán"});
+            this.cmbPaymentStatus.Location = new System.Drawing.Point(620, 52);
+            this.cmbPaymentStatus.Name = "cmbPaymentStatus";
+            this.cmbPaymentStatus.Size = new System.Drawing.Size(125, 28);
+            this.cmbPaymentStatus.TabIndex = 10;
+            this.cmbPaymentStatus.SelectedIndex = 0;
+            // 
+            // lblPaymentStatusLabel
+            // 
+            this.lblPaymentStatusLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblPaymentStatusLabel.AutoSize = true;
+            this.lblPaymentStatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaymentStatusLabel.Location = new System.Drawing.Point(496, 60);
+            this.lblPaymentStatusLabel.Name = "lblPaymentStatusLabel";
+            this.lblPaymentStatusLabel.Size = new System.Drawing.Size(112, 13);
+            this.lblPaymentStatusLabel.TabIndex = 9;
+            this.lblPaymentStatusLabel.Text = "Trạng thái thanh toán:";
+            // 
+            // btnAddToCart
+            // 
+            this.btnAddToCart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddToCart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
+            this.btnAddToCart.ForeColor = System.Drawing.Color.White;
+            this.btnAddToCart.IconChar = FontAwesome.Sharp.IconChar.CartPlus;
+            this.btnAddToCart.IconColor = System.Drawing.Color.White;
+            this.btnAddToCart.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAddToCart.IconSize = 20;
+            this.btnAddToCart.Location = new System.Drawing.Point(618, 35);
+            this.btnAddToCart.Name = "btnAddToCart";
+            this.btnAddToCart.Size = new System.Drawing.Size(120, 30);
+            this.btnAddToCart.TabIndex = 3;
+            this.btnAddToCart.Text = "Thêm vào giỏ";
+            this.btnAddToCart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddToCart.UseVisualStyleBackColor = false;
+            this.btnAddToCart.Click += new System.EventHandler(this.btnAddToCart_Click);
+            // 
+            // btnSearchBook
+            // 
+            this.btnSearchBook.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnSearchBook.ForeColor = System.Drawing.Color.White;
+            this.btnSearchBook.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnSearchBook.IconColor = System.Drawing.Color.White;
+            this.btnSearchBook.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSearchBook.IconSize = 16;
+            this.btnSearchBook.Location = new System.Drawing.Point(350, 35);
+            this.btnSearchBook.Name = "btnSearchBook";
+            this.btnSearchBook.Size = new System.Drawing.Size(80, 30);
+            this.btnSearchBook.TabIndex = 2;
+            this.btnSearchBook.Text = "Tìm";
+            this.btnSearchBook.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSearchBook.UseVisualStyleBackColor = false;
+            this.btnSearchBook.Click += new System.EventHandler(this.btnSearchBook_Click);
+            // 
+            // btnRemoveFromCart
+            // 
+            this.btnRemoveFromCart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.btnRemoveFromCart.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnRemoveFromCart.ForeColor = System.Drawing.Color.White;
+            this.btnRemoveFromCart.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            this.btnRemoveFromCart.IconColor = System.Drawing.Color.White;
+            this.btnRemoveFromCart.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnRemoveFromCart.IconSize = 16;
+            this.btnRemoveFromCart.Location = new System.Drawing.Point(366, 0);
+            this.btnRemoveFromCart.Name = "btnRemoveFromCart";
+            this.btnRemoveFromCart.Size = new System.Drawing.Size(120, 70);
+            this.btnRemoveFromCart.TabIndex = 1;
+            this.btnRemoveFromCart.Text = "Xóa khỏi giỏ";
+            this.btnRemoveFromCart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnRemoveFromCart.UseVisualStyleBackColor = false;
+            this.btnRemoveFromCart.Click += new System.EventHandler(this.btnRemoveFromCart_Click);
+            // 
+            // btnSearchCustomer
+            // 
+            this.btnSearchCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearchCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnSearchCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnSearchCustomer.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnSearchCustomer.IconColor = System.Drawing.Color.White;
+            this.btnSearchCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSearchCustomer.IconSize = 16;
+            this.btnSearchCustomer.Location = new System.Drawing.Point(491, 102);
+            this.btnSearchCustomer.Name = "btnSearchCustomer";
+            this.btnSearchCustomer.Size = new System.Drawing.Size(123, 35);
+            this.btnSearchCustomer.TabIndex = 5;
+            this.btnSearchCustomer.Text = "Tìm kiếm";
+            this.btnSearchCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSearchCustomer.UseVisualStyleBackColor = false;
+            this.btnSearchCustomer.Click += new System.EventHandler(this.btnSearchCustomer_Click);
+            // 
+            // btnNewCustomer
+            // 
+            this.btnNewCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
+            this.btnNewCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnNewCustomer.IconChar = FontAwesome.Sharp.IconChar.UserPlus;
+            this.btnNewCustomer.IconColor = System.Drawing.Color.White;
+            this.btnNewCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNewCustomer.IconSize = 16;
+            this.btnNewCustomer.Location = new System.Drawing.Point(620, 102);
+            this.btnNewCustomer.Name = "btnNewCustomer";
+            this.btnNewCustomer.Size = new System.Drawing.Size(125, 35);
+            this.btnNewCustomer.TabIndex = 8;
+            this.btnNewCustomer.Text = "Khách mới";
+            this.btnNewCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnNewCustomer.UseVisualStyleBackColor = false;
+            this.btnNewCustomer.Click += new System.EventHandler(this.btnNewCustomer_Click);
+            // 
             // btnPrintBill
             // 
-            this.btnPrintBill.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnPrintBill.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(128)))));
             this.btnPrintBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
@@ -442,12 +472,12 @@
             // 
             // btnCancelBill
             // 
-            this.btnCancelBill.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnCancelBill.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.btnCancelBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.btnCancelBill.ForeColor = System.Drawing.Color.White;
-            this.btnCancelBill.IconChar = FontAwesome.Sharp.IconChar.Times;
+            this.btnCancelBill.IconChar = FontAwesome.Sharp.IconChar.Remove;
             this.btnCancelBill.IconColor = System.Drawing.Color.White;
             this.btnCancelBill.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCancelBill.IconSize = 24;
@@ -462,7 +492,7 @@
             // 
             // btnCreateBill
             // 
-            this.btnCreateBill.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnCreateBill.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCreateBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
             this.btnCreateBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
@@ -503,6 +533,7 @@
             this.tableLayoutCustomer.PerformLayout();
             this.panelActions.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         #region Controls
@@ -539,5 +570,8 @@
         private FontAwesome.Sharp.IconButton btnCreateBill;
 
         #endregion
+
+        private System.Windows.Forms.ComboBox cmbPaymentStatus;
+        private System.Windows.Forms.Label lblPaymentStatusLabel;
     }
 }

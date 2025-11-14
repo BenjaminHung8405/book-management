@@ -11,6 +11,14 @@
       "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\storecontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\storecontrol.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\storecontrol.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\salescontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\salescontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|d:\\project\\code\\dotnet\\book-management\\bookmanagement\\book-management\\book-management\\ui\\controls\\ucorderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{C4B96FCB-237D-4177-BAF4-5BB4C727DCC6}|book-management\\book-management.csproj|solutionrelative:book-management\\ui\\controls\\ucorderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -26,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,13 +54,38 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SalesControl.cs [Design]",
+              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\SalesControl.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\SalesControl.cs",
+              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\SalesControl.cs [Design]",
+              "RelativeToolTip": "book-management\\UI\\Controls\\SalesControl.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T11:43:34.537Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StoreControl.Designer.cs",
+              "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\StoreControl.Designer.cs",
+              "RelativeDocumentMoniker": "book-management\\UI\\Controls\\StoreControl.Designer.cs",
+              "ToolTip": "D:\\Project\\Code\\DotNet\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\StoreControl.Designer.cs",
+              "RelativeToolTip": "book-management\\UI\\Controls\\StoreControl.Designer.cs",
+              "ViewState": "AgIAAEkCAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T11:36:56.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "StoreControl.cs",
               "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\StoreControl.cs",
               "RelativeDocumentMoniker": "book-management\\UI\\Controls\\StoreControl.cs",
               "ToolTip": "D:\\Project\\Code\\DotNet\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\StoreControl.cs",
               "RelativeToolTip": "book-management\\UI\\Controls\\StoreControl.cs",
-              "ViewState": "AgIAAKoAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAowDgAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-14T11:29:54.815Z",
               "EditorCaption": ""
@@ -71,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ucOrderItem.cs [Design]",
               "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management\\BookManagement\\book-management\\book-management\\UI\\Controls\\ucOrderItem.cs",
               "RelativeDocumentMoniker": "book-management\\UI\\Controls\\ucOrderItem.cs",
@@ -83,7 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "LoginForm.cs",
               "DocumentMoniker": "D:\\Project\\Code\\DotNet\\book-management\\BookManagement\\book-management\\book-management\\UI\\LoginForm.cs",
               "RelativeDocumentMoniker": "book-management\\UI\\LoginForm.cs",
