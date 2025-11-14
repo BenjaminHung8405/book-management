@@ -57,6 +57,14 @@ namespace book_management.UI.Controls
 
             // Style DataGridView
             StyleDataGridView();
+
+            // Do not allow editing or deleting warehouse imports: hide those action columns
+            try
+            {
+                if (dgvImports.Columns["colDelete"] != null) dgvImports.Columns["colDelete"].Visible = false;
+                if (dgvImports.Columns["colEdit"] != null) dgvImports.Columns["colEdit"].Visible = false;
+            }
+            catch { }
         }
 
         private void StyleDataGridView()
@@ -303,14 +311,11 @@ namespace book_management.UI.Controls
 
                 if (pnId == 0) return;
 
-                if (column.Name == "colEdit")
+                if (column.Name == "colEdit" || column.Name == "colDelete")
                 {
-                    EditWareHouse(pnId);
-                }
-
-                else if (column.Name == "colDelete")
-                {
-                    DeleteInvoice(pnId);
+                    // Editing or deleting warehouse imports is not allowed in this view
+                    MessageBox.Show("Bạn không có quyền sửa hoặc xóa phiếu nhập từ giao diện này.", "Hành động bị từ chối", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
             }
             catch (Exception ex)
