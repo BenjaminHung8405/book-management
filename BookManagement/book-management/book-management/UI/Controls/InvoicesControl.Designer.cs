@@ -34,15 +34,6 @@ namespace book_management.UI.Controls
         {
             this.panelMain = new System.Windows.Forms.Panel();
             this.dgvInvoices = new System.Windows.Forms.DataGridView();
-            this.HoaDonId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayLap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenNguoiMua = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TongTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NguoiLap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ViewDetail = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panelTop = new System.Windows.Forms.Panel();
             this.lblTotalAmount = new System.Windows.Forms.Label();
             this.lblTotalInvoices = new System.Windows.Forms.Label();
@@ -56,6 +47,13 @@ namespace book_management.UI.Controls
             this.cmbStatusFilter = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.HoaDonId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayLap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNguoiMua = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TongTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NguoiLap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViewDetail = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoices)).BeginInit();
             this.panelTop.SuspendLayout();
@@ -76,7 +74,6 @@ namespace book_management.UI.Controls
             // 
             this.dgvInvoices.AllowUserToAddRows = false;
             this.dgvInvoices.AllowUserToDeleteRows = false;
-            this.dgvInvoices.AllowUserToResizeColumns = true;
             this.dgvInvoices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvInvoices.BackgroundColor = System.Drawing.Color.White;
             this.dgvInvoices.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -91,102 +88,21 @@ namespace book_management.UI.Controls
             this.TongTien,
             this.TrangThai,
             this.NguoiLap,
-            this.ViewDetail,
-            this.Edit,
-            this.Delete});
+            this.ViewDetail});
             this.dgvInvoices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvInvoices.EnableHeadersVisualStyles = false;
             this.dgvInvoices.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.dgvInvoices.Location = new System.Drawing.Point(20, 20);
+            this.dgvInvoices.Location = new System.Drawing.Point(10, 10);
             this.dgvInvoices.MultiSelect = false;
             this.dgvInvoices.Name = "dgvInvoices";
             this.dgvInvoices.ReadOnly = true;
             this.dgvInvoices.RowHeadersVisible = false;
             this.dgvInvoices.RowTemplate.Height = 40;
             this.dgvInvoices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInvoices.Size = new System.Drawing.Size(1200, 660);
+            this.dgvInvoices.Size = new System.Drawing.Size(1180, 660);
             this.dgvInvoices.TabIndex = 0;
             this.dgvInvoices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvInvoices_CellClick);
             this.dgvInvoices.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgvInvoices_CellFormatting);
-            // 
-            // HoaDonId
-            // 
-            this.HoaDonId.HeaderText = "Mã HD";
-            this.HoaDonId.FillWeight = 60F;
-            this.HoaDonId.Name = "HoaDonId";
-            this.HoaDonId.ReadOnly = true;
-            this.HoaDonId.Width = 100;
-            // 
-            // NgayLap
-            // 
-            this.NgayLap.HeaderText = "Ngày lập";
-            this.NgayLap.Name = "NgayLap";
-            this.NgayLap.FillWeight = 100F;
-            this.NgayLap.ReadOnly = true;
-            this.NgayLap.Width = 150;
-            // 
-            // TenNguoiMua
-            // 
-            this.TenNguoiMua.HeaderText = "Khách hàng";
-            this.TenNguoiMua.Name = "TenNguoiMua";
-            this.TenNguoiMua.FillWeight = 200F;
-            this.TenNguoiMua.ReadOnly = true;
-            this.TenNguoiMua.Width = 200;
-            // 
-            // TongTien
-            // 
-            this.TongTien.HeaderText = "Tổng tiền";
-            this.TongTien.Name = "TongTien";
-            this.TongTien.FillWeight = 90F;
-            this.TongTien.ReadOnly = true;
-            this.TongTien.Width = 140;
-            // 
-            // TrangThai
-            // 
-            this.TrangThai.HeaderText = "Trạng thái";
-            this.TrangThai.Name = "TrangThai";
-            this.TrangThai.FillWeight = 90F;
-            this.TrangThai.ReadOnly = true;
-            this.TrangThai.Width = 140;
-            // 
-            // NguoiLap
-            // 
-            this.NguoiLap.HeaderText = "Người lập";
-            this.NguoiLap.Name = "NguoiLap";
-            this.NguoiLap.ReadOnly = true;
-            this.NguoiLap.Width = 150;
-            this.TrangThai.FillWeight = 150F;
-
-            // 
-            // ViewDetail
-            // 
-            this.ViewDetail.HeaderText = "Chi tiết";
-            this.ViewDetail.Name = "ViewDetail";
-            this.ViewDetail.ReadOnly = true;
-            this.ViewDetail.Text = "Xem";
-            this.TrangThai.FillWeight = 70F;
-            this.ViewDetail.UseColumnTextForButtonValue = true;
-            this.ViewDetail.Width = 90;
-            // 
-            // Edit
-            // 
-            this.Edit.HeaderText = "Sửa";
-            this.Edit.Name = "Edit";
-            this.Delete.FillWeight = 60F;
-            this.Edit.ReadOnly = true;
-            this.Edit.Text = "Sửa";
-            this.Edit.UseColumnTextForButtonValue = true;
-            this.Edit.Width = 80;
-            // 
-            // Delete
-            // 
-            this.Delete.HeaderText = "Xóa";
-            this.Delete.Name = "Delete";
-             this.Delete.FillWeight = 60F;
-            this.Delete.ReadOnly = true;
-            this.Delete.Text = "Xóa";
-            this.Delete.UseColumnTextForButtonValue = true;
-            this.Delete.Width = 80;
             // 
             // panelTop
             // 
@@ -217,7 +133,7 @@ namespace book_management.UI.Controls
             this.lblTotalAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
             this.lblTotalAmount.Location = new System.Drawing.Point(220, 85);
             this.lblTotalAmount.Name = "lblTotalAmount";
-            this.lblTotalAmount.Size = new System.Drawing.Size(137, 19);
+            this.lblTotalAmount.Size = new System.Drawing.Size(143, 19);
             this.lblTotalAmount.TabIndex = 11;
             this.lblTotalAmount.Text = "Tổng doanh thu: 0 đ";
             // 
@@ -228,7 +144,7 @@ namespace book_management.UI.Controls
             this.lblTotalInvoices.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
             this.lblTotalInvoices.Location = new System.Drawing.Point(10, 85);
             this.lblTotalInvoices.Name = "lblTotalInvoices";
-            this.lblTotalInvoices.Size = new System.Drawing.Size(131, 19);
+            this.lblTotalInvoices.Size = new System.Drawing.Size(137, 19);
             this.lblTotalInvoices.TabIndex = 10;
             this.lblTotalInvoices.Text = "Tổng số hóa đơn: 0";
             // 
@@ -273,9 +189,12 @@ namespace book_management.UI.Controls
             // 
             // dtpToDate
             // 
+            this.dtpToDate.Checked = false;
+            this.dtpToDate.CustomFormat = "dd/MM/yyyy";
             this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpToDate.Location = new System.Drawing.Point(610, 45);
             this.dtpToDate.Name = "dtpToDate";
+            this.dtpToDate.ShowCheckBox = true;
             this.dtpToDate.Size = new System.Drawing.Size(120, 20);
             this.dtpToDate.TabIndex = 6;
             // 
@@ -285,15 +204,18 @@ namespace book_management.UI.Controls
             this.lblToDate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblToDate.Location = new System.Drawing.Point(540, 50);
             this.lblToDate.Name = "lblToDate";
-            this.lblToDate.Size = new System.Drawing.Size(64, 15);
+            this.lblToDate.Size = new System.Drawing.Size(60, 15);
             this.lblToDate.TabIndex = 5;
             this.lblToDate.Text = "Đến ngày:";
             // 
             // dtpFromDate
             // 
+            this.dtpFromDate.Checked = false;
+            this.dtpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFromDate.Location = new System.Drawing.Point(410, 45);
             this.dtpFromDate.Name = "dtpFromDate";
+            this.dtpFromDate.ShowCheckBox = true;
             this.dtpFromDate.Size = new System.Drawing.Size(120, 20);
             this.dtpFromDate.TabIndex = 4;
             // 
@@ -303,7 +225,7 @@ namespace book_management.UI.Controls
             this.lblFromDate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.lblFromDate.Location = new System.Drawing.Point(350, 50);
             this.lblFromDate.Name = "lblFromDate";
-            this.lblFromDate.Size = new System.Drawing.Size(56, 15);
+            this.lblFromDate.Size = new System.Drawing.Size(53, 15);
             this.lblFromDate.TabIndex = 3;
             this.lblFromDate.Text = "Từ ngày:";
             // 
@@ -341,9 +263,57 @@ namespace book_management.UI.Controls
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
             this.lblTitle.Location = new System.Drawing.Point(10, 10);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(208, 30);
+            this.lblTitle.Size = new System.Drawing.Size(218, 30);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "QUẢN LÝ HÓA ĐƠN";
+            // 
+            // HoaDonId
+            // 
+            this.HoaDonId.FillWeight = 60F;
+            this.HoaDonId.HeaderText = "Mã HD";
+            this.HoaDonId.Name = "HoaDonId";
+            this.HoaDonId.ReadOnly = true;
+            // 
+            // NgayLap
+            // 
+            this.NgayLap.HeaderText = "Ngày lập";
+            this.NgayLap.Name = "NgayLap";
+            this.NgayLap.ReadOnly = true;
+            // 
+            // TenNguoiMua
+            // 
+            this.TenNguoiMua.FillWeight = 200F;
+            this.TenNguoiMua.HeaderText = "Khách hàng";
+            this.TenNguoiMua.Name = "TenNguoiMua";
+            this.TenNguoiMua.ReadOnly = true;
+            // 
+            // TongTien
+            // 
+            this.TongTien.FillWeight = 90F;
+            this.TongTien.HeaderText = "Tổng tiền";
+            this.TongTien.Name = "TongTien";
+            this.TongTien.ReadOnly = true;
+            // 
+            // TrangThai
+            // 
+            this.TrangThai.FillWeight = 70F;
+            this.TrangThai.HeaderText = "Trạng thái";
+            this.TrangThai.Name = "TrangThai";
+            this.TrangThai.ReadOnly = true;
+            // 
+            // NguoiLap
+            // 
+            this.NguoiLap.HeaderText = "Người lập";
+            this.NguoiLap.Name = "NguoiLap";
+            this.NguoiLap.ReadOnly = true;
+            // 
+            // ViewDetail
+            // 
+            this.ViewDetail.HeaderText = "Chi tiết";
+            this.ViewDetail.Name = "ViewDetail";
+            this.ViewDetail.ReadOnly = true;
+            this.ViewDetail.Text = "Xem";
+            this.ViewDetail.UseColumnTextForButtonValue = true;
             // 
             // InvoicesControl
             // 
@@ -379,14 +349,12 @@ namespace book_management.UI.Controls
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Label lblTotalInvoices;
         private System.Windows.Forms.Label lblTotalAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoaDonId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NgayLap;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenNguoiMua;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TongTien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NguoiLap;
-        private System.Windows.Forms.DataGridViewButtonColumn ViewDetail;
-        private System.Windows.Forms.DataGridViewButtonColumn Edit;
-        private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private DataGridViewTextBoxColumn HoaDonId;
+        private DataGridViewTextBoxColumn NgayLap;
+        private DataGridViewTextBoxColumn TenNguoiMua;
+        private DataGridViewTextBoxColumn TongTien;
+        private DataGridViewTextBoxColumn TrangThai;
+        private DataGridViewTextBoxColumn NguoiLap;
+        private DataGridViewButtonColumn ViewDetail;
     }
 }

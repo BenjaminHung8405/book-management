@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using book_management.Data;
@@ -32,14 +33,28 @@ namespace book_management.UI.Controls
         {
             // Set default values
             cmbStatusFilter.SelectedIndex = 0;
+
+            // Make date pickers optional: user can uncheck to disable date filtering
+            dtpFromDate.ShowCheckBox = true;
+            dtpFromDate.Checked = false; // default: do not filter by date
+            dtpFromDate.Format = DateTimePickerFormat.Custom;
+            dtpFromDate.CustomFormat = "dd/MM/yyyy";
             dtpFromDate.Value = DateTime.Now.AddMonths(-1);
+
+            dtpToDate.ShowCheckBox = true;
+            dtpToDate.Checked = false; // default: do not filter by date
+            dtpToDate.Format = DateTimePickerFormat.Custom;
+            dtpToDate.CustomFormat = "dd/MM/yyyy";
             dtpToDate.Value = DateTime.Now;
-            
+
             // Apply initial placeholder
             TxtSearch_LostFocus(txtSearch, null);
-            
+
             // Style DataGridView
             StyleDataGridView();
+
+            // Hook up status filter change to refresh search results
+            cmbStatusFilter.SelectedIndexChanged += CmbStatusFilter_SelectedIndexChanged;
         }
 
         private void StyleDataGridView()
@@ -120,6 +135,19 @@ namespace book_management.UI.Controls
 
             // Gọi hàm Load để đảm bảo query đúng được chạy
             LoadInvoices();
+        }
+
+        private void CmbStatusFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // When status filter changes, re-run search to update results
+            try
+            {
+                SearchInvoices();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in status filter change: {ex.Message}");
+            }
         }
 
         private void DgvInvoices_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -219,28 +247,15 @@ namespace book_management.UI.Controls
             try
             {
                 string searchTerm = GetSearchTerm();
-                string statusDb = GetStatusFilter();
-                DateTime fromDate = dtpFromDate.Value.Date;
-                DateTime toDate = dtpToDate.Value.Date.AddDays(1);
-                // nếu mà statusDb == null thì Gọi GetAllInvoices() ngược lại != null thì gọi SearchInvoices
-                var invoices = (statusDb == null) ? HoaDonRepository.GetAllInvoices() : HoaDonRepository.SearchInvoices(searchTerm, statusDb, fromDate, toDate);
-                // If no results and we had a status code, try again using the display string as fallback
-                if ((invoices == null || (invoices is System.Collections.ICollection col && col.Count == 0)) && !string.IsNullOrWhiteSpace(statusDb))
-                {
-                    string statusDisplay = null;
-                    switch (statusDb)
-                    {
-                        case "DaThanhToan": statusDisplay = "Đã thanh toán"; break;
-                        case "ChuaThanhToan": statusDisplay = "Chưa thanh toán"; break;
-                        case "DaHuy": statusDisplay = "Đã hủy"; break;
-                    }
-                    if (!string.IsNullOrWhiteSpace(statusDisplay))
-                    {
-                        invoices = HoaDonRepository.SearchInvoices(searchTerm, statusDisplay, fromDate, toDate);
+                string statusDb = GetStatusFilter(); // null => all
 
-                    }
-                }
-                
+                // Use server-side filtering with optional dates
+                DateTime? fromDate = dtpFromDate.Checked ? dtpFromDate.Value.Date : (DateTime?)null;
+                DateTime? toDate = dtpToDate.Checked ? dtpToDate.Value.Date.AddDays(1).AddTicks(-1) : (DateTime?)null;
+
+                var invoices = HoaDonRepository.SearchInvoices(searchTerm, statusDb, fromDate, toDate) ?? new List<HoaDon>();
+
+                PopulateDataGridView(invoices);
             }
             catch (Exception ex)
             {
@@ -268,7 +283,7 @@ namespace book_management.UI.Controls
                 dgvInvoices.Rows[rowIndex].Tag = invoice.HoaDonId;
                 totalAmount += invoice.TongTien;
             }
-                UpdateSummary(count, totalAmount);
+            UpdateSummary(count, totalAmount);
 
         }
 
@@ -307,6 +322,24 @@ namespace book_management.UI.Controls
                 default:
                     return null;
             }
+        }
+
+        private string RemoveAccents(string input)
+        {
+            if (string.IsNullOrEmpty(input)) return input;
+
+            string normalized = input.Normalize(System.Text.NormalizationForm.FormD);
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+
+            foreach (char c in normalized)
+            {
+                if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) != System.Globalization.UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(System.Text.NormalizationForm.FormC);
         }
         // ham tinh tong hoa don va doanh thu
         private void UpdateSummary(int totalInvoices, decimal totalAmount)

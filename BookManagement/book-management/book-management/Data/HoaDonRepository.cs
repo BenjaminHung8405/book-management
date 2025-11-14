@@ -3,11 +3,30 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using book_management.Data;
 using System;
+using System.Text;
 
 namespace book_management.DataAccess
 {
     public static class HoaDonRepository
     {
+        private static string RemoveAccents(string input)
+        {
+            if (string.IsNullOrEmpty(input)) return input;
+
+            string normalized = input.Normalize(System.Text.NormalizationForm.FormD);
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (char c in normalized)
+            {
+                if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) != System.Globalization.UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(System.Text.NormalizationForm.FormC);
+        }
+
         public static List<HoaDon> GetHoaDonsByUserId(int userId)
         {
             var list = new List<HoaDon>();
@@ -94,9 +113,10 @@ namespace book_management.DataAccess
         }
 
         // === HÀM TÌM KIẾM ===
-        public static List<HoaDon> SearchInvoices(string searchTerm, string status, DateTime fromDate, DateTime toDate)
+        public static List<HoaDon> SearchInvoices(string searchTerm, string status, DateTime? fromDate, DateTime? toDate)
         {
             var list = new List<HoaDon>();
+            string searchTermNoAccent = null;
             try
             {
                 //using đảm bảo conn.Dispose() gọi khi rời scope(đóng kết nối tự động)
@@ -116,13 +136,26 @@ namespace book_management.DataAccess
                         FROM HoaDon hd
                         LEFT JOIN KhachHang kh ON hd.kh_id = kh.kh_id
                         LEFT JOIN NguoiDung nd ON hd.user_id = nd.user_id
-                        WHERE hd.ngay_lap >= @FromDate AND hd.ngay_lap < @ToDate";
+                        WHERE 1=1";
+                    if (fromDate.HasValue)
+                    {
+                        query += " AND hd.ngay_lap >= @FromDate";
+                    }
+                    if (toDate.HasValue)
+                    {
+                        query += " AND hd.ngay_lap < @ToDate";
+                    }
                     if (!string.IsNullOrWhiteSpace(searchTerm))
                     {
-                        // nối thêm điều kiện
+                        // Chuẩn hóa searchTerm thành không dấu để tìm kiếm tốt hơn
+                        searchTermNoAccent = RemoveAccents(searchTerm);
+
+                        // nối thêm điều kiện - tìm kiếm cả có dấu và không dấu
                         query += @" AND (CAST(hd.hoadon_id AS VARCHAR) LIKE @SearchTerm 
-                            OR ISNULL(kh.ten_khach, hd.ten_khach_vang_lai) LIKE @SearchTerm
-                            OR nd.ho_ten LIKE @SearchTerm)";
+                            OR ISNULL(kh.ten_khach, hd.ten_khach_vang_lai) COLLATE Latin1_General_CI_AI LIKE @SearchTerm
+                            OR nd.ho_ten COLLATE Latin1_General_CI_AI LIKE @SearchTerm
+                            OR ISNULL(kh.ten_khach, hd.ten_khach_vang_lai) COLLATE Latin1_General_CI_AI LIKE @SearchTermNoAccent
+                            OR nd.ho_ten COLLATE Latin1_General_CI_AI LIKE @SearchTermNoAccent)";
                     }
 
                     // Trim status once and decide whether to apply filter
@@ -140,17 +173,17 @@ namespace book_management.DataAccess
                     {
                         // Map known code <-> display variants so both DB storage styles are supported
 
-                        if (status.Equals("DaThanhToan", StringComparison.OrdinalIgnoreCase) || status.IndexOf("dathanhtoan", StringComparison.OrdinalIgnoreCase) >=0 || status.Equals("Đã thanh toán", StringComparison.OrdinalIgnoreCase))
+                        if (status.Equals("DaThanhToan", StringComparison.OrdinalIgnoreCase) || status.IndexOf("dathanhtoan", StringComparison.OrdinalIgnoreCase) >= 0 || status.Equals("Đã thanh toán", StringComparison.OrdinalIgnoreCase))
                         {
                             statusCode = "DaThanhToan";
                             statusDisplay = "Đã thanh toán";
                         }
-                        else if (status.Equals("ChuaThanhToan", StringComparison.OrdinalIgnoreCase) || status.IndexOf("chuathanhtoan", StringComparison.OrdinalIgnoreCase) >=0 || status.Equals("Chưa thanh toán", StringComparison.OrdinalIgnoreCase))
+                        else if (status.Equals("ChuaThanhToan", StringComparison.OrdinalIgnoreCase) || status.IndexOf("chuathanhtoan", StringComparison.OrdinalIgnoreCase) >= 0 || status.Equals("Chưa thanh toán", StringComparison.OrdinalIgnoreCase))
                         {
                             statusCode = "ChuaThanhToan";
                             statusDisplay = "Chưa thanh toán";
                         }
-                        else if (status.Equals("DaHuy", StringComparison.OrdinalIgnoreCase) || status.IndexOf("dahuy", StringComparison.OrdinalIgnoreCase) >=0 || status.Equals("Đã hủy", StringComparison.OrdinalIgnoreCase))
+                        else if (status.Equals("DaHuy", StringComparison.OrdinalIgnoreCase) || status.IndexOf("dahuy", StringComparison.OrdinalIgnoreCase) >= 0 || status.Equals("Đã hủy", StringComparison.OrdinalIgnoreCase))
                         {
                             statusCode = "DaHuy";
                             statusDisplay = "Đã hủy";
@@ -173,31 +206,39 @@ namespace book_management.DataAccess
                     // Debug: log query and status info to Output window
                     try
                     {
-                        System.Diagnostics.Debug.WriteLine($"[HoaDonRepository.SearchInvoices] From={fromDate}, To={toDate}, SearchTerm='{searchTerm}', StatusPassed='{status}', ApplyStatusFilter={applyStatusFilter}");
+                        string debugSearchTermNoAccent = string.IsNullOrWhiteSpace(searchTerm) ? "" : searchTermNoAccent;
+                        System.Diagnostics.Debug.WriteLine($"[HoaDonRepository.SearchInvoices] From={fromDate}, To={toDate}, SearchTerm='{searchTerm}', SearchTermNoAccent='{debugSearchTermNoAccent}', StatusPassed='{status}', ApplyStatusFilter={applyStatusFilter}");
                         System.Diagnostics.Debug.WriteLine($"[HoaDonRepository.SearchInvoices] SQL={query}");
                     }
                     catch { }
 
                     // Ensure date parameters are DateTime (no string c onversions)
-                    cmd.Parameters.AddWithValue("@FromDate", fromDate);
-                    cmd.Parameters.AddWithValue("@ToDate", toDate);
+                    if (fromDate.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("@FromDate", fromDate.Value);
+                    }
+                    if (toDate.HasValue)
+                    {
+                        cmd.Parameters.AddWithValue("@ToDate", toDate.Value);
+                    }
 
                     if (!string.IsNullOrWhiteSpace(searchTerm))
                     {
                         cmd.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
+                        cmd.Parameters.AddWithValue("@SearchTermNoAccent", "%" + searchTermNoAccent + "%");
                     }
 
                     if (applyStatusFilter)
                     {
                         // Bind the three mapped status variants used in the query
-                        var pCode = new SqlParameter("@StatusCode", System.Data.SqlDbType.NVarChar,200) { Value = (object)statusCode ?? DBNull.Value };
-                        var pDisplay = new SqlParameter("@StatusDisplay", System.Data.SqlDbType.NVarChar,200) { Value = (object)statusDisplay ?? DBNull.Value };
-                        var pRaw = new SqlParameter("@StatusRaw", System.Data.SqlDbType.NVarChar,200) { Value = (object)statusRaw ?? DBNull.Value };
+                        var pCode = new SqlParameter("@StatusCode", System.Data.SqlDbType.NVarChar, 200) { Value = (object)statusCode ?? DBNull.Value };
+                        var pDisplay = new SqlParameter("@StatusDisplay", System.Data.SqlDbType.NVarChar, 200) { Value = (object)statusDisplay ?? DBNull.Value };
+                        var pRaw = new SqlParameter("@StatusRaw", System.Data.SqlDbType.NVarChar, 200) { Value = (object)statusRaw ?? DBNull.Value };
                         cmd.Parameters.Add(pCode);
                         cmd.Parameters.Add(pDisplay);
                         cmd.Parameters.Add(pRaw);
                     }
-                  
+
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
