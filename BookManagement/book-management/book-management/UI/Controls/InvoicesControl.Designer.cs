@@ -38,6 +38,7 @@ namespace book_management.UI.Controls
             this.lblTotalAmount = new System.Windows.Forms.Label();
             this.lblTotalInvoices = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnPay = new System.Windows.Forms.Button();
             this.btnAddInvoice = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtpToDate = new System.Windows.Forms.DateTimePicker();
@@ -103,6 +104,7 @@ namespace book_management.UI.Controls
             this.dgvInvoices.TabIndex = 0;
             this.dgvInvoices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvInvoices_CellClick);
             this.dgvInvoices.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgvInvoices_CellFormatting);
+            this.dgvInvoices.SelectionChanged += new System.EventHandler(this.DgvInvoices_SelectionChanged);
             // 
             // panelTop
             // 
@@ -110,6 +112,7 @@ namespace book_management.UI.Controls
             this.panelTop.Controls.Add(this.lblTotalAmount);
             this.panelTop.Controls.Add(this.lblTotalInvoices);
             this.panelTop.Controls.Add(this.btnRefresh);
+            this.panelTop.Controls.Add(this.btnPay);
             this.panelTop.Controls.Add(this.btnAddInvoice);
             this.panelTop.Controls.Add(this.btnSearch);
             this.panelTop.Controls.Add(this.dtpToDate);
@@ -160,6 +163,20 @@ namespace book_management.UI.Controls
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
+            // 
+            // btnPay
+            // 
+            this.btnPay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(197)))), ((int)(((byte)(94)))));
+            this.btnPay.Enabled = false;
+            this.btnPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPay.ForeColor = System.Drawing.Color.White;
+            this.btnPay.Location = new System.Drawing.Point(1025, 45);
+            this.btnPay.Name = "btnPay";
+            this.btnPay.Size = new System.Drawing.Size(80, 30);
+            this.btnPay.TabIndex = 10;
+            this.btnPay.Text = "Thanh toán";
+            this.btnPay.UseVisualStyleBackColor = false;
+            this.btnPay.Click += new System.EventHandler(this.BtnPay_Click);
             // 
             // btnAddInvoice
             // 
@@ -349,6 +366,7 @@ namespace book_management.UI.Controls
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Label lblTotalInvoices;
         private System.Windows.Forms.Label lblTotalAmount;
+        private System.Windows.Forms.Button btnPay;
         private DataGridViewTextBoxColumn HoaDonId;
         private DataGridViewTextBoxColumn NgayLap;
         private DataGridViewTextBoxColumn TenNguoiMua;

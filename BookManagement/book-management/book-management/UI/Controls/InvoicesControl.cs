@@ -225,6 +225,11 @@ namespace book_management.UI.Controls
                 System.Diagnostics.Debug.WriteLine($"Error in CellFormatting: {ex.Message}");
             }
         }
+
+        private void DgvInvoices_SelectionChanged(object sender, EventArgs e)
+        {
+            TryUpdatePayButtonState();
+        }
         #endregion
 
         #region Data Operations
@@ -412,6 +417,57 @@ namespace book_management.UI.Controls
                 {
                     MessageBox.Show($"Lỗi khi xóa hóa đơn: {ex.Message}",
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        #endregion
+
+        #region Payment Methods
+        private void TryUpdatePayButtonState()
+        {
+            if (dgvInvoices.SelectedRows.Count == 1)
+            {
+                var selectedRow = dgvInvoices.SelectedRows[0];
+                var status = selectedRow.Cells["TrangThai"].Value?.ToString();
+                btnPay.Enabled = status == "ChuaThanhToan";
+            }
+            else
+            {
+                btnPay.Enabled = false;
+            }
+        }
+
+        private void BtnPay_Click(object sender, EventArgs e)
+        {
+            if (dgvInvoices.SelectedRows.Count != 1) return;
+
+            var selectedRow = dgvInvoices.SelectedRows[0];
+            var hoaDonId = (int)selectedRow.Cells["HoaDonId"].Value;
+            var status = selectedRow.Cells["TrangThai"].Value?.ToString();
+
+            if (status != "ChuaThanhToan")
+            {
+                MessageBox.Show("Chỉ có thể thanh toán hóa đơn chưa thanh toán!",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var result = MessageBox.Show("Bạn có chắc chắn muốn đánh dấu hóa đơn này là đã thanh toán?",
+                "Xác nhận thanh toán", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    HoaDonRepository.UpdateInvoiceStatus(hoaDonId, 1); // 1 = Đã thanh toán
+                    MessageBox.Show("Thanh toán thành công!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadInvoices();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi thanh toán: {ex.Message}",
+                        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

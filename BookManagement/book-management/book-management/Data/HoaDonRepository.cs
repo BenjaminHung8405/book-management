@@ -472,5 +472,71 @@ namespace book_management.DataAccess
                 throw new Exception("Lỗi khi cập nhật hóa đơn: " + ex.Message);
             }
         }
+
+        public static bool UpdateInvoiceStatus(int hoaDonId, int trangThai)
+        {
+            try
+            {
+                using (var conn = DatabaseConnection.GetConnection())
+                {
+                    conn.Open();
+
+                    // Map internal integer codes to database string values
+                    // DB CHECK constraint expects textual values like 'DaThanhToan', 'ChuaThanhToan', 'DaHuy'
+                    string trangThaiDb;
+                    switch (trangThai)
+                    {
+                        case 1:
+                            trangThaiDb = "DaThanhToan"; // Đã thanh toán
+                            break;
+                        case 0:
+                            trangThaiDb = "ChuaThanhToan"; // Chưa thanh toán
+                            break;
+                        case 2:
+                            trangThaiDb = "DaHuy"; // Đã hủy
+                            break;
+                        default:
+                            throw new ArgumentException("Giá trị trạng thái không hợp lệ: " + trangThai);
+                    }
+
+                    var cmd = new SqlCommand(@"
+                        UPDATE HoaDon 
+                        SET trang_thai = @TrangThai
+                        WHERE hoadon_id = @HoaDonId", conn);
+
+                    cmd.Parameters.AddWithValue("@HoaDonId", hoaDonId);
+                    cmd.Parameters.AddWithValue("@TrangThai", trangThaiDb);
+
+                    try
+                    {
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (SqlException sqlEx)
+                    {
+                        // If the update failed due to a CHECK constraint on trang_thai, try accented variants and retry once
+                        if (sqlEx.Message != null && sqlEx.Message.IndexOf("CHECK constraint", StringComparison.OrdinalIgnoreCase) >= 0)
+                        {
+                            // Prepare accented candidates
+                            string retryTrangThai = trangThaiDb;
+                            if (trangThai == 1) retryTrangThai = "Đã thanh toán";
+                            else if (trangThai == 0) retryTrangThai = "Chưa thanh toán";
+                            else if (trangThai == 2) retryTrangThai = "Đã hủy";
+
+                            // Retry update with accented value
+                            cmd.Parameters["@TrangThai"].Value = retryTrangThai;
+                            int retryRows = cmd.ExecuteNonQuery();
+                            return retryRows > 0;
+                        }
+
+                        throw; // rethrow if not a CHECK constraint issue
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi cập nhật trạng thái hóa đơn: " + ex.Message);
+            }
+        }
     }
 }
