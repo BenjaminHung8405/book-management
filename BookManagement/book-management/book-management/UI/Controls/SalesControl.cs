@@ -322,9 +322,25 @@ namespace book_management.UI.Controls
 
                 if (string.IsNullOrEmpty(txtCustomerName.Text.Trim()))
                 {
-                    MessageBox.Show("Vui lòng nhập thông tin khách hàng!", "Thông báo",
-                                  MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    // Nếu chưa có khách hàng (không tìm thấy/khách vãng lai), hỏi người dùng có muốn tiếp tục với khách vãng lai
+                    if (currentCustomerId == 0)
+                    {
+                        var askGuest = MessageBox.Show(
+                            "Không tìm thấy thông tin khách hàng. Bạn có muốn tiếp tục với 'Khách vãng lai' không?",
+                            "Xác nhận",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question);
+
+                        if (askGuest == DialogResult.No)
+                            return;
+                    }
+                    else
+                    {
+                        // Nếu currentCustomerId > 0 nhưng tên rỗng, vẫn yêu cầu nhập
+                        MessageBox.Show("Vui lòng nhập thông tin khách hàng!", "Thông báo",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                 }
 
                 var result = MessageBox.Show($"Tạo hóa đơn với tổng tiền {totalAmount:C0}?",
@@ -343,8 +359,11 @@ namespace book_management.UI.Controls
                         // SỬA LỖI 1: Gán NULL (không phải 0) cho khách vãng lai
                         KhId = (currentCustomerId > 0) ? (int?)currentCustomerId : null,
 
-                        // SỬA LỖI 2: Gán tên khách vãng lai vào đúng thuộc tính
-                        TenNguoiMua = (currentCustomerId == 0) ? txtCustomerName.Text.Trim() : null,
+                        // Nếu là khách vãng lai, gán tên (nếu có) hoặc đặt là 'Khách vãng lai'
+                        TenNguoiMua = (currentCustomerId == 0) ? (string.IsNullOrWhiteSpace(txtCustomerName.Text) ? "Khách vãng lai" : txtCustomerName.Text.Trim()) : null,
+
+                        // Lưu địa chỉ giao hàng nếu người dùng nhập
+                        DiaChiGiaoHang = string.IsNullOrWhiteSpace(txtCustomerAddress.Text) ? null : txtCustomerAddress.Text.Trim(),
                     };
 
                     // 2. Chuyển đổi List<CartItem> sang List<ChiTietHoaDon>
@@ -454,7 +473,7 @@ namespace book_management.UI.Controls
                 DataPropertyName = "Price",
                 ReadOnly = true,
                 DefaultCellStyle = new DataGridViewCellStyle { Format = "C0" },
-             });
+            });
 
             dgvCart.Columns.Add(new DataGridViewTextBoxColumn
             {

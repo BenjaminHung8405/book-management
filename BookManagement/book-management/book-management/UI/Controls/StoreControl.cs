@@ -443,8 +443,15 @@ namespace book_management.UI.Controls
                 // 2. SỬA LỖI: Kiểm tra _currentCustomerId
                 if (_currentCustomerId == 0)
                 {
-                    MessageBox.Show("Không tìm thấy thông tin khách hàng của bạn. Vui lòng liên kết tài khoản của bạn với một hồ sơ khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    // Hỏi người dùng có muốn tiếp tục thanh toán như 'Khách vãng lai' hay không
+                    var askGuest = MessageBox.Show(
+                        "Không tìm thấy thông tin khách hàng. Bạn có muốn tiếp tục với 'Khách vãng lai' không?",
+                        "Xác nhận",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (askGuest == DialogResult.No)
+                        return;
                 }
 
                 // 3. Xác nhận
@@ -473,9 +480,12 @@ namespace book_management.UI.Controls
                         UserId = CurrentUser.UserId,
                         TongTien = netTotal,
                         TrangThai = "DaThanhToan",
-                        DiaChiGiaoHang = null,
-                        KhId = _currentCustomerId,
-                        TenNguoiMua = null
+                        // Nếu có địa chỉ giao hàng nhập sẵn thì lưu
+                        DiaChiGiaoHang = string.IsNullOrWhiteSpace(rtbAddressDelivery.Text) ? null : rtbAddressDelivery.Text.Trim(),
+                        // Nếu có khách (kh_id != 0) gán KhId, nếu không để null để biểu thị khách vãng lai
+                        KhId = _currentCustomerId > 0 ? (int?)_currentCustomerId : null,
+                        // Nếu là khách vãng lai, dùng txtCustomerSearch làm tên (nếu người dùng đã nhập), ngược lại ghi 'Khách vãng lai'
+                        TenNguoiMua = _currentCustomerId > 0 ? null : (string.IsNullOrWhiteSpace(txtCustomerSearch.Text) ? "Khách vãng lai" : txtCustomerSearch.Text.Trim())
                     };
 
                     // 5. Chuẩn bị ChiTietHoaDon: phân bổ tiền giảm theo tỉ lệ phần trăm (hoặc theo percent)
