@@ -221,9 +221,11 @@ WHERE kh_id = @KhId", conn);
         VALUES (@TenKhach, @SoDienThoai, @DiaChi, @NgayTao);
                 SELECT SCOPE_IDENTITY();", conn, transaction);
 
-                    cmd.Parameters.AddWithValue("@TenKhach", customer.TenKhach ?? "Khách vãng lai");
-                    cmd.Parameters.AddWithValue("@SoDienThoai", customer.SoDienThoai ?? "");
-                    cmd.Parameters.AddWithValue("@DiaChi", customer.DiaChi ?? "");
+                    // Do not implicitly create a 'Khách vãng lai' name here. If caller intends a temporary guest,
+                    // they should pass the literal "Khách vãng lai". Store NULL for missing values.
+                    cmd.Parameters.AddWithValue("@TenKhach", (object)customer.TenKhach ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@SoDienThoai", (object)customer.SoDienThoai ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@DiaChi", (object)customer.DiaChi ?? DBNull.Value);
                     cmd.Parameters.AddWithValue("@NgayTao", customer.NgayTao);
 
                     // Lấy ID của khách hàng vừa tạo
