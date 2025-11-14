@@ -89,6 +89,7 @@
             // 
             // panelSidebar
             // 
+            this.panelSidebar.AutoScroll = true;
             this.panelSidebar.BackColor = System.Drawing.Color.White;
             this.panelSidebar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelSidebar.Controls.Add(this.btnInvoice);

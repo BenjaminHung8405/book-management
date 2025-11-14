@@ -117,9 +117,9 @@ namespace book_management.UI.Controls
                     int hoaDonId = int.Parse(maHoaDonText.Replace("HD-", ""));
                     List<ChiTietHoaDon> chiTietHD = ChiTietHoaDonRepository.GetChiTietHoaDon(hoaDonId);
 
-                    // Sửa lỗi: Truyền 1 tham số thay vì 2
-                    OrderDetailForm frmDetail = new OrderDetailForm(chiTietHD);
-                    frmDetail.ShowDialog();
+                    // Open the InvoiceDetailForm (passes hoaDonId + details)
+                    InvoiceDetailForm frmDetail = new InvoiceDetailForm(hoaDonId, chiTietHD);
+                    frmDetail.ShowDialog(this);
                 }
                 catch (Exception ex)
                 {
