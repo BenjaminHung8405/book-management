@@ -131,7 +131,9 @@ namespace book_management.UI.Controls
             TxtSearch_LostFocus(txtSearch, null); // Set lại placeholder
             cmbStatusFilter.SelectedIndex = 0; // Đặt về "Tất cả"
             dtpFromDate.Value = DateTime.Now.AddMonths(-1);
+            dtpFromDate.Checked = false; // Không lọc theo ngày
             dtpToDate.Value = DateTime.Now;
+            dtpToDate.Checked = false; // Không lọc theo ngày
 
             // Gọi hàm Load để đảm bảo query đúng được chạy
             LoadInvoices();

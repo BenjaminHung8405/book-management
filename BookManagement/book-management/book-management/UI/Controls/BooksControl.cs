@@ -53,6 +53,8 @@ namespace book_management.UI.Controls
         {
             // Events cho combobox filters
             cmbCategoryFilter.SelectedIndexChanged += CmbCategoryFilter_SelectedIndexChanged;
+            cmbCategoryFilter.KeyDown += CmbCategoryFilter_KeyDown;
+            cmbCategoryFilter.Leave += CmbCategoryFilter_Leave;
             cmbStatusFilter.SelectedIndexChanged += CmbStatusFilter_SelectedIndexChanged;
             txtSearchBook.TextChanged += txtSearchBook_TextChanged;
             txtSearchBook.KeyDown += TxtSearchBook_KeyDown;
@@ -404,6 +406,60 @@ namespace book_management.UI.Controls
            FilterBooks();
        };
             filterTimer.Start();
+        }
+
+        private void CmbCategoryFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                TryAddCategoryFromCombo();
+                // after attempting add, trigger filter
+                CmbCategoryFilter_SelectedIndexChanged(sender, EventArgs.Empty);
+            }
+        }
+
+        private void CmbCategoryFilter_Leave(object sender, EventArgs e)
+        {
+            TryAddCategoryFromCombo();
+        }
+
+        /// <summary>
+        /// If user typed a new category into the combobox, add it to DB and to the combobox list.
+        /// </summary>
+        private void TryAddCategoryFromCombo()
+        {
+            try
+            {
+                var text = (cmbCategoryFilter.Text ?? "").Trim();
+                if (string.IsNullOrEmpty(text)) return;
+                if (text.Equals("Tất cả thể loại", StringComparison.OrdinalIgnoreCase)) return;
+
+                // Check existing items case-insensitively
+                bool exists = cmbCategoryFilter.Items.Cast<object>()
+                    .Any(i => string.Equals(i?.ToString()?.Trim(), text, StringComparison.OrdinalIgnoreCase));
+                if (exists)
+                {
+                    // Select the existing item
+                    cmbCategoryFilter.SelectedItem = cmbCategoryFilter.Items.Cast<object>()
+                        .First(i => string.Equals(i?.ToString()?.Trim(), text, StringComparison.OrdinalIgnoreCase));
+                    return;
+                }
+
+                // Persist new category via repository
+                int newId = CategoryRepository.AddCategory(text);
+                if (newId > 0)
+                {
+                    // Add to combobox and select it
+                    cmbCategoryFilter.Items.Add(text);
+                    cmbCategoryFilter.SelectedItem = text;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không thể thêm thể loại mới: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
 

@@ -59,6 +59,23 @@ namespace book_management.UI.Modal
             // Set properties for Save button
             btnSaveBook.DialogResult = DialogResult.None;
             btnSaveBook.Click += btnSaveBook_Click;
+
+            // Initialize auto-add events for ComboBoxes
+            InitializeAutoAddEvents();
+        }
+
+        /// <summary>
+        /// Initialize auto-add events for ComboBoxes
+        /// </summary>
+        private void InitializeAutoAddEvents()
+        {
+            // Auto-add for authors
+            cbTacGia.KeyDown += cbTacGia_KeyDown;
+            cbTacGia.Leave += cbTacGia_Leave;
+
+            // Auto-add for categories
+            cbTheLoai.KeyDown += cbTheLoai_KeyDown;
+            cbTheLoai.Leave += cbTheLoai_Leave;
         }
 
         /// <summary>
@@ -321,6 +338,32 @@ namespace book_management.UI.Modal
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void cbTacGia_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                TryAddAuthorFromCombo();
+            }
+        }
+
+        private void cbTacGia_Leave(object sender, EventArgs e)
+        {
+            TryAddAuthorFromCombo();
+        }
+
+        private void cbTheLoai_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                TryAddCategoryFromCombo();
+            }
+        }
+
+        private void cbTheLoai_Leave(object sender, EventArgs e)
+        {
+            TryAddCategoryFromCombo();
+        }
         #endregion
 
         #region Validation and Save Methods
@@ -408,12 +451,12 @@ namespace book_management.UI.Modal
                 }
 
                 // Tìm hoặc tạo nhà xuất bản
-                int nxbId =0;
+                int nxbId = 0;
                 var publishers = PublisherRepository.GetAllPublishers();
                 var found = publishers.FirstOrDefault(p => (p.TenNxb ?? "").ToString().Equals(nxbName, StringComparison.OrdinalIgnoreCase));
                 if (found != null)
                 {
-                    try { nxbId = Convert.ToInt32(found.NxbId); } catch { nxbId =0; }
+                    try { nxbId = Convert.ToInt32(found.NxbId); } catch { nxbId = 0; }
                 }
                 else
                 {
@@ -509,6 +552,104 @@ namespace book_management.UI.Modal
                 MoTa = txtMoTa.Text.Trim(),
                 URLAnhBia = txtURL.Text.Trim()
             };
+        }
+        #endregion
+
+        #region Auto-Add Methods
+        /// <summary>
+        /// Try to add new author from ComboBox text
+        /// </summary>
+        private void TryAddAuthorFromCombo()
+        {
+            try
+            {
+                string authorName = cbTacGia.Text?.Trim();
+                if (string.IsNullOrEmpty(authorName))
+                    return;
+
+                // Check if author already exists
+                bool exists = false;
+                foreach (var item in cbTacGia.Items)
+                {
+                    if (item.ToString().Equals(authorName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
+
+                if (!exists)
+                {
+                    // Add to database
+                    int newId = AuthorRepository.AddAuthor(authorName);
+                    if (newId > 0)
+                    {
+                        // Add to ComboBox
+                        cbTacGia.Items.Add(authorName);
+                        cbTacGia.Text = authorName;
+                        System.Diagnostics.Debug.WriteLine($"Added new author: {authorName} (ID: {newId})");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể thêm tác giả mới!", "Lỗi",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error adding author: {ex.Message}");
+                MessageBox.Show($"Lỗi khi thêm tác giả: {ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Try to add new category from ComboBox text
+        /// </summary>
+        private void TryAddCategoryFromCombo()
+        {
+            try
+            {
+                string categoryName = cbTheLoai.Text?.Trim();
+                if (string.IsNullOrEmpty(categoryName))
+                    return;
+
+                // Check if category already exists
+                bool exists = false;
+                foreach (var item in cbTheLoai.Items)
+                {
+                    if (item.ToString().Equals(categoryName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
+
+                if (!exists)
+                {
+                    // Add to database
+                    int newId = CategoryRepository.AddCategory(categoryName);
+                    if (newId > 0)
+                    {
+                        // Add to ComboBox
+                        cbTheLoai.Items.Add(categoryName);
+                        cbTheLoai.Text = categoryName;
+                        System.Diagnostics.Debug.WriteLine($"Added new category: {categoryName} (ID: {newId})");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể thêm thể loại mới!", "Lỗi",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error adding category: {ex.Message}");
+                MessageBox.Show($"Lỗi khi thêm thể loại: {ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
 
