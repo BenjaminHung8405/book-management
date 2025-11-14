@@ -99,8 +99,11 @@ namespace book_management.DataAccess
             var list = new List<HoaDon>();
             try
             {
+                //using đảm bảo conn.Dispose() gọi khi rời scope(đóng kết nối tự động)
                 using (var conn = DatabaseConnection.GetConnection())
                 {
+                    //ISNULL(kh.ten_khach, hd.ten_khach_vang_lai) AS ten_nguoi_mua — nếu có khách hàng(KhachHang) thì dùng ten_khach,
+                    //nếu không(khách vãng lai) dùng ten_khach_vang_lai từ bảng HoaDon.
                     conn.Open();
                     var query = @"
                         SELECT 
@@ -114,36 +117,87 @@ namespace book_management.DataAccess
                         LEFT JOIN KhachHang kh ON hd.kh_id = kh.kh_id
                         LEFT JOIN NguoiDung nd ON hd.user_id = nd.user_id
                         WHERE hd.ngay_lap >= @FromDate AND hd.ngay_lap < @ToDate";
-
-                    if (!string.IsNullOrEmpty(searchTerm))
+                    if (!string.IsNullOrWhiteSpace(searchTerm))
                     {
-                        // SỬA SQL: Thêm tìm kiếm theo nd.ho_ten (nguoi_lap)
+                        // nối thêm điều kiện
                         query += @" AND (CAST(hd.hoadon_id AS VARCHAR) LIKE @SearchTerm 
-                                    OR ISNULL(kh.ten_khach, hd.ten_khach_vang_lai) LIKE @SearchTerm
-                                    OR nd.ho_ten LIKE @SearchTerm)";
+                            OR ISNULL(kh.ten_khach, hd.ten_khach_vang_lai) LIKE @SearchTerm
+                            OR nd.ho_ten LIKE @SearchTerm)";
                     }
 
-                    if (!string.IsNullOrEmpty(status) && status != "Tất cả")
+                    // Trim status once and decide whether to apply filter
+                    status = status?.Trim();
+                    bool applyStatusFilter = !string.IsNullOrWhiteSpace(status)
+                     && !status.Equals("Tất cả", StringComparison.OrdinalIgnoreCase)
+                     && !status.Equals("TatCa", StringComparison.OrdinalIgnoreCase);
+
+                    // Declare these here so they are in scope both when building the query and when binding parameters
+                    string statusCode = null;
+                    string statusDisplay = null;
+                    string statusRaw = status;
+
+                    if (applyStatusFilter)
                     {
-                        query += " AND hd.trang_thai = @Status";
+                        // Map known code <-> display variants so both DB storage styles are supported
+
+                        if (status.Equals("DaThanhToan", StringComparison.OrdinalIgnoreCase) || status.IndexOf("dathanhtoan", StringComparison.OrdinalIgnoreCase) >=0 || status.Equals("Đã thanh toán", StringComparison.OrdinalIgnoreCase))
+                        {
+                            statusCode = "DaThanhToan";
+                            statusDisplay = "Đã thanh toán";
+                        }
+                        else if (status.Equals("ChuaThanhToan", StringComparison.OrdinalIgnoreCase) || status.IndexOf("chuathanhtoan", StringComparison.OrdinalIgnoreCase) >=0 || status.Equals("Chưa thanh toán", StringComparison.OrdinalIgnoreCase))
+                        {
+                            statusCode = "ChuaThanhToan";
+                            statusDisplay = "Chưa thanh toán";
+                        }
+                        else if (status.Equals("DaHuy", StringComparison.OrdinalIgnoreCase) || status.IndexOf("dahuy", StringComparison.OrdinalIgnoreCase) >=0 || status.Equals("Đã hủy", StringComparison.OrdinalIgnoreCase))
+                        {
+                            statusCode = "DaHuy";
+                            statusDisplay = "Đã hủy";
+                        }
+                        else
+                        {
+                            statusCode = statusRaw;
+                            statusDisplay = statusRaw;
+                        }
+                        // Use accent-insensitive comparison by using database default collation on both sides.
+                        query += " AND (LTRIM(RTRIM(hd.trang_thai)) COLLATE DATABASE_DEFAULT = LTRIM(RTRIM(@StatusCode)) COLLATE DATABASE_DEFAULT";
+                        query += " OR LTRIM(RTRIM(hd.trang_thai)) COLLATE DATABASE_DEFAULT = LTRIM(RTRIM(@StatusDisplay)) COLLATE DATABASE_DEFAULT";
+                        query += " OR LTRIM(RTRIM(hd.trang_thai)) COLLATE DATABASE_DEFAULT = LTRIM(RTRIM(@StatusRaw)) COLLATE DATABASE_DEFAULT)";
                     }
 
                     query += " ORDER BY hd.ngay_lap DESC";
 
                     var cmd = new SqlCommand(query, conn);
+
+                    // Debug: log query and status info to Output window
+                    try
+                    {
+                        System.Diagnostics.Debug.WriteLine($"[HoaDonRepository.SearchInvoices] From={fromDate}, To={toDate}, SearchTerm='{searchTerm}', StatusPassed='{status}', ApplyStatusFilter={applyStatusFilter}");
+                        System.Diagnostics.Debug.WriteLine($"[HoaDonRepository.SearchInvoices] SQL={query}");
+                    }
+                    catch { }
+
+                    // Ensure date parameters are DateTime (no string c onversions)
                     cmd.Parameters.AddWithValue("@FromDate", fromDate);
                     cmd.Parameters.AddWithValue("@ToDate", toDate);
 
-                    if (!string.IsNullOrEmpty(searchTerm))
+                    if (!string.IsNullOrWhiteSpace(searchTerm))
                     {
                         cmd.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
                     }
 
-                    if (!string.IsNullOrEmpty(status) && status != "Tất cả")
+                    if (applyStatusFilter)
                     {
-                        cmd.Parameters.AddWithValue("@Status", status);
+                        // Bind the three mapped status variants used in the query
+                        var pCode = new SqlParameter("@StatusCode", System.Data.SqlDbType.NVarChar,200) { Value = (object)statusCode ?? DBNull.Value };
+                        var pDisplay = new SqlParameter("@StatusDisplay", System.Data.SqlDbType.NVarChar,200) { Value = (object)statusDisplay ?? DBNull.Value };
+                        var pRaw = new SqlParameter("@StatusRaw", System.Data.SqlDbType.NVarChar,200) { Value = (object)statusRaw ?? DBNull.Value };
+                        cmd.Parameters.Add(pCode);
+                        cmd.Parameters.Add(pDisplay);
+                        cmd.Parameters.Add(pRaw);
                     }
-
+                  
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -155,8 +209,6 @@ namespace book_management.DataAccess
                                 TongTien = Convert.ToDecimal(reader["tong_tien"]),
                                 TrangThai = reader["trang_thai"].ToString(),
                                 TenNguoiMua = reader["ten_nguoi_mua"]?.ToString() ?? "",
-
-                                // Dòng này bây giờ đã an toàn vì SQL đã SELECT 'nguoi_lap'
                                 NguoiLap = reader["nguoi_lap"]?.ToString() ?? "",
                             });
                         }
@@ -267,7 +319,7 @@ namespace book_management.DataAccess
                     // Thực thi và lấy ID mới
                     int newHoaDonId = Convert.ToInt32(cmdHoaDon.ExecuteScalar());
 
-                    // Tao cac dong chi tiet hoa don    
+                    // Tao cac dong chiTiet hoa don    
                     foreach (var item in details)
                     {
                         // 'thanh_tien' may be a computed column in the database (don_gia * so_luong - tien_giam).

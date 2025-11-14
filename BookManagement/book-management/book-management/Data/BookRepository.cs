@@ -251,7 +251,7 @@ namespace book_management.Data
             catch (Exception ex)
             {
                 transaction?.Rollback();
-                throw new Exception($"L?i khi thêm sách m?i: {ex.Message}", ex);
+                throw new Exception($"Loi khi thêm sách moi: {ex.Message}", ex);
             }
         }
 
@@ -347,7 +347,7 @@ namespace book_management.Data
             catch (Exception ex)
             {
                 transaction?.Rollback();
-                throw new Exception($"L?i khi c?p nh?t sách ID {sachId}: {ex.Message}", ex);
+                throw new Exception($"Loi khi cap nhat  sách ID {sachId}: {ex.Message}", ex);
             }
         }
 
@@ -415,7 +415,7 @@ namespace book_management.Data
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi l?y danh sách tác gi?: {ex.Message}", ex);
+                throw new Exception($"Loi khi lay danh sach tac gia: {ex.Message}", ex);
             }
             return authors;
         }
@@ -450,7 +450,7 @@ namespace book_management.Data
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi l?y danh sách th? lo?i: {ex.Message}", ex);
+                throw new Exception($"Loi khi lay danh sach the loai: {ex.Message}", ex);
             }
             return categories;
         }
@@ -488,7 +488,7 @@ namespace book_management.Data
             }
             catch (Exception ex)
             {
-                throw new Exception($"L?i khi l?y danh sách nhà xu?t b?n: {ex.Message}", ex);
+                throw new Exception($"Loi khi lay danh sach : {ex.Message}", ex);
             }
             return publishers;
         }

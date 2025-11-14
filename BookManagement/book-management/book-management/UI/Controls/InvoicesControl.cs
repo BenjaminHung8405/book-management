@@ -112,7 +112,14 @@ namespace book_management.UI.Controls
 
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
-            RefreshData();
+            txtSearch.Text = string.Empty;
+            TxtSearch_LostFocus(txtSearch, null); // Set lại placeholder
+            cmbStatusFilter.SelectedIndex = 0; // Đặt về "Tất cả"
+            dtpFromDate.Value = DateTime.Now.AddMonths(-1);
+            dtpToDate.Value = DateTime.Now;
+
+            // Gọi hàm Load để đảm bảo query đúng được chạy
+            LoadInvoices();
         }
 
         private void DgvInvoices_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -160,6 +167,11 @@ namespace book_management.UI.Controls
                     var status = e.Value.ToString();
                     switch (status)
                     {
+                        case "TatCa":
+                            e.Value = "Tất cả";
+                            e.CellStyle.BackColor = Color.FromArgb(220, 252, 231);
+                            e.CellStyle.ForeColor = Color.FromArgb(22, 101, 52);
+                            break;
                         case "DaThanhToan":
                             e.Value = "Đã thanh toán";
                             e.CellStyle.BackColor = Color.FromArgb(220, 252, 231);
@@ -210,9 +222,25 @@ namespace book_management.UI.Controls
                 string statusDb = GetStatusFilter();
                 DateTime fromDate = dtpFromDate.Value.Date;
                 DateTime toDate = dtpToDate.Value.Date.AddDays(1);
+                // nếu mà statusDb == null thì Gọi GetAllInvoices() ngược lại != null thì gọi SearchInvoices
+                var invoices = (statusDb == null) ? HoaDonRepository.GetAllInvoices() : HoaDonRepository.SearchInvoices(searchTerm, statusDb, fromDate, toDate);
+                // If no results and we had a status code, try again using the display string as fallback
+                if ((invoices == null || (invoices is System.Collections.ICollection col && col.Count == 0)) && !string.IsNullOrWhiteSpace(statusDb))
+                {
+                    string statusDisplay = null;
+                    switch (statusDb)
+                    {
+                        case "DaThanhToan": statusDisplay = "Đã thanh toán"; break;
+                        case "ChuaThanhToan": statusDisplay = "Chưa thanh toán"; break;
+                        case "DaHuy": statusDisplay = "Đã hủy"; break;
+                    }
+                    if (!string.IsNullOrWhiteSpace(statusDisplay))
+                    {
+                        invoices = HoaDonRepository.SearchInvoices(searchTerm, statusDisplay, fromDate, toDate);
 
-                var invoices = HoaDonRepository.SearchInvoices(searchTerm, statusDb, fromDate, toDate);
-                PopulateDataGridView(invoices);
+                    }
+                }
+                
             }
             catch (Exception ex)
             {
@@ -225,7 +253,7 @@ namespace book_management.UI.Controls
         {
             dgvInvoices.Rows.Clear();
             decimal totalAmount = 0;
-
+            var count = 0;
             foreach (var invoice in invoices)
             {
                 var rowIndex = dgvInvoices.Rows.Add(
@@ -236,12 +264,12 @@ namespace book_management.UI.Controls
                    invoice.TrangThai,
                    invoice.NguoiLap
                 );
-
+                count++;
                 dgvInvoices.Rows[rowIndex].Tag = invoice.HoaDonId;
                 totalAmount += invoice.TongTien;
             }
+                UpdateSummary(count, totalAmount);
 
-            UpdateSummary(invoices.Count, totalAmount);
         }
 
         private void RefreshData()
@@ -264,7 +292,10 @@ namespace book_management.UI.Controls
 
         private string GetStatusFilter()
         {
-            string statusDisplay = cmbStatusFilter.SelectedItem?.ToString();
+            var statusDisplay = cmbStatusFilter.SelectedItem?.ToString();
+            if (string.IsNullOrWhiteSpace(statusDisplay) || statusDisplay.Equals("Tất cả", StringComparison.OrdinalIgnoreCase) || statusDisplay.Equals("TatCa", StringComparison.OrdinalIgnoreCase))
+                return null;
+
             switch (statusDisplay)
             {
                 case "Đã thanh toán":
@@ -274,10 +305,10 @@ namespace book_management.UI.Controls
                 case "Đã hủy":
                     return "DaHuy";
                 default:
-                    return statusDisplay;
+                    return null;
             }
         }
-
+        // ham tinh tong hoa don va doanh thu
         private void UpdateSummary(int totalInvoices, decimal totalAmount)
         {
             lblTotalInvoices.Text = $"Tổng số hóa đơn: {totalInvoices}";
