@@ -17,7 +17,7 @@ namespace book_management.UI.Controls
         public ucBookCard()
         {
             InitializeComponent();
-            
+
             // Khởi tạo ToolTip
             toolTip = new ToolTip();
             toolTip.AutoPopDelay = 5000; // Thời gian hiển thị tooltip
@@ -45,21 +45,11 @@ namespace book_management.UI.Controls
 
             label1.Text = price.ToString("N0") + "₫";
 
+            // Load cover image asynchronously (non-blocking)
             if (!string.IsNullOrEmpty(coverUrl))
             {
-                try
-                {
-                    var req = System.Net.WebRequest.Create(coverUrl);
-                    using (var resp = req.GetResponse())
-                    using (var stream = resp.GetResponseStream())
-                    {
-                        pictureBox1.Image = Image.FromStream(stream);
-                    }
-                }
-                catch
-                {
-                    // ignore — leave default blank image
-                }
+                // fire-and-forget - safe because method is UI and we don't await here
+                var _ = book_management.Helpers.ImageLoader.LoadIntoPictureBoxAsync(coverUrl, pictureBox1, null);
             }
         }
     }

@@ -45,18 +45,13 @@ namespace book_management.UI.Controls
             txtQuantity.Text = (_item.SoLuong ?? 1).ToString();
             lblLineTotal.Text = (Convert.ToDecimal(_item.ThanhTien)).ToString("N0") + "₫";
 
-            // Try to load cover image (safe)
+            // Try to load cover image asynchronously (non-blocking)
             try
             {
                 string url = _item.AnhBiaUrl as string;
                 if (!string.IsNullOrEmpty(url))
                 {
-                    var req = WebRequest.Create(url);
-                    using (var resp = req.GetResponse())
-                    using (var stream = resp.GetResponseStream())
-                    {
-                        picBookCover.Image = Image.FromStream(stream);
-                    }
+                    var _ = book_management.Helpers.ImageLoader.LoadIntoPictureBoxAsync(url, picBookCover, null);
                 }
             }
             catch
