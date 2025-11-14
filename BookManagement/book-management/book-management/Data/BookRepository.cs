@@ -270,7 +270,7 @@ namespace book_management.Data
                     connection.Open();
                     transaction = connection.BeginTransaction();
 
-                   
+
                     string updateQuery = @"
                     UPDATE Sach 
                     SET ten_sach = @TenSach,
@@ -352,7 +352,7 @@ namespace book_management.Data
         }
 
         /// <summary>
-       
+
         /// </summary>
         /// <param name="sachId">I
         /// <returns>True neu xóa thành công</returns>
@@ -562,5 +562,57 @@ namespace book_management.Data
             }
             return books;
         }
+
+        /// <summary>
+        /// Lấy sách theo nhà xuất bản
+        /// </summary>
+        public static List<dynamic> GetBooksByPublisher(int nxbId)
+        {
+            var books = new List<dynamic>();
+            try
+            {
+                using (var connection = DatabaseConnection.GetConnection())
+                {
+                    connection.Open();
+                    string query = @"
+                       SELECT DISTINCT
+                            s.sach_id,
+                            s.ten_sach,
+                            s.gia,
+                            s.so_luong,
+                            s.anh_bia_url,
+                            n.ten_nxb
+                    FROM Sach s
+                    INNER JOIN NhaXuatBan n ON s.nxb_id = n.nxb_id
+                    WHERE s.trang_thai = 1 AND s.nxb_id = @NxbId
+                    ORDER BY s.sach_id";
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@NxbId", nxbId);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                dynamic book = new System.Dynamic.ExpandoObject();
+                                book.SachId = reader["sach_id"];
+                                book.TenSach = reader["ten_sach"]?.ToString() ?? "";
+                                book.NhaXuatBan = reader["ten_nxb"]?.ToString() ?? "";
+                                book.Gia = reader["gia"] != DBNull.Value ? Convert.ToDecimal(reader["gia"]) : 0m;
+                                book.SoLuong = reader["so_luong"] != DBNull.Value ? Convert.ToInt32(reader["so_luong"]) : 0;
+                                book.AnhBiaUrl = reader["anh_bia_url"]?.ToString() ?? "";
+                                books.Add(book);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi lấy sách theo NXB: {ex.Message}", ex);
+            }
+            return books;
+        }
     }
+
 }

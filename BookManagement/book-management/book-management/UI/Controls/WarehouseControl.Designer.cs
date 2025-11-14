@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtSearchWareHouse = new System.Windows.Forms.TextBox();
             this.btnAddImport = new FontAwesome.Sharp.IconButton();
+            this.btnSearchWareHouse = new FontAwesome.Sharp.IconButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dtpToDate = new System.Windows.Forms.DateTimePicker();
             this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
@@ -89,6 +90,25 @@
             this.btnAddImport.UseVisualStyleBackColor = false;
             this.btnAddImport.Click += new System.EventHandler(this.btnAddImport_Click);
             // 
+            // btnSearchWareHouse
+            // 
+            this.btnSearchWareHouse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
+            this.btnSearchWareHouse.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchWareHouse.ForeColor = System.Drawing.Color.White;
+            this.btnSearchWareHouse.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnSearchWareHouse.IconColor = System.Drawing.Color.White;
+            this.btnSearchWareHouse.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnSearchWareHouse.IconSize = 20;
+            this.btnSearchWareHouse.Location = new System.Drawing.Point(896, 4);
+            this.btnSearchWareHouse.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearchWareHouse.Name = "btnSearchWareHouse";
+            this.btnSearchWareHouse.Size = new System.Drawing.Size(120, 52);
+            this.btnSearchWareHouse.TabIndex = 7;
+            this.btnSearchWareHouse.Text = "Tìm kiếm";
+            this.btnSearchWareHouse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSearchWareHouse.UseVisualStyleBackColor = false;
+            this.btnSearchWareHouse.Click += new System.EventHandler(this.BtnSearchWareHouse_Click);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 5;
@@ -99,8 +119,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel1.Controls.Add(this.dtpToDate, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtSearchWareHouse, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnAddImport, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.dtpFromDate, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnSearchWareHouse, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnAddImport, 4, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -347,6 +368,7 @@
 
         private System.Windows.Forms.TextBox txtSearchWareHouse;
         private FontAwesome.Sharp.IconButton btnAddImport;
+        private FontAwesome.Sharp.IconButton btnSearchWareHouse;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panelTopBar;
         private System.Windows.Forms.FlowLayoutPanel flowPaginationButtons;

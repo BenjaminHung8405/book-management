@@ -38,7 +38,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelBody = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.dgvBooks = new System.Windows.Forms.DataGridView();
             this.colBookID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTenSach = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,13 +46,13 @@
             this.colThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtBookSearch = new System.Windows.Forms.TextBox();
-            this.panelAddItem = new FontAwesome.Sharp.IconButton();
+            this.cbBooks = new System.Windows.Forms.ComboBox();
+            this.btnAddItem = new FontAwesome.Sharp.IconButton();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanelInputs = new System.Windows.Forms.TableLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.txtTenSach = new System.Windows.Forms.TextBox();
+            this.cbNhanVien = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -66,7 +66,7 @@
             this.panelHeader.SuspendLayout();
             this.panelBody.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanelInputs.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -139,7 +139,7 @@
             // 
             // panel5
             // 
-            this.panel5.Controls.Add(this.dgvUsers);
+            this.panel5.Controls.Add(this.dgvBooks);
             this.panel5.Controls.Add(this.tableLayoutPanel1);
             this.panel5.Controls.Add(this.label6);
             this.panel5.Controls.Add(this.label5);
@@ -150,16 +150,16 @@
             this.panel5.Size = new System.Drawing.Size(850, 428);
             this.panel5.TabIndex = 1;
             // 
-            // dgvUsers
+            // dgvBooks
             // 
-            this.dgvUsers.AllowUserToAddRows = false;
-            this.dgvUsers.AllowUserToDeleteRows = false;
-            this.dgvUsers.AllowUserToResizeColumns = false;
-            this.dgvUsers.AllowUserToResizeRows = false;
-            this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvUsers.BackgroundColor = System.Drawing.Color.White;
-            this.dgvUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvUsers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvBooks.AllowUserToAddRows = false;
+            this.dgvBooks.AllowUserToDeleteRows = false;
+            this.dgvBooks.AllowUserToResizeColumns = false;
+            this.dgvBooks.AllowUserToResizeRows = false;
+            this.dgvBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBooks.BackgroundColor = System.Drawing.Color.White;
+            this.dgvBooks.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvBooks.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -167,9 +167,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvBooks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBooks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colBookID,
             this.colTenSach,
             this.colSoLuong,
@@ -183,18 +183,18 @@
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvUsers.EnableHeadersVisualStyles = false;
-            this.dgvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.dgvUsers.Location = new System.Drawing.Point(8, 128);
-            this.dgvUsers.MultiSelect = false;
-            this.dgvUsers.Name = "dgvUsers";
-            this.dgvUsers.ReadOnly = true;
-            this.dgvUsers.RowHeadersVisible = false;
-            this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsers.Size = new System.Drawing.Size(834, 292);
-            this.dgvUsers.TabIndex = 5;
+            this.dgvBooks.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvBooks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvBooks.EnableHeadersVisualStyles = false;
+            this.dgvBooks.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.dgvBooks.Location = new System.Drawing.Point(8, 128);
+            this.dgvBooks.MultiSelect = false;
+            this.dgvBooks.Name = "dgvBooks";
+            this.dgvBooks.ReadOnly = true;
+            this.dgvBooks.RowHeadersVisible = false;
+            this.dgvBooks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBooks.Size = new System.Drawing.Size(834, 292);
+            this.dgvBooks.TabIndex = 5;
             // 
             // colBookID
             // 
@@ -260,8 +260,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.2936F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.2936F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.txtBookSearch, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.panelAddItem, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.cbBooks, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnAddItem, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 68);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -270,35 +270,34 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(834, 60);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // txtBookSearch
+            // cbBooks
             // 
-            this.txtBookSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtBookSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtBookSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBookSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.txtBookSearch.Location = new System.Drawing.Point(3, 14);
-            this.txtBookSearch.Name = "txtBookSearch";
-            this.txtBookSearch.Size = new System.Drawing.Size(665, 31);
-            this.txtBookSearch.TabIndex = 0;
+            this.cbBooks.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbBooks.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbBooks.FormattingEnabled = true;
+            this.cbBooks.Location = new System.Drawing.Point(3, 16);
+            this.cbBooks.Name = "cbBooks";
+            this.cbBooks.Size = new System.Drawing.Size(665, 28);
+            this.cbBooks.TabIndex = 5;
             // 
-            // panelAddItem
+            // btnAddItem
             // 
-            this.panelAddItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            this.panelAddItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelAddItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelAddItem.ForeColor = System.Drawing.Color.White;
-            this.panelAddItem.IconChar = FontAwesome.Sharp.IconChar.FileCirclePlus;
-            this.panelAddItem.IconColor = System.Drawing.Color.White;
-            this.panelAddItem.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.panelAddItem.IconSize = 28;
-            this.panelAddItem.Location = new System.Drawing.Point(675, 4);
-            this.panelAddItem.Margin = new System.Windows.Forms.Padding(4);
-            this.panelAddItem.Name = "panelAddItem";
-            this.panelAddItem.Size = new System.Drawing.Size(155, 52);
-            this.panelAddItem.TabIndex = 4;
-            this.panelAddItem.Text = "Thêm vào Phiếu";
-            this.panelAddItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.panelAddItem.UseVisualStyleBackColor = false;
+            this.btnAddItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            this.btnAddItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAddItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddItem.ForeColor = System.Drawing.Color.White;
+            this.btnAddItem.IconChar = FontAwesome.Sharp.IconChar.FileCirclePlus;
+            this.btnAddItem.IconColor = System.Drawing.Color.White;
+            this.btnAddItem.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAddItem.IconSize = 28;
+            this.btnAddItem.Location = new System.Drawing.Point(675, 4);
+            this.btnAddItem.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddItem.Name = "btnAddItem";
+            this.btnAddItem.Size = new System.Drawing.Size(155, 52);
+            this.btnAddItem.TabIndex = 4;
+            this.btnAddItem.Text = "Thêm vào Phiếu";
+            this.btnAddItem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnAddItem.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
@@ -347,7 +346,7 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.txtTenSach);
+            this.panel3.Controls.Add(this.cbNhanVien);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(428, 3);
@@ -356,15 +355,15 @@
             this.panel3.Size = new System.Drawing.Size(419, 93);
             this.panel3.TabIndex = 1;
             // 
-            // txtTenSach
+            // cbNhanVien
             // 
-            this.txtTenSach.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTenSach.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtTenSach.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenSach.Location = new System.Drawing.Point(8, 36);
-            this.txtTenSach.Name = "txtTenSach";
-            this.txtTenSach.Size = new System.Drawing.Size(403, 26);
-            this.txtTenSach.TabIndex = 2;
+            this.cbNhanVien.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cbNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbNhanVien.FormattingEnabled = true;
+            this.cbNhanVien.Location = new System.Drawing.Point(8, 36);
+            this.cbNhanVien.Name = "cbNhanVien";
+            this.cbNhanVien.Size = new System.Drawing.Size(403, 28);
+            this.cbNhanVien.TabIndex = 2;
             // 
             // label3
             // 
@@ -520,9 +519,8 @@
             this.panelBody.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanelInputs.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -551,7 +549,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtTenSach;
+        private System.Windows.Forms.ComboBox cbNhanVien;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lblTotalImportAmount;
@@ -560,14 +558,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TextBox txtBookSearch;
-        private FontAwesome.Sharp.IconButton panelAddItem;
-        private System.Windows.Forms.DataGridView dgvUsers;
+        private FontAwesome.Sharp.IconButton btnAddItem;
+        private System.Windows.Forms.DataGridView dgvBooks;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBookID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTenSach;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDonGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn colThanhTien;
         private System.Windows.Forms.DataGridViewButtonColumn colDelete;
+        private System.Windows.Forms.ComboBox cbBooks;
     }
 }

@@ -328,5 +328,14 @@ namespace book_management.UI
             LoadControl(new VoucherControl());
             ActivateButton(btnVoucher);
         }
+
+        private void lblClose_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Xác nhận thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
     }
 }

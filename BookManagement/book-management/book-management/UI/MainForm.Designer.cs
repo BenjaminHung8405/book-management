@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.lblClose = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelSidebar = new System.Windows.Forms.Panel();
@@ -55,6 +56,7 @@
             // 
             this.panelHeader.BackColor = System.Drawing.Color.White;
             this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.Controls.Add(this.lblClose);
             this.panelHeader.Controls.Add(this.label1);
             this.panelHeader.Controls.Add(this.pictureBox1);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -63,6 +65,20 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(1600, 70);
             this.panelHeader.TabIndex = 1;
+            // 
+            // lblClose
+            // 
+            this.lblClose.AutoSize = true;
+            this.lblClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClose.Location = new System.Drawing.Point(1555, 0);
+            this.lblClose.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblClose.Name = "lblClose";
+            this.lblClose.Padding = new System.Windows.Forms.Padding(0, 16, 16, 0);
+            this.lblClose.Size = new System.Drawing.Size(43, 41);
+            this.lblClose.TabIndex = 8;
+            this.lblClose.Text = "X";
+            this.lblClose.Click += new System.EventHandler(this.lblClose_Click);
             // 
             // label1
             // 
@@ -370,5 +386,6 @@
         private FontAwesome.Sharp.IconButton btnBooks;
         private FontAwesome.Sharp.IconDropDownButton iconDropDownMenuProfile;
         private FontAwesome.Sharp.IconButton btnVoucher;
+        private System.Windows.Forms.Label lblClose;
     }
 }
