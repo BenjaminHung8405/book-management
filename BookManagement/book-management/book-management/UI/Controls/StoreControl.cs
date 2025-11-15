@@ -482,7 +482,7 @@ namespace book_management.UI.Controls
 
                 decimal netTotal = tongTien - discount;
 
-                var result = MessageBox.Show($"Xác nhận thanh toán {netTotal:N0} đ?",
+                var result = MessageBox.Show($"Xác nhận thanh toán/Lưu hóa đơn {netTotal:N0} đ?",
                                               "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
@@ -494,7 +494,10 @@ namespace book_management.UI.Controls
                     string trangThaiDb = "DaThanhToan"; // default
                     if (!string.IsNullOrWhiteSpace(selectedStatusText))
                     {
-                        if (selectedStatusText.Contains("Chưa")) trangThaiDb = "ChuaThanhToan";
+                        if (selectedStatusText.Contains("Chưa")) {
+                            trangThaiDb = "ChuaThanhToan";
+                            check = false;
+                        } 
                         else if (selectedStatusText.Contains("Đã") || selectedStatusText.Contains("Da")) trangThaiDb = "DaThanhToan";
                     }
 
@@ -540,11 +543,23 @@ namespace book_management.UI.Controls
 
                     if (success)
                     {
-                        MessageBox.Show("Thanh toán thành công! Cảm ơn bạn đã mua hàng.", "Thành công",
+                        if(check == false)
+                        {
+                            MessageBox.Show("Hóa đơn đã được lưu dưới trạng thái Chưa thanh toán. Vui lòng xử lý thanh toán sau.", "Thông báo",
                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        _cart.Clear();
-                        RefreshCart();
-                        LoadBooks(); // Tải lại sách để cập nhật Tồn kho
+                            _cart.Clear();
+                            RefreshCart();
+                            LoadBooks(); // Tải lại sách để cập nhật Tồn kho
+                        }
+                        else
+                        {
+                            MessageBox.Show("Thanh toán thành công! Cảm ơn bạn đã mua hàng.", "Thành công",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            _cart.Clear();
+                            RefreshCart();
+                            LoadBooks(); // Tải lại sách để cập nhật Tồn kho
+                        }
+                        
                     }
                 }
             }

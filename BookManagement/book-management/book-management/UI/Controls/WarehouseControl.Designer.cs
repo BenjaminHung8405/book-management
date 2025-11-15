@@ -277,7 +277,7 @@
             this.colNguoiTao.FillWeight = 47.34358F;
             this.colNguoiTao.HeaderText = "Người tạo";
             this.colNguoiTao.Name = "colNguoiTao";
-            this.colNguoiTao.ReadOnly = true;       
+            this.colNguoiTao.ReadOnly = true;
             // 
             // colNgayNhap
             // 

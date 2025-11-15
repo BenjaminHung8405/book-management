@@ -350,7 +350,11 @@ namespace book_management.UI.Controls
                         row.Cells["colTacGia"].Value = tacGia;
                         row.Cells["colTheLoai"].Value = theLoai;
                         row.Cells["colGiaBan"].Value = giaFormatted;
-                        row.Cells["colTonKho"].Value = soLuong;
+                        if (dgvBooks.Columns.Contains("colTonKho"))
+                            row.Cells["colTonKho"].Value = soLuong.ToString();
+                        else
+                            System.Diagnostics.Debug.WriteLine("Warning: DataGridView does not contain column 'colTonKho'.");
+
                         row.Cells["colTrangThai"].Value = trangThai;
 
                         // Store book ID in Tag for later use - Safe conversion for dynamic objects

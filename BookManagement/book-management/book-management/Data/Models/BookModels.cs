@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace book_management.Models
@@ -138,7 +138,7 @@ namespace book_management.Models
         public DateTime NgayNhap { get; set; }
         public decimal TongTien { get; set; }
         public string TenNguoiNhap { get; set; }
-        public string TenNXB { get; set; } // New property: t�n nh� xu?t b?n (hi?n th? trong danh s�ch)
+        public string TenNXB { get; set; } // New property: tên nhà xuất bản (hiển thị trong danh sách)
 
         // Navigation properties
         public NguoiDung NguoiDung { get; set; }
@@ -153,6 +153,7 @@ namespace book_management.Models
         public int SoLuong { get; set; }
         public decimal DonGia { get; set; }
         public decimal ThanhTien { get; set; }
+        public string TenSach { get; set; } // store book name at time of import
 
         // Navigation properties
         public PhieuNhap PhieuNhap { get; set; }

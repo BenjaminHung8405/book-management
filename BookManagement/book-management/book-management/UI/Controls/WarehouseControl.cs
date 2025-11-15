@@ -13,6 +13,7 @@ using book_management.DataAccess;
 using book_management.Models;
 using book_management.UI.Modal;
 using TextBox = System.Windows.Forms.TextBox;
+using book_management.UI; // for OrderDetailForm
 namespace book_management.UI.Controls
 {
     public partial class WarehouseControl : System.Windows.Forms.UserControl
@@ -31,6 +32,8 @@ namespace book_management.UI.Controls
 
             // Register DataGridView events
             this.Load += WarehouseControl_Load;
+            // hook up click handler for view button
+            this.dgvImports.CellClick += DgvImports_CellClick;
             //this.dgvImports.CellContentClick += dgvImports_CellContentClick;
             // Register search events
             this.txtSearchWareHouse.GotFocus += TxtSearch_GotFocus;
@@ -243,6 +246,40 @@ namespace book_management.UI.Controls
         private void BtnSearchWareHouse_Click(object sender, EventArgs e)
         {
             SearchWareHouse();
+        }
+
+        // New: handle click on the 'Xem' button column
+        private void DgvImports_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex <0 || e.ColumnIndex <0) return;
+                if (e.RowIndex >= dgvImports.Rows.Count) return;
+
+                string columnName = dgvImports.Columns[e.ColumnIndex].Name;
+                if (columnName != "colView") return;
+
+                var tag = dgvImports.Rows[e.RowIndex].Tag;
+                if (tag == null) return;
+                if (!int.TryParse(tag.ToString(), out int pnId)) return;
+
+                var ware = WareHouseRepository.GetWareHouse(pnId);
+                if (ware == null)
+                {
+                    MessageBox.Show("Không tìm thấy thông tin phiếu nhập.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Show WareHouse detail form
+                using (var detailForm = new WareHouseDetailForm(pnId))
+                {
+                    detailForm.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi mở chi tiết phiếu nhập: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

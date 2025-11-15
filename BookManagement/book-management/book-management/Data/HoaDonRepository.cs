@@ -366,7 +366,6 @@ namespace book_management.DataAccess
                     foreach (var item in details)
                     {
                         
-
                         var cmdChiTiet = new SqlCommand(@"
                         INSERT INTO ChiTietHoaDon (hoadon_id, sach_id, ten_sach, so_luong, don_gia, khuyenmai_id, tien_giam)
                         VALUES (@HoaDonId, @SachId, @TenSach, @SoLuong, @DonGia, @KhuyenMaiId, @TienGiam);", conn, transaction);
