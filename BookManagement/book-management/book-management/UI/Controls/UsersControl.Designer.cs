@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMainContent = new System.Windows.Forms.Panel();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.colHoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,14 +81,14 @@
             this.dgvUsers.BackgroundColor = System.Drawing.Color.White;
             this.dgvUsers.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvUsers.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(144)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colHoTen,
@@ -100,14 +99,14 @@
             this.colNgayTao,
             this.colEdit,
             this.colDelete});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvUsers.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvUsers.EnableHeadersVisualStyles = false;
             this.dgvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
@@ -116,17 +115,17 @@
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
             this.dgvUsers.RowHeadersVisible = false;
-            this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvUsers.RowTemplate.Height = 48;
-            this.dgvUsers.Size = new System.Drawing.Size(1400, 622);
+            this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvUsers.Size = new System.Drawing.Size(1252, 622);
             this.dgvUsers.TabIndex = 4;
             // 
             // colHoTen
             // 
             this.colHoTen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colHoTen.DataPropertyName = "ho_ten";
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colHoTen.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colHoTen.DefaultCellStyle = dataGridViewCellStyle2;
             this.colHoTen.FillWeight = 40F;
             this.colHoTen.HeaderText = "Họ tên";
             this.colHoTen.Name = "colHoTen";
@@ -152,10 +151,10 @@
             // colSdt
             // 
             this.colSdt.DataPropertyName = "so_dien_thoai";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.NullValue = null;
-            this.colSdt.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.NullValue = null;
+            this.colSdt.DefaultCellStyle = dataGridViewCellStyle3;
             this.colSdt.FillWeight = 40F;
             this.colSdt.HeaderText = "Số điện thoại";
             this.colSdt.Name = "colSdt";
@@ -164,9 +163,9 @@
             // colVaiTro
             // 
             this.colVaiTro.DataPropertyName = "vai_tro";
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.colVaiTro.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.colVaiTro.DefaultCellStyle = dataGridViewCellStyle4;
             this.colVaiTro.FillWeight = 25F;
             this.colVaiTro.HeaderText = "Vai trò";
             this.colVaiTro.Name = "colVaiTro";
@@ -175,9 +174,9 @@
             // colNgayTao
             // 
             this.colNgayTao.DataPropertyName = "ngay_tao";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.Format = "dd/MM/yyyy";
-            this.colNgayTao.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
+            this.colNgayTao.DefaultCellStyle = dataGridViewCellStyle5;
             this.colNgayTao.FillWeight = 40F;
             this.colNgayTao.HeaderText = "Ngày tạo";
             this.colNgayTao.Name = "colNgayTao";
@@ -186,7 +185,6 @@
             // colEdit
             // 
             this.colEdit.FillWeight = 30F;
-
             this.colEdit.HeaderText = "";
             this.colEdit.Name = "colEdit";
             this.colEdit.ReadOnly = true;
@@ -197,7 +195,6 @@
             // 
             this.colDelete.FillWeight = 30F;
             this.colDelete.HeaderText = "";
-
             this.colDelete.Name = "colDelete";
             this.colDelete.ReadOnly = true;
             this.colDelete.Text = "Xóa";
@@ -218,7 +215,6 @@
             // 
             this.flowPaginationButtons.AutoSize = true;
             this.flowPaginationButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flowPaginationButtons.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
             this.flowPaginationButtons.Location = new System.Drawing.Point(1252, 8);
             this.flowPaginationButtons.Name = "flowPaginationButtons";
             this.flowPaginationButtons.Size = new System.Drawing.Size(0, 42);
@@ -232,7 +228,7 @@
             this.lblPageInfo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPageInfo.Location = new System.Drawing.Point(0, 8);
             this.lblPageInfo.Name = "lblPageInfo";
-            this.lblPageInfo.Size = new System.Drawing.Size(160, 20);
+            this.lblPageInfo.Size = new System.Drawing.Size(160, 21);
             this.lblPageInfo.TabIndex = 0;
             this.lblPageInfo.Text = "Hiển thị 1-10 của 100";
             // 
@@ -260,7 +256,7 @@
             this.cmbRoleFilter.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRoleFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.cmbRoleFilter.FormattingEnabled = true;
-            this.cmbRoleFilter.Location = new System.Drawing.Point(855, 13);
+            this.cmbRoleFilter.Location = new System.Drawing.Point(855, 11);
             this.cmbRoleFilter.Name = "cmbRoleFilter";
             this.cmbRoleFilter.Size = new System.Drawing.Size(181, 38);
             this.cmbRoleFilter.TabIndex = 3;
@@ -271,7 +267,7 @@
             this.txtSearchUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearchUser.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearchUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.txtSearchUser.Location = new System.Drawing.Point(9, 14);
+            this.txtSearchUser.Location = new System.Drawing.Point(9, 12);
             this.txtSearchUser.Name = "txtSearchUser";
             this.txtSearchUser.Size = new System.Drawing.Size(825, 35);
             this.txtSearchUser.TabIndex = 0;
