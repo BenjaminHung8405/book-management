@@ -1,6 +1,4 @@
-﻿using book_management.UI.Modal;
-using book_management.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using book_management.Data;
 using book_management.Helpers;
+using book_management.UI.Modal;
 namespace book_management.UI.Controls
 {
     public partial class UsersControl : System.Windows.Forms.UserControl
@@ -193,10 +193,15 @@ namespace book_management.UI.Controls
                     .Skip((currentPage - 1) * pageSize)
                     .Take(pageSize)
                     .ToList();
-
+             
                 // Thêm dữ liệu vào DataGridView
                 foreach (var customer in pageData)
                 {
+                    
+                //    if(GetUserStatus(customer) ==0)
+                //    {
+                //        continue; // bỏ qua user bị vô hiệu hóa
+                //    }
                     dgvUsers.Rows.Add(
                     customer.HoTen,
                     customer.Username,
@@ -219,7 +224,7 @@ namespace book_management.UI.Controls
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+       
         /// <summary>
         /// Cập nhật thông tin trang
         /// </summary>
@@ -338,7 +343,7 @@ namespace book_management.UI.Controls
         /// <summary>
         /// Sự kiện nhấn Enter để tìm kiếm
         /// </summary>
-        private void TxtSearchUser_KeyDown(object sender, KeyEventArgs e)
+        private void TxtSearchUser_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Tab)
             {

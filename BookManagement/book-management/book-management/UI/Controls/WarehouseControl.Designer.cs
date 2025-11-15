@@ -51,8 +51,6 @@
             this.colNgayNhap = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTongTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colView = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelTopBar.SuspendLayout();
             this.panelPagination.SuspendLayout();
@@ -234,9 +232,7 @@
             this.colNguoiTao,
             this.colNgayNhap,
             this.colTongTien,
-            this.colView,
-            this.colDelete,
-            this.colEdit});
+            this.colView});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -261,7 +257,7 @@
             // colMaPN
             // 
             this.colMaPN.DataPropertyName = "pn_id";
-            this.colMaPN.FillWeight = 35.50768F;
+            this.colMaPN.FillWeight = 30F;
             this.colMaPN.HeaderText = "Mã Phiếu Nhập";
             this.colMaPN.Name = "colMaPN";
             this.colMaPN.ReadOnly = true;
@@ -281,7 +277,7 @@
             this.colNguoiTao.FillWeight = 47.34358F;
             this.colNguoiTao.HeaderText = "Người tạo";
             this.colNguoiTao.Name = "colNguoiTao";
-            this.colNguoiTao.ReadOnly = true;
+            this.colNguoiTao.ReadOnly = true;       
             // 
             // colNgayNhap
             // 
@@ -323,27 +319,6 @@
             this.colView.UseColumnTextForButtonValue = true;
             this.colView.Width = 60;
             // 
-            // colDelete
-            // 
-            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.colDelete.FillWeight = 68.7898F;
-            this.colDelete.HeaderText = "Xóa";
-            this.colDelete.Name = "colDelete";
-            this.colDelete.ReadOnly = true;
-            this.colDelete.Text = "Xóa";
-            this.colDelete.UseColumnTextForButtonValue = true;
-            this.colDelete.Width = 80;
-            // 
-            // colEdit
-            // 
-            this.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.colEdit.HeaderText = "Sửa";
-            this.colEdit.Name = "colEdit";
-            this.colEdit.ReadOnly = true;
-            this.colEdit.Text = "Sửa";
-            this.colEdit.UseColumnTextForButtonValue = true;
-            this.colEdit.Width = 60;
-            // 
             // WarehouseControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -383,8 +358,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colNguoiTao;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNgayNhap;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTongTien;
-        private System.Windows.Forms.DataGridViewButtonColumn colEdit;
         private System.Windows.Forms.DataGridViewButtonColumn colView;
-        private System.Windows.Forms.DataGridViewButtonColumn colDelete;
     }
 }

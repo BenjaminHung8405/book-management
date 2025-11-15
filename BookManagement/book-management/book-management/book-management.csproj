@@ -102,8 +102,8 @@
     <Compile Include="Data\UserRepository.cs" />
     <Compile Include="Data\WareHouseDetailRepository.cs" />
     <Compile Include="Data\WareHouseRepository.cs" />
-  <Compile Include="Helpers\StringExtensions.cs" />
-  <Compile Include="Helpers\ImageLoader.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Helpers\ImageLoader.cs" />
     <Compile Include="Service\BookSearchService.cs" />
     <Compile Include="UI\Controls\BooksControl.cs">
       <SubType>UserControl</SubType>
@@ -257,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\InvoicesControl.resx">
       <DependentUpon>InvoicesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Controls\InvoicesDetailForm.resx">
+      <DependentUpon>InvoicesDetailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Controls\PurchaseHistoryControl.resx">
       <DependentUpon>PurchaseHistoryControl.cs</DependentUpon>

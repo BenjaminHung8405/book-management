@@ -266,7 +266,7 @@
         private System.Windows.Forms.PictureBox pbLogo;
         private System.Windows.Forms.Label lblHeaderTitle;
         private System.Windows.Forms.Label lblWelcome;
-        private System.Windows.Forms.Label lblUsername; 
+        private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Panel pnlPassword;
         private System.Windows.Forms.TextBox txtPassword;
@@ -279,4 +279,3 @@
         private FontAwesome.Sharp.IconPictureBox iconUser;
     }
 }
-

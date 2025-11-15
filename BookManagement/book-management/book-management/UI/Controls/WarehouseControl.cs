@@ -31,7 +31,7 @@ namespace book_management.UI.Controls
 
             // Register DataGridView events
             this.Load += WarehouseControl_Load;
-            this.dgvImports.CellContentClick += dgvImports_CellContentClick;
+            //this.dgvImports.CellContentClick += dgvImports_CellContentClick;
             // Register search events
             this.txtSearchWareHouse.GotFocus += TxtSearch_GotFocus;
             this.txtSearchWareHouse.KeyDown += TxtSearchWareHouse_KeyDown;
@@ -41,13 +41,13 @@ namespace book_management.UI.Controls
 
             // Make date pickers optional (user can uncheck to disable date filtering)
             dtpFromDate.ShowCheckBox = true;
-            dtpFromDate.Checked = false; // default: do not filter by date
+            dtpFromDate.Checked = false;
             dtpFromDate.Format = DateTimePickerFormat.Custom;
             dtpFromDate.CustomFormat = "dd/MM/yyyy";
             dtpFromDate.Value = DateTime.Now.AddMonths(-1);
 
             dtpToDate.ShowCheckBox = true;
-            dtpToDate.Checked = false; // default: do not filter by date
+            dtpToDate.Checked = false; 
             dtpToDate.Format = DateTimePickerFormat.Custom;
             dtpToDate.CustomFormat = "dd/MM/yyyy";
             dtpToDate.Value = DateTime.Now;
@@ -82,10 +82,10 @@ namespace book_management.UI.Controls
             dgvImports.DefaultCellStyle.SelectionForeColor = Color.Black;
 
             // Column alignments
-            colMaPN.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            colNXB.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            colMaPN.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            colNXB.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             colNguoiTao.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            colNgayNhap.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            colNgayNhap.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             colTongTien.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
         private void btnAddImport_Click(object sender, EventArgs e)
@@ -207,8 +207,7 @@ namespace book_management.UI.Controls
             {
                 var rowIndex = dgvImports.Rows.Add(
                    warehouse.PnId,
-                   // repository doesn't include publisher for PhieuNhap, show placeholder
-                   "",
+                   warehouse.TenNXB,
                    warehouse.TenNguoiNhap,
                    warehouse.NgayNhap.ToString("dd/MM/yyyy HH:mm"),
                    warehouse.TongTien.ToString("N0") + " đ"
@@ -226,7 +225,6 @@ namespace book_management.UI.Controls
             }
             catch { }
         }
-
         private void RefreshData()
         {
             txtSearchWareHouse.Text = string.Empty;
@@ -237,93 +235,6 @@ namespace book_management.UI.Controls
             // perform a fresh load (which will consider date checkbox states)
             SearchWareHouse();
         }
-        private void EditWareHouse(int phieuNhapId)
-        {
-            try
-            {
-                var invoice = WareHouseRepository.GetWareHouse(phieuNhapId);
-                if (invoice == null)
-                {
-                    MessageBox.Show("Phieu Nhap không tồn tại.", "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Open EditWareHouseControl form (not EditInvoiceControl)
-                using (var editForm = new EditWareHouseControl(phieuNhapId))
-                {
-                    if (editForm.ShowDialog() == DialogResult.OK)
-                    {
-                        LoadWareHouse();
-                        MessageBox.Show("Phieu Nhap đã được cập nhật thành công!", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi sửa hóa đơn: {ex.Message}",
-                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void DeleteInvoice(int phieuNhapId)
-        {
-            var result = MessageBox.Show($"Bạn có chắc chắn muốn xóa phieu nhap {phieuNhapId}?",
-            "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (result == DialogResult.Yes)
-            {
-                try
-                {
-                    WareHouseRepository.DeleteWareHouseById(phieuNhapId);
-                    MessageBox.Show("Xóa phieu nhap thành công!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadWareHouse();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Lỗi khi xóa phieu nhap: {ex.Message}",
-                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        // xu ly xu kien edit warehouse
-        private void dgvImports_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
-
-                var column = dgvImports.Columns[e.ColumnIndex];
-                int pnId = 0;
-                if (dgvImports.Rows[e.RowIndex].Tag != null)
-                {
-                    int.TryParse(dgvImports.Rows[e.RowIndex].Tag.ToString(), out pnId);
-                }
-
-                if (pnId == 0)
-                {
-                    // try read from first cell
-                    int.TryParse(dgvImports.Rows[e.RowIndex].Cells[0].Value?.ToString() ?? "0", out pnId);
-                }
-
-                if (pnId == 0) return;
-
-                if (column.Name == "colEdit" || column.Name == "colDelete")
-                {
-                    // Editing or deleting warehouse imports is not allowed in this view
-                    MessageBox.Show("Bạn không có quyền sửa hoặc xóa phiếu nhập từ giao diện này.", "Hành động bị từ chối", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi xử lý click: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         public void RefreshWareHouse()
         {
             LoadWareHouse();

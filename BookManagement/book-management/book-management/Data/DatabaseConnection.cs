@@ -9,9 +9,9 @@ namespace book_management.Data
         // Connection string sử dụng Windows Authentication
         private static readonly string connectionString =
 
-        //@"Server=LAPOFTH;Database=BookManagement;Integrated Security=true;";
+        @"Server=LAPOFTH;Database=BookManagement;Integrated Security=true;";
 
-        @"Server=DESKTOP-UFG81JC\SQLEXPRESS;Database=book-management;Integrated Security=true;";
+        //@"Server=DESKTOP-UFG81JC\SQLEXPRESS;Database=book-management;Integrated Security=true;";
 
         /// <summary>
         /// Tạo và trả về SqlConnection mới

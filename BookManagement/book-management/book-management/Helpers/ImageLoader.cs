@@ -1,10 +1,11 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.IO;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.WebRequestMethods;
 
 namespace book_management.Helpers
 {
@@ -126,6 +127,67 @@ namespace book_management.Helpers
                     if (pb.InvokeRequired) pb.Invoke(new Action(() => pb.Image = placeholder));
                     else pb.Image = placeholder;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Fetches an Image from the provided URL and returns it. Returns null on failure.
+        /// Caller receives a cloned Image and is responsible for disposing it when no longer needed.
+        /// </summary>
+        public static async Task<Image> LoadImageAsync(string url, CancellationToken ct = default)
+        {
+            if (string.IsNullOrWhiteSpace(url)) return null;
+            if (!Uri.TryCreate(url, UriKind.Absolute, out Uri uri) || (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps))
+                return null;
+
+            try
+            {
+                using (var resp = await ImageHttpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, ct).ConfigureAwait(false))
+                {
+                    if (!resp.IsSuccessStatusCode)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Image load failed ({resp.StatusCode}) for {url}");
+                        return null;
+                    }
+                    //stream nội dung từ HTTP response.
+                    using (var stream = await resp.Content.ReadAsStreamAsync().ConfigureAwait(false))
+                    using (var ms = new MemoryStream())
+                    {
+                        //sao chép toàn bộ dữ liệu từ stream(HTTP) vào ms(memory).
+                        await stream.CopyToAsync(ms, 81920).ConfigureAwait(false);
+                        ms.Position = 0; //reset con trỏ về đầu stream để đọc lại
+                        // Tạo đối tượng img từ MenoryStream
+                        Image img;
+                        try
+                        {
+                            img = Image.FromStream(ms);
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Debug.WriteLine($"Invalid image format: {ex.Message}");
+                            return null;
+                        }
+
+                        try
+                        {
+                            // clone img và dọn dẹp
+                            return (Image)img.Clone();
+                        }
+                        finally
+                        {
+                            img.Dispose();
+                        }
+                    }
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Load image failed for {url}: {ex.Message}");
+                return null;
             }
         }
     }

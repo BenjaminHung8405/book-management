@@ -47,7 +47,6 @@ namespace book_management.UI
                 case "NhanVien":
                     // Nhân viên không có quyền truy cập quản lý người dùng và báo cáo
                     btnUser.Visible = false;
-                    btnReport.Visible = false;
                     break;
                 default:
                     // Vai trò không xác định, ẩn tất cả các nút chức năng nhạy cảm

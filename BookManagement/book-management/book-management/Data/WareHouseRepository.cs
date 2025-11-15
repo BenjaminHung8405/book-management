@@ -32,8 +32,8 @@ namespace book_management.Data
                                 TenNguoiNhap = Convert.ToString(reader["ho_ten"]),
                                 PnId = Convert.ToInt32(reader["pn_id"]),
                                 NgayNhap = reader["ngay_nhap"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["ngay_nhap"]),
-                                TongTien = reader["tong_tien"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["tong_tien"]),
-                                UserId = reader["user_id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["user_id"])
+                                TongTien = reader["tong_tien"] == DBNull.Value ?0m : Convert.ToDecimal(reader["tong_tien"]),
+                                UserId = reader["user_id"] == DBNull.Value ?0 : Convert.ToInt32(reader["user_id"])
                             };
                         }
                     }
@@ -55,25 +55,25 @@ namespace book_management.Data
 
                         using (var reader = cmdDetails.ExecuteReader())
                         {
+                            var nxbNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                             while (reader.Read())
                             {
                                 var chiTiet = new ChiTietPhieuNhap
                                 {
-                                    CtpnId = reader["ctpn_id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["ctpn_id"]),
-                                    PnId = reader["pn_id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["pn_id"]),
-                                    SachId = reader["sach_id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["sach_id"]),
-                                    SoLuong = reader["so_luong"] == DBNull.Value ? 0 : Convert.ToInt32(reader["so_luong"]),
-                                    DonGia = reader["don_gia"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["don_gia"]),
-                                    ThanhTien = reader["thanh_tien"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["thanh_tien"])
+                                    CtpnId = reader["ctpn_id"] == DBNull.Value ?0 : Convert.ToInt32(reader["ctpn_id"]),
+                                    PnId = reader["pn_id"] == DBNull.Value ?0 : Convert.ToInt32(reader["pn_id"]),
+                                    SachId = reader["sach_id"] == DBNull.Value ?0 : Convert.ToInt32(reader["sach_id"]),
+                                    SoLuong = reader["so_luong"] == DBNull.Value ?0 : Convert.ToInt32(reader["so_luong"]),
+                                    DonGia = reader["don_gia"] == DBNull.Value ?0m : Convert.ToDecimal(reader["don_gia"]),
+                                    ThanhTien = reader["thanh_tien"] == DBNull.Value ?0m : Convert.ToDecimal(reader["thanh_tien"])
                                 };
 
                                 var sach = new Sach
                                 {
-                                    SachId = reader["s_sach_id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["s_sach_id"]),
+                                    SachId = reader["s_sach_id"] == DBNull.Value ?0 : Convert.ToInt32(reader["s_sach_id"]),
                                     TenSach = reader["ten_sach"] == DBNull.Value ? string.Empty : reader["ten_sach"].ToString(),
-                                    NxbId = reader["s_nxb_id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["s_nxb_id"]),
-                                    Gia = reader["s_gia"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["s_gia"]),
-                                    SoLuong = reader["s_so_luong"] == DBNull.Value ? 0 : Convert.ToInt32(reader["s_so_luong"]),
+                                    Gia = reader["s_gia"] == DBNull.Value ?0m : Convert.ToDecimal(reader["s_gia"]),
+                                    SoLuong = reader["s_so_luong"] == DBNull.Value ?0 : Convert.ToInt32(reader["s_so_luong"]),
                                     NgayNhap = reader["s_ngay_nhap"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["s_ngay_nhap"]),
                                     TrangThai = reader["s_trang_thai"] == DBNull.Value ? false : Convert.ToBoolean(reader["s_trang_thai"]),
                                     NamXuatBan = reader["nam_xuat_ban"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["nam_xuat_ban"]),
@@ -95,10 +95,19 @@ namespace book_management.Data
                                         Email = reader["email"] == DBNull.Value ? string.Empty : reader["email"].ToString()
                                     };
                                     sach.NhaXuatBan = nxb;
+
+                                    if (!string.IsNullOrEmpty(nxb.TenNxb))
+                                    nxbNames.Add(nxb.TenNxb);
                                 }
 
                                 chiTiet.Sach = sach;
                                 wareHouse.ChiTietPhieuNhaps.Add(chiTiet);
+                            }
+
+                            // If we collected publisher names, set TenNXB on header (comma separated)
+                            if (nxbNames.Count >0)
+                            {
+                                wareHouse.TenNXB = string.Join(", ", nxbNames);
                             }
                         }
                     }
@@ -120,7 +129,14 @@ namespace book_management.Data
                 {
                     conn.Open();
                     var cmd = new SqlCommand(@"
-                        SELECT pn.pn_id, pn.ngay_nhap, pn.tong_tien, nd.ho_ten
+                        SELECT pn.pn_id, pn.ngay_nhap, pn.tong_tien, nd.ho_ten,
+                        (
+                            SELECT TOP 1 n.ten_nxb
+                            FROM ChiTietPhieuNhap c
+                            JOIN Sach s2 ON c.sach_id = s2.sach_id
+                            LEFT JOIN NhaXuatBan n ON s2.nxb_id = n.nxb_id
+                            WHERE c.pn_id = pn.pn_id AND n.ten_nxb IS NOT NULL
+                        ) AS ten_nxb
                         FROM PhieuNhap as pn LEFT JOIN NguoiDung as nd ON pn.user_id = nd.user_id
                         ORDER BY pn_id", conn);
                     using (var reader = cmd.ExecuteReader())
@@ -130,9 +146,10 @@ namespace book_management.Data
                             list.Add(new PhieuNhap
                             {
                                 TenNguoiNhap = Convert.ToString(reader["ho_ten"]),
+                                TenNXB = reader["ten_nxb"] == DBNull.Value ? string.Empty : reader["ten_nxb"].ToString(),
                                 PnId = Convert.ToInt32(reader["pn_id"]),
                                 NgayNhap = Convert.ToDateTime(reader["ngay_nhap"]),
-                                TongTien = Convert.ToDecimal(reader["tong_tien"])
+                                TongTien = Convert.ToDecimal(reader["tong_tien"]),
                             });
                         }
                     }
@@ -155,7 +172,14 @@ namespace book_management.Data
                 {
                     conn.Open();
                     var cmd = new SqlCommand(@"
-                        SELECT pn.pn_id, pn.ngay_nhap, pn.tong_tien, nd.ho_ten
+                        SELECT pn.pn_id, pn.ngay_nhap, pn.tong_tien, nd.ho_ten,
+                        (
+                            SELECT TOP 1 n.ten_nxb
+                            FROM ChiTietPhieuNhap c
+                            JOIN Sach s2 ON c.sach_id = s2.sach_id
+                            LEFT JOIN NhaXuatBan n ON s2.nxb_id = n.nxb_id
+                            WHERE c.pn_id = pn.pn_id AND n.ten_nxb IS NOT NULL
+                        ) AS ten_nxb
                         FROM PhieuNhap as pn 
                         LEFT JOIN NguoiDung as nd ON pn.user_id = nd.user_id
                         WHERE pn.ngay_nhap BETWEEN @StartDate AND @EndDate
@@ -171,7 +195,8 @@ namespace book_management.Data
                                 TenNguoiNhap = Convert.ToString(reader["ho_ten"]),
                                 PnId = Convert.ToInt32(reader["pn_id"]),
                                 NgayNhap = Convert.ToDateTime(reader["ngay_nhap"]),
-                                TongTien = Convert.ToDecimal(reader["tong_tien"])
+                                TongTien = Convert.ToDecimal(reader["tong_tien"]),
+                                TenNXB = reader["ten_nxb"] == DBNull.Value ? string.Empty : reader["ten_nxb"].ToString()
                             });
                         }
                     }
@@ -195,7 +220,7 @@ namespace book_management.Data
                     var cmd = new SqlCommand("DELETE FROM PhieuNhap WHERE pn_id = @PnId", conn);
                     cmd.Parameters.AddWithValue("@PnId", pnId);
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    if (rowsAffected == 0)
+                    if (rowsAffected ==0)
                     {
                         throw new Exception("Không tìm thấy kho hàng với ID đã cho.");
                     }
@@ -227,7 +252,7 @@ namespace book_management.Data
             }
         }
 
-        // Tạo phiếu nhập và chi tiết của nó trong 1 transaction
+        // Tạo phiếu nhập và chi tiết của nó trong1 transaction
         public static int CreateWareHouseWithDetails(PhieuNhap phieuNhap)
         {
             try
@@ -266,7 +291,7 @@ namespace book_management.Data
                                 cmdDetail.Parameters.AddWithValue("@SoLuong", ct.SoLuong);
                                 cmdDetail.Parameters.AddWithValue("@DonGia", ct.DonGia);
                                 int detailRows = cmdDetail.ExecuteNonQuery();
-                                if (detailRows == 0)
+                                if (detailRows ==0)
                                 {
                                     throw new Exception($"Không thể chèn chi tiết phiếu nhập cho sách ID {ct.SachId}.");
                                 }
@@ -274,7 +299,7 @@ namespace book_management.Data
                                 // Update stock for the book
                                 var cmdUpdate = new SqlCommand(@"
                                     UPDATE Sach
-                                    SET so_luong = ISNULL(so_luong, 0) + @Qty,
+                                    SET so_luong = ISNULL(so_luong,0) + @Qty,
                                         ngay_nhap = @NgayNhap,
                                         gia = @DonGia
                                     WHERE sach_id = @SachId", conn, tx);
@@ -283,7 +308,7 @@ namespace book_management.Data
                                 cmdUpdate.Parameters.AddWithValue("@DonGia", ct.DonGia);
                                 cmdUpdate.Parameters.AddWithValue("@SachId", ct.SachId);
                                 int updatedRows = cmdUpdate.ExecuteNonQuery();
-                                if (updatedRows == 0)
+                                if (updatedRows ==0)
                                 {
                                     throw new Exception($"Không tìm thấy sách với ID {ct.SachId} để cập nhật số lượng.");
                                 }

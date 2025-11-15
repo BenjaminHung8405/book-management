@@ -138,6 +138,8 @@ namespace book_management.Models
         public DateTime NgayNhap { get; set; }
         public decimal TongTien { get; set; }
         public string TenNguoiNhap { get; set; }
+        public string TenNXB { get; set; } // New property: tên nhà xu?t b?n (hi?n th? trong danh sách)
+
         // Navigation properties
         public NguoiDung NguoiDung { get; set; }
         public List<ChiTietPhieuNhap> ChiTietPhieuNhaps { get; set; } = new List<ChiTietPhieuNhap>();

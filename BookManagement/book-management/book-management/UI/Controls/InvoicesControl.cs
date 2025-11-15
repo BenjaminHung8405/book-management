@@ -74,8 +74,8 @@ namespace book_management.UI.Controls
             // Column alignments
             HoaDonId.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             NgayLap.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            TenNguoiMua.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            TongTien.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            TenNguoiMua.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            TongTien.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             TrangThai.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             NguoiLap.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }

@@ -415,14 +415,99 @@ namespace book_management.UI.Modal
         {
             try
             {
-                // TODO: Implement add new book logic
-                // Tạo object sách mới và gọi BookRepository.AddBook()
+                // Lấy dữ liệu từ form
+                string tenSach = txtTenSach.Text.Trim();
+                string nxbName = txtNXB.Text.Trim();
 
-                MessageBox.Show("Chức năng thêm sách mới chưa được implement!", "Thông báo",
-                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (string.IsNullOrEmpty(nxbName))
+                {
+                    MessageBox.Show("Vui lòng nhập nhà xuất bản!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNXB.Focus();
+                    return;
+                }
 
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                // Tìm hoặc tạo nhà xuất bản
+                int nxbId =0;
+                var publishers = PublisherRepository.GetAllPublishers();
+                var found = publishers.FirstOrDefault(p => (p.TenNxb ?? "").ToString().Equals(nxbName, StringComparison.OrdinalIgnoreCase));
+                if (found != null)
+                {
+                    try { nxbId = Convert.ToInt32(found.NxbId); } catch { nxbId =0; }
+                }
+                else
+                {
+                    // Tạo mới nhà xuất bản và lấy ID
+                    nxbId = PublisherRepository.AddPublisher(nxbName);
+                }
+
+                decimal gia = numGia.Value;
+                int soLuong = Convert.ToInt32(numSL.Value);
+                string anhBiaUrl = txtURL.Text.Trim();
+                int? namXuatBan = (int?)numNamXB.Value;
+                int? soTrang = (int?)numSoTrang.Value;
+                string moTa = txtMoTa.Text.Trim();
+                string ngonNgu = txtNgonNgu.Text.Trim();
+
+                // Map authors and categories from text (comma separated) to IDs, create new ones if necessary
+                var authorIds = new List<int>();
+                var categoryIds = new List<int>();
+
+                string authorsText = cbTacGia.Text?.Trim() ?? "";
+                if (!string.IsNullOrEmpty(authorsText))
+                {
+                    var authorNames = authorsText.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(s => s.Trim()).Where(s => !string.IsNullOrEmpty(s)).ToList();
+                    var allAuthors = BookRepository.GetAllAuthors();
+                    foreach (var name in authorNames)
+                    {
+                        var a = allAuthors.FirstOrDefault(x => (x.TenTacGia ?? "").ToString().Equals(name, StringComparison.OrdinalIgnoreCase));
+                        if (a != null)
+                        {
+                            try { authorIds.Add(Convert.ToInt32(a.TacGiaId)); } catch { }
+                        }
+                        else
+                        {
+                            // Nếu không tồn tại thì thêm mới vào CSDL
+                            int newAuthorId = AuthorRepository.AddAuthor(name);
+                            if (newAuthorId >0) authorIds.Add(newAuthorId);
+                        }
+                    }
+                }
+
+                string categoriesText = cbTheLoai.Text?.Trim() ?? "";
+                if (!string.IsNullOrEmpty(categoriesText))
+                {
+                    var categoryNames = categoriesText.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(s => s.Trim()).Where(s => !string.IsNullOrEmpty(s)).ToList();
+                    var allCategories = BookRepository.GetAllCategories();
+                    foreach (var name in categoryNames)
+                    {
+                        var c = allCategories.FirstOrDefault(x => (x.TenTheLoai ?? "").ToString().Equals(name, StringComparison.OrdinalIgnoreCase));
+                        if (c != null)
+                        {
+                            try { categoryIds.Add(Convert.ToInt32(c.TheLoaiId)); } catch { }
+                        }
+                        else
+                        {
+                            int newCatId = CategoryRepository.AddCategory(name);
+                            if (newCatId >0) categoryIds.Add(newCatId);
+                        }
+                    }
+                }
+
+                // Gọi repository để thêm sách mới
+                int newSachId = BookRepository.AddBook(tenSach, nxbId, gia, soLuong, anhBiaUrl, authorIds, categoryIds, namXuatBan, soTrang, moTa, ngonNgu);
+
+                if (newSachId >0)
+                {
+                    MessageBox.Show("Thêm sách mới thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Thêm sách thất bại. Vui lòng thử lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {

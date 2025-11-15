@@ -184,7 +184,7 @@ namespace book_management.Data
                          vai_tro,
                          ngay_tao,
                          trang_thai
-                         FROM NguoiDung 
+                         FROM NguoiDung WHERE trang_thai <> 0
                          ORDER BY ho_ten";
 
                     using (var command = new SqlCommand(query, connection))
@@ -386,6 +386,56 @@ namespace book_management.Data
             {
                 throw new Exception($"Lỗi khi cập nhật trạng thái người dùng {ex.Message}", ex);
             }
+        }
+        // tim kiem theo trang thai
+        public static bool GetUsersByStatus(bool status)
+        {
+            var users = new System.Collections.Generic.List<dynamic>();
+            try
+            {
+                using (var connection = DatabaseConnection.GetConnection())
+                {
+                    connection.Open();
+
+                    string query = @"
+                        SELECT 
+                            user_id, username, ho_ten, email, so_dien_thoai, 
+                            vai_tro, ngay_tao, trang_thai
+                        FROM NguoiDung 
+                        WHERE trang_thai = @TrangThai -- Lọc theo vai trò
+                        ORDER BY ho_ten";
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        // Gán tham số cho @TrangThai
+                        command.Parameters.AddWithValue("@TrangThai", status);
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                dynamic user = new System.Dynamic.ExpandoObject();
+                                user.UserId = reader["user_id"];
+                                user.Username = reader["username"]?.ToString() ?? "";
+                                user.HoTen = reader["ho_ten"]?.ToString() ?? "";
+                                user.Email = reader["email"]?.ToString() ?? "";
+                                user.SoDienThoai = reader["so_dien_thoai"]?.ToString() ?? "";
+                                user.VaiTro = reader["vai_tro"]?.ToString() ?? "";
+                                user.NgayTao = reader["ngay_tao"] != DBNull.Value ? Convert.ToDateTime(reader["ngay_tao"]) : DateTime.MinValue;
+                                user.TrangThai = reader["trang_thai"] != DBNull.Value ? Convert.ToBoolean(reader["trang_thai"]) : true;
+
+                                users.Add(user);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi lấy danh sách người dùng theo vai trò: {ex.Message}", ex);
+            }
+
+            return true;
         }
         /// <summary>
         /// Lấy danh sách người dùng ĐÃ LỌC theo vai trò

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using book_management.Data;
 using book_management.Services;
 using book_management.UI.Modal;
+using book_management.Helpers;
 
 namespace book_management.UI.Controls
 {
@@ -25,6 +27,9 @@ namespace book_management.UI.Controls
         private string currentCategoryFilter = "";
         private string currentStatusFilter = "";
         private System.Windows.Forms.Timer filterTimer; // Timer để delay filter
+
+        // Placeholder image for missing/failed loads
+        private Image placeholderCover;
         #endregion
 
         #region Constructor
@@ -39,6 +44,9 @@ namespace book_management.UI.Controls
             this.dgvBooks.CellContentClick += dgvBooks_CellContentClick;
             this.dgvBooks.DataError += dgvBooks_DataError;
             this.btnAddBook.Click += btnAddBook_Click;
+
+            // Initialize placeholder (optional): small blank bitmap
+            placeholderCover = new Bitmap(1, 1);
 
             // Initialize filter events - Tương tự CustomersControl
             InitializeFilterEvents();
@@ -191,6 +199,26 @@ namespace book_management.UI.Controls
                 // Scroll bars
                 dgvBooks.ScrollBars = ScrollBars.Both;
 
+                // After InitializeDataGridView settings (inside InitializeDataGridView method), ensure column sizing for colTonKho
+                try
+                {
+                    if (dgvBooks.Columns.Contains("colTonKho"))
+                    {
+                        var colQty = dgvBooks.Columns["colTonKho"];
+                        colQty.ReadOnly = true;
+                        // Make sure column is wide enough to be visible even when other columns fill
+                        colQty.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                        colQty.MinimumWidth = 70;
+                        // enforce center alignment and numeric format
+                        colQty.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                        colQty.DefaultCellStyle.Format = "N0";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Error configuring colTonKho sizing: {ex.Message}");
+                }
+
                 StyleBooksGrid();
             }
             catch (Exception ex)
@@ -291,6 +319,27 @@ namespace book_management.UI.Controls
                 // Clear existing data
                 dgvBooks.Rows.Clear();
 
+                // Ensure quantity column is configured to display integers
+                try
+                {
+                    if (dgvBooks.Columns.Contains("colTonKho"))
+                    {
+                        var col = dgvBooks.Columns["colTonKho"];
+                        // set ValueType and a numeric format
+                        col.ValueType = typeof(int);
+                        col.DefaultCellStyle.Format = "N0";
+                        col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    }
+                    else
+                    {
+                        System.Diagnostics.Debug.WriteLine("Warning: colTonKho not found in dgvBooks.Columns");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Error configuring colTonKho: {ex.Message}");
+                }
+
                 // Add data to DataGridView
                 foreach (var book in pageData)
                 {
@@ -300,7 +349,7 @@ namespace book_management.UI.Controls
                         string tenSach = book.TenSach?.ToString() ?? "";
                         string tacGia = book.TacGia?.ToString() ?? "";
                         string theLoai = book.TheLoai?.ToString() ?? "";
-
+                        string anhBia = book.AnhBiaUrl?.ToString() ?? "";
                         // Format price - Safe conversion for dynamic objects
                         decimal gia = 0;
                         try
@@ -311,7 +360,7 @@ namespace book_management.UI.Controls
                         catch (Exception e)
                         {
                             MessageBox.Show($"Lỗi khi cập nhật gía: {e.Message}",
-                                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         string giaFormatted = gia.ToString("N0") + " đ";
 
@@ -325,8 +374,11 @@ namespace book_management.UI.Controls
                         catch (Exception ex)
                         {
                             MessageBox.Show($"Lỗi khi cập nhật SL tồn kho: {ex.Message}",
-           "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+
+                        // Debug: log quantity retrieved
+                        System.Diagnostics.Debug.WriteLine($"[BooksControl] Book '{tenSach}' SoLuong from data = {soLuong}");
 
                         // Determine status
                         string trangThai = soLuong <= 0 ? "Hết hàng" : "Còn hàng";
@@ -336,12 +388,26 @@ namespace book_management.UI.Controls
                         var row = dgvBooks.Rows[rowIndex];
 
                         // Set cell values by column name
-                        row.Cells["colAnhBia"].Value = null; // Image placeholder
+                        // gán ngay placeholderCover để xử lý đồng bộ load bóng mờ ngay, tránh ô trống trong lúc tải ảnh
+                        row.Cells["colAnhBia"].Value = placeholderCover;
                         row.Cells["colTenSach"].Value = tenSach;
                         row.Cells["colTacGia"].Value = tacGia;
                         row.Cells["colTheLoai"].Value = theLoai;
                         row.Cells["colGiaBan"].Value = giaFormatted;
-                        row.Cells["colTonKho"].Value = soLuong;
+
+                        // Set quantity safely and enforce display format
+                        if (dgvBooks.Columns.Contains("colTonKho"))
+                        {
+                            var qtyCell = row.Cells["colTonKho"];
+                            string qtyText = soLuong.ToString("N0");
+                            qtyCell.Value = qtyText; 
+                            qtyCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            qtyCell.Style.Format = "";
+
+                            // Debug: log cell value after setting
+                            System.Diagnostics.Debug.WriteLine($"[BooksControl] After set, cell.Value for '{tenSach}' = {qtyCell.Value} (Type={qtyCell.Value?.GetType().Name})");
+                        }
+
                         row.Cells["colTrangThai"].Value = trangThai;
 
                         // Store book ID in Tag for later use - Safe conversion for dynamic objects
@@ -351,6 +417,71 @@ namespace book_management.UI.Controls
                                 row.Tag = Convert.ToInt32(book.SachId);
                         }
                         catch { }
+
+                        // check URL của ảnh có Rỗng không
+                        if (!string.IsNullOrWhiteSpace(anhBia))
+                        {
+                            // capture local variables for closure
+                            var cell = row.Cells["colAnhBia"] as DataGridViewImageCell;
+                            var url = anhBia;
+
+                            //khởi tạo tác vụ nền
+                            //thực hiện lệnh dưới để không block UI thread
+                            _ = Task.Run(async () =>
+                            {
+                                try
+                                {
+                                    var img = await ImageLoader.LoadImageAsync(url).ConfigureAwait(false);
+                                    if (img != null)
+                                    {
+                                        // Ensure UI thread to set cell value
+                                        if (dgvBooks.IsHandleCreated)
+                                        {
+                                            if (dgvBooks.InvokeRequired)
+                                            {
+                                                dgvBooks.Invoke(new Action(() =>
+                                                {
+                                                    try
+                                                    {
+                                                        // Replace placeholder with a clone to avoid cross-thread issues
+                                                        cell.Value = (Image)img.Clone();
+                                                    }
+                                                    catch { }
+                                                    finally
+                                                    {
+                                                        img.Dispose();
+                                                    }
+                                                }));
+                                            }
+                                            else
+                                            {
+                                                try
+                                                {
+                                                    cell.Value = (Image)img.Clone();
+                                                }
+                                                catch { }
+                                                finally
+                                                {
+                                                    img.Dispose();
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            img.Dispose();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        img.Dispose();
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    System.Diagnostics.Debug.WriteLine($"Error loading image for book '{tenSach}': {ex.Message}");
+                                }
+                            });
+                        }
                     }
                     catch (Exception bookEx)
                     {
@@ -368,7 +499,7 @@ namespace book_management.UI.Controls
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi khi cập nhật danh sách: {ex.Message}",
-            "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -382,7 +513,7 @@ namespace book_management.UI.Controls
             // Delay filter để tránh filter quá nhiều lần - tương tự searchTimer
             filterTimer?.Stop();
             filterTimer = new System.Windows.Forms.Timer();
-            filterTimer.Interval = 200; // 300ms delay
+            filterTimer.Interval = 200; //300ms delay
             filterTimer.Tick += (s, args) =>
               {
                   filterTimer.Stop();
@@ -399,12 +530,12 @@ namespace book_management.UI.Controls
             // Delay filter để tránh filter quá nhiều lần
             filterTimer?.Stop();
             filterTimer = new System.Windows.Forms.Timer();
-            filterTimer.Interval = 300; // 300ms delay
+            filterTimer.Interval = 300; //300ms delay
             filterTimer.Tick += (s, args) =>
-       {
-           filterTimer.Stop();
-           FilterBooks();
-       };
+            {
+                filterTimer.Stop();
+                FilterBooks();
+            };
             filterTimer.Start();
         }
 
@@ -547,7 +678,7 @@ namespace book_management.UI.Controls
                 BackColor = Color.White,
                 ForeColor = Color.FromArgb(74, 144, 226),
                 Tag = pageNumber,
-                Cursor = Cursors.Hand,
+                Cursor = System.Windows.Forms.Cursors.Hand,
                 Font = new Font("Segoe UI", 9F)
             };
 
@@ -723,7 +854,7 @@ namespace book_management.UI.Controls
                 // Get SachId - Dual fallback method
                 int sachId = 0;
 
-                // Method 1: From Row.Tag
+                // Method1: From Row.Tag
                 if (dgvBooks.Rows[e.RowIndex].Tag != null)
                 {
                     if (int.TryParse(dgvBooks.Rows[e.RowIndex].Tag.ToString(), out sachId))
@@ -732,7 +863,7 @@ namespace book_management.UI.Controls
                     }
                 }
 
-                // Method 2: From DataSource if Tag failed
+                // Method2: From DataSource if Tag failed
                 if (sachId == 0 && dgvBooks.DataSource != null)
                 {
                     try
@@ -761,7 +892,7 @@ namespace book_management.UI.Controls
                 string tenSach = dgvBooks.Rows[e.RowIndex].Cells["colTenSach"].Value?.ToString() ?? "";
                 string columnName = dgvBooks.Columns[e.ColumnIndex].Name;
 
-                if (sachId == 0)
+                if (sachId ==0)
                 {
                     MessageBox.Show("Không thể xác định ID của sách!", "Lỗi",
                       MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -906,7 +1037,7 @@ namespace book_management.UI.Controls
                 System.Diagnostics.Debug.WriteLine($"DataGridView Error: {e.Exception?.Message}");
                 e.Cancel = true;
 
-                if (e.RowIndex >= 0 && e.ColumnIndex >= 0 &&
+                if (e.RowIndex >=0 && e.ColumnIndex >=0 &&
          e.RowIndex < dgvBooks.Rows.Count && e.ColumnIndex < dgvBooks.Columns.Count)
                 {
                     string columnName = dgvBooks.Columns[e.ColumnIndex].Name;
@@ -914,7 +1045,7 @@ namespace book_management.UI.Controls
                     {
                         case "colTonKho":
                             System.Diagnostics.Debug.WriteLine($"DataGridView Error at ({e.RowIndex}, {e.ColumnIndex}): {e.Exception?.Message}");
-                            dgvBooks.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 0;
+                            dgvBooks.Rows[e.RowIndex].Cells[e.ColumnIndex].Value ="0";
                             break;
                         case "colGiaBan":
                             dgvBooks.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "0 đ";
@@ -950,7 +1081,7 @@ namespace book_management.UI.Controls
             // Delay search để tránh tìm kiếm quá nhiều lần
             filterTimer?.Stop();
             filterTimer = new System.Windows.Forms.Timer();
-            filterTimer.Interval = 200; // 500ms delay
+            filterTimer.Interval =200; //500ms delay
             filterTimer.Tick += (s, args) =>
             {
                 filterTimer.Stop();
