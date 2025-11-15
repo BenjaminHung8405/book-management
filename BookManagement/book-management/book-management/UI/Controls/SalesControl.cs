@@ -357,7 +357,7 @@ namespace book_management.UI.Controls
                         // Lấy trạng thái từ combobox (nếu combobox không tồn tại/không chọn -> mặc định Chưa thanh toán)
                         TrangThai = MapPaymentStatusToCode(cmbPaymentStatus?.SelectedItem?.ToString()),
 
-                        // SỬA LỖI 1: Gán NULL (không phải 0) cho khách vãng lai
+                        // Gán NULL (không phải 0) cho khách vãng lai
                         KhId = (currentCustomerId > 0) ? (int?)currentCustomerId : null,
 
                         // Nếu là khách vãng lai, gán tên (nếu có) hoặc đặt là 'Khách vãng lai'
@@ -373,7 +373,7 @@ namespace book_management.UI.Controls
                         SachId = item.BookId,
                         SoLuong = item.Quantity,
                         DonGia = item.Price,
-                        // SỬA LỖI 3: Gán TienGiam, KHÔNG GÁN ThanhTien (vì là cột tự động)
+                        TenSach = item.BookName,
                         TienGiam = 0 // Tạm thời, bạn có thể thêm logic khuyến mãi ở đây
                     }).ToList();
 

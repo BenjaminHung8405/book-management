@@ -167,23 +167,25 @@ namespace book_management.DataAccess
                     // Declare these here so they are in scope both when building the query and when binding parameters
                     string statusCode = null;
                     string statusDisplay = null;
-                    string statusRaw = status;
+                    string statusRaw = null;
+
+                    statusRaw = status;
 
                     if (applyStatusFilter)
                     {
                         // Map known code <-> display variants so both DB storage styles are supported
 
-                        if (status.Equals("DaThanhToan", StringComparison.OrdinalIgnoreCase) || status.IndexOf("dathanhtoan", StringComparison.OrdinalIgnoreCase) >= 0 || status.Equals("Đã thanh toán", StringComparison.OrdinalIgnoreCase))
+                        if (status.Equals("DaThanhToan", StringComparison.OrdinalIgnoreCase) || status.IndexOf("dathanhtoan", StringComparison.OrdinalIgnoreCase) >=0 || status.Equals("Đã thanh toán", StringComparison.OrdinalIgnoreCase))
                         {
                             statusCode = "DaThanhToan";
                             statusDisplay = "Đã thanh toán";
                         }
-                        else if (status.Equals("ChuaThanhToan", StringComparison.OrdinalIgnoreCase) || status.IndexOf("chuathanhtoan", StringComparison.OrdinalIgnoreCase) >= 0 || status.Equals("Chưa thanh toán", StringComparison.OrdinalIgnoreCase))
+                        else if (status.Equals("ChuaThanhToan", StringComparison.OrdinalIgnoreCase) || status.IndexOf("chuathanhtoan", StringComparison.OrdinalIgnoreCase) >=0 || status.Equals("Chưa thanh toán", StringComparison.OrdinalIgnoreCase))
                         {
                             statusCode = "ChuaThanhToan";
                             statusDisplay = "Chưa thanh toán";
                         }
-                        else if (status.Equals("DaHuy", StringComparison.OrdinalIgnoreCase) || status.IndexOf("dahuy", StringComparison.OrdinalIgnoreCase) >= 0 || status.Equals("Đã hủy", StringComparison.OrdinalIgnoreCase))
+                        else if (status.Equals("DaHuy", StringComparison.OrdinalIgnoreCase) || status.IndexOf("dahuy", StringComparison.OrdinalIgnoreCase) >=0 || status.Equals("Đã hủy", StringComparison.OrdinalIgnoreCase))
                         {
                             statusCode = "DaHuy";
                             statusDisplay = "Đã hủy";
@@ -231,9 +233,9 @@ namespace book_management.DataAccess
                     if (applyStatusFilter)
                     {
                         // Bind the three mapped status variants used in the query
-                        var pCode = new SqlParameter("@StatusCode", System.Data.SqlDbType.NVarChar, 200) { Value = (object)statusCode ?? DBNull.Value };
-                        var pDisplay = new SqlParameter("@StatusDisplay", System.Data.SqlDbType.NVarChar, 200) { Value = (object)statusDisplay ?? DBNull.Value };
-                        var pRaw = new SqlParameter("@StatusRaw", System.Data.SqlDbType.NVarChar, 200) { Value = (object)statusRaw ?? DBNull.Value };
+                        var pCode = new SqlParameter("@StatusCode", System.Data.SqlDbType.NVarChar,200) { Value = (object)statusCode ?? DBNull.Value };
+                        var pDisplay = new SqlParameter("@StatusDisplay", System.Data.SqlDbType.NVarChar,200) { Value = (object)statusDisplay ?? DBNull.Value };
+                        var pRaw = new SqlParameter("@StatusRaw", System.Data.SqlDbType.NVarChar,200) { Value = (object)statusRaw ?? DBNull.Value };
                         cmd.Parameters.Add(pCode);
                         cmd.Parameters.Add(pDisplay);
                         cmd.Parameters.Add(pRaw);
@@ -280,7 +282,7 @@ namespace book_management.DataAccess
                             DELETE FROM HoaDon WHERE hoadon_id = @HoaDonId", conn, transaction);
                         cmdDeleteInvoice.Parameters.AddWithValue("@HoaDonId", hoaDonId);
 
-                        var result = cmdDeleteInvoice.ExecuteNonQuery() > 0;
+                        var result = cmdDeleteInvoice.ExecuteNonQuery() >0;
                         transaction.Commit();
                         return result;
                     }
@@ -363,29 +365,30 @@ namespace book_management.DataAccess
                     // Tao cac dong chiTiet hoa don    
                     foreach (var item in details)
                     {
-                        // 'thanh_tien' may be a computed column in the database (don_gia * so_luong - tien_giam).
-                        // Do not attempt to insert into it. Insert don_gia, so_luong, tien_giam and optional khuyenmai_id.
+                        
+
                         var cmdChiTiet = new SqlCommand(@"
-                            INSERT INTO ChiTietHoaDon (hoadon_id, sach_id, so_luong, don_gia, khuyenmai_id, tien_giam)
-                            VALUES (@HoaDonId, @SachId, @SoLuong, @DonGia, @KhuyenMaiId, @TienGiam);", conn, transaction);
+                        INSERT INTO ChiTietHoaDon (hoadon_id, sach_id, ten_sach, so_luong, don_gia, khuyenmai_id, tien_giam)
+                        VALUES (@HoaDonId, @SachId, @TenSach, @SoLuong, @DonGia, @KhuyenMaiId, @TienGiam);", conn, transaction);
                         cmdChiTiet.Parameters.AddWithValue("@HoaDonId", newHoaDonId);
                         cmdChiTiet.Parameters.AddWithValue("@SachId", item.SachId);
-                        cmdChiTiet.Parameters.AddWithValue("@SoLuong", item.SoLuong);
+
+                        // SỬA 3: Gán Tên sách và Đơn giá TỪ GIỎ HÀNG (item)
+                        cmdChiTiet.Parameters.AddWithValue("@TenSach", item.TenSach);
                         cmdChiTiet.Parameters.AddWithValue("@DonGia", item.DonGia);
+
+                        cmdChiTiet.Parameters.AddWithValue("@SoLuong", item.SoLuong);
                         cmdChiTiet.Parameters.AddWithValue("@KhuyenMaiId", (object)item.KhuyenMaiId ?? DBNull.Value);
                         cmdChiTiet.Parameters.AddWithValue("@TienGiam", item.TienGiam);
                         cmdChiTiet.ExecuteNonQuery();
-                        // tru so luong sach trong kho
+                        //cap nhat ton kho
                         var cmdUpdateStock = new SqlCommand(@"
-                            UPDATE Sach
-                            SET so_luong = so_luong - @SoLuong
-                            WHERE sach_id = @SachId;", conn, transaction);
+                        UPDATE Sach SET so_luong = so_luong - @SoLuong WHERE sach_id = @SachId;", conn, transaction);
                         cmdUpdateStock.Parameters.AddWithValue("@SoLuong", item.SoLuong);
                         cmdUpdateStock.Parameters.AddWithValue("@SachId", item.SachId);
-                        // tru ton kho
                         cmdUpdateStock.ExecuteNonQuery();
                     }
-                    // neu ko co loi thi commit
+
                     transaction.Commit();
                     return true;
                 }
@@ -464,7 +467,7 @@ namespace book_management.DataAccess
                     cmd.Parameters.AddWithValue("@TrangThai", hoaDon.TrangThai);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    return rowsAffected >0;
                 }
             }
             catch (Exception ex)
@@ -510,12 +513,12 @@ namespace book_management.DataAccess
                     try
                     {
                         int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0;
+                        return rowsAffected >0;
                     }
                     catch (SqlException sqlEx)
                     {
                         // If the update failed due to a CHECK constraint on trang_thai, try accented variants and retry once
-                        if (sqlEx.Message != null && sqlEx.Message.IndexOf("CHECK constraint", StringComparison.OrdinalIgnoreCase) >= 0)
+                        if (sqlEx.Message != null && sqlEx.Message.IndexOf("CHECK constraint", StringComparison.OrdinalIgnoreCase) >=0)
                         {
                             // Prepare accented candidates
                             string retryTrangThai = trangThaiDb;
@@ -526,7 +529,7 @@ namespace book_management.DataAccess
                             // Retry update with accented value
                             cmd.Parameters["@TrangThai"].Value = retryTrangThai;
                             int retryRows = cmd.ExecuteNonQuery();
-                            return retryRows > 0;
+                            return retryRows >0;
                         }
 
                         throw; // rethrow if not a CHECK constraint issue

@@ -361,7 +361,7 @@ namespace book_management.UI.Controls
         {
             try
             {
-                var chiTietList = ChiTietHoaDonRepository.GetChiTietHoaDon(hoaDonId);
+                var chiTietList = ChiTietHoaDonRepository.GetChiTietByHoaDonId(hoaDonId);
                 var detailForm = new InvoiceDetailForm(hoaDonId, chiTietList);
                 detailForm.ShowDialog();
             }

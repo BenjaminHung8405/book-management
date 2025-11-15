@@ -452,7 +452,7 @@ namespace book_management.UI.Controls
                     return;
                 }
 
-                // 2. SỬA LỖI: Kiểm tra _currentCustomerId
+                bool check = true;
                 if (_currentCustomerId == 0)
                 {
                     // Hỏi người dùng có muốn tiếp tục thanh toán như 'Khách vãng lai' hay không
@@ -464,6 +464,7 @@ namespace book_management.UI.Controls
 
                     if (askGuest == DialogResult.No)
                         return;
+                  
                 }
 
                 // 3. Xác nhận
@@ -524,6 +525,7 @@ namespace book_management.UI.Controls
                         var detail = new ChiTietHoaDon
                         {
                             SachId = item.BookId,
+                            TenSach = item.BookName,
                             SoLuong = item.Quantity,
                             DonGia = item.Price,
                             TienGiam = itemDiscount,
