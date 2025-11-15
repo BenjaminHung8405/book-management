@@ -71,8 +71,7 @@ namespace book_management.UI.Controls
                 cmbRoleFilter.Items.Clear();
                 cmbRoleFilter.Items.Add("Tất cả vai trò");
                 cmbRoleFilter.Items.Add("Admin");
-                cmbRoleFilter.Items.Add("Nhan Vien");
-                cmbRoleFilter.Items.Add("Khach Hang");
+                cmbRoleFilter.Items.Add("Nhân Viên");
                 cmbRoleFilter.SelectedIndex = 0; // Đặt "Tất cả" làm mặc định
             }
             catch (Exception ex)
@@ -108,13 +107,13 @@ namespace book_management.UI.Controls
         }
 
         /// <summary>
-        /// Load danh sách khách hàng từ database
+        /// Load danh sách người dùng từ database
         /// </summary>
         private void LoadUsers()
         {
             try
             {
-                // Load tất cả khách hàng
+                // Load tất cả người dùng
                 allUsers = UserRepository.GetAllUsers();
                 filteredUsers = allUsers.ToList();
 
@@ -123,7 +122,7 @@ namespace book_management.UI.Controls
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải danh sách khách hàng: {ex.Message}",
+                MessageBox.Show($"Lỗi khi tải danh sách người dùng: {ex.Message}",
                             "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -147,8 +146,18 @@ namespace book_management.UI.Controls
                 //2 tim theo vai tro
                 if (selectedRole != "Tất cả vai trò")
                 {
+                    // Map UI displayed role to DB stored canonical value
+                    string roleDb;
+                    if (selectedRole.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+                        roleDb = "Admin";
+                    else if (selectedRole.IndexOf("nhân", StringComparison.OrdinalIgnoreCase) >= 0 || selectedRole.IndexOf("nhan", StringComparison.OrdinalIgnoreCase) >= 0 || selectedRole.IndexOf("staff", StringComparison.OrdinalIgnoreCase) >= 0)
+                        roleDb = "NhanVien";
+                    // No 'KhachHang' role in UI filter - keep Admin and NhanVien mapping
+                    else
+                        roleDb = selectedRole; // fallback to raw value
+
                     tempList = tempList.Where(u =>
-                        (u.VaiTro?.ToString() ?? "").Equals(selectedRole, StringComparison.OrdinalIgnoreCase)
+                        (u.VaiTro?.ToString() ?? "").Equals(roleDb, StringComparison.OrdinalIgnoreCase)
                     ).ToList();
                 }
 
@@ -193,15 +202,15 @@ namespace book_management.UI.Controls
                     .Skip((currentPage - 1) * pageSize)
                     .Take(pageSize)
                     .ToList();
-             
+
                 // Thêm dữ liệu vào DataGridView
                 foreach (var customer in pageData)
                 {
-                    
-                //    if(GetUserStatus(customer) ==0)
-                //    {
-                //        continue; // bỏ qua user bị vô hiệu hóa
-                //    }
+
+                    //    if(GetUserStatus(customer) ==0)
+                    //    {
+                    //        continue; // bỏ qua user bị vô hiệu hóa
+                    //    }
                     dgvUsers.Rows.Add(
                     customer.HoTen,
                     customer.Username,
@@ -212,7 +221,7 @@ namespace book_management.UI.Controls
                    );
 
                     // Lưu UserId vào Tag của row để sử dụng sau
-                    dgvUsers.Rows[dgvUsers.Rows.Count -1].Tag = customer.UserId;
+                    dgvUsers.Rows[dgvUsers.Rows.Count - 1].Tag = customer.UserId;
                 }
 
                 // Cập nhật pagination buttons
@@ -224,7 +233,7 @@ namespace book_management.UI.Controls
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-       
+
         /// <summary>
         /// Cập nhật thông tin trang
         /// </summary>
@@ -233,7 +242,7 @@ namespace book_management.UI.Controls
             int fromRecord = filteredUsers.Count == 0 ? 0 : (currentPage - 1) * pageSize + 1;
             int toRecord = Math.Min(currentPage * pageSize, filteredUsers.Count);
 
-            lblPageInfo.Text = $"Hiển thị {fromRecord}-{toRecord} của {filteredUsers.Count} khách hàng";
+            lblPageInfo.Text = $"Hiển thị {fromRecord}-{toRecord} của {filteredUsers.Count} người dùng";
         }
 
         /// <summary>
@@ -331,7 +340,7 @@ namespace book_management.UI.Controls
         {
             searchTimer?.Stop();
             searchTimer = new System.Windows.Forms.Timer();
-            searchTimer.Interval =200;
+            searchTimer.Interval = 200;
             searchTimer.Tick += (s, args) =>
             {
                 searchTimer.Stop();
@@ -360,7 +369,22 @@ namespace book_management.UI.Controls
         {
             if (e.RowIndex < 0) return;
 
-            var khId = (int)dgvUsers.Rows[e.RowIndex].Tag;
+            object tag = dgvUsers.Rows[e.RowIndex].Tag;
+            if (tag == null)
+            {
+                MessageBox.Show("Không thể xác định UserId cho hàng đã chọn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int khId;
+            try
+            {
+                khId = Convert.ToInt32(tag);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Không thể chuyển đổi UserId: {ex.Message}\nGiá trị Tag: {tag}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string columnName = dgvUsers.Columns[e.ColumnIndex].Name;
 
             switch (columnName)
@@ -375,7 +399,7 @@ namespace book_management.UI.Controls
         }
 
         /// <summary>
-        /// Sửa thông tin khách hàng
+        /// Sửa thông tin người dùng
         /// </summary>
         private void EditUser(int khId)
         {
@@ -384,34 +408,32 @@ namespace book_management.UI.Controls
                 var user = UserRepository.GetUserById(khId);
                 if (user == null)
                 {
-                    MessageBox.Show("Không tìm thấy thông tin khách hàng!", "Lỗi",
-                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Không tìm thấy thông tin người dùng!", "Lỗi",
+                MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Tạo form edit (có thể tái sử dụng frmAddCustomer)
-                using (var editForm = new EditUserControl())
+                // Open the add/edit user form in edit mode
+                using (var editForm = new frmAddEditUser(khId))
                 {
-                    editForm.Text = "Sửa thông tin khách hàng";
-                    // editForm.SetCustomerInfo(customer); // Cần implement method này
-
+                    // The constructor will set label1 text to 'Sửa thông tin người dùng'
                     if (editForm.ShowDialog() == DialogResult.OK)
                     {
                         LoadUsers();
-                        MessageBox.Show("Cập nhật thông tin khách hàng thành công!", "Thông báo",
+                        MessageBox.Show("Cập nhật thông tin người dùng thành công!", "Thông báo",
                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi sửa thông tin khách hàng: {ex.Message}",
+                MessageBox.Show($"Lỗi khi sửa thông tin người dùng: {ex.Message}",
              "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         /// <summary>
-        /// Xóa khách hàng
+        /// Xóa người dùng
         /// </summary>
         private void DeleteUser(int khId)
         {
@@ -422,10 +444,31 @@ namespace book_management.UI.Controls
                 {
                     return;
                 }
+                // Determine current status for diagnostics
+                bool isActive = true;
+                try
+                {
+                    isActive = user.TrangThai != null ? Convert.ToBoolean(user.TrangThai) : true;
+                }
+                catch { isActive = true; }
+                // Don't allow deleting users who have invoices
+                try
+                {
+                    if (UserRepository.UserHasInvoices(khId))
+                    {
+                        MessageBox.Show("Không thể xóa người dùng vì đã có hóa đơn liên quan.", "Không thể xóa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Không thể kiểm tra hóa đơn: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 var result = MessageBox.Show(
-                 $"Bạn có chắc chắn muốn xóa khách hàng '{user.HoTen}'?\n" +
-                          "Lưu ý: Chỉ có thể xóa khách hàng chưa có hóa đơn nào.",
+                 $"Bạn có chắc chắn muốn xóa người dùng '{user.HoTen}'?\n" +
+                          "Lưu ý: Chỉ có thể xóa người dùng chưa có hóa đơn nào.",
                  "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (result == DialogResult.Yes)
@@ -433,16 +476,50 @@ namespace book_management.UI.Controls
                     bool success = UserRepository.DeleteUser(khId);
                     if (success)
                     {
-                        LoadUsers();
-                        MessageBox.Show("Xóa khách hàng thành công!", "Thông báo",
-                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // re-query to verify
+                        var afterUser = UserRepository.GetUserById(khId);
+                        bool afterActive = true;
+                        try
+                        {
+                            afterActive = afterUser != null && afterUser.TrangThai != null ? Convert.ToBoolean(afterUser.TrangThai) : true;
+                        }
+                        catch { afterActive = true; }
+
+                        if (afterUser == null || !afterActive)
+                        {
+                            LoadUsers();
+                            MessageBox.Show("Xóa người dùng thành công!", "Thông báo",
+                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Không thể xóa người dùng: trạng thái vẫn chưa thay đổi. Vui lòng kiểm tra log/db.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            if (UserRepository.UserHasInvoices(khId))
+                            {
+                                MessageBox.Show("Không thể xóa người dùng vì đã có hóa đơn liên quan.", "Không thể xóa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không thể xóa người dùng. Vui lòng thử lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Không thể xóa người dùng. Vui lòng thử lại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi xóa khách hàng: {ex.Message}",
-          "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi xóa người dùng: {ex.Message}",
+    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -502,7 +579,11 @@ namespace book_management.UI.Controls
         {
             using (var form = new frmAddEditUser())
             {
-                form.ShowDialog();
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    LoadUsers();
+                }
             }
         }
 

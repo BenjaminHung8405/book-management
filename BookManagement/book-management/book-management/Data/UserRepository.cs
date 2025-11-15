@@ -9,7 +9,7 @@ namespace book_management.Data
     public class UserRepository
     {
         /// <summary>
-       
+
         public static dynamic AuthenticateUser(string username, string password)
         {
             try
@@ -164,7 +164,7 @@ namespace book_management.Data
         }
 
         /// <summary>
-        
+
         public static System.Collections.Generic.List<dynamic> GetAllUsers()
         {
             var users = new System.Collections.Generic.List<dynamic>();
@@ -174,7 +174,7 @@ namespace book_management.Data
                 {
                     connection.Open();
 
-                     string query = @"
+                    string query = @"
                          SELECT 
                          user_id,
                          username,
@@ -341,7 +341,7 @@ namespace book_management.Data
                     {
                         while (reader.Read())
                         {
-                          
+
                             users.Add(new NguoiDung
                             {
                                 UserId = Convert.ToInt32(reader["user_id"]),
@@ -437,6 +437,31 @@ namespace book_management.Data
 
             return true;
         }
+
+        /// <summary>
+        /// Kiểm tra xem user có hóa đơn liên quan không
+        /// </summary>
+        public static bool UserHasInvoices(int userId)
+        {
+            try
+            {
+                using (var connection = DatabaseConnection.GetConnection())
+                {
+                    connection.Open();
+                    string query = "SELECT COUNT(1) FROM HoaDon WHERE user_id = @UserId";
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@UserId", userId);
+                        var result = Convert.ToInt32(command.ExecuteScalar());
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Lỗi khi kiểm tra hóa đơn của người dùng: {ex.Message}", ex);
+            }
+        }
         /// <summary>
         /// Lấy danh sách người dùng ĐÃ LỌC theo vai trò
         /// </summary>
@@ -494,8 +519,24 @@ namespace book_management.Data
         {
             try
             {
-                // Gọi hàm SetUserStatus (đã có trong UserRepository)
-                // để đánh dấu người dùng là không hoạt động (bị khóa)
+                // Check if user has invoices - do not delete if any invoices exist
+                using (var connection = DatabaseConnection.GetConnection())
+                {
+                    connection.Open();
+                    string checkQuery = "SELECT COUNT(1) FROM HoaDon WHERE user_id = @UserId";
+                    using (var cmd = new SqlCommand(checkQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+                        var count = Convert.ToInt32(cmd.ExecuteScalar());
+                        if (count > 0)
+                        {
+                            // There are invoices associated with this user - cannot delete
+                            return false;
+                        }
+                    }
+                }
+
+                // Gọi hàm SetUserStatus để đánh dấu người dùng là không hoạt động (bị khóa)
                 return UserRepository.SetUserStatus(userId, false);
             }
             catch (Exception ex)
