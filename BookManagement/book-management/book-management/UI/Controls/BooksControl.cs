@@ -15,10 +15,10 @@ namespace book_management.UI.Controls
     {
         #region Fields and Properties
         // Pagination state
-        private int currentPage = 1;
-        private int pageSize = 8;
-        private int totalRecords = 0;
-        private int totalPages = 1;
+        private int currentPage =1;
+        private int pageSize =8;
+        private int totalRecords =0;
+        private int totalPages =1;
 
         // Filter data - Tương tự như CustomersControl
         private List<dynamic> allBooks; // Tất cả sách từ database
@@ -46,7 +46,7 @@ namespace book_management.UI.Controls
             this.btnAddBook.Click += btnAddBook_Click;
 
             // Initialize placeholder (optional): small blank bitmap
-            placeholderCover = new Bitmap(1, 1);
+            placeholderCover = new Bitmap(1,1);
 
             // Initialize filter events - Tương tự CustomersControl
             InitializeFilterEvents();
@@ -87,7 +87,7 @@ namespace book_management.UI.Controls
                 {
                     cmbCategoryFilter.Items.Add(category.TenTheLoai);
                 }
-                cmbCategoryFilter.SelectedIndex = 0;
+                cmbCategoryFilter.SelectedIndex =0;
 
                 // Load status options
                 cmbStatusFilter.Items.Clear();
@@ -95,7 +95,7 @@ namespace book_management.UI.Controls
                 cmbStatusFilter.Items.Add("Còn hàng");
                 cmbStatusFilter.Items.Add("Hết hàng");
                 cmbStatusFilter.Items.Add("Sắp hết");
-                cmbStatusFilter.SelectedIndex = 0;
+                cmbStatusFilter.SelectedIndex =0;
             }
             catch (Exception ex)
             {
@@ -163,7 +163,7 @@ namespace book_management.UI.Controls
                 // Sử dụng SearchService
                 filteredBooks = BookSearchService.SearchBooks(allBooks, currentSearchKeyword);
 
-                currentPage = 1; // Reset về trang đầu
+                currentPage =1; // Reset về trang đầu
                 RefreshDataGridView();
                 UpdatePageInfo();
             }
@@ -193,31 +193,11 @@ namespace book_management.UI.Controls
                 // duong vien ngang của column 
                 dgvBooks.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
                 dgvBooks.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-                dgvBooks.GridColor = Color.FromArgb(229, 231, 235);
+                dgvBooks.GridColor = Color.FromArgb(229,231,235);
                 dgvBooks.EnableHeadersVisualStyles = false;
 
                 // Scroll bars
                 dgvBooks.ScrollBars = ScrollBars.Both;
-
-                // After InitializeDataGridView settings (inside InitializeDataGridView method), ensure column sizing for colTonKho
-                try
-                {
-                    if (dgvBooks.Columns.Contains("colTonKho"))
-                    {
-                        var colQty = dgvBooks.Columns["colTonKho"];
-                        colQty.ReadOnly = true;
-                        // Make sure column is wide enough to be visible even when other columns fill
-                        colQty.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                        colQty.MinimumWidth = 70;
-                        // enforce center alignment and numeric format
-                        colQty.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                        colQty.DefaultCellStyle.Format = "N0";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine($"Error configuring colTonKho sizing: {ex.Message}");
-                }
 
                 StyleBooksGrid();
             }
@@ -252,7 +232,7 @@ namespace book_management.UI.Controls
                 System.Diagnostics.Debug.WriteLine($"Loaded {allBooks.Count} books total");
 
                 // Reset về trang đầu và refresh
-                currentPage = 1;
+                currentPage =1;
                 RefreshDataGridView();
                 UpdatePageInfo();
             }
@@ -271,16 +251,16 @@ namespace book_management.UI.Controls
             try
             {
                 // Lấy filter values
-                currentCategoryFilter = cmbCategoryFilter.SelectedIndex > 0 ?
+                currentCategoryFilter = cmbCategoryFilter.SelectedIndex >0 ?
                     cmbCategoryFilter.SelectedItem.ToString() : "";
-                currentStatusFilter = cmbStatusFilter.SelectedIndex > 0 ?
+                currentStatusFilter = cmbStatusFilter.SelectedIndex >0 ?
                     cmbStatusFilter.SelectedItem.ToString() : "";
 
                 // Sử dụng SearchService
                 filteredBooks = BookSearchService.SearchAndFilter(allBooks,
                     currentSearchKeyword, currentCategoryFilter, currentStatusFilter);
 
-                currentPage = 1;
+                currentPage =1;
                 RefreshDataGridView();
                 UpdatePageInfo();
             }
@@ -303,14 +283,14 @@ namespace book_management.UI.Controls
                 // Tính toán phân trang
                 totalRecords = filteredBooks.Count;
                 totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
-                if (totalPages == 0) totalPages = 1;
+                if (totalPages ==0) totalPages =1;
 
                 if (currentPage > totalPages)
                     currentPage = totalPages;
 
                 // Lấy dữ liệu cho trang hiện tại
                 var pageData = filteredBooks
-                .Skip((currentPage - 1) * pageSize)
+                .Skip((currentPage -1) * pageSize)
                 .Take(pageSize)
                 .ToList();
 
@@ -318,27 +298,6 @@ namespace book_management.UI.Controls
 
                 // Clear existing data
                 dgvBooks.Rows.Clear();
-
-                // Ensure quantity column is configured to display integers
-                try
-                {
-                    if (dgvBooks.Columns.Contains("colTonKho"))
-                    {
-                        var col = dgvBooks.Columns["colTonKho"];
-                        // set ValueType and a numeric format
-                        col.ValueType = typeof(int);
-                        col.DefaultCellStyle.Format = "N0";
-                        col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                    }
-                    else
-                    {
-                        System.Diagnostics.Debug.WriteLine("Warning: colTonKho not found in dgvBooks.Columns");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine($"Error configuring colTonKho: {ex.Message}");
-                }
 
                 // Add data to DataGridView
                 foreach (var book in pageData)
@@ -351,7 +310,7 @@ namespace book_management.UI.Controls
                         string theLoai = book.TheLoai?.ToString() ?? "";
                         string anhBia = book.AnhBiaUrl?.ToString() ?? "";
                         // Format price - Safe conversion for dynamic objects
-                        decimal gia = 0;
+                        decimal gia =0;
                         try
                         {
                             if (book.Gia != null)
@@ -365,7 +324,7 @@ namespace book_management.UI.Controls
                         string giaFormatted = gia.ToString("N0") + " đ";
 
                         // Format quantity - Safe conversion for dynamic objects
-                        int soLuong = 0;
+                        int soLuong =0;
                         try
                         {
                             if (book.SoLuong != null)
@@ -374,14 +333,11 @@ namespace book_management.UI.Controls
                         catch (Exception ex)
                         {
                             MessageBox.Show($"Lỗi khi cập nhật SL tồn kho: {ex.Message}",
-                            "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                 "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
-                        // Debug: log quantity retrieved
-                        System.Diagnostics.Debug.WriteLine($"[BooksControl] Book '{tenSach}' SoLuong from data = {soLuong}");
-
                         // Determine status
-                        string trangThai = soLuong <= 0 ? "Hết hàng" : "Còn hàng";
+                        string trangThai = soLuong <=0 ? "Hết hàng" : "Còn hàng";
 
                         // Add row manually
                         var rowIndex = dgvBooks.Rows.Add();
@@ -394,19 +350,10 @@ namespace book_management.UI.Controls
                         row.Cells["colTacGia"].Value = tacGia;
                         row.Cells["colTheLoai"].Value = theLoai;
                         row.Cells["colGiaBan"].Value = giaFormatted;
-
-                        // Set quantity safely and enforce display format
                         if (dgvBooks.Columns.Contains("colTonKho"))
-                        {
-                            var qtyCell = row.Cells["colTonKho"];
-                            string qtyText = soLuong.ToString("N0");
-                            qtyCell.Value = qtyText; 
-                            qtyCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            qtyCell.Style.Format = "";
-
-                            // Debug: log cell value after setting
-                            System.Diagnostics.Debug.WriteLine($"[BooksControl] After set, cell.Value for '{tenSach}' = {qtyCell.Value} (Type={qtyCell.Value?.GetType().Name})");
-                        }
+                            row.Cells["colTonKho"].Value = soLuong.ToString();
+                        else
+                            System.Diagnostics.Debug.WriteLine("Warning: DataGridView does not contain column 'colTonKho'.");
 
                         row.Cells["colTrangThai"].Value = trangThai;
 
@@ -468,12 +415,12 @@ namespace book_management.UI.Controls
                                         }
                                         else
                                         {
-                                            img.Dispose();
+                                          img.Dispose();
                                         }
                                     }
                                     else
                                     {
-                                        img.Dispose();
+                                      img.Dispose();
                                     }
                                 }
                                 catch (Exception ex)
@@ -513,7 +460,7 @@ namespace book_management.UI.Controls
             // Delay filter để tránh filter quá nhiều lần - tương tự searchTimer
             filterTimer?.Stop();
             filterTimer = new System.Windows.Forms.Timer();
-            filterTimer.Interval = 200; //300ms delay
+            filterTimer.Interval =200; //300ms delay
             filterTimer.Tick += (s, args) =>
               {
                   filterTimer.Stop();
@@ -530,11 +477,11 @@ namespace book_management.UI.Controls
             // Delay filter để tránh filter quá nhiều lần
             filterTimer?.Stop();
             filterTimer = new System.Windows.Forms.Timer();
-            filterTimer.Interval = 300; //300ms delay
+            filterTimer.Interval =300; //300ms delay
             filterTimer.Tick += (s, args) =>
             {
-                filterTimer.Stop();
-                FilterBooks();
+           filterTimer.Stop();
+           FilterBooks();
             };
             filterTimer.Start();
         }
@@ -580,7 +527,7 @@ namespace book_management.UI.Controls
 
                 // Persist new category via repository
                 int newId = CategoryRepository.AddCategory(text);
-                if (newId > 0)
+                if (newId >0)
                 {
                     // Add to combobox and select it
                     cmbCategoryFilter.Items.Add(text);
@@ -600,7 +547,7 @@ namespace book_management.UI.Controls
         /// </summary>
         private void UpdatePageInfo()
         {
-            int fromRecord = filteredBooks.Count == 0 ? 0 : (currentPage - 1) * pageSize + 1;
+            int fromRecord = filteredBooks.Count ==0 ?0 : (currentPage -1) * pageSize +1;
             int toRecord = Math.Min(currentPage * pageSize, filteredBooks.Count);
 
             lblPageInfo.Text = $"Hiển thị {fromRecord}-{toRecord} của {filteredBooks.Count} sách";
@@ -613,23 +560,23 @@ namespace book_management.UI.Controls
         {
             flowPaginationButtons.Controls.Clear();
 
-            if (totalPages <= 1) return;
+            if (totalPages <=1) return;
 
             // Nút Previous
-            if (currentPage > 1)
+            if (currentPage >1)
             {
-                var btnPrev = CreatePaginationButton("‹ Trước", currentPage - 1);
+                var btnPrev = CreatePaginationButton("‹ Trước", currentPage -1);
                 flowPaginationButtons.Controls.Add(btnPrev);
             }
 
             // Các nút số trang
-            int startPage = Math.Max(1, currentPage - 2);
-            int endPage = Math.Min(totalPages, currentPage + 2);
+            int startPage = Math.Max(1, currentPage -2);
+            int endPage = Math.Min(totalPages, currentPage +2);
 
-            if (startPage > 1)
+            if (startPage >1)
             {
-                flowPaginationButtons.Controls.Add(CreatePaginationButton("1", 1));
-                if (startPage > 2)
+                flowPaginationButtons.Controls.Add(CreatePaginationButton("1",1));
+                if (startPage >2)
                 {
                     var lblDots = new Label { Text = "...", AutoSize = true, Margin = new Padding(5) };
                     flowPaginationButtons.Controls.Add(lblDots);
@@ -641,7 +588,7 @@ namespace book_management.UI.Controls
                 var btn = CreatePaginationButton(i.ToString(), i);
                 if (i == currentPage)
                 {
-                    btn.BackColor = Color.FromArgb(74, 144, 226);
+                    btn.BackColor = Color.FromArgb(74,144,226);
                     btn.ForeColor = Color.White;
                 }
                 flowPaginationButtons.Controls.Add(btn);
@@ -649,7 +596,7 @@ namespace book_management.UI.Controls
 
             if (endPage < totalPages)
             {
-                if (endPage < totalPages - 1)
+                if (endPage < totalPages -1)
                 {
                     var lblDots = new Label { Text = "...", AutoSize = true, Margin = new Padding(5) };
                     flowPaginationButtons.Controls.Add(lblDots);
@@ -660,7 +607,7 @@ namespace book_management.UI.Controls
             // Nút Next
             if (currentPage < totalPages)
             {
-                var btnNext = CreatePaginationButton("Sau ›", currentPage + 1);
+                var btnNext = CreatePaginationButton("Sau ›", currentPage +1);
                 flowPaginationButtons.Controls.Add(btnNext);
             }
         }
@@ -673,17 +620,17 @@ namespace book_management.UI.Controls
             var btn = new Button
             {
                 Text = text,
-                Size = new Size(text.Length > 2 ? 60 : 35, 30),
+                Size = new Size(text.Length >2 ?60 :35,30),
                 FlatStyle = FlatStyle.Flat,
                 BackColor = Color.White,
-                ForeColor = Color.FromArgb(74, 144, 226),
+                ForeColor = Color.FromArgb(74,144,226),
                 Tag = pageNumber,
                 Cursor = System.Windows.Forms.Cursors.Hand,
-                Font = new Font("Segoe UI", 9F)
+                Font = new Font("Segoe UI",9F)
             };
 
-            btn.FlatAppearance.BorderColor = Color.FromArgb(74, 144, 226);
-            btn.FlatAppearance.BorderSize = 1;
+            btn.FlatAppearance.BorderColor = Color.FromArgb(74,144,226);
+            btn.FlatAppearance.BorderSize =1;
 
             btn.Click += (s, e) =>
          {
@@ -710,7 +657,7 @@ namespace book_management.UI.Controls
             try
             {
                 StyleBooksGrid();
-                if (dgvBooks.Rows.Count > 0)
+                if (dgvBooks.Rows.Count >0)
                 {
                     dgvBooks.Refresh();
                     dgvBooks.Invalidate();
@@ -730,28 +677,28 @@ namespace book_management.UI.Controls
             {
                 // Header styling
                 var headerStyle = dgvBooks.ColumnHeadersDefaultCellStyle;
-                headerStyle.BackColor = Color.FromArgb(249, 250, 251);
-                headerStyle.ForeColor = Color.FromArgb(55, 65, 81);
-                headerStyle.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-                headerStyle.Padding = new Padding(10, 8, 10, 8);
+                headerStyle.BackColor = Color.FromArgb(249,250,251);
+                headerStyle.ForeColor = Color.FromArgb(55,65,81);
+                headerStyle.Font = new Font("Segoe UI",11F, FontStyle.Bold);
+                headerStyle.Padding = new Padding(10,8,10,8);
                 headerStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvBooks.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-                dgvBooks.ColumnHeadersHeight = 45;
+                dgvBooks.ColumnHeadersHeight =45;
                 dgvBooks.EnableHeadersVisualStyles = false;
 
                 // Default cell styling
                 var cellStyle = dgvBooks.DefaultCellStyle;
                 cellStyle.BackColor = Color.White;
-                cellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Regular);
-                cellStyle.ForeColor = Color.FromArgb(55, 65, 81);
-                cellStyle.Padding = new Padding(8, 5, 8, 5);
-                cellStyle.SelectionBackColor = Color.FromArgb(219, 234, 254);
-                cellStyle.SelectionForeColor = Color.FromArgb(30, 64, 175);
+                cellStyle.Font = new Font("Segoe UI",10F, FontStyle.Regular);
+                cellStyle.ForeColor = Color.FromArgb(55,65,81);
+                cellStyle.Padding = new Padding(8,5,8,5);
+                cellStyle.SelectionBackColor = Color.FromArgb(219,234,254);
+                cellStyle.SelectionForeColor = Color.FromArgb(30,64,175);
                 cellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 // Row styling
-                dgvBooks.RowTemplate.Height = 60;
-                dgvBooks.GridColor = Color.FromArgb(229, 231, 235);
+                dgvBooks.RowTemplate.Height =60;
+                dgvBooks.GridColor = Color.FromArgb(229,231,235);
                 dgvBooks.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
 
                 // Style specific columns if they exist
@@ -760,19 +707,19 @@ namespace book_management.UI.Controls
                     switch (col.Name)
                     {
                         case "colTenSach":
-                            col.DefaultCellStyle.ForeColor = Color.FromArgb(17, 24, 39);
-                            col.DefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+                            col.DefaultCellStyle.ForeColor = Color.FromArgb(17,24,39);
+                            col.DefaultCellStyle.Font = new Font("Segoe UI",10F, FontStyle.Bold);
                             col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                             break;
                         case "colGiaBan":
-                            col.DefaultCellStyle.ForeColor = Color.FromArgb(17, 24, 39);
-                            col.DefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+                            col.DefaultCellStyle.ForeColor = Color.FromArgb(17,24,39);
+                            col.DefaultCellStyle.Font = new Font("Segoe UI",10F, FontStyle.Bold);
                             col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             break;
                         case "colTonKho":
-                            col.DefaultCellStyle.ForeColor = Color.FromArgb(17, 24, 39);
+                            col.DefaultCellStyle.ForeColor = Color.FromArgb(17,24,39);
                             col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            col.DefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+                            col.DefaultCellStyle.Font = new Font("Segoe UI",10F, FontStyle.Bold);
                             break;
                     }
                 }
@@ -787,7 +734,7 @@ namespace book_management.UI.Controls
         {
             try
             {
-                if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+                if (e.RowIndex <0 || e.ColumnIndex <0) return;
                 if (e.RowIndex >= dgvBooks.Rows.Count) return;
                 if (e.ColumnIndex >= dgvBooks.Columns.Count) return;
 
@@ -798,18 +745,18 @@ namespace book_management.UI.Controls
                     string status = e.Value.ToString();
                     if (!string.IsNullOrEmpty(status))
                     {
-                        e.CellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+                        e.CellStyle.Font = new Font("Segoe UI",9F, FontStyle.Bold);
                         e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                         if (status.Equals("Còn hàng", StringComparison.OrdinalIgnoreCase))
                         {
-                            e.CellStyle.BackColor = Color.FromArgb(220, 252, 231);
-                            e.CellStyle.ForeColor = Color.FromArgb(22, 101, 52);
+                            e.CellStyle.BackColor = Color.FromArgb(220,252,231);
+                            e.CellStyle.ForeColor = Color.FromArgb(22,101,52);
                         }
                         else if (status.Equals("Hết hàng", StringComparison.OrdinalIgnoreCase))
                         {
-                            e.CellStyle.BackColor = Color.FromArgb(254, 226, 226);
-                            e.CellStyle.ForeColor = Color.FromArgb(153, 27, 27);
+                            e.CellStyle.BackColor = Color.FromArgb(254,226,226);
+                            e.CellStyle.ForeColor = Color.FromArgb(153,27,27);
                         }
                         e.FormattingApplied = true;
                     }
@@ -818,20 +765,20 @@ namespace book_management.UI.Controls
                 {
                     if (int.TryParse(e.Value.ToString(), out int quantity))
                     {
-                        e.CellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+                        e.CellStyle.Font = new Font("Segoe UI",10F, FontStyle.Bold);
                         e.CellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                        if (quantity <= 0)
+                        if (quantity <=0)
                         {
-                            e.CellStyle.ForeColor = Color.FromArgb(153, 27, 27);
+                            e.CellStyle.ForeColor = Color.FromArgb(153,27,27);
                         }
-                        else if (quantity <= 10)
+                        else if (quantity <=10)
                         {
-                            e.CellStyle.ForeColor = Color.FromArgb(217, 119, 6);
+                            e.CellStyle.ForeColor = Color.FromArgb(217,119,6);
                         }
                         else
                         {
-                            e.CellStyle.ForeColor = Color.FromArgb(22, 101, 52);
+                            e.CellStyle.ForeColor = Color.FromArgb(22,101,52);
                         }
                         e.FormattingApplied = true;
                     }
@@ -848,11 +795,11 @@ namespace book_management.UI.Controls
         {
             try
             {
-                if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+                if (e.RowIndex <0 || e.ColumnIndex <0) return;
                 if (e.RowIndex >= dgvBooks.Rows.Count) return;
 
                 // Get SachId - Dual fallback method
-                int sachId = 0;
+                int sachId =0;
 
                 // Method1: From Row.Tag
                 if (dgvBooks.Rows[e.RowIndex].Tag != null)
@@ -864,7 +811,7 @@ namespace book_management.UI.Controls
                 }
 
                 // Method2: From DataSource if Tag failed
-                if (sachId == 0 && dgvBooks.DataSource != null)
+                if (sachId ==0 && dgvBooks.DataSource != null)
                 {
                     try
                     {

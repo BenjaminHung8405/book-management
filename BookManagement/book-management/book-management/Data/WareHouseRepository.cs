@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using book_management.Models;
 
 namespace book_management.Data
@@ -40,74 +41,31 @@ namespace book_management.Data
 
                     if (wareHouse != null)
                     {
-                        // Lấy chi tiết phiếu nhập, nối tới Sach và NhaXuatBan
+                        // Lấy chi tiết phiếu nhập: chỉ đọc dữ liệu trực tiếp từ bảng ChiTietPhieuNhap
                         var cmdDetails = new SqlCommand(@"
-                            SELECT ctpn.ctpn_id, ctpn.pn_id, ctpn.sach_id, ctpn.so_luong, ctpn.don_gia, ctpn.thanh_tien,
-                                   s.sach_id AS s_sach_id, s.ten_sach, s.nxb_id AS s_nxb_id, s.gia AS s_gia, s.so_luong AS s_so_luong,
-                                   s.ngay_nhap AS s_ngay_nhap, s.trang_thai AS s_trang_thai, s.nam_xuat_ban, s.so_trang, s.mo_ta, s.anh_bia_url, s.ngon_ngu,
-                                   n.nxb_id AS n_nxb_id, n.ten_nxb, n.dia_chi, n.so_dien_thoai, n.email
+                            SELECT ctpn.ctpn_id, ctpn.pn_id, ctpn.sach_id, ctpn.so_luong, ctpn.don_gia, ctpn.thanh_tien, ctpn.ten_sach
                             FROM ChiTietPhieuNhap ctpn
-                            JOIN Sach s ON ctpn.sach_id = s.sach_id
-                            LEFT JOIN NhaXuatBan n ON s.nxb_id = n.nxb_id
                             WHERE ctpn.pn_id = @Phid
                             ORDER BY ctpn.ctpn_id", conn);
                         cmdDetails.Parameters.AddWithValue("@Phid", phid);
 
                         using (var reader = cmdDetails.ExecuteReader())
                         {
-                            var nxbNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                             while (reader.Read())
                             {
                                 var chiTiet = new ChiTietPhieuNhap
                                 {
-                                    CtpnId = reader["ctpn_id"] == DBNull.Value ?0 : Convert.ToInt32(reader["ctpn_id"]),
-                                    PnId = reader["pn_id"] == DBNull.Value ?0 : Convert.ToInt32(reader["pn_id"]),
-                                    SachId = reader["sach_id"] == DBNull.Value ?0 : Convert.ToInt32(reader["sach_id"]),
-                                    SoLuong = reader["so_luong"] == DBNull.Value ?0 : Convert.ToInt32(reader["so_luong"]),
-                                    DonGia = reader["don_gia"] == DBNull.Value ?0m : Convert.ToDecimal(reader["don_gia"]),
-                                    ThanhTien = reader["thanh_tien"] == DBNull.Value ?0m : Convert.ToDecimal(reader["thanh_tien"])
+                                    CtpnId = Convert.ToInt32(reader["ctpn_id"]),
+                                    PnId = Convert.ToInt32(reader["pn_id"]),
+                                    SachId = Convert.ToInt32(reader["sach_id"]),
+                                    SoLuong = Convert.ToInt32(reader["so_luong"]),
+                                    DonGia = Convert.ToDecimal(reader["don_gia"]),
+                                    ThanhTien =Convert.ToDecimal(reader["thanh_tien"]),
+                                    TenSach = reader["ten_sach"].ToString()
                                 };
 
-                                var sach = new Sach
-                                {
-                                    SachId = reader["s_sach_id"] == DBNull.Value ?0 : Convert.ToInt32(reader["s_sach_id"]),
-                                    TenSach = reader["ten_sach"] == DBNull.Value ? string.Empty : reader["ten_sach"].ToString(),
-                                    Gia = reader["s_gia"] == DBNull.Value ?0m : Convert.ToDecimal(reader["s_gia"]),
-                                    SoLuong = reader["s_so_luong"] == DBNull.Value ?0 : Convert.ToInt32(reader["s_so_luong"]),
-                                    NgayNhap = reader["s_ngay_nhap"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["s_ngay_nhap"]),
-                                    TrangThai = reader["s_trang_thai"] == DBNull.Value ? false : Convert.ToBoolean(reader["s_trang_thai"]),
-                                    NamXuatBan = reader["nam_xuat_ban"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["nam_xuat_ban"]),
-                                    SoTrang = reader["so_trang"] == DBNull.Value ? (int?)null : Convert.ToInt32(reader["so_trang"]),
-                                    MoTa = reader["mo_ta"] == DBNull.Value ? string.Empty : reader["mo_ta"].ToString(),
-                                    AnhBiaUrl = reader["anh_bia_url"] == DBNull.Value ? string.Empty : reader["anh_bia_url"].ToString(),
-                                    NgonNgu = reader["ngon_ngu"] == DBNull.Value ? string.Empty : reader["ngon_ngu"].ToString()
-                                };
-
-                                // Nha xuat ban
-                                if (reader["n_nxb_id"] != DBNull.Value)
-                                {
-                                    var nxb = new NhaXuatBan
-                                    {
-                                        NxbId = Convert.ToInt32(reader["n_nxb_id"]),
-                                        TenNxb = reader["ten_nxb"] == DBNull.Value ? string.Empty : reader["ten_nxb"].ToString(),
-                                        DiaChi = reader["dia_chi"] == DBNull.Value ? string.Empty : reader["dia_chi"].ToString(),
-                                        SoDienThoai = reader["so_dien_thoai"] == DBNull.Value ? string.Empty : reader["so_dien_thoai"].ToString(),
-                                        Email = reader["email"] == DBNull.Value ? string.Empty : reader["email"].ToString()
-                                    };
-                                    sach.NhaXuatBan = nxb;
-
-                                    if (!string.IsNullOrEmpty(nxb.TenNxb))
-                                    nxbNames.Add(nxb.TenNxb);
-                                }
-
-                                chiTiet.Sach = sach;
+                                // Do not populate Sach object here — keep data coming only from ChiTietPhieuNhap
                                 wareHouse.ChiTietPhieuNhaps.Add(chiTiet);
-                            }
-
-                            // If we collected publisher names, set TenNXB on header (comma separated)
-                            if (nxbNames.Count >0)
-                            {
-                                wareHouse.TenNXB = string.Join(", ", nxbNames);
                             }
                         }
                     }
@@ -259,6 +217,7 @@ namespace book_management.Data
             {
                 using (var conn = DatabaseConnection.GetConnection())
                 {
+                     List<ChiTietPhieuNhap> details = phieuNhap.ChiTietPhieuNhaps;
                     conn.Open();
                     using (var tx = conn.BeginTransaction())
                     {
@@ -281,15 +240,16 @@ namespace book_management.Data
                             int newPnId = Convert.ToInt32(result);
 
                             // Insert each detail and update stock
-                            foreach (var ct in phieuNhap.ChiTietPhieuNhaps)
+                            foreach (var ct in details)
                             {
                                 var cmdDetail = new SqlCommand(@"
-                                    INSERT INTO ChiTietPhieuNhap (pn_id, sach_id, so_luong, don_gia)
-                                    VALUES (@PnId, @SachId, @SoLuong, @DonGia)", conn, tx);
+                                    INSERT INTO ChiTietPhieuNhap (pn_id, sach_id, so_luong, don_gia, ten_sach)
+                                    VALUES (@PnId, @SachId, @SoLuong, @DonGia, @TenSach)", conn, tx);
                                 cmdDetail.Parameters.AddWithValue("@PnId", newPnId);
                                 cmdDetail.Parameters.AddWithValue("@SachId", ct.SachId);
                                 cmdDetail.Parameters.AddWithValue("@SoLuong", ct.SoLuong);
                                 cmdDetail.Parameters.AddWithValue("@DonGia", ct.DonGia);
+                                cmdDetail.Parameters.AddWithValue("@TenSach", ct.TenSach);
                                 int detailRows = cmdDetail.ExecuteNonQuery();
                                 if (detailRows ==0)
                                 {

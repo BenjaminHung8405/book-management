@@ -63,7 +63,7 @@ catch (Exception ex)
         {
         try
         {
-  var chiTietHD = ChiTietHoaDonRepository.GetChiTietHoaDon(hoaDonId);
+  var chiTietHD = ChiTietHoaDonRepository.GetChiTietByHoaDonId(hoaDonId);
    var frmDetail = new OrderDetailForm(chiTietHD);
            frmDetail.ShowDialog();
       }

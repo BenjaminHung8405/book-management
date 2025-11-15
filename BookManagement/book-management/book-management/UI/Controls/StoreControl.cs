@@ -452,7 +452,7 @@ namespace book_management.UI.Controls
                     return;
                 }
 
-                // 2. SỬA LỖI: Kiểm tra _currentCustomerId
+                bool check = true;
                 if (_currentCustomerId == 0)
                 {
                     // Hỏi người dùng có muốn tiếp tục thanh toán như 'Khách vãng lai' hay không
@@ -464,6 +464,7 @@ namespace book_management.UI.Controls
 
                     if (askGuest == DialogResult.No)
                         return;
+                  
                 }
 
                 // 3. Xác nhận
@@ -481,7 +482,7 @@ namespace book_management.UI.Controls
 
                 decimal netTotal = tongTien - discount;
 
-                var result = MessageBox.Show($"Xác nhận thanh toán {netTotal:N0} đ?",
+                var result = MessageBox.Show($"Xác nhận thanh toán/Lưu hóa đơn {netTotal:N0} đ?",
                                               "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
@@ -493,7 +494,10 @@ namespace book_management.UI.Controls
                     string trangThaiDb = "DaThanhToan"; // default
                     if (!string.IsNullOrWhiteSpace(selectedStatusText))
                     {
-                        if (selectedStatusText.Contains("Chưa")) trangThaiDb = "ChuaThanhToan";
+                        if (selectedStatusText.Contains("Chưa")) {
+                            trangThaiDb = "ChuaThanhToan";
+                            check = false;
+                        } 
                         else if (selectedStatusText.Contains("Đã") || selectedStatusText.Contains("Da")) trangThaiDb = "DaThanhToan";
                     }
 
@@ -524,6 +528,7 @@ namespace book_management.UI.Controls
                         var detail = new ChiTietHoaDon
                         {
                             SachId = item.BookId,
+                            TenSach = item.BookName,
                             SoLuong = item.Quantity,
                             DonGia = item.Price,
                             TienGiam = itemDiscount,
@@ -538,11 +543,23 @@ namespace book_management.UI.Controls
 
                     if (success)
                     {
-                        MessageBox.Show("Thanh toán thành công! Cảm ơn bạn đã mua hàng.", "Thành công",
+                        if(check == false)
+                        {
+                            MessageBox.Show("Hóa đơn đã được lưu dưới trạng thái Chưa thanh toán. Vui lòng xử lý thanh toán sau.", "Thông báo",
                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        _cart.Clear();
-                        RefreshCart();
-                        LoadBooks(); // Tải lại sách để cập nhật Tồn kho
+                            _cart.Clear();
+                            RefreshCart();
+                            LoadBooks(); // Tải lại sách để cập nhật Tồn kho
+                        }
+                        else
+                        {
+                            MessageBox.Show("Thanh toán thành công! Cảm ơn bạn đã mua hàng.", "Thành công",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            _cart.Clear();
+                            RefreshCart();
+                            LoadBooks(); // Tải lại sách để cập nhật Tồn kho
+                        }
+                        
                     }
                 }
             }

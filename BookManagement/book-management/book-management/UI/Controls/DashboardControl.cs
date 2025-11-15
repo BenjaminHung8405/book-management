@@ -115,7 +115,7 @@ namespace book_management.UI.Controls
                 {
                     string maHoaDonText = this.dataGridViewSales.Rows[e.RowIndex].Cells["colMaHoaDon"].Value.ToString();
                     int hoaDonId = int.Parse(maHoaDonText.Replace("HD-", ""));
-                    List<ChiTietHoaDon> chiTietHD = ChiTietHoaDonRepository.GetChiTietHoaDon(hoaDonId);
+                    List<ChiTietHoaDon> chiTietHD = ChiTietHoaDonRepository.GetChiTietByHoaDonId(hoaDonId);
 
                     // Open the InvoiceDetailForm (passes hoaDonId + details)
                     InvoiceDetailForm frmDetail = new InvoiceDetailForm(hoaDonId, chiTietHD);

@@ -31,7 +31,7 @@ namespace book_management.UI.Controls
             try
             {
                 _currentInvoice = HoaDonRepository.GetInvoiceById(_hoaDonId);
-                _chiTietList = ChiTietHoaDonRepository.GetChiTietHoaDon(_hoaDonId);
+                _chiTietList = ChiTietHoaDonRepository.GetChiTietByHoaDonId(_hoaDonId);
 
                 if (_currentInvoice != null)
                 {

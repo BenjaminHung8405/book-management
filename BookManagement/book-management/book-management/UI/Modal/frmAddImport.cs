@@ -264,17 +264,26 @@ namespace book_management.UI.Modal
                         return;
                     }
 
-                    if (!TryParseInt(qtyObj, out int soLuong) || soLuong <= 0)
+                    if (!TryParseInt(qtyObj, out int soLuong) || soLuong <=0)
                     {
                         MessageBox.Show("Số lượng phải là số nguyên dương.", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    if (!TryParseDecimal(priceObj, out decimal donGia) || donGia <= 0)
+                    if (!TryParseDecimal(priceObj, out decimal donGia) || donGia <=0)
                     {
                         MessageBox.Show("Đơn giá phải là số dương.", "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+
+                    // get TenSach from the row if present
+                    string tenSach = string.Empty;
+                    try
+                    {
+                        var tenObj = row.Cells["colTenSach"].Value;
+                        tenSach = tenObj?.ToString() ?? string.Empty;
+                    }
+                    catch { tenSach = string.Empty; }
 
                     var thanhTien = soLuong * donGia;
                     tong += thanhTien;
@@ -284,7 +293,8 @@ namespace book_management.UI.Modal
                         SachId = sachId,
                         SoLuong = soLuong,
                         DonGia = donGia,
-                        ThanhTien = thanhTien
+                        ThanhTien = thanhTien,
+                        TenSach = tenSach // ensure TenSach set so SQL parameter is supplied
                     });
                 }
 
